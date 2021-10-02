@@ -4,7 +4,7 @@
     <title>Beautiful tables</title>
     <meta charset="utf-8" />
     <meta name="author" content="Tom Mock" />
-    <meta name="date" content="2021-10-01" />
+    <meta name="date" content="2021-10-02" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <meta name="github-repo" content="jthomasmock/gtExtras-prez"/>
@@ -12,7 +12,7 @@
     <meta name="twitter:description" content="Making beautiful tables in R doesn&#39;t have to be hard or complex, and the gt/gtExtras package provide rich tooling to make these tables!"/>
     <meta name="twitter:url" content="https://jthomasmock.github.io/gtExtras-prez"/>
     <meta name="twitter:image:src" content="https://raw.githubusercontent.com/jthomasmock/gtExtras-prez/master/images/title-card.png"/>
-    <meta name="twitter:image:alt" content="Title slide of &#39;Making beautiful tables with gt and gtExtras&#39;. A slide deck covering the basics of using gt and gtExtras. It also has a picture of two people walking up a large incline/mountain."/>
+    <meta name="twitter:image:alt" content="Title slide of &#39;Making beautiful tables with gt and gtExtras&#39;. A slide deck covering the basics of using gt and gtExtras. It also has a picture of many table hex logos stacked."/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@thomas_mock"/>
     <meta name="twitter:site" content="@thomas_mock"/>
@@ -20,7 +20,7 @@
     <meta property="og:description" content="Making beautiful tables in R doesn&#39;t have to be hard or complex, and the gt/gtExtras package provide rich tooling to make these tables!"/>
     <meta property="og:url" content="https://jthomasmock.github.io/gtExtras-prez"/>
     <meta property="og:image" content="https://raw.githubusercontent.com/jthomasmock/gtExtras-prez/master/images/title-card.png"/>
-    <meta property="og:image:alt" content="Title slide of &#39;Making beautiful tables with gt and gtExtras&#39;. A slide deck covering the basics of using gt and gtExtras. It also has a picture of two people walking up a large incline/mountain."/>
+    <meta property="og:image:alt" content="Title slide of &#39;Making beautiful tables with gt and gtExtras&#39;. A slide deck covering the basics of using gt and gtExtras. It also has a picture of many table hex logos stacked."/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="article:author" content="Tom Mock"/>
@@ -118,7 +118,7 @@ class: center
 
 .pull-left[
 Easy enough to [*rapidly prototype*](https://johnburnmurdoch.github.io/slides/r-ggplot/#/14) graphics at the "speed of thought"  
-&lt;img src="https://johnburnmurdoch.github.io/slides/r-ggplot/football-tide-2.png" width="85%" /&gt;
+&lt;img src="https://johnburnmurdoch.github.io/slides/r-ggplot/football-tide-2.png" title="A screenshot of a scatterplot with team rank on the x-axis and team rating on the y-axis. The teams are all trending down from rank 1 to rank 20." alt="A screenshot of a scatterplot with team rank on the x-axis and team rating on the y-axis. The teams are all trending down from rank 1 to rank 20." width="85%" /&gt;
 
 ]
 
@@ -126,7 +126,7 @@ Easy enough to [*rapidly prototype*](https://johnburnmurdoch.github.io/slides/r-
 
 .pull-right[
 Powerful enough for [*final "publication"*](https://johnburnmurdoch.github.io/slides/r-ggplot/#/34)  
-&lt;img src="http://blogs.ft.com/ftdata/files/2016/03/eng.png" width="70%" /&gt;
+&lt;img src="http://blogs.ft.com/ftdata/files/2016/03/eng.png" title="A facetted scattergraph by year for the premier league. Team rating is on the Y-axis and rank is on the x-axis. The teams overall are declining." alt="A facetted scattergraph by year for the premier league. Team rating is on the Y-axis and rank is on the x-axis. The teams overall are declining." width="70%" /&gt;
 
 
 ]
@@ -142,14 +142,15 @@ Construct a wide variety of useful tables with a cohesive set of table parts. Th
 
 --
 
-![](https://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg)
+![A diagram of the components of a table. Notably, there are specific sections for every single component of a table, providing a rich toolbox for composing and modifying tables in R](https://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg)
+
 ---
 
-![](https://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg)
+![A diagram of the typical gt workflow, which is passing tabular data into gt() function, creating a gt object and can then be displayed as HTML](https://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg)
 --
 .pull-left[
 Easy enough to *rapidly prototype*  
-&lt;img src="https://themockup.blog/static/slides/images/urban/prototype.png" width="40%" /&gt;
+&lt;img src="https://themockup.blog/static/slides/images/urban/prototype.png" title="a basic gt table of mtcars" alt="a basic gt table of mtcars" width="40%" /&gt;
 
 ]
 
@@ -195,7 +196,7 @@ class:inverse, center, middle
 
 ### Tables vs Graphs
 
-![](https://themockup.blog/static/slides/tables/few-table-rule.png)
+![When to use a table vs a graph according to Stephen Few. Notably, tables are used to display exact values, while graphs are best for showing trends or patterns.](https://themockup.blog/static/slides/tables/few-table-rule.png)
 
 ---
 
@@ -209,13 +210,13 @@ class: center, middle, inverse
 ### Graph or table?
 
 
-&lt;img src="https://pbs.twimg.com/media/FATujGvVkAEDlOa?format=png&amp;name=medium" width="55%" /&gt;
+&lt;img src="https://pbs.twimg.com/media/FATujGvVkAEDlOa?format=png&amp;name=medium" title="A complex table with inlaid graphics" alt="A complex table with inlaid graphics" width="55%" /&gt;
 
 ---
 
 ### Graph or table?
 
-&lt;img src="https://pbs.twimg.com/media/FAjGvRIXIAAv-ll?format=png" width="50%" /&gt;
+&lt;img src="https://pbs.twimg.com/media/FAjGvRIXIAAv-ll?format=png" title="A complex table with inline graphics" alt="A complex table with inline graphics" width="50%" /&gt;
 
 ---
 
@@ -672,16 +673,15 @@ final_df %&gt;%
 .pull-left[
 
 ```r
-final_df %&gt;%
-  gt(groupname_col = "team_division") %&gt;%
-  cols_label(team_wordmark = "") %&gt;%
-  cols_align("left", team_division) %&gt;%
+gt(final_df, groupname_col = "team_division") %&gt;%
   gtExtras::gt_plt_winloss(
     outcomes, 
     max_wins = 16, type = "pill") %&gt;%
   gtExtras::gt_img_rows(team_wordmark, 
                         height = 20) %&gt;%
   gtExtras::gt_theme_538() %&gt;%
+  cols_label(team_wordmark = "") %&gt;%
+  cols_align("left", team_division) %&gt;%
   tab_header(
     title = gtExtras::add_text_img(
       "2020 Results by Division",
@@ -698,7 +698,7 @@ final_df %&gt;%
 --
 
 .pull-right[
-&lt;img src="images/gt-plt-winloss.png" width="70%" /&gt;
+&lt;img src="images/gt-plt-winloss.png" title="A table with inline indicators for wins and losses based on small pillshapes" alt="A table with inline indicators for wins and losses based on small pillshapes" width="70%" /&gt;
 
 ]
 
@@ -1935,7 +1935,7 @@ ncaa_df
 
 ### NCAA Table, code [here](https://gist.github.com/jthomasmock/6976d589572eaf6db3d13cfc9127a8b7)
 
-&lt;img src="images/ncaa-tab.png" width="85%" /&gt;
+&lt;img src="images/ncaa-tab.png" title="A complex table that has stacked bar chart in one row, highlighting the ability to create complex tables with inline bars" alt="A complex table that has stacked bar chart in one row, highlighting the ability to create complex tables with inline bars" width="85%" /&gt;
 
 
 
@@ -2390,7 +2390,7 @@ head(mtcars) %&gt;%
 
 ### `gt_plt_dot()` with [Code](https://gist.github.com/jthomasmock/b6fd5d64842296de2d1ef9cad6769f2c)
 
-&lt;img src="https://user-images.githubusercontent.com/29187501/134953158-0b71ca46-bda1-4d3f-a1ce-e879fd972a13.png" width="50%" /&gt;
+&lt;img src="https://user-images.githubusercontent.com/29187501/134953158-0b71ca46-bda1-4d3f-a1ce-e879fd972a13.png" title="A table with a plot-dot, ie a thin bar chart below the values in the row" alt="A table with a plot-dot, ie a thin bar chart below the values in the row" width="50%" /&gt;
 
 
 
@@ -2478,42 +2478,42 @@ Themes from:
 
 ### `gt_theme_538()`
 
-![](https://jthomasmock.github.io/gtExtras/reference/figures/gt_538.png)
+![A screenshot of a table with formatting similar to tables from FiveThirtyEight](https://jthomasmock.github.io/gtExtras/reference/figures/gt_538.png)
 
 ---
 
 ### `gt_theme_espn()`
 
-![](https://jthomasmock.github.io/gtExtras/reference/figures/gt_espn.png)
+![A screenshot of a table with formatting similar to ESPN](https://jthomasmock.github.io/gtExtras/reference/figures/gt_espn.png)
 
 ---
 
 ### `gt_theme_nytimes()`
 
-&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/gt_nyt.png" width="80%" /&gt;
+&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/gt_nyt.png" title="A screenshot of a table with formatting similar to NY Times" alt="A screenshot of a table with formatting similar to NY Times" width="65%" /&gt;
 
 ---
 
 ### `gt_theme_guardian()`
 
-![](https://jthomasmock.github.io/gtExtras/reference/figures/gt_guardian.png)
+![A screenshot of a table with formatting similar to the Guardian](https://jthomasmock.github.io/gtExtras/reference/figures/gt_guardian.png)
 ---
 
 ### `gt_theme_dot_matrix()`
 
-![](https://jthomasmock.github.io/gtExtras/reference/figures/gt_dot_matrix.png)
+![A screenshot of a table with formatting similar to a dot matrix printer](https://jthomasmock.github.io/gtExtras/reference/figures/gt_dot_matrix.png)
 
 ---
 
 ### `gt_theme_dark()`
 
-&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/gt_dark.png" width="80%" /&gt;
+&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/gt_dark.png" title="A screenshot of a table with a dark theme, ie all dark grey with white text" alt="A screenshot of a table with a dark theme, ie all dark grey with white text" width="65%" /&gt;
 
 ---
 
 ### `gt_theme_excel()`
 
-&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/gt_excel.png" width="80%" /&gt;
+&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/gt_excel.png" title="A screenshot of a table with formatting similar to Excel" alt="A screenshot of a table with formatting similar to Excel" width="80%" /&gt;
 ---
 
 class: center, middle, inverse
@@ -2547,7 +2547,7 @@ head(gtcars) %&gt;%
 
 .pull-right[
 
-![](https://jthomasmock.github.io/gtExtras/reference/figures/gt_fmt_first.png)
+![A table highlighting that there are only symbols on the first row, while the other rows are properly aligned still](https://jthomasmock.github.io/gtExtras/reference/figures/gt_fmt_first.png)
 
 ]
 
@@ -2559,12 +2559,12 @@ head(gtcars) %&gt;%
 
 
 ```r
-head(mtcars[,1:5]) %&gt;%
- tibble::rownames_to_column("car") %&gt;%
-   gt() %&gt;%
+sub_cars &lt;- head(mtcars[,1:5]) %&gt;%
+   tibble::rownames_to_column("car")
+gt(sub_cars) %&gt;%
    gt_highlight_rows(rows = 2, font_weight = "normal")
 ```
-&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/highlight-basic.png" width="80%" /&gt;
+&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/highlight-basic.png" title="A screenshot of table with a specific row highlighted, the row has light blue background" alt="A screenshot of table with a specific row highlighted, the row has light blue background" width="80%" /&gt;
 
 ]
 
@@ -2573,15 +2573,13 @@ head(mtcars[,1:5]) %&gt;%
 .pull-right[
 
 ```r
-head(mtcars[,1:5]) %&gt;%
-   tibble::rownames_to_column("car") %&gt;%
-   gt() %&gt;%
+gt(sub_cars) %&gt;%
    gt_highlight_rows(
      rows = car == "Valiant", fill = "lightgrey",
      target_col = car, bold_target_only = TRUE
    )
 ```
-&lt;img src="images/gt-bold-target.png" width="924" /&gt;
+&lt;img src="images/gt-bold-target.png" title="A screenshot of a table with a specific row highlighted, the row has a lightgrey background and only the target column has bold text." alt="A screenshot of a table with a specific row highlighted, the row has a lightgrey background and only the target column has bold text." width="90%" /&gt;
 
 
 ]
@@ -2610,7 +2608,7 @@ head(team_df, 8) %&gt;%
 --
 
 .pull-right[
-&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/merge-stack.png" width="40%" /&gt;
+&lt;img src="https://jthomasmock.github.io/gtExtras/reference/figures/merge-stack.png" title="A screen shot of a complex table, where two columns have been merged into a single column. The text from col1 is on top and the text from col2 is below it" alt="A screen shot of a complex table, where two columns have been merged into a single column. The text from col1 is on top and the text from col2 is below it" width="60%" /&gt;
 
 ]
 
@@ -2618,19 +2616,21 @@ head(team_df, 8) %&gt;%
 
 class: center, middle, inverse
 
-# What's in a `gt` function?
+# What's in a `gtExtras` function anyway?
 
 ---
 
 ### `gtExtras` is just several `gt` functions in a trenchcoat
 
 * `gtExtras` is _just_ pure `gt` with boilerplate repeated  
+
 * `gtExtras` uses `ggplot2` -&gt; SVG -&gt; HTML for plots  
+
 * `gtExtras` uses custom HTML/CSS to "do extra things"  
 
 --
 
-* `gtExtras` uses `gt` to do cool things!  
+* `gtExtras` uses several `gt` functions to do one cool thing at a time!  
 
 --
 
@@ -2648,7 +2648,7 @@ class: center, middle, inverse
 ```r
 my_dplyr_summary &lt;- function(data, var, ...){
   data %&gt;%
-    group_by({{ var }}) %&gt;% 
+*   group_by({{ var }}) %&gt;%
     summarize(n = n(), ...)
 }
 ```
@@ -2659,7 +2659,8 @@ my_dplyr_summary &lt;- function(data, var, ...){
 
 ```r
 mtcars %&gt;% 
-  my_dplyr_summary(cyl, avg_fuel_eff = mean(mpg))
+  my_dplyr_summary(cyl, 
+                   avg_fuel_eff = mean(mpg))
 ```
 
 ```
@@ -2720,7 +2721,7 @@ gt_theme_dot_matrix &lt;- function(gt_object, ..., color = "#b5dbb6"){
       locations = list(cells_body(rows = nrow(gt_object[["_data"]])))) %&gt;%
     opt_table_font(font = "Courier") %&gt;%
     tab_options(
-      ..., # PASSING THE DOTS
+*     ..., # PASSING THE DOTS
       heading.align = "left",
       heading.border.bottom.color = "white",
       column_labels.text_transform = "lowercase",
@@ -2756,16 +2757,32 @@ gt_highlight_rows &lt;- function(gt_object, columns = gt::everything(),
       tab_style(
         style = cell_fill(color = fill, alpha = alpha),
         # TIDYEVAL
-        locations = cells_body(columns = {{ columns }},rows = {{ rows }})
+*       locations = cells_body(columns = {{ columns }},rows = {{ rows }})
       ) %&gt;%
       tab_style(
         style = list(cell_text(weight = font_weight)),
         # TIDYEVAL
-        locations = cells_body(columns = {{ target_col }},rows = {{ rows }})
+*       locations = cells_body(columns = {{ target_col }},rows = {{ rows }})
       )
 }
 ```
 
+---
+
+### `gt` is amazing
+
+* `gtExtras` is just wrapping `gt` to make very specific tasks more succinct  
+* You can write your own `gt` functions!  
+* To read more about `tidyeval`, see my [slides](https://jthomasmock.github.io/pkg-building/#41)  
+
+
+--
+
+### Followup
+
+* [`gtExtras` docs](https://jthomasmock.github.io/gtExtras/)  
+* [`gt` docs](https://gt.rstudio.com/)  
+* [My `gt` blogposts](https://themockup.blog/#category:gt)  
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
