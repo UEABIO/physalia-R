@@ -1,5 +1,5 @@
 ---
-title: "Making beautiful tables"
+title: "Beautiful tables"
 subtitle: "with `gt` and `gtExtras`"
 author: "Tom Mock"
 date: "`r Sys.Date()`"
@@ -55,8 +55,6 @@ class: title-slide, left, top
 ## `r rmarkdown::metadata$subtitle`
 
 ### `r rmarkdown::metadata$author`
-
-### `r Sys.Date()`
 
 <br>
 
