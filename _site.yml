@@ -1,0 +1,14 @@
+name: 5023Y slides
+output_dir: '.'
+navbar:
+  title: 5023Y slides
+  right:
+  - text: About
+    href: about.html
+output:
+  html_document:
+    theme: flatly
+    includes:
+      after_body: footer.html
+    lib_dir: site_libs
+    self_contained: no
