@@ -13,14 +13,17 @@ All lecture materials will be available here.
     - [Practical work](https://ueabio.github.io/data-sci-v1/basic-programming.html)
 
 - 03: Working with data
-    - [Slides](slides/Data_wrangling.html)
+    - [Slides](slides/Data_wrangling_03.html)
     - [Practical work 1](https://ueabio.github.io/data-sci-v1/loading-data.html)
     - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html)
     - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
     
 - 04: Data Visualisation
 
+
 - 05: Descriptive statistics
+    - [Slides](slides/Descriptive_statistics_05.html)
+    - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
 - 06: Reproducible Reports
       - slides

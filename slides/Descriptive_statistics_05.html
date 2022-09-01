@@ -7,6 +7,10 @@
     <meta name="date" content="2022-09-01" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/viz/viz.js"></script>
+    <link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding/grViz.js"></script>
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
     <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
   </head>
@@ -21,7 +25,7 @@ class: title-slide, left, top
 
 # Descriptive statistics
 
-## Normal distribution, central tendency, variance
+## 
 
 ### Philip Leftwich
 
@@ -111,24 +115,149 @@ rnorm(n = 1000,mean = 0,sd = 3)
 ]
 
 ---
+## There are infinite normal distributions
+### Different means and sd change the shape
+
+&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-7-1.png" width="80%" /&gt;
+---
 
 ## Visualising a Distribution
 
+.pull-left[
+**Histograms** plot frequency/density of observations within bins
+
+&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-8-1.png" width="80%" /&gt;
+]
+
+.pull-right[
+**Quantile-Quantile plots** plot quantiles of a dataset vs. quantiles of a *theoretical* (usually normal) distribution
+
+&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
+]
+
 ---
+
+## QQ plots
+
+If data is normally distributed, then if we plot the [*quantiles*](https://www.youtube.com/watch?v=okjYjClSjOg) vs. theoretical normal quantiles (with same *n*), then we find a linear relationship
+---
+
+class: center
+
+&lt;img src="images/qq_example.png" title="QQ plot examples" alt="QQ plot examples" width="50%" /&gt;
+
+
+---
+class: center
 
 ## Using the standard normal distribution
 
+&lt;img src="images/standard_normal.png" title="Normal distribution, paranormal distribution" alt="Normal distribution, paranormal distribution" width="50%" /&gt;
+
 ---
 
-## Z scores
+## Z scores: How many standard deviations from the mean?
+
+$$
+z = {x_i - \mu \over \sigma}
+$$
+The *Z* score can be looked up in [*Z*-table](https://www.simplypsychology.org/z-table.html) to find the "probability of observing that value in a normal distribution." 
+
+---
+class: center, middle
+
+## If we know the mean and SD for a normally distributed population, we can then use that to start calculating *probabilities*
 
 ---
 
 ## Standard Error
 
+We have seen that the standard deviation tells us about how well the mean represents the sample data. 
+
+--
+
+When we take samples we often hope to make inferences about the entire population. 
+
+--
+
+If you take several samples, each one will *differ slightly*. 
+
+--
+
+How can we know how well our sample represents the population? 
+
+---
+class: center, middle
+
+<div id="htmlwidget-163918f50c8b85ca2290" style="width:100%;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-163918f50c8b85ca2290">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\na[label = \"Population mean = 3\"]\nb[label = \"Sample mean = 3\"]\nc[label = \"Sample mean = 4\"]\nd[label = \"Sample mean = 5\"]\ne[label = \"Sample mean = 1\"]\nf[label = \"Sample mean = 2\"]\ng[label = \"Sample mean = 4\"]\n\na -> b\na -> c\na -> d\na -> e\na -> f\na -> g\n\n\n\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+## Sampling distribution
+
+If we took a bunch of samples, and found the probability distribution of a statistic found for each sample (e.g. mean, sd, etc.), then we’d find the **sampling distribution.**
+
+The **standard deviation of the sampling distribution of means** is the standard error, and is calculated by dividing the standard deviation by the square root of the sample size: 
+
+$$
+SE = {\sigma \over \sqrt n}
+$$
+---
+
+### Standard Error:
+How much does your sample statistic differ from the population parameter *or* how accurate is your sample mean?
+
+Of course *in reality* we have not calculated hundreds of sample means to calculate the standard deviation of sample means. We have relied on approximation.
+
 ---
 
 ## Central limit theorem
+
+If you take sufficiently large random samples (at least 30), then the distribution of the sample means will be approximately normally distributed. 
+
+Allowing us to use Standard Error as an estimation of accuracy in our sample mean.
+
+This is true *even if the population distribution does not follow a normal distribution*.
+
+---
+
+## Central limit theorem
+
+### Here the width of turtle shells follow a "uniform distribution"
+
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+
+## Central limit theorem
+
+
+
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+
+## Central limit theorem
+
+
+
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+
+## Central limit theorem
+
+
+
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+class: center, middle, inverse
+
+# Calculating boundaries for the true mean: 
+# Confidence Intervals
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
