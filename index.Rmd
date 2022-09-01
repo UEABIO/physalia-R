@@ -1,11 +1,15 @@
 ---
-title: "5023Y Course Outline"
+title: "Physalia courses outline"
 ---
 
-All lecture materials will be available here, recordings for most lectures will be found on [Blackboard](https://learn.uea.ac.uk/) *after* each live session.
+All lecture materials will be available here.
 
-- Week 01: Introductions
-    - [Slides](slides/slide_02.html)
+- 01: Introductions and course outline
+    - [Slides](slides/Intro_01.html)
     - [Practical work](https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html)
+
+- 02: Using R
+    - [Slides](slides/Intro_02.html)
+    - [Practical work](https://ueabio.github.io/data-sci-v1/basic-programming.html)
 
 
