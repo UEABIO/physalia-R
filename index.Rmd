@@ -12,4 +12,9 @@ All lecture materials will be available here.
     - [Slides](slides/Intro_02.html)
     - [Practical work](https://ueabio.github.io/data-sci-v1/basic-programming.html)
 
-
+- 03: Working with data
+    - [Slides](slides/Data_wrangling.html)
+    - [Practical work 1](https://ueabio.github.io/data-sci-v1/loading-data.html)
+    - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html)
+    - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
+    
