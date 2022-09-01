@@ -1,0 +1,175 @@
+---
+title: "Descriptive statistics"
+subtitle: "Normal distribution, central tendency, variance"
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+
+
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+
+---
+class: center, middle
+
+# Central tendency & spread
+
+
+---
+
+class: center, middle
+
+| Mean        | Median      | Mode       |
+| ----------- | ----------- |----------- |
+| The average value     | The middle value      |The most frequent value      |
+| Sum of the total divided by *n*   | The middle value (if *n* is odd). The average of the two central values (if *n* is even)      |The most frequent value      |
+| Most common reported measure, affected by outliers | Less influenced by outliers, improves as *n* increases | Less common
+
+
+---
+
+## Why is data distribution important?
+
+```{r, echo = FALSE, out.width="50%", fig.alt = "Frequency distribution with central tendencies"}
+knitr::include_graphics("images/three_tendencies.png")
+```
+---
+
+## Standard Deviation
+
+* Square root of sample *variance*
+
+* A measure of *dispersion* of the sample
+
+$$
+\sigma = \sqrt{\sum(x - \overline x)^2\over n - 1}
+$$
+* Smaller SD ($\sigma$) = more values close to the mean, larger SD = greater data spread away from the mean.
+
+---
+
+```{r, eval = FALSE}
+rnorm(n = 1000,mean = 0,sd = 1)
+rnorm(n = 1000,mean = 0,sd = 2)
+rnorm(n = 1000,mean = 0,sd = 3)
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+library(patchwork)
+
+`SD = 1` <- rnorm(n = 1000, mean = 0, sd = 1)
+`SD = 2` <- rnorm(n = 1000, mean = 0, sd = 2)
+`SD = 3` <- rnorm(n = 1000, mean = 0, sd = 3)
+
+tibble(`SD = 1`, `SD = 2`, `SD = 3`) %>% 
+pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "values") %>% 
+  ggplot(aes(x = values, fill = `Standard Deviation`))+
+  geom_histogram()+
+  facet_wrap(~ `Standard Deviation`)+
+  theme_classic()+
+  theme(legend.position = "none")+
+  labs(x = " ",
+       y = "Frequency")
+
+
+```
+
+---
+
+## Another method
+
+* Box bounded by 25th and 75th percentile. This is called the interquartile range (IQR)
+
+* Line in box is usually the median
+
+* Whiskers extend to last OBSERVATION within 1 step (usually 1.5*IQR) from end of the box
+
+* Any observations beyond whisker are plotted as individual points
+
+```{r, echo = FALSE, out.width="50%", fig.alt = "Boxplot"}
+knitr::include_graphics("images/boxplot.png")
+```
+---
+
+## The Normal Distribution
+
+.pull-left[
+```{r, echo = F, message = F, warning = F}
+tibble(`SD = 1`, `SD = 2`, `SD = 3`) %>% 
+pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "values") %>% 
+  filter(`Standard Deviation` == "SD = 2") %>% 
+  ggplot(aes(x = values), fill = "grey")+
+  geom_histogram()+
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(x = bquote(bar(x)),
+       y = " ")
+
+```
+]
+
+.pull-right[
+```{r, echo = FALSE, out.width="50%", fig.alt = "Normal distribution, paranormal distribution"}
+knitr::include_graphics("images/paranormal.png")
+```
+]
+
+---
+
+## Visualising a Distribution
+
+---
+
+## Using the standard normal distribution
+
+---
+
+## Z scores
+
+---
+
+## Standard Error
+
+---
+
+## Central limit theorem
