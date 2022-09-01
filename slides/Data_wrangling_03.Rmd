@@ -1,5 +1,5 @@
 ---
-title: "Beautiful tables"
+title: "Beautiful other tables"
 subtitle: "with `gt` and `gtExtras`"
 author: "Tom Mock"
 date: "`r Sys.Date()`"
