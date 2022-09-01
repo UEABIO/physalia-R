@@ -18,3 +18,30 @@ All lecture materials will be available here.
     - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html)
     - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
     
+- 03: Data Visualisation
+
+- 04: Descriptive statistics
+
+- 05: Reproducible Reports
+      - slides
+      - pdf
+      - html
+      - methods sections?
+      - redoc 
+      - organise talks and papers
+      - Pandoc on shared drives?
+
+- 06: Probability
+
+- 07: T-tests
+
+- 08: ANOVA
+
+- 09: Intro to linear models
+
+- 10: Generalised linear models
+
+
+
+
+    
