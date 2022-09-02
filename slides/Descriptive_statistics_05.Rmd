@@ -158,7 +158,7 @@ knitr::include_graphics("images/paranormal.png")
 ## There are infinite normal distributions
 ### Different means and sd change the shape
 
-```{r, echo = FALSE, out.width = "80%"}
+```{r, echo = FALSE, out.width = "40%"}
 
 `SD = 1` <- rnorm(n = 1000, mean = 2, sd = 1)
 `SD = 2` <- rnorm(n = 1000, mean = 6, sd = 4)
@@ -169,7 +169,6 @@ pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "
   ggplot(aes(x = values, fill = `Standard Deviation`))+
   geom_density(alpha = 0.6, colour = "black")+
   theme_classic()+
-  theme(legend.position = "none")+
   labs(x = " ",
        y = "Frequency")
 ```

@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Descriptive statistics</title>
+    <title>Probability</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
     <meta name="date" content="2022-09-02" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
-    <script src="libs/viz/viz.js"></script>
-    <link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
-    <script src="libs/grViz-binding/grViz.js"></script>
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
     <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
   </head>
@@ -23,7 +19,7 @@
 
 class: title-slide, left, top
 
-# Descriptive statistics
+# Probability
 
 ## 
 
@@ -46,218 +42,158 @@ layout: true
 ---
 class: center, middle
 
-# Central tendency &amp; spread
+# Hypothesis testing
 
 
 ---
 
-class: center, middle
+## Hypothesis formation
 
-| Mean        | Median      | Mode       |
-| ----------- | ----------- |----------- |
-| The average value     | The middle value      |The most frequent value      |
-| Sum of the total divided by *n*   | The middle value (if *n* is odd). The average of the two central values (if *n* is even)      |The most frequent value      |
-| Most common reported measure, affected by outliers | Less influenced by outliers, improves as *n* increases | Less common
+The **null hypothesis** is that there is no relationship between your variables of interest or that there is no difference among groups
 
+You want to know whether there is a difference in longevity between two groups of mice fed on different diets, diet A and diet B. 
 
----
+* Null hypothesis: there is **no** difference in longevity between the two groups.
 
-## Why is data distribution important?
-
-&lt;img src="images/three_tendencies.png" title="Frequency distribution with central tendencies" alt="Frequency distribution with central tendencies" width="50%" /&gt;
----
-
-## Standard Deviation
-
-* Square root of sample *variance*
-
-* A measure of *dispersion* of the sample
-
-$$
-\sigma = \sqrt{\sum(x - \overline x)^2\over n - 1}
-$$
-* Smaller SD ($\sigma$) = more values close to the mean, larger SD = greater data spread away from the mean.
+* Alternative hypothesis: there *is* a difference in longevity between the two groups.
 
 ---
 
+## Significance level 
 
-```r
-rnorm(n = 1000,mean = 0,sd = 1)
-rnorm(n = 1000,mean = 0,sd = 2)
-rnorm(n = 1000,mean = 0,sd = 3)
-```
+Significance Level (alpha, 𝝰): the probability of rejecting a true null hypothesis. 
 
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+Most common:  𝝰 = 0.05 (but you’ll also see 0.01, 0.001)
 
----
+What does this mean? Why should we be careful/wary of a higher significance level? Do we PROVE the null hypothesis is wrong?
 
-## Another method
-
-* Box bounded by 25th and 75th percentile. This is called the interquartile range (IQR)
-
-* Line in box is usually the median
-
-* Whiskers extend to last OBSERVATION within 1 step (usually 1.5*IQR) from end of the box
-
-* Any observations beyond whisker are plotted as individual points
-
-&lt;img src="images/boxplot.png" title="Boxplot" alt="Boxplot" width="50%" /&gt;
----
-
-## The Normal Distribution
-
-.pull-left[
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
-]
-
-.pull-right[
-&lt;img src="images/paranormal.png" title="Normal distribution, paranormal distribution" alt="Normal distribution, paranormal distribution" width="50%" /&gt;
-]
-
----
-## There are infinite normal distributions
-### Different means and sd change the shape
-
-&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-7-1.png" width="40%" /&gt;
----
-
-## Visualising a Distribution
-
-.pull-left[
-**Histograms** plot frequency/density of observations within bins
-
-&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-8-1.png" width="80%" /&gt;
-]
-
-.pull-right[
-**Quantile-Quantile plots** plot quantiles of a dataset vs. quantiles of a *theoretical* (usually normal) distribution
-
-&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
-]
-
----
-
-## QQ plots
-
-If data is normally distributed, then if we plot the [*quantiles*](https://www.youtube.com/watch?v=okjYjClSjOg) vs. theoretical normal quantiles (with same *n*), then we find a linear relationship
----
-
-class: center
-
-&lt;img src="images/qq_example.png" title="QQ plot examples" alt="QQ plot examples" width="50%" /&gt;
-
+And…what the heck is the p-value?
 
 ---
 class: center
 
-## Using the standard normal distribution
+## What is a p-value?
 
-&lt;img src="images/standard_normal.png" title="Normal distribution, paranormal distribution" alt="Normal distribution, paranormal distribution" width="50%" /&gt;
+IF the null hypothesis is true, it is the probability that we could have taken a random sample from the population described by the null hypothesis and find a sample mean (or means difference) *at least as different from the null* by random chance. 
+
+&lt;img src="images/type_1_errors.png" title="P is the probability of making a type 1 error." alt="P is the probability of making a type 1 error." width="60%" /&gt;
 
 ---
+class: center
+##Difference in means
 
-## Z scores: How many standard deviations from the mean?
+&lt;img src="images/z_distribution.png" title="Critical z values." alt="Critical z values." width="60%" /&gt;
+---
+class: center
 
-$$
-z = {x_i - \mu \over \sigma}
-$$
-The *Z* score can be looked up in [*Z*-table](https://www.simplypsychology.org/z-table.html) to find the "probability of observing that value in a normal distribution." 
+##P = 0.02, what does this mean?
+
+**IF** the null hypothesis is true (samples are taken from populations with the same mean), the probability that we would have taken two samples that are at least this different by random chance (means, taking into account data spread, etc.) is 2%.
+
+--
+
+THEN YOU HAVE TO DECIDE: Is this so unlikely to have happened by random chance IF the means are equal, that instead I think that they were probably drawn from populations with different means?
+
+--
+
+
+The cut-off that you choose is your significance level, alpha (𝛼). 
 
 ---
 class: center, middle
 
-## If we know the mean and SD for a normally distributed population, we can then use that to start calculating *probabilities*
+###The cut-off that you choose is your significance level, alpha (𝛼). 
+
+###If p &lt; 𝛼, we reject the null hypothesis.
+###If p &gt; 𝛼, we retain the null hypothesis. 
+
+---
+class: center, middle, inverse
+
+#P-value misconceptions
+
+(https://shiny.ieis.tue.nl/MOOC/assignment_1/)
 
 ---
 
-## Standard Error
+###Misconception #1: If P = 0.05, the null hypothesis has only a 5% chance of being true
 
-We have seen that the standard deviation tells us about how well the mean represents the sample data. 
+One of the most common misconceptions. 
 
---
+The *P* value is calculated *under the assumption that the null hypothesis is true*. 
 
-When we take samples we often hope to make inferences about the entire population. 
+It cannot therefore also be a probability for *whether* the null hypothesis is true
 
---
-
-If you take several samples, each one will *differ slightly*. 
-
---
-
-How can we know how well our sample represents the population? 
-
----
-class: center, middle
-
-<div id="htmlwidget-75e191991d38b5388638" style="width:100%;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-75e191991d38b5388638">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\na[label = \"Population mean = 3\"]\nb[label = \"Sample mean = 3\"]\nc[label = \"Sample mean = 4\"]\nd[label = \"Sample mean = 5\"]\ne[label = \"Sample mean = 1\"]\nf[label = \"Sample mean = 2\"]\ng[label = \"Sample mean = 4\"]\n\na -> b\na -> c\na -> d\na -> e\na -> f\na -> g\n\n\n\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
----
-## Sampling distribution
-
-If we took a bunch of samples, and found the probability distribution of a statistic found for each sample (e.g. mean, sd, etc.), then we’d find the **sampling distribution.**
-
-The **standard deviation of the sampling distribution of means** is the standard error, and is calculated by dividing the standard deviation by the square root of the sample size: 
-
-$$
-SE = {\sigma \over \sqrt n}
-$$
----
-
-### Standard Error:
-How much does your sample statistic differ from the population parameter *or* how accurate is your sample mean?
-
-Of course *in reality* we have not calculated hundreds of sample means to calculate the standard deviation of sample means. We have relied on approximation.
+&lt;img src="images/26_sample_null.png" title="A range of P values under when the Null hypothesis is true." alt="A range of P values under when the Null hypothesis is true." width="70%" /&gt;
 
 ---
 
-## Central limit theorem
+###Misconception #1: If P = 0.05, the null hypothesis has only a 5% chance of being true
 
-If you take sufficiently large random samples (at least 30), then the distribution of the sample means will be approximately normally distributed. 
+One of the most common misconceptions. 
 
-Allowing us to use Standard Error as an estimation of accuracy in our sample mean.
+The *P* value is calculated *under the assumption that the null hypothesis is true*. 
 
-This is true *even if the population distribution does not follow a normal distribution*.
+It cannot therefore also be a probability for *whether* the null hypothesis is true
 
----
-
-## Central limit theorem
-
-### Here the width of turtle shells follow a "uniform distribution"
-
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+&lt;img src="images/26_sample_110.png" title="A range of P values under when the Alternate hypothesis is true." alt="A range of P values under when the Alternate hypothesis is true." width="70%" /&gt;
 
 ---
 
-## Central limit theorem
+###Misconception #2: A non-significant difference, means there is no difference between groups
 
-
-
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+A non-significant difference merely means that the null is statistically consistent with the observed results - *at this sample size and measured effect size*.
 
 ---
 
-## Central limit theorem
+###Misconception #3: A statistically significant difference is an important difference
+
+See previous point - the differences may be too small to be of importance, P values are a product of sample size and effect size.
 
 
-
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ---
 
-## Central limit theorem
+###Misconception #4: Studies that fall either side of the P = 0.05 are in conflict. 
+
+Again this can be a product of sample size, or expected variation in sample means. Only when confidence intervals show no overlap would we describe conflict. 
+
+![](Probability_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+###Misconception #5: Studies with the same P value provide the same support
+
+.left-code[
+
+* Mean difference of 8, S.D. = 15, sample size = 30
+
+* Mean difference of 3, S.D. = 15, sample size = 180
 
 
+]
 
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+.right-plot[
+
+&lt;img src="images/26_sample_108.png" title="A range of P values under when the Alternate hypothesis is true with a mean of 108." alt="A range of P values under when the Alternate hypothesis is true with a mean of 108." width="125%" /&gt;
+
+
+&lt;img src="images/180_sample_103.png" title="A range of P values under when the Alternate hypothesis is true with a mean of 108." alt="A range of P values under when the Alternate hypothesis is true with a mean of 108." width="125%" /&gt;
+
+]
 
 ---
 
 class: center, middle, inverse
 
-# Calculating boundaries for the true mean: 
-# Confidence Intervals
+###P values can indicate how incompatible the data are with a specified statistical model
 
+###P values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone
+
+---
+class: center, middle, inverse
+
+###By itself, a p value does not provide a good measure of evidence regarding a model or hypothesis.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

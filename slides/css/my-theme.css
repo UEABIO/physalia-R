@@ -326,3 +326,15 @@ h1#pop-quiz:before {
 .your-turn .remark-inline-code {
   color: #1f5386;
 }
+
+.left-code {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}

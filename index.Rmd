@@ -6,23 +6,28 @@ All lecture materials will be available here.
 
 - 01: Introductions and course outline
     - [Slides](slides/Intro_01.html)
+
     - [Practical work](https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html)
 
 - 02: Using R
     - [Slides](slides/Intro_02.html)
+    
     - [Practical work](https://ueabio.github.io/data-sci-v1/basic-programming.html)
 
 - 03: Working with data
     - [Slides](slides/Data_wrangling_03.html)
+
     - [Practical work 1](https://ueabio.github.io/data-sci-v1/loading-data.html)
     - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html)
-    - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
+    - [Practical work 3](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
     
 - 04: Data Visualisation
 
 
 - 05: Descriptive statistics
-    - [Slides](slides/Descriptive_statistics_05.html)
+    - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
+    - Slides: Association
+
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
 - 06: Reproducible Reports
@@ -34,15 +39,24 @@ All lecture materials will be available here.
       - organise talks and papers
       - Pandoc on shared drives?
 
-- 07: Probability
+- 07: Confidence intervals
 
-- 08: T-tests
+- 08: Probability
+    - [Slides](slides/Probability.html)
 
-- 09: ANOVA
+- 09: T-tests
 
-- 10: Intro to linear models
+- 10: ANOVA
 
-- 11: Generalised linear models
+- 11: Intro to linear models
+
+- 12: Multivariate models
+
+- 13: Generalised linear models
+
+  - Slides: Probability distributions
+  - Slides: Introduction to Generalised Linear Models
+  - Slides: Binomial and Poisson distributions
 
 
 
