@@ -41,7 +41,7 @@ All lecture materials will be available here.
 
 - 07: Confidence intervals
 
-- 08: Probability
+- 08: P-values
     - [Slides](slides/Probability.html)
 
 - 09: T-tests

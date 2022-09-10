@@ -1,0 +1,198 @@
+---
+title: "Reproducible Reports"
+subtitle: "Using Rmarkdown"
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+
+
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+
+---
+class: center, middle
+
+# Rmarkdown
+
+```{r, echo = FALSE, out.width="70%", fig.cap = "Figure courtesy of Allison Horst"}
+knitr::include_graphics("images/wizard.png")
+```
+
+---
+
+class: center, middle
+
+| Mean        | Median      | Mode       |
+| ----------- | ----------- |----------- |
+| The average value     | The middle value      |The most frequent value      |
+| Sum of the total divided by *n*   | The middle value (if *n* is odd). The average of the two central values (if *n* is even)      |The most frequent value      |
+| Most common reported measure, affected by outliers | Less influenced by outliers, improves as *n* increases | Less common
+
+
+---
+
+## Calls for reproducibility
+
+**Reproducibility** has the potential to serve as a minimum standard for judging scientific claims when full independent replication of a study is not possible.
+
+```{r, echo = FALSE, out.width="90%", fig.alt = "Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227"}
+knitr::include_graphics("images/repro-spectrum.jpg")
+```
+---
+## Literate programming
+
+Treat program as literature to be understandable to human beings
+
+Literate programming is an approach to programming in which the code is explained using natural language alongside the source code
+
+---
+## Literate programming in R
+
+Rmarkdown (`.Rmd`) integrates:
+
+* a documentantion language (`.md`)
+
+* a programming language (`R`)
+
+* functionality to "knit" them together through 📦 `knitr`
+
+### Features
+
+✅ provides a framework for writing narratives around code and data
+
+✅ Code re-run in a clean environment every time the document is "knit"
+---
+class: center
+
+## Rmarkdown outputs
+
+
+```{r, echo = FALSE, out.width="45%", fig.cap = "Pandoc output formats"}
+knitr::include_graphics("images/rmarkdownoutputformats.png")
+```
+
+---
+
+##Rmarkdown to HTML
+
+
+**File > New File > RMarkdown > Document**
+
+```{r, echo = FALSE, out.width="90%", fig.cap = "Rmarkdown template left, output on the right"}
+knitr::include_graphics("images/quicktourexample.png")
+```
+
+---
+class: center, middle, inverse
+
+## Using Rmarkdown
+
+---
+## Applications
+
+Rmd documents can be useful for a number of research related long form documentation materials:
+
+* Electronic notebooks
+
+* Supplementary Materials
+
+* Reports
+
+* Papers
+
+* Presentations
+
+---
+##RStudio visual editor
+
+✅  Spellcheck
+
+---
+##Rnotebooks
+
+https://lmullen.github.io/rmd-notebook/
+
+---
+
+##Rmarkdown to Word
+
+📦 `redoc`
+
+Enables a two-way R Markdown-Microsoft Word workflow. It generates Word documents that can be de-rendered back into R Markdown, retaining edits on the Word document, including tracked changes.
+
+```{r, echo = FALSE, out.width="90%", fig.cap = "Rmarkdown to word"}
+knitr::include_graphics("images/redoc.png")
+```
+
+---
+##Publish to the web
+
+
+
+---
+class: center, middle, inverse 
+
+##Rmarkdown extensions
+
+Many great packages and applications build on rmarkdown.
+
+All this makes it incredibly [versatile.](https://rmarkdown.rstudio.com/gallery.html)
+
+---
+##bookdown
+
+---
+##workflowr
+
+---
+##blogdown
+
+---
+##presentations
+
+---
+class: center, middle, inverse 
+
+##Project management
+
+
+

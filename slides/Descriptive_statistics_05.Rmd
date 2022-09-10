@@ -83,7 +83,7 @@ knitr::include_graphics("images/three_tendencies.png")
 $$
 \sigma = \sqrt{\sum(x - \overline x)^2\over n - 1}
 $$
-* Smaller SD ($\sigma$) = more values close to the mean, larger SD = greater data spread away from the mean.
+* Smaller SD σ = more values close to the mean, larger SD = greater data spread away from the mean.
 
 ---
 
