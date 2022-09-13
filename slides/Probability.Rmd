@@ -244,4 +244,14 @@ class: center, middle, inverse
 ---
 class: center, middle, inverse
 
-###By itself, a p value does not provide a good measure of evidence regarding a model or hypothesis.
+### By itself, a p value does not provide a good measure of evidence regarding a model or hypothesis.
+
+---
+
+Sullivan, GM and R Feinn (2012). [Using effect size - or why the p-value is not enough.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3444174/#i1949-8357-4-3-279-Kline1) 
+Journal of Graduate Medical Education 4(3): 279–282
+
+###“Statistical significance is the least interesting thing about the results. You should describe the results in terms of measures of magnitude – not just does a treatment affect people, but how much does it affect them.” 
+
+### -Gene V. Glass
+

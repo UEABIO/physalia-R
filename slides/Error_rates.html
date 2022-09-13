@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Probability</title>
+    <title>Type 1 &amp; Type 2 Errors</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
     <meta name="date" content="2022-09-13" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/viz/viz.js"></script>
+    <link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding/grViz.js"></script>
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
     <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
   </head>
@@ -19,7 +23,7 @@
 
 class: title-slide, left, top
 
-# Probability
+# Type 1 &amp; Type 2 Errors
 
 ## 
 
@@ -44,163 +48,121 @@ class: center, middle
 
 # Hypothesis testing
 
-
 ---
+class: center, middle
 
-## Hypothesis formation
-
-The **null hypothesis** is that there is no relationship between your variables of interest or that there is no difference among groups
-
-You want to know whether there is a difference in longevity between two groups of mice fed on different diets, diet A and diet B. 
-
-* Null hypothesis: there is **no** difference in longevity between the two groups.
-
-* Alternative hypothesis: there *is* a difference in longevity between the two groups.
-
----
-
-## Significance level 
-
-Significance Level (alpha, 𝝰): the probability of rejecting a true null hypothesis. 
-
-Most common:  𝝰 = 0.05 (but you’ll also see 0.01, 0.001)
-
-What does this mean? Why should we be careful/wary of a higher significance level? Do we PROVE the null hypothesis is wrong?
-
-And…what the heck is the p-value?
-
----
-class: center
-
-## What is a p-value?
-
-IF the null hypothesis is true, it is the probability that we could have taken a random sample from the population described by the null hypothesis and find a sample mean (or means difference) *at least as different from the null* by random chance. 
-
-&lt;img src="images/type_1_errors.png" title="P is the probability of making a type 1 error." alt="P is the probability of making a type 1 error." width="60%" /&gt;
-
----
-class: center
-##Difference in means
-
-&lt;img src="images/z_distribution.png" title="Critical z values." alt="Critical z values." width="60%" /&gt;
----
-class: center
-
-##P = 0.02, what does this mean?
-
-**IF** the null hypothesis is true (samples are taken from populations with the same mean), the probability that we would have taken two samples that are at least this different by random chance (means, taking into account data spread, etc.) is 2%.
-
---
-
-THEN YOU HAVE TO DECIDE: Is this so unlikely to have happened by random chance IF the means are equal, that instead I think that they were probably drawn from populations with different means?
-
---
-
-
-The cut-off that you choose is your significance level, alpha (𝛼). 
+### P-value: probability of getting samples at least as different (means) as ours if the null hypothesis is true
 
 ---
 class: center, middle
 
-###The cut-off that you choose is your significance level, alpha (𝛼). 
+## Type 1 and Type 2 Errors:
 
-###If p &lt; 𝛼, we reject the null hypothesis.
-###If p &gt; 𝛼, we retain the null hypothesis. 
-
----
-class: center, middle, inverse
-
-#P-value misconceptions
-
-(https://shiny.ieis.tue.nl/MOOC/assignment_1/)
+|             | H0 True   | H0 False     
+| ----------- | ----------- |----------- |
+| Reject H0 | Type 1 Error | Correct rejection
+| Fail to reject H0    | Correct decision | Type 2 Error     
 
 ---
+class: center, middle
 
-###Misconception #1: If P = 0.05, the null hypothesis has only a 5% chance of being true
+&lt;img src="images/type_1_errors.png" title="P &amp;gt; 0.05." alt="P &amp;gt; 0.05." width="60%" /&gt;
 
-One of the most common misconceptions. 
+---
+class: center, middle
 
-The *P* value is calculated *under the assumption that the null hypothesis is true*. 
-
-It cannot therefore also be a probability for *whether* the null hypothesis is true
-
-&lt;img src="images/26_sample_null.png" title="A range of P values under when the Null hypothesis is true." alt="A range of P values under when the Null hypothesis is true." width="70%" /&gt;
+&lt;img src="images/type_2_errors.png" title="P &amp;lt; 0.05." alt="P &amp;lt; 0.05." width="60%" /&gt;
 
 ---
 
-###Misconception #1: If P = 0.05, the null hypothesis has only a 5% chance of being true
+## Type 2 error
 
-One of the most common misconceptions. 
+* Probability of a Type 2 error is `\(\beta\)` 
 
-The *P* value is calculated *under the assumption that the null hypothesis is true*. 
+--
 
-It cannot therefore also be a probability for *whether* the null hypothesis is true
+* Power is the inverse of a Type 2 error `\(\beta=1-Power\)` 
 
-&lt;img src="images/26_sample_110.png" title="A range of P values under when the Alternate hypothesis is true." alt="A range of P values under when the Alternate hypothesis is true." width="70%" /&gt;
+--
 
----
+* A Type 2 error is the scenario where you fail to detect a *true* difference/effect
 
-###Misconception #2: A non-significant difference, means there is no difference between groups
+--
 
-A non-significant difference merely means that the null is statistically consistent with the observed results - *at this sample size and measured effect size*.
+* Power is the probability you **will** detect a *true* difference/effect
 
----
+--
 
-###Misconception #3: A statistically significant difference is an important difference
-
-See previous point - the differences may be too small to be of importance, P values are a product of sample size and effect size.
-
-
+* It is common to aim for 80% Power.
 
 ---
 
-###Misconception #4: Studies that fall either side of the P = 0.05 are in conflict. 
 
-Again this can be a product of sample size, or expected variation in sample means. Only when confidence intervals show no overlap would we describe conflict. 
+class: center, middle
 
-![](Probability_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+&lt;div class="figure"&gt;
+<div id="htmlwidget-0ba3fc3138688eb8b8f4" style="width:100%;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0ba3fc3138688eb8b8f4">{"x":{"diagram":"\ndigraph boxes_and_circles {\n  rankdir = LR\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 8]\n\n\n\n\n  # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n\n  \n# label names\n\nA[label = \"200\n experiments\"]\nB[label = \"20 \n real effect\"]\nC[label = \"180 \n no real effect\"]\n\nF[label = \"171 \n true null\"]\nG[label = \"9 \n false null\",\ncolor = blue]\n\nE[label = \"4 \n effect \nnot found\",\n\ncolor = red]\nD[label = \"16 \n effect found\"]\n\n  # several \"edge\" statements\n  A->B \n  A->C\n  C->F[label = 0.95]\n  C->G[label = 0.05]\n  B->D[label = 0.8]\n  B->E[label = 0.2]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;9/(16+9) = 36% of significant p values would be false positives&lt;/p&gt;
+&lt;/div&gt;
 
----
+.pull-left[
 
-###Misconception #5: Studies with the same P value provide the same support
-
-.left-code[
-
-* Mean difference of 8, S.D. = 15, sample size = 30
-
-* Mean difference of 3, S.D. = 15, sample size = 180
-
-
-]
-
-.right-plot[
-
-&lt;img src="images/26_sample_108.png" title="A range of P values under when the Alternate hypothesis is true with a mean of 108." alt="A range of P values under when the Alternate hypothesis is true with a mean of 108." width="125%" /&gt;
-
-
-&lt;img src="images/180_sample_103.png" title="A range of P values under when the Alternate hypothesis is true with a mean of 108." alt="A range of P values under when the Alternate hypothesis is true with a mean of 108." width="125%" /&gt;
+[Smaldino &amp; McElreath 2016](https://royalsocietypublishing.org/doi/full/10.1098/rsos.160384?wm=3049_a111)
 
 ]
 
 ---
 
-class: center, middle, inverse
+ Statistical significance **is not** a direct indicator of the size of effect, but rather a product of sample size, effect size and threshold for `\(\alpha\)`
 
-###P values can indicate how incompatible the data are with a specified statistical model
+ For this reason, sample sizes, effect sizes and measures of uncertainty *must* be reported. 
 
-###P values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone
+
+--
+### Compare
+
+“The fuel additive significantly increased car gas mileage (*t*&lt;sub&gt;1998&lt;/sub&gt; = 2.71, *p* = 0.007).”
+
+--
+
+"The difference in mean gas mileage between the two groups is only 0.04 mpg. While statistically significant (*t*&lt;sub&gt;1998&lt;/sub&gt; = 2.71, *p* = 0.007, n = 2000 for each group), the minimal increase in gas mileage does not warrant investment in the  technology tested.”
 
 ---
-class: center, middle, inverse
 
-### By itself, a p value does not provide a good measure of evidence regarding a model or hypothesis.
+## Statistical Power
+
+Statistical power then has four related parts: 
+
+--
+
+* Effect size: The magnitude of a result present in a population
+
+* Sample size: The number of observations per sample
+
+* Alpha: the threshold at which you would accept statistical significance (often 0.05)
+
+* Power: the probability of accepting the alternate hypothesis (if it is true)
+
+--
+
+Raising the value of any of effect size, sample size or `\(\alpha\)` all increase Power `\(1-\beta\)`
 
 ---
 
-Sullivan, GM and R Feinn (2012). [Using effect size - or why the p-value is not enough.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3444174/#i1949-8357-4-3-279-Kline1) 
-Journal of Graduate Medical Education 4(3): 279–282
+## Am I right?
 
-###“Statistical significance is the least interesting thing about the results. You should describe the results in terms of measures of magnitude – not just does a treatment affect people, but how much does it affect them.”
+Reporting effect sizes, levels of uncertainty and understanding the statistical power of your experiment are all important. 
+
+--
+
+But a single experiment is **never** enough to know which hypothesis is correct. 
+
+--
+
+Only multiple experiments will allow true statistical trends to emerge
+
+&lt;img src="images/26_sample_null.png" title="A range of P values under when the Null hypothesis is true." alt="A range of P values under when the Null hypothesis is true." width="50%" /&gt;&lt;img src="images/26_sample_110.png" title="A range of P values under when the Null hypothesis is true." alt="A range of P values under when the Null hypothesis is true." width="50%" /&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

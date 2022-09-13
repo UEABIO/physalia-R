@@ -4,7 +4,7 @@
     <title>Reproducible Reports</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-10" />
+    <meta name="date" content="2022-09-13" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -51,17 +51,6 @@ class: center, middle
 
 ---
 
-class: center, middle
-
-| Mean        | Median      | Mode       |
-| ----------- | ----------- |----------- |
-| The average value     | The middle value      |The most frequent value      |
-| Sum of the total divided by *n*   | The middle value (if *n* is odd). The average of the two central values (if *n* is even)      |The most frequent value      |
-| Most common reported measure, affected by outliers | Less influenced by outliers, improves as *n* increases | Less common
-
-
----
-
 ## Calls for reproducibility
 
 **Reproducibility** has the potential to serve as a minimum standard for judging scientific claims when full independent replication of a study is not possible.
@@ -97,7 +86,7 @@ class: center
 
 
 &lt;div class="figure"&gt;
-&lt;img src="images/rmarkdownoutputformats.png" alt="Pandoc output formats" width="40%" /&gt;
+&lt;img src="images/rmarkdownoutputformats.png" alt="Pandoc output formats" width="45%" /&gt;
 &lt;p class="caption"&gt;Pandoc output formats&lt;/p&gt;
 &lt;/div&gt;
 
@@ -112,6 +101,29 @@ class: center
 &lt;img src="images/quicktourexample.png" alt="Rmarkdown template left, output on the right" width="90%" /&gt;
 &lt;p class="caption"&gt;Rmarkdown template left, output on the right&lt;/p&gt;
 &lt;/div&gt;
+---
+
+## Rmarkdown to pdf
+
+&lt;div class="figure"&gt;
+&lt;img src="images/pdf.png" alt="Rmarkdown template left, output on the right" width="90%" /&gt;
+&lt;p class="caption"&gt;Rmarkdown template left, output on the right&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+## Rmarkdown to pdf
+
+* Rmarkdown documents can be compiled to PDF, which is a great feature. 
+
+* In order to convert the documents to PDF, they use a software called LaTeX (pronounced *la-tek* or *lay-tek*).
+
+* Installing LaTeX can be a pain, but thankfully there is an easier way to install it - `tinytex`. 
+
+* `tinytex` is an R package that installs a sane, lightweight (&lt;200Mb) version of LaTeX.
+
+* RStudio Cloud has `tinytex` pre-installed. 
 
 ---
 class: center, middle, inverse
@@ -133,15 +145,107 @@ Rmd documents can be useful for a number of research related long form documenta
 
 * Presentations
 
----
-##RStudio visual editor
-
-✅  Spellcheck
 
 ---
-##Rnotebooks
+##YAML
 
-https://lmullen.github.io/rmd-notebook/
+```
+---
+title: "An example document"
+author: "Philip Leftwich"
+output: html_document
+---
+
+```
+
+* The metadata of the file
+
+* YAML Ain't Markup Language
+
+* Provides title, author, document output type
+
+---
+
+## Markdown text
+
+.pull-left[
+
+```
+- bullet list
+- bullet list
+- bullet list
+
+1. numbered list
+2. numbered list
+3. numbered list
+
+__bold__, **bold**, _italic_, *italic*
+
+&gt; quote of something profound 
+```
+]
+
+.pull-right[
+- bullet list
+- bullet list
+- bullet list
+
+1. numbered list
+2. numbered list
+3. numbered list
+
+__bold__, **bold**, _italic_, *italic*
+
+&gt; quote of something profound 
+
+]
+
+---
+
+## Rcode
+
+* Code chunks are marked by three backticks and curly braces with r (and an optional chunk name) inside them: 
+
+.pull-left[
+
+
+````r
+```{r chunk-name}
+# computer code goes in three back ticks
+1 + 1
+2 + 2
+
+```
+````
+
+
+]
+
+.pull-right[
+
+
+```
+## [1] 2
+```
+
+```
+## [1] 4
+```
+
+]
+
+---
+
+## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
+
+&lt;img src="images/visual-editor.png" title="RStudio visual editor view" alt="RStudio visual editor view" width="70%" /&gt;
+
+✅ Easy insertion and compilation of citations
+
+✅  Easy insertion of tables, footnotes, equations, code and LaTex
+
+✅  Spellcheck! 
+
 
 ---
 
@@ -157,36 +261,118 @@ Enables a two-way R Markdown-Microsoft Word workflow. It generates Word document
 &lt;/div&gt;
 
 ---
-##Publish to the web
+
+## Publish to the web
+
+
+* RPubs: Publish rendered Rmarkdown documents on the web with the click of a button http://rpubs.com/
+
+* GitHub: Host your site through gh-pages on GitHub. Enable in GitHub repo ⚙️Settings
+
+
+&lt;div class="figure"&gt;
+&lt;img src="images/gh-pages.png" alt="Github pages" width="90%" /&gt;
+&lt;p class="caption"&gt;Github pages&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Data analysis notebooks
+
+* Simple templates for hosting your [literate programming analysis online](https://github.com/lmullen/rmd-notebook)
+
+* Rnotebook files run in the same way as an Rmd file
+
+* Has 'preview' button not 'knit'
+
+* Produces an html "snapshot" of the file everytime it is saved
+
+&lt;img src="images/notebook.png" title="R notebooks snapshot" alt="R notebooks snapshot" width="50%" /&gt;
 
 
 
 ---
+
 class: center, middle, inverse 
 
 ##Rmarkdown extensions
 
-Many great packages and applications build on rmarkdown.
+Many great packages and applications build on Rmarkdown.
 
 All this makes it incredibly [versatile.](https://rmarkdown.rstudio.com/gallery.html)
 
 ---
+
 ##bookdown
 
----
-##workflowr
+### Create and maintain online books
+
+Authoring with R Markdown, offers:
+
+* cross-references
+
+* citations
+
+* HTML widgets and Shiny apps
+
+* tables of content and section numbering
+
+* The publication can be exported to HTML, PDF, and e-books (e.g. EPUB)
+
+* EXAMPLE: [This coursebook](https://ueabio.github.io/data-sci-v1/)
+
+* Also see [thesisdown](https://github.com/ismayc/thesisdown)
 
 ---
+
+## rticles
+
+A package containing [LaTex formats for various journals](https://github.com/rstudio/rticles) 
+
+&lt;img src="images/rticles.png" title="Rrticles journal theme range" alt="Rrticles journal theme range" width="90%" /&gt;
+
+https://github.com/rstudio/rticles
+---
+
 ##blogdown
 
+&lt;img src="images/blogdown.png" title="blogdown logo" alt="blogdown logo" width="20%" /&gt;
+
+For creating and maintaining blogs through R.
+
+Check out https://awesome-blogdown.com/, a curated list of awesome [#rstats](https://twitter.com/hashtag/rstats?src=hashtag_click) blogs in blogdown for inspiration!
+
 ---
+
 ##presentations
+
+&lt;img src="images/xaringan.png" title="xaringan logo" alt="xaringan logo" width="20%" /&gt;
+
+A number of existing frameworks:
+
+* `xaringan` 📦 Presentation Ninja (https://github.com/yihui/xaringan)
 
 ---
 class: center, middle, inverse 
 
 ##Project management
 
+---
+
+&lt;div class="figure"&gt;
+&lt;img src="images/Project.png" alt="An opinionated method of integrating analyses and literate programming" width="50%" /&gt;
+&lt;p class="caption"&gt;An opinionated method of integrating analyses and literate programming&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+class: center, middle, inverse 
+
+## Keep learning
+
+[The Rmarkdown cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+
+ 
 
 
     </textarea>

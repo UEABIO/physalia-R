@@ -22,27 +22,24 @@ All lecture materials will be available here.
     - [Practical work 3](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
     
 - 04: Data Visualisation
-
+    - [Slides](slides/ggplot.html)
 
 - 05: Descriptive statistics
     - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
+    - Talk about calculating residuals, sum of squares, sd & predicting shapes from mean and sd.
+    
     - Slides: Association
 
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
 - 06: Reproducible Reports
-      - slides
-      - pdf
-      - html
-      - methods sections?
-      - redoc 
-      - organise talks and papers
-      - Pandoc on shared drives?
+    - [Slides](slides/Reproducible_reports_06.html)
 
 - 07: Confidence intervals
 
-- 08: P-values
-    - [Slides](slides/Probability.html)
+- 08: Hypothesis testing
+    - [Slides: P-values](slides/Probability.html)
+    - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
 
 - 09: T-tests
 
