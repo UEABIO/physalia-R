@@ -2,7 +2,9 @@ name: 5023Y slides
 output_dir: '.'
 navbar:
   title: 5023Y slides
-  right:
+  right: 
+  - text: Reading
+    href: reading.html
   - text: About
     href: about.html
 output:

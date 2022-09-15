@@ -5,7 +5,7 @@ title: "Physalia courses outline"
 All lecture materials will be available here.
 
 - 01: Introductions and course outline
-    - [Slides](slides/Intro_01.html)
+    - [Slides]
 
     - [Practical work](https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html)
 
@@ -23,8 +23,14 @@ All lecture materials will be available here.
     
 - 04: Data Visualisation
     - [Slides](slides/ggplot.html)
+    
+- 05: Reproducible Reports
+    - [Slides](slides/Reproducible_reports_06.html)
+    
+- 06: Functional programming
+    - [Slides](slides/Functional-programming.html)
 
-- 05: Descriptive statistics
+- 07: Descriptive statistics
     - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
     - Talk about calculating residuals, sum of squares, sd & predicting shapes from mean and sd.
     
@@ -32,29 +38,38 @@ All lecture materials will be available here.
 
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
-- 06: Reproducible Reports
-    - [Slides](slides/Reproducible_reports_06.html)
 
-- 07: Confidence intervals
+- 08: Confidence intervals
+    - [Slides](slides/Confidence_intervals.html)
 
-- 08: Hypothesis testing
+- 09: Hypothesis testing
     - [Slides: P-values](slides/Probability.html)
     - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
 
-- 09: T-tests
-
-- 10: ANOVA
-
+- 10: T-tests
+    - [Slides](slides/t-tests.html)
+  
 - 11: Intro to linear models
+    - [Slides: Regression](slides/Linear-Regression.html) 
+    - [Slides: Model validation]
 
-- 12: Multivariate models
+- 12: ANOVA
+    - [Slides](slides/ANOVA.html)
+  
 
-- 13: Generalised linear models
+- 13: Multivariate models
+      - Complex models
+      - Model selection - sum of square types
+      
+- 14: Generalised linear models
 
-  - Slides: Probability distributions
   - Slides: Introduction to Generalised Linear Models
+            - Maximum likelihood
+            - Deviance
+            - AIC
+            
   - Slides: Binomial and Poisson distributions
-
+            - Chi test
 
 
 

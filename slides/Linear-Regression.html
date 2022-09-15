@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Reproducible Reports</title>
+    <title>Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-14" />
+    <meta name="date" content="2022-09-15" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -19,9 +19,9 @@
 
 class: title-slide, left, top
 
-# Reproducible Reports
+# Regression
 
-## Using Rmarkdown
+## 
 
 ### Philip Leftwich
 
@@ -40,349 +40,197 @@ layout: true
 &lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - Physalia Courses&lt;/span&gt;&lt;/div&gt;
 
 ---
+
+
+## Linear models
+
+
+.left-code[
+
+* Difference tests: t-test, ANOVA, ANCOVA
+
+* Association tests: Regressions
+
+]
+
+.right-plot[
+&lt;img src="images/linear_model_difference.png" title="Introduction to linear models" alt="Introduction to linear models" width="60%" /&gt;&lt;img src="images/linear_model_regression.png" title="Introduction to linear models" alt="Introduction to linear models" width="60%" /&gt;
+]
+
+---
+
+https://lindeloev.github.io/tests-as-linear/
+
+&lt;img src="images/commmon_statistical_tests_linear_models.png" title="Common statistical tests are linear models" alt="Common statistical tests are linear models" width="100%" /&gt;
+---
+
+## Basic linear models
+
+&lt;div class="figure"&gt;
+&lt;img src="images/basic_linear.png" alt="Basic linear models aim to describe a linear relationship between a response (outcome) variable and a predictor (input) variable, usually by the method of ordinary least squares" width="60%" /&gt;
+&lt;p class="caption"&gt;Basic linear models aim to describe a linear relationship between a response (outcome) variable and a predictor (input) variable, usually by the method of ordinary least squares&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Line of best fit
+
+&lt;img src="images/fit-linear.png" title="Line fitting" alt="Line fitting" width="60%" /&gt;
+
+---
 class: center, middle
 
-# Rmarkdown
+The line of best fit minimises the sum of the **squared distance** that *each* sample point is from the value predicted by the model
 
-&lt;div class="figure"&gt;
-&lt;img src="images/wizard.png" alt="Figure courtesy of Allison Horst" width="70%" /&gt;
-&lt;p class="caption"&gt;Figure courtesy of Allison Horst&lt;/p&gt;
-&lt;/div&gt;
+This is called the method of 
 
----
-
-## Calls for reproducibility
-
-**Reproducibility** has the potential to serve as a minimum standard for judging scientific claims when full independent replication of a study is not possible.
-
-&lt;img src="images/repro-spectrum.jpg" title="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" alt="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" width="90%" /&gt;
----
-## Literate programming
-
-Treat program as literature to be understandable to human beings
-
-Literate programming is an approach to programming in which the code is explained using natural language alongside the source code
-
----
-## Literate programming in R
-
-Rmarkdown (`.Rmd`) integrates:
-
-* a documentantion language (`.md`)
-
-* a programming language (`R`)
-
-* functionality to "knit" them together through 📦 `knitr`
-
-### Features
-
-✅ provides a framework for writing narratives around code and data
-
-✅ Code re-run in a clean environment every time the document is "knit"
----
-class: center
-
-## Rmarkdown outputs
-
-
-&lt;div class="figure"&gt;
-&lt;img src="images/rmarkdownoutputformats.png" alt="Pandoc output formats" width="45%" /&gt;
-&lt;p class="caption"&gt;Pandoc output formats&lt;/p&gt;
-&lt;/div&gt;
+##Ordinary Least Squares
 
 ---
 
-##Rmarkdown to HTML
+## Residuals
+
+The difference between the ACTUAL value of the observation `\(y_i\)` and the value that the model predicts `\(\hat{y_i}\)` at that `\(x\)` value are the residuals (residual error).
 
 
-**File &gt; New File &gt; RMarkdown &gt; Document**
+&lt;img src="images/ols.png" title="residuals" alt="residuals" width="50%" /&gt;
 
-&lt;div class="figure"&gt;
-&lt;img src="images/quicktourexample.png" alt="Rmarkdown template left, output on the right" width="90%" /&gt;
-&lt;p class="caption"&gt;Rmarkdown template left, output on the right&lt;/p&gt;
-&lt;/div&gt;
----
-
-## Rmarkdown to pdf
-
-&lt;div class="figure"&gt;
-&lt;img src="images/pdf.png" alt="Rmarkdown template left, output on the right" width="90%" /&gt;
-&lt;p class="caption"&gt;Rmarkdown template left, output on the right&lt;/p&gt;
-&lt;/div&gt;
-
+The regression model fitted by Ordinary Least Squares (OLS) will produce the equation for the line that **MINIMIZES** the sum of squares of the residuals
 
 ---
-
-## Rmarkdown to pdf
-
-* Rmarkdown documents can be compiled to PDF, which is a great feature. 
-
-* In order to convert the documents to PDF, they use a software called LaTeX (pronounced *la-tek* or *lay-tek*).
-
-* Installing LaTeX can be a pain, but thankfully there is an easier way to install it - `tinytex`. 
-
-* `tinytex` is an R package that installs a sane, lightweight (&lt;200Mb) version of LaTeX.
-
-* RStudio Cloud has `tinytex` pre-installed. 
-
----
-class: center, middle, inverse
-
-## Using Rmarkdown
-
----
-## Applications
-
-Rmd documents can be useful for a number of research related long form documentation materials:
-
-* Electronic notebooks
-
-* Supplementary Materials
-
-* Reports
-
-* Papers
-
-* Presentations
-
-
----
-##YAML
-
-```
----
-title: "An example document"
-author: "Philip Leftwich"
-output: html_document
----
-
-```
-
-* The metadata of the file
-
-* YAML Ain't Markup Language
-
-* Provides title, author, document output type
-
----
-
-## Markdown text
 
 .pull-left[
 
-```
-- bullet list
-- bullet list
-- bullet list
-
-1. numbered list
-2. numbered list
-3. numbered list
-
-__bold__, **bold**, _italic_, *italic*
-
-&gt; quote of something profound 
-```
-]
-
-.pull-right[
-- bullet list
-- bullet list
-- bullet list
-
-1. numbered list
-2. numbered list
-3. numbered list
-
-__bold__, **bold**, _italic_, *italic*
-
-&gt; quote of something profound 
-
-]
-
----
-
-## Rcode
-
-* Code chunks are marked by three backticks and curly braces with r (and an optional chunk name) inside them: 
-
-.pull-left[
-
-
-````r
-```{r chunk-name}
-# computer code goes in three back ticks
-1 + 1
-2 + 2
-
-```
-````
-
+&lt;img src="images/ols-2.png" title="sum of squares error" alt="sum of squares error" width="120%" /&gt;
 
 ]
 
 .pull-right[
 
 
-```
-## [1] 2
-```
+This produces the line with the *smallest* total area size for the squares. 
 
-```
-## [1] 4
-```
+$$
+SSE = \underset{i=1}{n \atop{\sum}}(y_i - \hat{y_i})^2
+$$
+
+SUM OF RESIDUAL ERROR = `\((2)+(-1)+(4)+(-3)+(-2)=0\)`
+
+
+
+SUM OF SQUARES OF RESIDUAL ERROR = `\((2^2)+(-1^2)+(4^2)+(-3^2)+(-2^2)=34\)`
 
 ]
 
 ---
+class: center, middle
 
-## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
-
-&lt;img src="images/visual-editor.png" title="RStudio visual editor view" alt="RStudio visual editor view" width="70%" /&gt;
-
-✅ Easy insertion and compilation of citations
-
-✅  Easy insertion of tables, footnotes, equations, code and LaTex
-
-✅  Spellcheck! 
-
-
----
-
-##Rmarkdown to Word
-
-📦 `redoc`
-
-Enables a two-way R Markdown-Microsoft Word workflow. It generates Word documents that can be de-rendered back into R Markdown, retaining edits on the Word document, including tracked changes.
-
-&lt;div class="figure"&gt;
-&lt;img src="images/redoc.png" alt="Rmarkdown to word" width="90%" /&gt;
-&lt;p class="caption"&gt;Rmarkdown to word&lt;/p&gt;
-&lt;/div&gt;
-
----
-
-## Publish to the web
-
-
-* RPubs: Publish rendered Rmarkdown documents on the web with the click of a button http://rpubs.com/
-
-* GitHub: Host your site through gh-pages on GitHub. Enable in GitHub repo ⚙️Settings
-
-
-&lt;div class="figure"&gt;
-&lt;img src="images/gh-pages.png" alt="Github pages" width="90%" /&gt;
-&lt;p class="caption"&gt;Github pages&lt;/p&gt;
-&lt;/div&gt;
-
----
-## Data analysis notebooks
-
-* Simple templates for hosting your [literate programming analysis online](https://github.com/lmullen/rmd-notebook)
-
-* Rnotebook files run in the same way as an Rmd file
-
-* Has 'preview' button not 'knit'
-
-* Produces an html "snapshot" of the file everytime it is saved
-
-&lt;img src="images/notebook.png" title="R notebooks snapshot" alt="R notebooks snapshot" width="50%" /&gt;
-
-
-
----
-
-class: center, middle, inverse 
-
-##Rmarkdown extensions
-
-Many great packages and applications build on Rmarkdown.
-
-All this makes it incredibly [versatile.](https://rmarkdown.rstudio.com/gallery.html)
-
----
-
-##bookdown
-
-### Create and maintain online books
-
-Authoring with R Markdown, offers:
-
-* cross-references
-
-* citations
-
-* HTML widgets and Shiny apps
-
-* tables of content and section numbering
-
-* The publication can be exported to HTML, PDF, and e-books (e.g. EPUB)
-
-* EXAMPLE: [This coursebook](https://ueabio.github.io/data-sci-v1/)
-
-* Also see [thesisdown](https://github.com/ismayc/thesisdown)
-
----
-
-## rticles
-
-A package containing [LaTex formats for various journals](https://github.com/rstudio/rticles) 
-
-&lt;img src="images/rticles.png" title="Rrticles journal theme range" alt="Rrticles journal theme range" width="90%" /&gt;
-
-https://github.com/rstudio/rticles
----
-
-##blogdown
-
-&lt;img src="images/blogdown.png" title="blogdown logo" alt="blogdown logo" width="20%" /&gt;
-
-For creating and maintaining blogs through R.
-
-Check out https://awesome-blogdown.com/, a curated list of awesome [#rstats](https://twitter.com/hashtag/rstats?src=hashtag_click) blogs in blogdown for inspiration!
-
----
-
-##presentations
-
-&lt;img src="images/xaringan.png" title="xaringan logo" alt="xaringan logo" width="20%" /&gt;
-
-A number of existing frameworks:
-
-* `xaringan` 📦 Presentation Ninja (https://github.com/yihui/xaringan)
-
----
-class: center, middle, inverse 
-
-##Project management
-
----
+### Linear models describe differences or regressions
 
 .pull-left[
-&lt;img src="images/Project.png" title="An opinionated method of integrating analyses and literate programming" alt="An opinionated method of integrating analyses and literate programming" width="100%" /&gt;
+
+&lt;img src="images/diff.png" title="difference" alt="difference" width="100%" /&gt;
 ]
 
 .pull-right[
 
-Keep all of your outputs (slides, notebooks &amp; manuscripts) related to a project or analysis
-
-An opinionated method of integrating analyses and literate programming
+&lt;img src="images/reg.png" title="regression" alt="regression" width="100%" /&gt;
 
 ]
 
+
 ---
-class: center, middle, inverse 
 
-## Keep learning
+## Straight line equation
 
-[The Rmarkdown cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
+$$
+\LARGE{y = a + bx}
+$$
 
-[Cut the tyranny of copy-and-paste with these coding tools](https://www.nature.com/articles/d41586-022-00563-z)
+### Where:
+
+`\(y\)` is the predicted value of the response variable
+
+`\(a\)` is the intercept (value of y when x = 0)
+
+`\(b\)` is the slope of the regression line
+
+`\(x\)` is the value of the explanatory variable
+
+---
+
+&lt;img src="images/diff.png" title="difference" alt="difference" width="80%" /&gt;
+
+---
+
+&lt;img src="images/reg.png" title="difference" alt="difference" width="90%" /&gt;
+
+---
+
+&lt;img src="images/Sum of squares.png" title="OLS fits a line to produce the smallest amount of SSE" alt="OLS fits a line to produce the smallest amount of SSE" width="80%" /&gt;
+
+---
+
+## Coefficient of determination
 
 
- 
+`\(\LARGE{R^2}\)` : The proportion of variation in the dependent variable that can be predicted from the independent variable
+
+$$
+R^2=1-{Sum~of~Squared~Distances~between~y_i~and~\hat{y_i}\over{Sum~of~Squared~Distances~between~y_i~and~\overline{y}}} 
+$$
 
 
+
+$$
+R^2=1-{SSE\over{SST}}
+$$
+
+---
+
+## Adjusted `\(R^2\)`
+
+Adjusted `\(R^2\)` is a corrected goodness-of-fit measure for linear models.
+
+`\(R^2\)` always increases as the number of effects are included in the model. Good for overall prediction, but does not check efficiency. 
+
+Adjusted `\(R^2\)` can fall if a model term does not *improve* the fit of the model
+
+
+$$
+Adjusted~R^2=1-{{SSE/(N-k)}\over{SST(N-1)}}
+$$
+`\(N\)` = numerator degrees of freedom = Total number of observations across all groups
+
+`\(k\)` = Total number of groups
+
+`\(N-k\)` = denominator degrees of freedom
+
+---
+
+
+```r
+lsmodel0 &lt;- lm(height ~ type, data = darwin)
+
+summary(lsmodel0)
+```
+
+&lt;img src="images/model_summary.png" title="R model summary provides, the formula of the regression, the estimate of the intercept and standard error, estimated differences and uncertainity for each slope, the degrees of freedom for the whole model, F value and R squared" alt="R model summary provides, the formula of the regression, the estimate of the intercept and standard error, estimated differences and uncertainity for each slope, the degrees of freedom for the whole model, F value and R squared" width="90%" /&gt;
+
+
+---
+
+&lt;img src="images/banana.png" title="Here, R squared = 0.92. Does that mean this linear model is appropriate?" alt="Here, R squared = 0.92. Does that mean this linear model is appropriate?" width="70%" /&gt;
+
+---
+
+&lt;img src="images/cup.png" title="Here, R squared = 0. Does that mean there is no relationship between x and y?" alt="Here, R squared = 0. Does that mean there is no relationship between x and y?" width="70%" /&gt;
+
+
+---
+class: middle, center, inverse
+
+# Linear models for more than 2 groups:
+#ANOVA
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
