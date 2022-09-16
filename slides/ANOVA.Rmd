@@ -162,7 +162,10 @@ $SSE + SSR = SST$
 
 ## What does an ANOVA actually do?
 
-$\huge{F = {{SSR/(k - 1)}\over{SSE/N-k}}}$
+
+
+
+
 
 $N$ = numerator degrees of freedom = Total number of observations across all groups
 
