@@ -34,7 +34,7 @@ All lecture materials will be available here.
     - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
     - Talk about calculating residuals, sum of squares, sd & predicting shapes from mean and sd.
     
-    - Slides: Association
+    - [Slides: Association](slides/Association_05a.html)
 
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
@@ -52,24 +52,18 @@ All lecture materials will be available here.
 - 11: Intro to linear models
     - [Slides: Regression](slides/Linear-Regression.html) 
     
-
 - 12: ANOVA
     - [Slides](slides/ANOVA.html)
   
 - 13: Multivariate models
-      - Complex models
-      - Model selection - sum of square types
-      - [Slides: Model validation]
-      - Model transformations?
+    - [Slides: Complex models](slides/Complex_models.html)
+    - [Slides: Checking and refining models](slides/Refining models.html)
      
       
 - 14: Generalised linear models
 
-  - Slides: Introduction to Generalised Linear Models
-            - Maximum likelihood
-            - Deviance
-            - AIC
-            
+  - [Slides: Introduction to Generalised Linear Models](slides/Generalized-Linear-Models.html)
+
   - Slides: Binomial and Poisson distributions
             - Chi test
 

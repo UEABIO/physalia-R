@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Linear Models</title>
+    <title>Complex Linear Models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
     <meta name="date" content="2022-09-16" />
@@ -19,7 +19,7 @@
 
 class: title-slide, left, top
 
-# Linear Models
+# Complex Linear Models
 
 ## 
 
@@ -39,29 +39,7 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - Physalia Courses&lt;/span&gt;&lt;/div&gt;
 
----
 
-
-## Linear models
-
-
-.left-code[
-
-* Difference tests: t-test, ANOVA, ANCOVA
-
-* Association tests: Regressions
-
-]
-
-.right-plot[
-&lt;img src="images/linear_model_difference.png" title="Introduction to linear models" alt="Introduction to linear models" width="60%" /&gt;&lt;img src="images/linear_model_regression.png" title="Introduction to linear models" alt="Introduction to linear models" width="60%" /&gt;
-]
-
----
-
-https://lindeloev.github.io/tests-as-linear/
-
-&lt;img src="images/commmon_statistical_tests_linear_models.png" title="Common statistical tests are linear models" alt="Common statistical tests are linear models" width="100%" /&gt;
 ---
 
 ## Basic linear models
@@ -70,104 +48,6 @@ https://lindeloev.github.io/tests-as-linear/
 &lt;img src="images/basic_linear.png" alt="Basic linear models aim to describe a linear relationship between a response (outcome) variable and a predictor (input) variable, usually by the method of ordinary least squares" width="60%" /&gt;
 &lt;p class="caption"&gt;Basic linear models aim to describe a linear relationship between a response (outcome) variable and a predictor (input) variable, usually by the method of ordinary least squares&lt;/p&gt;
 &lt;/div&gt;
-
----
-
-## Straight line equation
-
-$$
-\LARGE{y = a + bx}
-$$
-
-### Where:
-
-`\(y\)` is the predicted value of the response variable
-
-`\(a\)` is the intercept (value of y when x = 0)
-
-`\(b\)` is the slope of the regression line
-
-`\(x\)` is the value of the explanatory variable
-
----
-## Line of best fit
-
-&lt;img src="images/fit-linear.png" title="Line fitting" alt="Line fitting" width="60%" /&gt;
-
----
-class: center, middle
-
-The line of best fit minimises the sum of the **squared distance** that *each* sample point is from the value predicted by the model
-
-This is called the method of 
-
-##Ordinary Least Squares
-
----
-
-## Residuals
-
-The difference between the ACTUAL value of the observation `\(y_i\)` and the value that the model predicts `\(\hat{y_i}\)` at that `\(x\)` value are the residuals (residual error).
-
-
-&lt;img src="images/ols.png" title="residuals" alt="residuals" width="50%" /&gt;
-
-The regression model fitted by Ordinary Least Squares (OLS) will produce the equation for the line that **MINIMIZES** the sum of squares of the residuals
-
----
-
-.pull-left[
-
-&lt;img src="images/ols-2.png" title="sum of squares error" alt="sum of squares error" width="120%" /&gt;
-
-]
-
-.pull-right[
-
-
-This produces the line with the *smallest* total area size for the squares. 
-
-$$
-SSE = \underset{i=1}{n \atop{\sum}}(y_i - \hat{y_i})^2
-$$
-
-SUM OF RESIDUAL ERROR = `\((2)+(-1)+(4)+(-3)+(-2)=0\)`
-
-
-
-SUM OF SQUARES OF RESIDUAL ERROR = `\((2^2)+(-1^2)+(4^2)+(-3^2)+(-2^2)=34\)`
-
-]
-
----
-class: center, middle
-
-### Linear models describe differences or regressions
-
-.pull-left[
-
-&lt;img src="images/diff.png" title="difference" alt="difference" width="100%" /&gt;
-]
-
-.pull-right[
-
-&lt;img src="images/reg.png" title="regression" alt="regression" width="100%" /&gt;
-
-]
-
-
-
----
-
-&lt;img src="images/diff.png" title="difference" alt="difference" width="80%" /&gt;
-
----
-
-&lt;img src="images/reg.png" title="difference" alt="difference" width="90%" /&gt;
-
----
-
-&lt;img src="images/Sum of squares.png" title="OLS fits a line to produce the smallest amount of SSE" alt="OLS fits a line to produce the smallest amount of SSE" width="80%" /&gt;
 
 ---
 
@@ -191,67 +71,304 @@ $$
 
 ---
 
-## Coefficient of determination
+
+.left-code[
+
+&lt;img src="images/culmen.jpg" title="Culmen: the ridge along the top part of a bird's bill" alt="Culmen: the ridge along the top part of a bird's bill" width="80%" /&gt;
 
 
-`\(\LARGE{R^2}\)` : The proportion of variation in the dependent variable that can be predicted from the independent variable
+]
 
-$$
-R^2=1-{Sum~of~Squared~Distances~between~y_i~and~\hat{y_i}\over{Sum~of~Squared~Distances~between~y_i~and~\overline{y}}} 
-$$
+.right-plot[
 
 
+```r
+penguins %&gt;% 
+  filter(species=="Adelie") %&gt;% 
+ggplot(aes(x= bill_length_mm, 
+                     y= bill_depth_mm)) +
+    geom_point()+
+    geom_smooth(method = "lm",
+                se = FALSE)+
+  theme_classic()+
+* stat_cor(method = "pearson",
+*          aes(label=..r.label..))+
+  stat_regline_equation(label.y = 21.7)
+```
 
-$$
-R^2=1-{SSE\over{SST}}
-$$
+&lt;img src="Complex_models_files/figure-html/unnamed-chunk-3-1.png" width="60%" /&gt;
+
+]
 
 ---
 
-## Adjusted `\(\huge{R^2}\)`
+## what about an extra variable?
 
-Adjusted `\(R^2\)` is a corrected goodness-of-fit measure for linear models.
+Now we have *two* reasonable predictors of bill depth:
 
-`\(R^2\)` always increases as the number of effects are included in the model. Good for overall prediction, but does not check efficiency. 
+Bill length &amp; Body mass
 
-Adjusted `\(R^2\)` can fall if a model term does not *improve* the fit of the model
 
+```r
+penguins %&gt;% 
+  select(bill_length_mm, bill_depth_mm, body_mass_g) %&gt;% 
+  as_tibble() %&gt;% 
+  head()
+```
+
+```
+## # A tibble: 6 x 3
+##   bill_length_mm bill_depth_mm body_mass_g
+##            &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;
+## 1           39.1          18.7        3750
+## 2           39.5          17.4        3800
+## 3           40.3          18          3250
+## 4           NA            NA            NA
+## 5           36.7          19.3        3450
+## 6           39.3          20.6        3650
+```
+
+
+---
+
+## ANCOVA
+
+
+```r
+penguins %&gt;% 
+lm(bill_length_mm ~ bill_depth_mm + body_mass_g, data = .)
+```
+
+```
+## 
+## Call:
+## lm(formula = bill_length_mm ~ bill_depth_mm + body_mass_g, data = .)
+## 
+## Coefficients:
+##   (Intercept)  bill_depth_mm    body_mass_g  
+##     23.310456       0.162859       0.004241
+```
+
+Written as an equation this is:
+
+--
+
+`\(bill~length=23.31+0.16_{(bill~depth)}+0.004_{(body~mass)}\)`
+
+---
+
+## Two-way ANOVA
+
+* Bill depth - a continuous quantitative variable
+
+* Body mass - a continuous quantitative variable
+
+* Penguin Species - a categorical variable with three levels
+
+
+&lt;img src="images/three_penguins.png" title="Adelie, Chinstrap, Gentoo" alt="Adelie, Chinstrap, Gentoo" width="60%" /&gt;
+
+---
+
+##Dummy variables
+
+In order to represent a categorical variable in a model - we need to convert these cases to ones that are compatible with the maths. 
+
+Dummy variables, are coded with 0 and 1's. With three species we would have the following:
+
+* Adelie[0,0] - the reference or *intercept* species
+
+* Chinstrap[1,0]
+
+* Gentoo[0,1]
+
+&lt;img src="images/three_penguins.png" title="Adelie, Chinstrap, Gentoo" alt="Adelie, Chinstrap, Gentoo" width="30%" /&gt;
+
+---
+
+##Practice
+
+
+```r
+lm(bill_length_mm ~ 
+              bill_depth_mm +
+              body_mass_g + 
+*             species,
+   data = penguins) %&gt;% 
+  broom::tidy(.)
+```
+
+```
+## # A tibble: 5 x 5
+##   term             estimate std.error statistic  p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)      15.9      2.11          7.56 3.81e-13
+## 2 bill_depth_mm     0.705    0.144         4.90 1.50e- 6
+## 3 body_mass_g       0.00268  0.000349      7.69 1.59e-13
+## 4 speciesChinstrap  9.90     0.340        29.1  3.89e-94
+## 5 speciesGentoo     7.39     0.913         8.10 1.05e-14
+```
+
+---
+
+##Practice
 
 $$
-Adjusted~R^2=1-{{SSE/(N-k)}\over{SST(N-1)}}
+\large{bill~length=bill~depth+body~mass+species}
 $$
-`\(N\)` = numerator degrees of freedom = Total number of observations across all groups
 
-`\(k\)` = Total number of groups
+`\(bill~length=15.9+0.71_{bill~depth}+0.003_{body~mass}+9.9_{speciesChinstrap}+7.39_{speciesGentoo}\)`
 
-`\(N-k\)` = denominator degrees of freedom
+If everything else about two penguins is the same (bill depth and body mass), we would expect a **Chinstrap** penguin to have a bill length 9.9mm longer than an Adelie pengun (on average).
+
+If everything else about two penguins is the same (bill depth and body mass), we would expect a **Gentoo** penguin to have a bill length 7.39mm longer than an Adelie pengun (on average).
+
+--
+
+**Q. What would be the bill length for a Gentoo penguin with a bill depth of 13.2mm and a body mass of 4500g?**
+
+--
+
+**46.162mm**
+
+---
+
+## Interactions
+
+###Why?
+
+* What if you think that one of the predictor variables *changes* the *WAY* that another predictor variable influences the outcome?
+
+* Increases our understanding of predictor variables
+
+###Why not?
+
+* Makes coefficient interpretation more difficult
+
+* Increases model complexity
+
+
+---
+class: center, middle
+
+##Example
+
+The species of penguin *changes* the relationship between bill length and bill depth (e.g. the shape of their beaks are different).
 
 ---
 
 
 ```r
-lsmodel0 &lt;- lm(height ~ type, data = darwin)
+lsmodel1 &lt;- lm(bill_length_mm ~ 
+              bill_depth_mm +
+              body_mass_g + 
+              species + 
+*             species:bill_depth_mm,
+            data = penguins)
 
-summary(lsmodel0)
+lsmodel1
 ```
 
-&lt;img src="images/model_summary.png" title="R model summary provides, the formula of the regression, the estimate of the intercept and standard error, estimated differences and uncertainity for each slope, the degrees of freedom for the whole model, F value and R squared" alt="R model summary provides, the formula of the regression, the estimate of the intercept and standard error, estimated differences and uncertainity for each slope, the degrees of freedom for the whole model, F value and R squared" width="90%" /&gt;
-
+```
+## 
+## Call:
+## lm(formula = bill_length_mm ~ bill_depth_mm + body_mass_g + species + 
+##     species:bill_depth_mm, data = penguins)
+## 
+## Coefficients:
+##                    (Intercept)                   bill_depth_mm  
+##                      23.794738                        0.299995  
+##                    body_mass_g                speciesChinstrap  
+##                       0.002565                      -10.273922  
+##                  speciesGentoo  bill_depth_mm:speciesChinstrap  
+##                      -5.387862                        1.097191  
+##    bill_depth_mm:speciesGentoo  
+##                       0.773094
+```
 
 ---
 
-&lt;img src="images/banana.png" title="Here, R squared = 0.92. Does that mean this linear model is appropriate?" alt="Here, R squared = 0.92. Does that mean this linear model is appropriate?" width="70%" /&gt;
+
+.pull-left[
+
+&lt;img src="images/no_interaction.png" title="No Interaction effect" alt="No Interaction effect" width="90%" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="images/interaction.png" title="Line fitting" alt="Line fitting" width="90%" /&gt;
+
+]
 
 ---
 
-&lt;img src="images/cup.png" title="Here, R squared = 0. Does that mean there is no relationship between x and y?" alt="Here, R squared = 0. Does that mean there is no relationship between x and y?" width="70%" /&gt;
+
+```r
+lsmodel1 %&gt;% 
+  broom::tidy()
+```
+
+```
+## # A tibble: 7 x 5
+##   term                            estimate std.error statistic  p.value
+##   &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)                     23.8      2.81          8.48 7.22e-16
+## 2 bill_depth_mm                    0.300    0.170         1.76 7.91e- 2
+## 3 body_mass_g                      0.00257  0.000349      7.34 1.58e-12
+## 4 speciesChinstrap               -10.3      5.31         -1.93 5.40e- 2
+## 5 speciesGentoo                   -5.39     4.22         -1.28 2.02e- 1
+## 6 bill_depth_mm:speciesChinstrap   1.10     0.288         3.81 1.67e- 4
+## 7 bill_depth_mm:speciesGentoo      0.773    0.265         2.92 3.72e- 3
+```
+
+```r
+drop1(lsmodel1,
+      test = "F")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## bill_length_mm ~ bill_depth_mm + body_mass_g + species + species:bill_depth_mm
+##                       Df Sum of Sq    RSS    AIC F value    Pr(&gt;F)    
+## &lt;none&gt;                             1729.6 568.32                      
+## body_mass_g            1   278.504 2008.1 617.38 53.9437 1.583e-12 ***
+## bill_depth_mm:species  2    92.677 1822.2 582.17  8.9754 0.0001595 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
 
 
 ---
-class: middle, center, inverse
+## Interpret an interaction term
 
-# Linear models for more than 2 groups:
-#ANOVA
+Once we add an interaction term we can no longer interpret that "on average bill length increases by 0.29mm for every 1mm increase in bill depth. Because bill depth **also shows up as interaction term with species**
+
+
+We now have to interpret this as :
+
+For a specific species of penguin e.g. Chinstrap
+
+`\(Bill~length=23.7+0.29_{bill depth}+0.002_{body mass}+-10.27_{Chinstrap}+1.09_{bill~depth*species}\)`
+
+--
+
+"For Chinstrap penguin we expect a penguin with a bill depth of 13.2 mm to increase bill length by:"
+
+`\((0.002*body~mass)+(1*-10.2)+(0.002*1.09*1)\)`
+
+---
+
+## When considering interaction terms
+
+* Have a clear basis for *why* you expect an interaction (and visualise the data)
+
+* Know that your coefficients WILL change when you add an interaction
+
+* You can add the interaction term as a way to TEST the hypothesis for a significant interaction, then drop it from your model if not required. 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

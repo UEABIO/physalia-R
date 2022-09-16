@@ -259,7 +259,7 @@ $$
 
 ---
 
-## Adjusted $R^2$
+## Adjusted $\huge{R^2}$
 
 Adjusted $R^2$ is a corrected goodness-of-fit measure for linear models.
 

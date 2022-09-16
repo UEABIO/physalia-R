@@ -1,5 +1,5 @@
 ---
-title: "Descriptive statistics"
+title: "Central tendencies"
 subtitle: ""
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
