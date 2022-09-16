@@ -83,15 +83,22 @@ knitr::include_graphics("images/non_linear.png")
 
 ## Pearson's r
 
-$$
-\large{r={{\sum(x_i-\overline{x})(y_i-\overline{y})}\over{\sqrt{{\sum(x_i-\overline{x})^2(y_i-\overline{y})^2}}}}}
-$$
+
+```{r, echo = FALSE, out.width="50%", fig.alt = "Strength of correlation"}
+knitr::include_graphics("images/pearson.png")
+```
+
+
 where:
 
 $r$	=	correlation coefficient
+
 $x_{i}$	=	values of the x-variable in a sample
+
 $\bar{x}$	=	mean of the values of the x-variable
+
 $y_{i}$	=	values of the y-variable in a sample
+
 $\bar{y}$	=	mean of the values of the y-variable
 
 
