@@ -2,6 +2,8 @@
 title: "Physalia courses outline"
 ---
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 All lecture materials will be available here.
 
 - 01: Introductions and course outline
