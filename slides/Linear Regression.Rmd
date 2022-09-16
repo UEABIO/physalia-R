@@ -267,11 +267,13 @@ $R^2$ always increases as the number of effects are included in the model. Good 
 
 Adjusted $R^2$ can fall if a model term does not *improve* the fit of the model
 
-<div>
-$$
-Adjusted~R^2=1-{{SSE/(N-k)}\over{SST/(N-1)}}
-$$
-<div>
+
+```{r, echo = FALSE, out.width="30%"}
+
+knitr::include_graphics("images/adj_r.png")
+
+```
+
 
 $N$ = numerator degrees of freedom = Total number of observations across all groups
 
