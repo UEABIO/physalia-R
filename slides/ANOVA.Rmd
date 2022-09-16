@@ -1,6 +1,6 @@
 ---
 title: "ANOVA"
-subtitle: ""
+subtitle: "ANalysis Of VAriance"
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
 output:

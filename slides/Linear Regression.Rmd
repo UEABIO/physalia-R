@@ -1,5 +1,5 @@
 ---
-title: "Regression"
+title: "Linear Models"
 subtitle: ""
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
@@ -91,6 +91,24 @@ knitr::include_graphics("images/basic_linear.png")
 ```
 
 ---
+
+## Straight line equation
+
+$$
+\LARGE{y = a + bx}
+$$
+
+### Where:
+
+$y$ is the predicted value of the response variable
+
+$a$ is the intercept (value of y when x = 0)
+
+$b$ is the slope of the regression line
+
+$x$ is the value of the explanatory variable
+
+---
 ## Line of best fit
 
 ```{r, echo = FALSE, out.width="60%", fig.alt = "Line fitting"}
@@ -177,23 +195,6 @@ knitr::include_graphics("images/reg.png")
 ]
 
 
----
-
-## Straight line equation
-
-$$
-\LARGE{y = a + bx}
-$$
-
-### Where:
-
-$y$ is the predicted value of the response variable
-
-$a$ is the intercept (value of y when x = 0)
-
-$b$ is the slope of the regression line
-
-$x$ is the value of the explanatory variable
 
 ---
 
@@ -218,6 +219,26 @@ knitr::include_graphics("images/reg.png")
 knitr::include_graphics("images/Sum of squares.png")
 
 ```
+
+---
+
+## Straight line equation
+
+$$
+\LARGE{y_i = a + bx+\epsilon}
+$$
+
+### Where:
+
+$y_i$ is the predicted value of the response variable
+
+$a$ is the intercept (value of y when x = 0)
+
+$b$ is the slope of the regression line
+
+$x$ is the value of the explanatory variable
+
+**$\epsilon$ is the value of the residual error**
 
 ---
 

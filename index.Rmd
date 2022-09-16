@@ -51,15 +51,17 @@ All lecture materials will be available here.
   
 - 11: Intro to linear models
     - [Slides: Regression](slides/Linear-Regression.html) 
-    - [Slides: Model validation]
+    
 
 - 12: ANOVA
     - [Slides](slides/ANOVA.html)
   
-
 - 13: Multivariate models
       - Complex models
       - Model selection - sum of square types
+      - [Slides: Model validation]
+      - Model transformations?
+     
       
 - 14: Generalised linear models
 

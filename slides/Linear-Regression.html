@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Regression</title>
+    <title>Linear Models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-15" />
+    <meta name="date" content="2022-09-16" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -19,7 +19,7 @@
 
 class: title-slide, left, top
 
-# Regression
+# Linear Models
 
 ## 
 
@@ -70,6 +70,24 @@ https://lindeloev.github.io/tests-as-linear/
 &lt;img src="images/basic_linear.png" alt="Basic linear models aim to describe a linear relationship between a response (outcome) variable and a predictor (input) variable, usually by the method of ordinary least squares" width="60%" /&gt;
 &lt;p class="caption"&gt;Basic linear models aim to describe a linear relationship between a response (outcome) variable and a predictor (input) variable, usually by the method of ordinary least squares&lt;/p&gt;
 &lt;/div&gt;
+
+---
+
+## Straight line equation
+
+$$
+\LARGE{y = a + bx}
+$$
+
+### Where:
+
+`\(y\)` is the predicted value of the response variable
+
+`\(a\)` is the intercept (value of y when x = 0)
+
+`\(b\)` is the slope of the regression line
+
+`\(x\)` is the value of the explanatory variable
 
 ---
 ## Line of best fit
@@ -138,23 +156,6 @@ class: center, middle
 ]
 
 
----
-
-## Straight line equation
-
-$$
-\LARGE{y = a + bx}
-$$
-
-### Where:
-
-`\(y\)` is the predicted value of the response variable
-
-`\(a\)` is the intercept (value of y when x = 0)
-
-`\(b\)` is the slope of the regression line
-
-`\(x\)` is the value of the explanatory variable
 
 ---
 
@@ -167,6 +168,26 @@ $$
 ---
 
 &lt;img src="images/Sum of squares.png" title="OLS fits a line to produce the smallest amount of SSE" alt="OLS fits a line to produce the smallest amount of SSE" width="80%" /&gt;
+
+---
+
+## Straight line equation
+
+$$
+\LARGE{y = a + bx+\epsilon}
+$$
+
+### Where:
+
+`\(y\)` is the predicted value of the response variable
+
+`\(a\)` is the intercept (value of y when x = 0)
+
+`\(b\)` is the slope of the regression line
+
+`\(x\)` is the value of the explanatory variable
+
+**$\epsilon$ is the value of the residual error**
 
 ---
 

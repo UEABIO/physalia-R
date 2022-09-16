@@ -117,9 +117,11 @@ summarize(new_col_2 = mean(new_col))
 ---
 
 .pull-left[
-```{r, echo = FALSE, out.width="80%", fig.alt = "A basic project outline."}
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "A basic project outline."}
 knitr::include_graphics("images/Project.png")
 ```
+
 ]
 
 .pull-right[
@@ -127,6 +129,7 @@ knitr::include_graphics("images/Project.png")
 * Clear directory structure
 
 * Centered around a `.Rproj` file
+
 ]
 
 ---
@@ -146,6 +149,7 @@ knitr::include_graphics("images/tidy_data.png")
 
 
 ---
+class: middle
 
 * A variable is a characteristic that is being measured, counted or described with data. Like: car type, salinity, year, population, or whale mass.
 
@@ -220,7 +224,7 @@ class: center, middle, inverse
 
 
 
-# Dplyr
+# dplyr
 
 
 
