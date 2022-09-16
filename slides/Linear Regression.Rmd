@@ -269,7 +269,7 @@ Adjusted $R^2$ can fall if a model term does not *improve* the fit of the model
 
 
 $$
-Adjusted~R^2=1-{{SSE/(N-k)}\over{SST(N-1)}}
+Adjusted~R^2=1-{{SSE/(N-{k})}\over{SST(N-1)}}
 $$
 $N$ = numerator degrees of freedom = Total number of observations across all groups
 
