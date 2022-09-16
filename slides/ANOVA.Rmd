@@ -162,9 +162,7 @@ $SSE + SSR = SST$
 
 ## What does an ANOVA actually do?
 
-$$
-F = {{SSR/(k - 1)}\over{SSE/N-k}}
-$$
+$\huge{F = {{SSR/(k - 1)}\over{SSE/N-k}}}$
 
 $N$ = numerator degrees of freedom = Total number of observations across all groups
 
@@ -257,16 +255,17 @@ class: center, middle, inverse
 
 ## Post hoc testing
 
-.left-code[
+
 
 Pairwise comparisons with different optional adjustments for multiple comparisons
 
 Confidence intervals provide information on minimum predicted differences on dependent variable scale
-]
 
-.right-plot[
+---
 
-```{r}
+## Post hoc testing
+
+```{r, out.width = "90%"}
 library(emmeans)
 
 means <- emmeans(bulb_lsmodel0, 
@@ -275,6 +274,6 @@ means <- emmeans(bulb_lsmodel0,
 confint(means)
 
 ```
-]
+
 
 
