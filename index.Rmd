@@ -66,8 +66,7 @@ All lecture materials will be available here.
 
   - [Slides: Introduction to Generalised Linear Models](slides/Generalized-Linear-Models.html)
 
-  - Slides: Binomial and Poisson distributions
-            - Chi test
+  - [Slides: Binomial and Poisson distributions](slides/Generalized-Linear-Models-Part-2.html)
 
 
 
