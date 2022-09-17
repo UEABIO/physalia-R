@@ -196,11 +196,11 @@ Do you want to know the range within which you will capture the mean...
 The Confidence level (C) is the inverse of the significance level.
 
 $$
-\alpha = 1 - C
+\huge\alpha = 1 - C
 $$
 ---
 
-```{r, echo = FALSE, out.width="100%", fig.alt = " Confidence Intervals"}
+```{r, echo = FALSE, out.width="90%", fig.alt = " Confidence Intervals"}
 
 knitr::include_graphics("images/confidence-interval-area.png")
 ```

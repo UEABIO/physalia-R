@@ -251,6 +251,10 @@ class: center, middle, inverse
 Sullivan, GM and R Feinn (2012). [Using effect size - or why the p-value is not enough.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3444174/#i1949-8357-4-3-279-Kline1) 
 Journal of Graduate Medical Education 4(3): 279–282
 
+Goodman(2011).[A dirty dozen: twelve p-value misconceptions](https://doi.org/10.1053/j.seminhematol.2008.04.003) Seminars in Hematology
+
+Laakens [Understanding common misconceptions about p-values](https://daniellakens.blogspot.com/2017/12/understanding-common-misconceptions.html?m=1)
+
 ###“Statistical significance is the least interesting thing about the results. You should describe the results in terms of measures of magnitude – not just does a treatment affect people, but how much does it affect them.” 
 
 ### -Gene V. Glass
