@@ -69,23 +69,80 @@ class: center, middle
 
 ## Why is data distribution important?
 
+Understanding the shape of our data informs the summary statistics we can use
+
 ```{r, echo = FALSE, out.width="50%", fig.alt = "Frequency distribution with central tendencies"}
 knitr::include_graphics("images/three_tendencies.png")
 ```
+
+
+---
+
+## Calculating variance
+
+.pull-left[
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "Symmetrical sides"}
+knitr::include_graphics("images/normal-distribution.jpg")
+```
+
+]
+
+.pull-right[
+
+```
+# A tibble: 100 x 3
+   value residuals sq_residuals
+   <dbl>     <dbl>        <dbl>
+ 1 12.7      2.88         8.27 
+ 2 14.2      4.32        18.7  
+ 3 11.3      1.41         1.99 
+ 4  7.43    -2.44         5.93 
+ 5  8.27    -1.60         2.57 
+ 6 12.7      2.81         7.90 
+ 7  5.34    -4.53        20.5  
+ 8 13.9      4.00        16.0  
+
+```
+
+```
+# A tibble: 1 x 3
+  sum_residuals sum_squares  mean
+          <dbl>       <dbl> <dbl>
+1       -0.0577        359.  9.87
+
+```
+
+]
+
+
 ---
 
 ## Standard Deviation
+
+* *variance*:
+
+$$
+s^2 = {\sum(x - \overline x)^2\over n - 1}
+$$
+
+$$
+s^2 = {sum~of~squares\over n - 1}
+$$
+
 
 * Square root of sample *variance*
 
 * A measure of *dispersion* of the sample
 
 $$
-\sigma = \sqrt{\sum(x - \overline x)^2\over n - 1}
+s = \sqrt{\sum(x - \overline x)^2\over n - 1}
 $$
 * Smaller SD σ = more values close to the mean, larger SD = greater data spread away from the mean.
 
 ---
+
+Samples with different standard deviations $s$ can look very different
 
 ```{r, eval = FALSE}
 rnorm(n = 1000,mean = 0,sd = 1)
@@ -158,6 +215,7 @@ knitr::include_graphics("images/paranormal.png")
 ## There are infinite normal distributions
 ### Different means and sd change the shape
 
+
 ```{r, echo = FALSE, out.width = "40%"}
 
 `SD = 1` <- rnorm(n = 1000, mean = 2, sd = 1)
@@ -228,7 +286,7 @@ class: center
 
 ## Using the standard normal distribution
 
-```{r, echo = FALSE, out.width="50%", fig.alt = "Normal distribution, paranormal distribution"}
+```{r, echo = FALSE, out.width="50%", fig.alt = "Normal distribution"}
 knitr::include_graphics("images/standard_normal.png")
 ```
 
@@ -306,7 +364,7 @@ If we took a bunch of samples, and found the probability distribution of a stati
 The **standard deviation of the sampling distribution of means** is the standard error, and is calculated by dividing the standard deviation by the square root of the sample size: 
 
 $$
-SE = {\sigma \over \sqrt n}
+SE = {s\over \sqrt n}
 $$
 ---
 

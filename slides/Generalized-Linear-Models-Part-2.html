@@ -4,7 +4,7 @@
     <title>GLM</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-17" />
+    <meta name="date" content="2022-09-18" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -318,35 +318,20 @@ drop1(int_poisson_model,
 
 ## Overdispersion
 
+When the residual deviance/residual df is &gt;1 we have indications of Overdispersion.
+
+* Variance is greater than expected from a Poisson distribution
+
+* Confidence intervals and hypothesis testing will be affected
+
+* Increased risk of Type 1 errors
+
 
 ```
-## 
-## Call:
-## glm(formula = breaks ~ wool * tension, family = poisson(link = "log"), 
-##     data = warpbreaks)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -3.3383  -1.4844  -0.1291   1.1725   3.5153  
-## 
-## Coefficients:
-##                Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)     3.79674    0.04994  76.030  &lt; 2e-16 ***
-## woolB          -0.45663    0.08019  -5.694 1.24e-08 ***
-## tensionM       -0.61868    0.08440  -7.330 2.30e-13 ***
-## tensionH       -0.59580    0.08378  -7.112 1.15e-12 ***
-## woolB:tensionM  0.63818    0.12215   5.224 1.75e-07 ***
-## woolB:tensionH  0.18836    0.12990   1.450    0.147    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for poisson family taken to be 1)
-## 
-##     Null deviance: 297.37  on 53  degrees of freedom
-## Residual deviance: 182.31  on 48  degrees of freedom
-## AIC: 468.97
-## 
-## Number of Fisher Scoring iterations: 4
+## # A tibble: 1 x 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
+##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+## 1          297.      53  -228.  469.  481.     182.          48    54
 ```
 
 ---
@@ -389,6 +374,30 @@ broom::tidy(int_poisson_model)
 ## 6 woolB:tensionH    0.188    0.130       1.45 1.47e- 1
 ```
 
+---
+
+### Hypothesis testing on Quasi-likelihood models
+
+* We have now reintroduced a separate term modelling variance
+
+* Quasilikelihood fitting is therefore more accurate under an F distribution
+
+
+```r
+drop1(quasi_poisson_model, test = "F")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## breaks ~ wool * tension
+##              Df Deviance F value Pr(&gt;F)  
+## &lt;none&gt;            182.31                 
+## wool:tension  2   210.39  3.6975 0.0321 *
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
 
 
 ---
@@ -443,7 +452,7 @@ means_summary %&gt;%
 
 .right-plot[
 
-&lt;img src="Generalized-Linear-Models-Part-2_files/figure-html/unnamed-chunk-18-1.png" width="120%" /&gt;
+&lt;img src="Generalized-Linear-Models-Part-2_files/figure-html/unnamed-chunk-19-1.png" width="120%" /&gt;
 
 ]
 
@@ -563,6 +572,28 @@ Negative coefficients: log-odds of higher ranks less than log-odds of lower rank
 Positive coefficients: log odds of higher ranks greater than odds of lower ranks
 
 No matter how you slice it, interpreting coefficients w.r.t. log-odds or odds is challenging. It’s much easier to interpret estimated probabilities.
+
+
+---
+
+## Model checks
+
+.left-code[
+
+* Similar plots are produced.
+
+* Overdispersion here can be picked up in the Binned Residuals plot
+
+* Normality of Residuals plot not very helpful here
+
+]
+
+.right-plot[
+
+&lt;img src="images/Rplot.png" width="100%" /&gt;
+
+]
+
 
 ---
 

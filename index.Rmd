@@ -34,8 +34,7 @@ All lecture materials will be available here.
 
 - 07: Descriptive statistics
     - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
-    - Talk about calculating residuals, sum of squares, sd & predicting shapes from mean and sd.
-    
+
     - [Slides: Association](slides/Association_05a.html)
 
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)

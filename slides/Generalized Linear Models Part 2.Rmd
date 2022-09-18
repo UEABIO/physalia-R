@@ -260,9 +260,16 @@ drop1(int_poisson_model,
 
 ## Overdispersion
 
-```{r, echo = F}
-summary(int_poisson_model)
+When the residual deviance/residual df is >1 we have indications of Overdispersion.
 
+* Variance is greater than expected from a Poisson distribution
+
+* Confidence intervals and hypothesis testing will be affected
+
+* Increased risk of Type 1 errors
+
+```{r, echo = F}
+broom::glance(int_poisson_model)
 ```
 
 ---
@@ -283,6 +290,17 @@ broom::tidy(int_poisson_model)
 
 ```
 
+---
+
+### Hypothesis testing on Quasi-likelihood models
+
+* We have now reintroduced a separate term modelling variance
+
+* Quasilikelihood fitting is therefore more accurate under an F distribution
+
+```{r}
+drop1(quasi_poisson_model, test = "F")
+```
 
 
 ---
@@ -466,6 +484,32 @@ Negative coefficients: log-odds of higher ranks less than log-odds of lower rank
 Positive coefficients: log odds of higher ranks greater than odds of lower ranks
 
 No matter how you slice it, interpreting coefficients w.r.t. log-odds or odds is challenging. It’s much easier to interpret estimated probabilities.
+
+
+---
+
+## Model checks
+
+.left-code[
+
+* Similar plots are produced.
+
+* Overdispersion here can be picked up in the Binned Residuals plot
+
+* Normality of Residuals plot not very helpful here
+
+]
+
+.right-plot[
+
+```{r, echo = FALSE, out.width="100%"}
+
+knitr::include_graphics("images/Rplot.png")
+
+```
+
+]
+
 
 ---
 

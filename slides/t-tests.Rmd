@@ -78,12 +78,12 @@ class:center
 ## 95% CI for t distribution
 
 $$
-\bigg[\overline x - t * {\sigma\over {\sqrt n}}
+\bigg[\overline x - t * {s\over {\sqrt n}}
 $$
 
 
 $$
-\overline x + t *{\sigma\over {\sqrt n}}\bigg]
+\overline x + t *{s\over {\sqrt n}}\bigg]
 $$
 
 

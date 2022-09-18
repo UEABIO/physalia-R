@@ -11,7 +11,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 * [The Big Book of R](https://www.bigbookofr.com/) - Your last ever bookmark
 
-* [R for Data Science](https://r4ds.had.co.nz/index.html)
+* [R for Data Science](https://r4ds.had.co.nz/index.html) - the original book on tidyverse for data science
 
 ## Print books
 
@@ -39,6 +39,5 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 * [Common Statistical tests as linear models](https://lindeloev.github.io/tests-as-linear/)
 
-## Papers
 
-* 
+

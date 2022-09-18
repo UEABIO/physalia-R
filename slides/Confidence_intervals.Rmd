@@ -69,7 +69,7 @@ rnorm(n = 100, mean = 10, sd  = 1)
 The **standard deviation of the sampling distribution of means** is the **standard error**. It is calculated by dividing the standard deviation by the square root of the sample size:
 
 $$
-SE = {\sigma\over\sqrt n}
+SE = {s\over\sqrt n}
 $$
 
 ---
@@ -83,7 +83,7 @@ How much does your **sample statistic** differ from the population parameter *ak
 
 
 $$
-SE = {\sigma\over\sqrt n}
+SE = {s\over\sqrt n}
 $$
 
 ---

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Descriptive statistics</title>
+    <title>Central tendencies</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-10" />
+    <meta name="date" content="2022-09-18" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
@@ -23,7 +23,7 @@
 
 class: title-slide, left, top
 
-# Descriptive statistics
+# Central tendencies
 
 ## 
 
@@ -64,21 +64,76 @@ class: center, middle
 
 ## Why is data distribution important?
 
+Understanding the shape of our data informs the summary statistics we can use
+
 &lt;img src="images/three_tendencies.png" title="Frequency distribution with central tendencies" alt="Frequency distribution with central tendencies" width="50%" /&gt;
+
+
+---
+
+## Calculating variance
+
+.pull-left[
+
+&lt;img src="images/normal-distribution.jpg" title="Symmetrical sides" alt="Symmetrical sides" width="100%" /&gt;
+
+]
+
+.pull-right[
+
+```
+# A tibble: 100 x 3
+   value residuals sq_residuals
+   &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+ 1 12.7      2.88         8.27 
+ 2 14.2      4.32        18.7  
+ 3 11.3      1.41         1.99 
+ 4  7.43    -2.44         5.93 
+ 5  8.27    -1.60         2.57 
+ 6 12.7      2.81         7.90 
+ 7  5.34    -4.53        20.5  
+ 8 13.9      4.00        16.0  
+
+```
+
+```
+# A tibble: 1 x 3
+  sum_residuals sum_squares  mean
+          &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1       -0.0577        359.  9.87
+
+```
+
+]
+
+
 ---
 
 ## Standard Deviation
+
+* *variance*:
+
+$$
+s^2 = {\sum(x - \overline x)^2\over n - 1}
+$$
+
+$$
+s^2 = {sum~of~squares\over n - 1}
+$$
+
 
 * Square root of sample *variance*
 
 * A measure of *dispersion* of the sample
 
 $$
-\sigma = \sqrt{\sum(x - \overline x)^2\over n - 1}
+s = \sqrt{\sum(x - \overline x)^2\over n - 1}
 $$
 * Smaller SD σ = more values close to the mean, larger SD = greater data spread away from the mean.
 
 ---
+
+Samples with different standard deviations `\(s\)` can look very different
 
 
 ```r
@@ -87,7 +142,7 @@ rnorm(n = 1000,mean = 0,sd = 2)
 rnorm(n = 1000,mean = 0,sd = 3)
 ```
 
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -107,7 +162,7 @@ rnorm(n = 1000,mean = 0,sd = 3)
 ## The Normal Distribution
 
 .pull-left[
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -118,7 +173,8 @@ rnorm(n = 1000,mean = 0,sd = 3)
 ## There are infinite normal distributions
 ### Different means and sd change the shape
 
-&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-7-1.png" width="40%" /&gt;
+
+&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-8-1.png" width="40%" /&gt;
 ---
 
 ## Visualising a Distribution
@@ -126,13 +182,13 @@ rnorm(n = 1000,mean = 0,sd = 3)
 .pull-left[
 **Histograms** plot frequency/density of observations within bins
 
-&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-8-1.png" width="80%" /&gt;
+&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
 ]
 
 .pull-right[
 **Quantile-Quantile plots** plot quantiles of a dataset vs. quantiles of a *theoretical* (usually normal) distribution
 
-&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
+&lt;img src="Descriptive_statistics_05_files/figure-html/unnamed-chunk-10-1.png" width="80%" /&gt;
 ]
 
 ---
@@ -152,7 +208,7 @@ class: center
 
 ## Using the standard normal distribution
 
-&lt;img src="images/standard_normal.png" title="Normal distribution, paranormal distribution" alt="Normal distribution, paranormal distribution" width="50%" /&gt;
+&lt;img src="images/standard_normal.png" title="Normal distribution" alt="Normal distribution" width="50%" /&gt;
 
 ---
 
@@ -189,8 +245,8 @@ How can we know how well our sample represents the population?
 ---
 class: center, middle
 
-<div id="htmlwidget-e466aae49cb3b1f19281" style="width:100%;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e466aae49cb3b1f19281">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\na[label = \"Population mean = 3\"]\nb[label = \"Sample mean = 3\"]\nc[label = \"Sample mean = 4\"]\nd[label = \"Sample mean = 5\"]\ne[label = \"Sample mean = 1\"]\nf[label = \"Sample mean = 2\"]\ng[label = \"Sample mean = 4\"]\n\na -> b\na -> c\na -> d\na -> e\na -> f\na -> g\n\n\n\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-374802b657555961df51" style="width:100%;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-374802b657555961df51">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\na[label = \"Population mean = 3\"]\nb[label = \"Sample mean = 3\"]\nc[label = \"Sample mean = 4\"]\nd[label = \"Sample mean = 5\"]\ne[label = \"Sample mean = 1\"]\nf[label = \"Sample mean = 2\"]\ng[label = \"Sample mean = 4\"]\n\na -> b\na -> c\na -> d\na -> e\na -> f\na -> g\n\n\n\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Sampling distribution
@@ -200,7 +256,7 @@ If we took a bunch of samples, and found the probability distribution of a stati
 The **standard deviation of the sampling distribution of means** is the standard error, and is calculated by dividing the standard deviation by the square root of the sample size: 
 
 $$
-SE = {\sigma \over \sqrt n}
+SE = {s\over \sqrt n}
 $$
 ---
 
@@ -225,14 +281,6 @@ This is true *even if the population distribution does not follow a normal distr
 
 ### Here the width of turtle shells follow a "uniform distribution"
 
-![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
-
----
-
-## Central limit theorem
-
-
-
 ![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
@@ -250,6 +298,14 @@ This is true *even if the population distribution does not follow a normal distr
 
 
 ![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+## Central limit theorem
+
+
+
+![](Descriptive_statistics_05_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 
 ---
 

@@ -4,7 +4,7 @@
     <title>T-tests</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-15" />
+    <meta name="date" content="2022-09-18" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -61,12 +61,12 @@ class:center
 ## 95% CI for t distribution
 
 $$
-\bigg[\overline x - t * {\sigma\over {\sqrt n}}
+\bigg[\overline x - t * {s\over {\sqrt n}}
 $$
 
 
 $$
-\overline x + t *{\sigma\over {\sqrt n}}\bigg]
+\overline x + t *{s\over {\sqrt n}}\bigg]
 $$
 
 
@@ -86,12 +86,12 @@ penguins %&gt;%
   gt()
 ```
 
-<div id="depjpghhkg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="fdimbtppfc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#depjpghhkg .gt_table {
+#fdimbtppfc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -116,7 +116,7 @@ penguins %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_heading {
+#fdimbtppfc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -128,7 +128,7 @@ penguins %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_title {
+#fdimbtppfc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -138,7 +138,7 @@ penguins %&gt;%
   border-bottom-width: 0;
 }
 
-#depjpghhkg .gt_subtitle {
+#fdimbtppfc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -148,13 +148,13 @@ penguins %&gt;%
   border-top-width: 0;
 }
 
-#depjpghhkg .gt_bottom_border {
+#fdimbtppfc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_col_headings {
+#fdimbtppfc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -169,7 +169,7 @@ penguins %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_col_heading {
+#fdimbtppfc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -189,7 +189,7 @@ penguins %&gt;%
   overflow-x: hidden;
 }
 
-#depjpghhkg .gt_column_spanner_outer {
+#fdimbtppfc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -201,15 +201,15 @@ penguins %&gt;%
   padding-right: 4px;
 }
 
-#depjpghhkg .gt_column_spanner_outer:first-child {
+#fdimbtppfc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#depjpghhkg .gt_column_spanner_outer:last-child {
+#fdimbtppfc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#depjpghhkg .gt_column_spanner {
+#fdimbtppfc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -221,7 +221,7 @@ penguins %&gt;%
   width: 100%;
 }
 
-#depjpghhkg .gt_group_heading {
+#fdimbtppfc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -243,7 +243,7 @@ penguins %&gt;%
   vertical-align: middle;
 }
 
-#depjpghhkg .gt_empty_group_heading {
+#fdimbtppfc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -258,15 +258,15 @@ penguins %&gt;%
   vertical-align: middle;
 }
 
-#depjpghhkg .gt_from_md > :first-child {
+#fdimbtppfc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#depjpghhkg .gt_from_md > :last-child {
+#fdimbtppfc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#depjpghhkg .gt_row {
+#fdimbtppfc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -285,7 +285,7 @@ penguins %&gt;%
   overflow-x: hidden;
 }
 
-#depjpghhkg .gt_stub {
+#fdimbtppfc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -297,7 +297,7 @@ penguins %&gt;%
   padding-left: 12px;
 }
 
-#depjpghhkg .gt_summary_row {
+#fdimbtppfc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -307,7 +307,7 @@ penguins %&gt;%
   padding-right: 5px;
 }
 
-#depjpghhkg .gt_first_summary_row {
+#fdimbtppfc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -317,7 +317,7 @@ penguins %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_grand_summary_row {
+#fdimbtppfc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -327,7 +327,7 @@ penguins %&gt;%
   padding-right: 5px;
 }
 
-#depjpghhkg .gt_first_grand_summary_row {
+#fdimbtppfc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -337,11 +337,11 @@ penguins %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_striped {
+#fdimbtppfc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#depjpghhkg .gt_table_body {
+#fdimbtppfc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -350,7 +350,7 @@ penguins %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_footnotes {
+#fdimbtppfc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -364,13 +364,13 @@ penguins %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_footnote {
+#fdimbtppfc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#depjpghhkg .gt_sourcenotes {
+#fdimbtppfc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -384,41 +384,41 @@ penguins %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#depjpghhkg .gt_sourcenote {
+#fdimbtppfc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#depjpghhkg .gt_left {
+#fdimbtppfc .gt_left {
   text-align: left;
 }
 
-#depjpghhkg .gt_center {
+#fdimbtppfc .gt_center {
   text-align: center;
 }
 
-#depjpghhkg .gt_right {
+#fdimbtppfc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#depjpghhkg .gt_font_normal {
+#fdimbtppfc .gt_font_normal {
   font-weight: normal;
 }
 
-#depjpghhkg .gt_font_bold {
+#fdimbtppfc .gt_font_bold {
   font-weight: bold;
 }
 
-#depjpghhkg .gt_font_italic {
+#fdimbtppfc .gt_font_italic {
   font-style: italic;
 }
 
-#depjpghhkg .gt_super {
+#fdimbtppfc .gt_super {
   font-size: 65%;
 }
 
-#depjpghhkg .gt_footnote_marks {
+#fdimbtppfc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
