@@ -1,5 +1,5 @@
 ---
-title: "Physalia courses outline"
+title: "5023Y"
 ---
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -7,7 +7,7 @@ title: "Physalia courses outline"
 All lecture materials will be available here.
 
 - 01: Introductions and course outline
-    - [Slides]
+    - [Slides](slides/Introduction.html)
 
     - [Practical work](https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html)
 
