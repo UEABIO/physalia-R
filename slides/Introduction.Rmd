@@ -339,17 +339,33 @@ class: center, middle, inverse
 
 * 2 x coursework assignments
 
-**Ask lots of questions. 
+**Ask lots of questions.**
 
 ---
 
 ### Get Help
 
-```{r, echo = FALSE, out.width="50%", fig.alt = "Ask for help in a smart way"}
+.pull-left[
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "Ask for help in a smart way"}
 knitr::include_graphics("images/geordi_help.png")
 ```
 
-There will be a discussion board on Yammer to ask all of your coding questions. 
+]
+
+.pull-right[
+There will be a discussion board on Blackboard to ask all of your coding questions. 
+
+Make your questions as clear as possible
+
+* What are you trying to do?
+
+* What is the exact error message or output
+
+* What code did you run to produce this
+
+]
+
 
 ---
 
