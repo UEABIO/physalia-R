@@ -4,6 +4,7 @@ subtitle: "Course outlines"
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
 output:
+  powerpoint_presentation:
   xaringan::moon_reader:
     css: ["default", "css/my-theme.css", "css/my-fonts.css"]
     seal: false
