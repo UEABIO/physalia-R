@@ -38,13 +38,218 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
 
-<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
 ---
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses</span></div>
 
 ---
+
+class: center, middle, inverse
+
+
+
+# dplyr
+
+
+---
+
+👎 BAD READABILITY
+
+```
+object_name <- df %>% filter(col_a == “yes”, col_b == “burritos”, col_c != “eggplant”) %>% select(col_b:col_e) %>% mutate(new_col = col_f + col_g) %>% group_by(col_b, col_d) %>% summarize(new_col_2 = mean(new_col))
+
+```
+
+👍 GOOD READABILITY
+
+```
+object_name <- df %>% 
+filter(col_a == “yes”, 
+ col_b == “burritos”, 
+ col_c != “eggplant”) %>% 
+select(col_b:col_e) %>% 
+mutate(new_col = col_f + col_g) %>% 
+group_by(col_b, col_d) %>% 
+summarize(new_col_2 = mean(new_col))
+```
+---
+---
+
+class: center, middle
+
+# Coding considerations
+
+See [the tidyverse style guide](https://style.tidyverse.org/syntax.html) by Hadley Wickham
+
+---
+
+class: center, middle
+
+*Good coding style is like correct punctuation: you can get by without it* 
+
+*butitsuremakesthingseasiertoread*
+
+---
+
+## Why?
+
+* Consistency and project organisation will help you: work with collaborators, get feedback on code, publish your analyses.
+
+* Consistency also helps with troubleshooting
+
+## Collaborators
+### Who is a collaborator?
+
+* Your current and future coworkers
+
+* Your future self
+
+---
+
+## Important things: 
+
+* Functional analyses
+
+* Reproducible analyses
+
+* Organisation
+
+* Clear annotation
+
+* Consistent formatting
+
+* Elegance (using functions and iterations)
+
+
+---
+
+.pull-left[
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "A basic project outline."}
+knitr::include_graphics("images/Project.png")
+```
+
+]
+
+.pull-right[
+
+* Clear directory structure
+
+* Centered around a `.Rproj` file
+
+]
+
+---
+
+
+### Resources for the basics of good data science and good coding practice
+
+* [Understanding files and directories](https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z)
+
+* [How to organise your spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)
+
+* [R coding basics](https://rstudio.cloud/learn/primers/1.2)
+
+* [The tidyverse style guide](https://style.tidyverse.org/)
+
+
+## Manipulating data with dplyr
+
+* `select()`
+
+* `filter()`
+
+* `arrange()`
+
+* `mutate()`
+
+* `group_by`
+
+
+---
+
+## Penguins data
+
+```{r, echo = F, message = F, warning = F}
+library(palmerpenguins)
+```
+
+```{r}
+glimpse(penguins)
+```
+---
+
+```{r}
+summary(penguins)
+```
+
+---
+
+## select()
+
+```{r}
+penguins %>% 
+  select(species, island, body_mass_g) %>% #<<
+  head()
+
+```
+---
+
+## arrange()
+
+```{r}
+penguins %>% 
+  select(species, island, body_mass_g) %>% 
+  arrange(desc(body_mass_g)) %>% #<<
+  head()
+```
+
+---
+
+## filter()
+
+```{r}
+penguins %>% 
+  select(species, island, body_mass_g) %>% 
+  arrange(desc(body_mass_g)) %>% 
+  filter(body_mass_g <= 5000) %>% #<<
+  head()
+```
+---
+## mutate()
+
+### Creating a new variable
+
+```{r}
+penguins %>% 
+  mutate(size_class = if_else(#<<
+    body_mass_g > 4050, 
+    "large", 
+    "small"), 
+    .before = island) %>% 
+  head()
+```
+---
+
+## group_by()
+### perform functions on a grouping basis
+
+```{r, message = FALSE}
+penguins %>% 
+  group_by(species, island) %>% #<<
+  summarise(n = n())
+
+```
+
+---
+
+class: center, middle, inverse
+
+
+
+# Practice!
 

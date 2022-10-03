@@ -50,7 +50,7 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y</span></div>
 
 ---
 
