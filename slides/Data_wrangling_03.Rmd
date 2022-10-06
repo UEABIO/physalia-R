@@ -44,54 +44,53 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #3415437</span></div>
+
+
 
 ---
+
 
 class: center, middle, inverse
 
 
 
-# dplyr
-
-
----
-
-👎 BAD READABILITY
-
-```
-object_name <- df %>% filter(col_a == “yes”, col_b == “burritos”, col_c != “eggplant”) %>% select(col_b:col_e) %>% mutate(new_col = col_f + col_g) %>% group_by(col_b, col_d) %>% summarize(new_col_2 = mean(new_col))
-
-```
-
-👍 GOOD READABILITY
-
-```
-object_name <- df %>% 
-filter(col_a == “yes”, 
- col_b == “burritos”, 
- col_c != “eggplant”) %>% 
-select(col_b:col_e) %>% 
-mutate(new_col = col_f + col_g) %>% 
-group_by(col_b, col_d) %>% 
-summarize(new_col_2 = mean(new_col))
-```
----
----
-
-class: center, middle
-
-# Coding considerations
-
-See [the tidyverse style guide](https://style.tidyverse.org/syntax.html) by Hadley Wickham
+# R projects
 
 ---
 
-class: center, middle
+.pull-left[
 
-*Good coding style is like correct punctuation: you can get by without it* 
+```{r, echo = FALSE, out.width="100%", fig.alt = "A basic project outline."}
+knitr::include_graphics("images/Project.png")
+```
 
-*butitsuremakesthingseasiertoread*
+]
+
+.pull-right[
+
+* Clear directory structure
+
+* Centered around a `.Rproj` file
+
+* When you open RStudio it will set the working directory to the location of the `.Rproj` file.
+
+* Using Projects allows us to work with `relative filepaths`
+
+]
+
+---
+
+
+### Resources for the basics of good data science and good coding practice
+
+* [Understanding files and directories](https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z)
+
+* [How to organise your spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)
+
+* [R coding basics](https://rstudio.cloud/learn/primers/1.2)
+
+
 
 ---
 
@@ -122,40 +121,53 @@ class: center, middle
 
 * Consistent formatting
 
-* Elegance (using functions and iterations)
 
 
 ---
 
-.pull-left[
+👎 BAD READABILITY
 
-```{r, echo = FALSE, out.width="100%", fig.alt = "A basic project outline."}
-knitr::include_graphics("images/Project.png")
+```
+object_name <- df %>% filter(col_a == “yes”, col_b == “burritos”, col_c != “eggplant”) %>% select(col_b:col_e) %>% mutate(new_col = col_f + col_g) %>% group_by(col_b, col_d) %>% summarize(new_col_2 = mean(new_col))
+
 ```
 
-]
+👍 GOOD READABILITY
 
-.pull-right[
-
-* Clear directory structure
-
-* Centered around a `.Rproj` file
-
-]
+```
+object_name <- df %>% 
+filter(col_a == “yes”, 
+ col_b == “burritos”, 
+ col_c != “eggplant”) %>% 
+select(col_b:col_e) %>% 
+mutate(new_col = col_f + col_g) %>% 
+group_by(col_b, col_d) %>% 
+summarize(new_col_2 = mean(new_col))
+```
 
 ---
 
+class: center, middle
 
-### Resources for the basics of good data science and good coding practice
+# Coding considerations
 
-* [Understanding files and directories](https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z)
+*Good coding style is like correct punctuation: you can get by without it* 
 
-* [How to organise your spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)
+*butitsuremakesthingseasiertoread*
 
-* [R coding basics](https://rstudio.cloud/learn/primers/1.2)
+<br>
 
-* [The tidyverse style guide](https://style.tidyverse.org/)
+[the tidyverse style guide](https://style.tidyverse.org/syntax.html) by Hadley Wickham
 
+---
+
+class: center, middle, inverse
+
+
+
+# dplyr
+
+---
 
 ## Manipulating data with dplyr
 
@@ -244,6 +256,31 @@ penguins %>%
   summarise(n = n())
 
 ```
+
+
+---
+
+## group_by() and mutate()
+
+```{r, message = FALSE}
+penguins %>% 
+  group_by(sex, species) %>% #<<
+  mutate(flipper_centered = 
+           flipper_length_mm-mean(flipper_length_mm, na.rm=TRUE))
+```
+
+---
+
+## Why use dplyr?
+
+* Every time you open a spreadsheet to fix/correct or edit you risk introducing mistakes or errors that threaten *data integrity*
+
+* Data wrangling with an R script is *precise*, *accountable* and *reversible*
+
+* **Keep Raw Data Raw**
+
+
+
 
 ---
 
