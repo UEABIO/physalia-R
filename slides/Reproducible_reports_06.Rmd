@@ -17,12 +17,10 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE,
-        eval = TRUE, warning = FALSE, message = FALSE)
+        eval = TRUE)
 library(tidyverse)
 library(gt)
 library(gtExtras)
-
-
 ```
 
 
@@ -40,13 +38,15 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
 
-<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
 ---
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #3598190</span></div>
+
+
 
 ---
 class: center, middle
@@ -59,6 +59,28 @@ knitr::include_graphics("images/wizard.png")
 
 ---
 
+## Workflow so far
+
+```{r, echo = FALSE, out.width="90%", fig.alt = "Workflow so far"}
+knitr::include_graphics("images/organisation_R.png")
+```
+
+---
+
+## Why is this good?
+
+- Relative filepaths
+
+- Self-contained, *moveable* project
+
+- Complete, organised, reproducible
+
+### Next steps
+
+- Documents for sharing
+
+---
+
 ## Calls for reproducibility
 
 **Reproducibility** has the potential to serve as a minimum standard for judging scientific claims when full independent replication of a study is not possible.
@@ -66,15 +88,32 @@ knitr::include_graphics("images/wizard.png")
 ```{r, echo = FALSE, out.width="90%", fig.alt = "Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227"}
 knitr::include_graphics("images/repro-spectrum.jpg")
 ```
----
-## Literate programming
-
-Treat program as literature to be understandable to human beings
-
-Literate programming is an approach to programming in which the code is explained using natural language alongside the source code
 
 ---
-## Literate programming in R
+
+### Scripts are great for:
+
+- Doing small bits of code as part of a bigger project
+
+- When short comments are needed
+
+- You're creating a function or application
+
+- Scripts are *short, focused, and named for their purpose*
+
+### Scripts are less good for:
+
+- You want text, code & outputs together
+
+- You need formatted text and/or tables or equations
+
+- Extensive explanations are needed
+
+- For publishing 
+
+---
+
+## Rmarkdown
 
 Rmarkdown (`.Rmd`) integrates:
 
@@ -89,6 +128,17 @@ Rmarkdown (`.Rmd`) integrates:
 ✅ provides a framework for writing narratives around code and data
 
 ✅ Code re-run in a clean environment every time the document is "knit"
+
+---
+
+## Rmarkdown uses
+
+1. Communicating to decision makers, with a focus on conclusions, not the code behind an analysis
+
+2. For collaborating with other data scientists (including future you), who are interested in *both* your conclusions, and how you reached them (i.e. the code).
+
+3. As an environment *to do* the data science. A modern day lab notebook where you capture *what* you did, and *what* you were thinking. 
+
 ---
 class: center
 
@@ -101,77 +151,14 @@ knitr::include_graphics("images/rmarkdownoutputformats.png")
 
 ---
 
-##Rmarkdown to HTML
+## What is Markdown?
 
+Markdown is a tool to add formatting to plain text so that when you convert it (to say HTML), it get's formatted as requested. 
 
-**File > New File > RMarkdown > Document**
-
-```{r, echo = FALSE, out.width="90%", fig.cap = "Rmarkdown template left, output on the right"}
-knitr::include_graphics("images/quicktourexample.png")
-```
----
-
-## Rmarkdown to pdf
-
-```{r, echo = FALSE, out.width="90%", fig.cap = "Rmarkdown template left, output on the right"}
-knitr::include_graphics("images/pdf.png")
-```
-
+**Basically** instead of highlighting and clicking, we add symbols and syntax to the text. 
 
 ---
 
-## Rmarkdown to pdf
-
-* Rmarkdown documents can be compiled to PDF, which is a great feature. 
-
-* In order to convert the documents to PDF, they use a software called LaTeX (pronounced *la-tek* or *lay-tek*).
-
-* Installing LaTeX can be a pain, but thankfully there is an easier way to install it - `tinytex`. 
-
-* `tinytex` is an R package that installs a sane, lightweight (<200Mb) version of LaTeX.
-
-* RStudio Cloud has `tinytex` pre-installed. 
-
----
-class: center, middle, inverse
-
-## Using Rmarkdown
-
----
-## Applications
-
-Rmd documents can be useful for a number of research related long form documentation materials:
-
-* Electronic notebooks
-
-* Supplementary Materials
-
-* Reports
-
-* Papers
-
-* Presentations
-
-
----
-##YAML
-
-```
----
-title: "An example document"
-author: "Philip Leftwich"
-output: html_document
----
-
-```
-
-* The metadata of the file
-
-* YAML Ain't Markup Language
-
-* Provides title, author, document output type
-
----
 
 ## Markdown text
 
@@ -208,6 +195,95 @@ __bold__, **bold**, _italic_, *italic*
 ]
 
 ---
+class: center
+
+## How does an Rmarkdown file work? 
+
+**Rmd > (knitr) >.md > (pandoc) >.html**
+
+```{r, echo = FALSE, out.width="50%", fig.cap = "Visual editor "}
+knitr::include_graphics("images/visual-edit.png")
+```
+
+---
+
+## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
+
+```{r, echo = FALSE, out.width="70%", fig.alt = "RStudio visual editor view"}
+knitr::include_graphics("images/visual-editor.png")
+
+```
+
+✅ Easy insertion and compilation of citations
+
+✅  Easy insertion of tables, footnotes, equations, code and LaTex
+
+✅  Spellcheck! 
+
+
+
+---
+
+
+## Rmarkdown to HTML
+
+
+**File > New File > RMarkdown > Document**
+
+```{r, echo = FALSE, out.width="90%", fig.cap = "Rmarkdown template left, output on the right"}
+knitr::include_graphics("images/quicktourexample.png")
+```
+---
+
+## Rmarkdown to pdf
+
+```{r, echo = FALSE, out.width="90%", fig.cap = "Rmarkdown template left, output on the right"}
+knitr::include_graphics("images/pdf.png")
+```
+
+
+---
+
+## Rmarkdown to pdf
+
+* Rmarkdown documents can be compiled to PDF, which is a great feature. 
+
+* In order to convert the documents to PDF, they use a software called LaTeX (pronounced *la-tek* or *lay-tek*).
+
+* Installing LaTeX can be a pain, but thankfully there is an easier way to install it - `tinytex`. 
+
+* `tinytex` is an R package that installs a sane, lightweight (<200Mb) version of LaTeX.
+
+* RStudio Cloud has `tinytex` pre-installed. 
+
+---
+class: center, middle, inverse
+
+## Using Rmarkdown
+
+### With Rmarkdown you can have your code, text and outputs in one place.
+
+
+
+---
+##YAML
+
+```
+---
+title: "An example document"
+author: "Philip Leftwich"
+output: html_document
+---
+
+```
+
+* The metadata of the file
+
+* YAML Ain't Markup Language
+
+* Provides title, author, document output type
+
+---
 
 ## Rcode
 
@@ -240,23 +316,7 @@ __bold__, **bold**, _italic_, *italic*
 
 ---
 
-## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
-
-```{r, echo = FALSE, out.width="70%", fig.alt = "RStudio visual editor view"}
-knitr::include_graphics("images/visual-editor.png")
-
-```
-
-✅ Easy insertion and compilation of citations
-
-✅  Easy insertion of tables, footnotes, equations, code and LaTex
-
-✅  Spellcheck! 
-
-
----
-
-##Rmarkdown to Word
+## Rmarkdown to Word
 
 📦 `redoc`
 
@@ -281,6 +341,7 @@ knitr::include_graphics("images/gh-pages.png")
 ```
 
 ---
+
 ## Data analysis notebooks
 
 * Simple templates for hosting your [literate programming analysis online](https://github.com/lmullen/rmd-notebook)
@@ -295,66 +356,9 @@ knitr::include_graphics("images/gh-pages.png")
 knitr::include_graphics("images/notebook.png")
 ```
 
-
-
 ---
 
-class: center, middle, inverse 
-
-##Rmarkdown extensions
-
-Many great packages and applications build on Rmarkdown.
-
-All this makes it incredibly [versatile.](https://rmarkdown.rstudio.com/gallery.html)
-
----
-
-##bookdown
-
-### Create and maintain online books
-
-Authoring with R Markdown, offers:
-
-* cross-references
-
-* citations
-
-* HTML widgets and Shiny apps
-
-* tables of content and section numbering
-
-* The publication can be exported to HTML, PDF, and e-books (e.g. EPUB)
-
-* EXAMPLE: [This coursebook](https://ueabio.github.io/data-sci-v1/)
-
-* Also see [thesisdown](https://github.com/ismayc/thesisdown)
-
----
-
-## rticles
-
-A package containing [LaTex formats for various journals](https://github.com/rstudio/rticles) 
-
-```{r, echo = FALSE, out.width="90%", fig.alt = "Rrticles journal theme range"}
-knitr::include_graphics("images/rticles.png")
-```
-
-https://github.com/rstudio/rticles
----
-
-##blogdown
-
-```{r, echo = FALSE, out.width="20%", fig.alt = "blogdown logo"}
-knitr::include_graphics("images/blogdown.png")
-```
-
-For creating and maintaining blogs through R.
-
-Check out https://awesome-blogdown.com/, a curated list of awesome [#rstats](https://twitter.com/hashtag/rstats?src=hashtag_click) blogs in blogdown for inspiration!
-
----
-
-##presentations
+## Presentations
 
 ```{r, echo = FALSE, out.width="20%", fig.alt = "xaringan logo"}
 knitr::include_graphics("images/xaringan.png")
@@ -363,27 +367,6 @@ knitr::include_graphics("images/xaringan.png")
 A number of existing frameworks:
 
 * `xaringan` 📦 Presentation Ninja (https://github.com/yihui/xaringan)
-
----
-class: center, middle, inverse 
-
-##Project management
-
----
-
-.pull-left[
-```{r, echo = FALSE, out.width="100%", fig.alt = "An opinionated method of integrating analyses and literate programming"}
-knitr::include_graphics("images/Project.png")
-```
-]
-
-.pull-right[
-
-Keep all of your outputs (slides, notebooks & manuscripts) related to a project or analysis
-
-An opinionated method of integrating analyses and literate programming
-
-]
 
 ---
 class: center, middle, inverse 

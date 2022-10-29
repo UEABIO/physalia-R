@@ -4,7 +4,7 @@
     <title>Reproducible Reports</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-14" />
+    <meta name="date" content="2022-10-29" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -31,13 +31,15 @@ class: title-slide, left, top
 
 &lt;span style='color:white;'&gt;Slides released under&lt;/span&gt; [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&amp;nbsp;&amp;nbsp;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"/></svg><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M314.9 194.4v101.4h-28.3v120.5h-77.1V295.9h-28.3V194.4c0-4.4 1.6-8.2 4.6-11.3 3.1-3.1 6.9-4.7 11.3-4.7H299c4.1 0 7.8 1.6 11.1 4.7 3.1 3.2 4.8 6.9 4.8 11.3zm-101.5-63.7c0-23.3 11.5-35 34.5-35s34.5 11.7 34.5 35c0 23-11.5 34.5-34.5 34.5s-34.5-11.5-34.5-34.5zM247.6 8C389.4 8 496 118.1 496 256c0 147.1-118.5 248-248.4 248C113.6 504 0 394.5 0 256 0 123.1 104.7 8 247.6 8zm.8 44.7C130.2 52.7 44.7 150.6 44.7 256c0 109.8 91.2 202.8 203.7 202.8 103.2 0 202.8-81.1 202.8-202.8.1-113.8-90.2-203.3-202.8-203.3z"/></svg> ]   
 
-&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
 
 ---
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - Physalia Courses&lt;/span&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y Courses Slido.com #3598190&lt;/span&gt;&lt;/div&gt;
+
+
 
 ---
 class: center, middle
@@ -51,20 +53,57 @@ class: center, middle
 
 ---
 
+## Workflow so far
+
+&lt;img src="images/organisation_R.png" title="Workflow so far" alt="Workflow so far" width="90%" /&gt;
+
+---
+
+## Why is this good?
+
+- Relative filepaths
+
+- Self-contained, *moveable* project
+
+- Complete, organised, reproducible
+
+### Next steps
+
+- Documents for sharing
+
+---
+
 ## Calls for reproducibility
 
 **Reproducibility** has the potential to serve as a minimum standard for judging scientific claims when full independent replication of a study is not possible.
 
 &lt;img src="images/repro-spectrum.jpg" title="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" alt="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" width="90%" /&gt;
----
-## Literate programming
-
-Treat program as literature to be understandable to human beings
-
-Literate programming is an approach to programming in which the code is explained using natural language alongside the source code
 
 ---
-## Literate programming in R
+
+### Scripts are great for:
+
+- Doing small bits of code as part of a bigger project
+
+- When short comments are needed
+
+- You're creating a function or application
+
+- Scripts are *short, focused, and named for their purpose*
+
+### Scripts are less good for:
+
+- You want text, code &amp; outputs together
+
+- You need formatted text and/or tables or equations
+
+- Extensive explanations are needed
+
+- For publishing 
+
+---
+
+## Rmarkdown
 
 Rmarkdown (`.Rmd`) integrates:
 
@@ -79,6 +118,17 @@ Rmarkdown (`.Rmd`) integrates:
 ✅ provides a framework for writing narratives around code and data
 
 ✅ Code re-run in a clean environment every time the document is "knit"
+
+---
+
+## Rmarkdown uses
+
+1. Communicating to decision makers, with a focus on conclusions, not the code behind an analysis
+
+2. For collaborating with other data scientists (including future you), who are interested in *both* your conclusions, and how you reached them (i.e. the code).
+
+3. As an environment *to do* the data science. A modern day lab notebook where you capture *what* you did, and *what* you were thinking. 
+
 ---
 class: center
 
@@ -92,7 +142,79 @@ class: center
 
 ---
 
-##Rmarkdown to HTML
+## What is Markdown?
+
+Markdown is a tool to add formatting to plain text so that when you convert it (to say HTML), it get's formatted as requested. 
+
+**Basically** instead of highlighting and clicking, we add symbols and syntax to the text. 
+
+---
+
+
+## Markdown text
+
+.pull-left[
+
+```
+- bullet list
+- bullet list
+- bullet list
+
+1. numbered list
+2. numbered list
+3. numbered list
+
+__bold__, **bold**, _italic_, *italic*
+
+&gt; quote of something profound 
+```
+]
+
+.pull-right[
+- bullet list
+- bullet list
+- bullet list
+
+1. numbered list
+2. numbered list
+3. numbered list
+
+__bold__, **bold**, _italic_, *italic*
+
+&gt; quote of something profound 
+
+]
+
+---
+class: center
+
+## How does an Rmarkdown file work? 
+
+**Rmd &gt; (knitr) &gt;.md &gt; (pandoc) &gt;.html**
+
+&lt;div class="figure"&gt;
+&lt;img src="images/visual-edit.png" alt="Visual editor " width="50%" /&gt;
+&lt;p class="caption"&gt;Visual editor &lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
+
+&lt;img src="images/visual-editor.png" title="RStudio visual editor view" alt="RStudio visual editor view" width="70%" /&gt;
+
+✅ Easy insertion and compilation of citations
+
+✅  Easy insertion of tables, footnotes, equations, code and LaTex
+
+✅  Spellcheck! 
+
+
+
+---
+
+
+## Rmarkdown to HTML
 
 
 **File &gt; New File &gt; RMarkdown &gt; Document**
@@ -130,20 +252,8 @@ class: center, middle, inverse
 
 ## Using Rmarkdown
 
----
-## Applications
+### With Rmarkdown you can have your code, text and outputs in one place.
 
-Rmd documents can be useful for a number of research related long form documentation materials:
-
-* Electronic notebooks
-
-* Supplementary Materials
-
-* Reports
-
-* Papers
-
-* Presentations
 
 
 ---
@@ -163,42 +273,6 @@ output: html_document
 * YAML Ain't Markup Language
 
 * Provides title, author, document output type
-
----
-
-## Markdown text
-
-.pull-left[
-
-```
-- bullet list
-- bullet list
-- bullet list
-
-1. numbered list
-2. numbered list
-3. numbered list
-
-__bold__, **bold**, _italic_, *italic*
-
-&gt; quote of something profound 
-```
-]
-
-.pull-right[
-- bullet list
-- bullet list
-- bullet list
-
-1. numbered list
-2. numbered list
-3. numbered list
-
-__bold__, **bold**, _italic_, *italic*
-
-&gt; quote of something profound 
-
-]
 
 ---
 
@@ -236,20 +310,7 @@ __bold__, **bold**, _italic_, *italic*
 
 ---
 
-## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
-
-&lt;img src="images/visual-editor.png" title="RStudio visual editor view" alt="RStudio visual editor view" width="70%" /&gt;
-
-✅ Easy insertion and compilation of citations
-
-✅  Easy insertion of tables, footnotes, equations, code and LaTex
-
-✅  Spellcheck! 
-
-
----
-
-##Rmarkdown to Word
+## Rmarkdown to Word
 
 📦 `redoc`
 
@@ -276,6 +337,7 @@ Enables a two-way R Markdown-Microsoft Word workflow. It generates Word document
 &lt;/div&gt;
 
 ---
+
 ## Data analysis notebooks
 
 * Simple templates for hosting your [literate programming analysis online](https://github.com/lmullen/rmd-notebook)
@@ -288,87 +350,15 @@ Enables a two-way R Markdown-Microsoft Word workflow. It generates Word document
 
 &lt;img src="images/notebook.png" title="R notebooks snapshot" alt="R notebooks snapshot" width="50%" /&gt;
 
-
-
 ---
 
-class: center, middle, inverse 
-
-##Rmarkdown extensions
-
-Many great packages and applications build on Rmarkdown.
-
-All this makes it incredibly [versatile.](https://rmarkdown.rstudio.com/gallery.html)
-
----
-
-##bookdown
-
-### Create and maintain online books
-
-Authoring with R Markdown, offers:
-
-* cross-references
-
-* citations
-
-* HTML widgets and Shiny apps
-
-* tables of content and section numbering
-
-* The publication can be exported to HTML, PDF, and e-books (e.g. EPUB)
-
-* EXAMPLE: [This coursebook](https://ueabio.github.io/data-sci-v1/)
-
-* Also see [thesisdown](https://github.com/ismayc/thesisdown)
-
----
-
-## rticles
-
-A package containing [LaTex formats for various journals](https://github.com/rstudio/rticles) 
-
-&lt;img src="images/rticles.png" title="Rrticles journal theme range" alt="Rrticles journal theme range" width="90%" /&gt;
-
-https://github.com/rstudio/rticles
----
-
-##blogdown
-
-&lt;img src="images/blogdown.png" title="blogdown logo" alt="blogdown logo" width="20%" /&gt;
-
-For creating and maintaining blogs through R.
-
-Check out https://awesome-blogdown.com/, a curated list of awesome [#rstats](https://twitter.com/hashtag/rstats?src=hashtag_click) blogs in blogdown for inspiration!
-
----
-
-##presentations
+## Presentations
 
 &lt;img src="images/xaringan.png" title="xaringan logo" alt="xaringan logo" width="20%" /&gt;
 
 A number of existing frameworks:
 
 * `xaringan` 📦 Presentation Ninja (https://github.com/yihui/xaringan)
-
----
-class: center, middle, inverse 
-
-##Project management
-
----
-
-.pull-left[
-&lt;img src="images/Project.png" title="An opinionated method of integrating analyses and literate programming" alt="An opinionated method of integrating analyses and literate programming" width="100%" /&gt;
-]
-
-.pull-right[
-
-Keep all of your outputs (slides, notebooks &amp; manuscripts) related to a project or analysis
-
-An opinionated method of integrating analyses and literate programming
-
-]
 
 ---
 class: center, middle, inverse 
