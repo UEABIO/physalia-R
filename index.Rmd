@@ -29,6 +29,9 @@ All lecture materials will be available here.
 - 05: Reproducible Reports
     - [Slides](slides/Reproducible_reports_06.html)
     
+- 06: Github
+    - [Slides](slides/Github.html)
+    
 - 06: Functional programming
     - [Slides](slides/Functional-programming.html)
 
