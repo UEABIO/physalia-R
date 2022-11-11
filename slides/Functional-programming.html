@@ -4,7 +4,7 @@
     <title>Programming in R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-15" />
+    <meta name="date" content="2022-11-11" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -31,13 +31,16 @@ class: title-slide, left, top
 
 &lt;span style='color:white;'&gt;Slides released under&lt;/span&gt; [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&amp;nbsp;&amp;nbsp;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"/></svg><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M314.9 194.4v101.4h-28.3v120.5h-77.1V295.9h-28.3V194.4c0-4.4 1.6-8.2 4.6-11.3 3.1-3.1 6.9-4.7 11.3-4.7H299c4.1 0 7.8 1.6 11.1 4.7 3.1 3.2 4.8 6.9 4.8 11.3zm-101.5-63.7c0-23.3 11.5-35 34.5-35s34.5 11.7 34.5 35c0 23-11.5 34.5-34.5 34.5s-34.5-11.5-34.5-34.5zM247.6 8C389.4 8 496 118.1 496 256c0 147.1-118.5 248-248.4 248C113.6 504 0 394.5 0 256 0 123.1 104.7 8 247.6 8zm.8 44.7C130.2 52.7 44.7 150.6 44.7 256c0 109.8 91.2 202.8 203.7 202.8 103.2 0 202.8-81.1 202.8-202.8.1-113.8-90.2-203.3-202.8-203.3z"/></svg> ]   
 
-&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;span style='color:white;'&gt;Slido.com #1221294&lt;/span&gt;  
+
+&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
 
 ---
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - Physalia Courses&lt;/span&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y - Slido.com #1221294&lt;/span&gt;&lt;/div&gt;
+
 
 ---
 class: center, middle
@@ -122,18 +125,18 @@ df
 
 ```
 ## # A tibble: 10 x 4
-##          a       b      c      d
-##      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1  1.05    0.609  -0.319 -0.152
-##  2 -0.488   1.72   -0.807  1.39 
-##  3 -1.96   -0.0497 -1.63   0.655
-##  4 -1.27    1.10   -0.452 -0.516
-##  5  1.08    0.315  -0.414  0.114
-##  6  0.425   1.49   -2.10   0.556
-##  7  0.422  -0.709  -0.142 -0.608
-##  8  0.0228 -0.100   1.49   2.02 
-##  9 -1.53    2.95   -0.279 -0.880
-## 10 -0.377  -0.568   0.578 -0.481
+##         a         b       c      d
+##     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1 -2.78   1.27      0.683  -1.47 
+##  2 -0.605  0.0225    0.190   0.424
+##  3 -1.86   0.508     0.170   1.50 
+##  4  1.02   0.00734  -0.543  -1.72 
+##  5 -0.303  1.15      0.421  -1.64 
+##  6 -0.597 -0.000930 -0.0787  0.488
+##  7  0.241 -0.765     1.21    1.19 
+##  8  0.151  0.241    -0.959  -0.251
+##  9  1.46  -1.12      0.385  -0.615
+## 10  0.804  0.970    -1.76    0.301
 ```
 
 ]
@@ -168,18 +171,18 @@ df
 
 ```
 ## # A tibble: 10 x 4
-##        a      b       c      d
-##    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 0.990 0.360  -0.0889 0.251 
-##  2 0.484 0.665  -0.225  0.785 
-##  3 0     0.180  -0.455  0.530 
-##  4 0.227 0.496  -0.126  0.126 
-##  5 1     0.280  -0.116  0.343 
-##  6 0.784 0.603  -0.585  0.496 
-##  7 0.783 0      -0.0397 0.0938
-##  8 0.652 0.166   0.415  1     
-##  9 0.140 1      -0.0779 0     
-## 10 0.521 0.0385  0.161  0.138
+##        a     b       c      d
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1 0     1      0.230  0.0750
+##  2 0.513 0.477  0.0640 0.666 
+##  3 0.217 0.679  0.0575 1     
+##  4 0.897 0.470 -0.183  0     
+##  5 0.585 0.948  0.142  0.0244
+##  6 0.515 0.467 -0.0265 0.686 
+##  7 0.713 0.147  0.407  0.904 
+##  8 0.692 0.568 -0.323  0.456 
+##  9 1     0      0.130  0.343 
+## 10 0.846 0.873 -0.593  0.628
 ```
 
 ]
@@ -223,7 +226,7 @@ x &lt;- (x - min(x, na.rm = TRUE)) /
 ```r
 # rewrite as a function
 
-*rescale_0_1 &lt;- function(x) {
+*rescale &lt;- function(x) {
   (x - min(x, na.rm = TRUE)) /  
   diff(range(x, na.rm = TRUE))
 }
@@ -235,7 +238,7 @@ x &lt;- (x - min(x, na.rm = TRUE)) /
 
 
 ```r
-rescale_0_1 &lt;- function(x) {
+rescale &lt;- function(x) {
   (x - min(x, na.rm = TRUE)) /  
   diff(range(x, na.rm = TRUE))
 }
@@ -249,7 +252,7 @@ testvec
 
 
 ```r
-rescale_0_1(testvec)
+rescale(testvec)
 ```
 
 ```
@@ -264,33 +267,57 @@ rescale_0_1(testvec)
 
 ```r
 df &lt;- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))
-rescale_0_1 &lt;- function(x) {
+rescale &lt;- function(x) {
   (x - min(x, na.rm = TRUE)) /  
   diff(range(x, na.rm = TRUE))
 }
 out &lt;- df #make a copy so we don't have to remake df again
-out$a &lt;- rescale_0_1(df$a) # scale column a
-out$b &lt;- rescale_0_1(df$b) # scale column b
-out$c &lt;- rescale_0_1(df$c) # scale column c
-out$d &lt;- rescale_0_1(df$d) # scale column d
+out$a &lt;- rescale(df$a) # scale column a
+out$b &lt;- rescale(df$b) # scale column b
+out$c &lt;- rescale(df$c) # scale column c
+out$d &lt;- rescale(df$d) # scale column d
 out # let's look
 ```
 
 ```
-##             a         b         c         d
-## 1  0.62476923 1.0000000 0.0000000 0.5438473
-## 2  0.68753000 0.1272071 0.9271334 0.0000000
-## 3  0.14280913 0.7505388 0.3770634 0.2478479
-## 4  0.73547895 0.5937721 0.9104603 0.3552156
-## 5  0.00000000 0.2606258 0.9821069 1.0000000
-## 6  0.03122353 0.0000000 0.4063093 0.1464222
-## 7  1.00000000 0.1295245 0.5636497 0.3858464
-## 8  0.09914000 0.5122820 0.9963742 0.5700691
-## 9  0.37027440 0.5460550 0.5336763 0.1173845
-## 10 0.44592137 0.6417900 1.0000000 0.9169596
+##            a         b         c         d
+## 1  0.4713287 0.6588712 0.3491595 0.7370632
+## 2  0.5040688 0.7185196 0.7794122 0.5000601
+## 3  0.1408389 0.4533294 0.3798457 0.2038632
+## 4  0.5171138 0.6986128 0.4089463 0.4877732
+## 5  0.1212082 0.0000000 0.7816144 0.7836980
+## 6  1.0000000 1.0000000 0.3789288 0.0000000
+## 7  0.0909917 0.7550721 0.1911456 0.5322319
+## 8  0.5331146 0.2124813 0.0000000 1.0000000
+## 9  0.0000000 0.6592885 1.0000000 0.7414587
+## 10 0.5784569 0.2539041 0.1774061 0.6159495
 ```
 
 ---
+
+# Sensible errors
+
+
+```r
+rescale &lt;- function(x) {
+  
+* if (!is.numeric(x)) stop("rescaling must be applied to a number")
+  (x - min(x, na.rm = TRUE)) /  
+  diff(range(x, na.rm = TRUE))
+}
+
+
+vector &lt;- c("a", "vector", "of", "characters")
+
+rescale(vector)
+```
+
+```
+## Error in rescale(vector): rescaling must be applied to a number
+```
+
+---
+
 ## Function writing best practices
 
 * Make sure it does what you want it to do
@@ -311,6 +338,43 @@ out # let's look
 The Tidyverse style guide is here: http://style.tidyverse.org/
 
 ---
+
+
+## Source scripts &amp; functions
+
+You may find it useful to assemble your custom functions into a dedicated R script.
+
+This can then be sourced for use in any other R scripts when required
+
+
+```r
+source("path/to/some/file/functions.R")
+```
+
+Simply add this line to the top of your R script and you’ll be able to use any functions defined in file.R.
+
+---
+
+## Packages
+
+Packages are the fundamental units of reproducible code. When functions become routinely useful to you, you might consider turning them into a package for your personal R `library()` to be called at a moments notice. 
+
+If your functions might be useful to others, it can be made public (via Github or CRAN), so that others can use it too. 
+
+A reason to remember to always `cite` R packages 
+
+---
+
+## Keep learning
+
+* [R4DS](https://r4ds.had.co.nz/functions.html)
+
+* [Learn to purrr](https://www.rebeccabarter.com/blog/2019-08-19_purrr/#map-functions-beyond-apply)
+
+* [Writing a package](https://ourcodingclub.github.io/tutorials/writing-r-package/)
+
+---
+
 class: center, middle, inverse
 
 # Data structures
@@ -501,10 +565,10 @@ df2 %&gt;%
 
 ```r
 out &lt;- df
-out$a &lt;- rescale_0_1(df$a)
-out$b &lt;- rescale_0_1(df$b)
-out$c &lt;- rescale_0_1(df$c)
-out$d &lt;- rescale_0_1(df$d)
+out$a &lt;- rescale(df$a)
+out$b &lt;- rescale(df$b)
+out$c &lt;- rescale(df$c)
+out$d &lt;- rescale(df$d)
 out
 ```
 
@@ -519,24 +583,24 @@ The function simplified the call, but we're copying and pasting again.
 
 ```r
 for (i in 1:ncol(df)) { # loop through each element
-  out[i] &lt;- rescale_0_1(df[[i]]) #apply function and store in out[]
+  out[i] &lt;- rescale(df[[i]]) #apply function and store in out[]
 }
 
 out
 ```
 
 ```
-##             a         b         c         d
-## 1  0.62476923 1.0000000 0.0000000 0.5438473
-## 2  0.68753000 0.1272071 0.9271334 0.0000000
-## 3  0.14280913 0.7505388 0.3770634 0.2478479
-## 4  0.73547895 0.5937721 0.9104603 0.3552156
-## 5  0.00000000 0.2606258 0.9821069 1.0000000
-## 6  0.03122353 0.0000000 0.4063093 0.1464222
-## 7  1.00000000 0.1295245 0.5636497 0.3858464
-## 8  0.09914000 0.5122820 0.9963742 0.5700691
-## 9  0.37027440 0.5460550 0.5336763 0.1173845
-## 10 0.44592137 0.6417900 1.0000000 0.9169596
+##            a         b         c         d
+## 1  0.4713287 0.6588712 0.3491595 0.7370632
+## 2  0.5040688 0.7185196 0.7794122 0.5000601
+## 3  0.1408389 0.4533294 0.3798457 0.2038632
+## 4  0.5171138 0.6986128 0.4089463 0.4877732
+## 5  0.1212082 0.0000000 0.7816144 0.7836980
+## 6  1.0000000 1.0000000 0.3789288 0.0000000
+## 7  0.0909917 0.7550721 0.1911456 0.5322319
+## 8  0.5331146 0.2124813 0.0000000 1.0000000
+## 9  0.0000000 0.6592885 1.0000000 0.7414587
+## 10 0.5784569 0.2539041 0.1774061 0.6159495
 ```
 
 ---
@@ -545,25 +609,25 @@ out
 
 
 ```r
-sapply(df, rescale_0_1)
+sapply(df, rescale)
 ```
 
 ```
-##                a         b         c         d
-##  [1,] 0.62476923 1.0000000 0.0000000 0.5438473
-##  [2,] 0.68753000 0.1272071 0.9271334 0.0000000
-##  [3,] 0.14280913 0.7505388 0.3770634 0.2478479
-##  [4,] 0.73547895 0.5937721 0.9104603 0.3552156
-##  [5,] 0.00000000 0.2606258 0.9821069 1.0000000
-##  [6,] 0.03122353 0.0000000 0.4063093 0.1464222
-##  [7,] 1.00000000 0.1295245 0.5636497 0.3858464
-##  [8,] 0.09914000 0.5122820 0.9963742 0.5700691
-##  [9,] 0.37027440 0.5460550 0.5336763 0.1173845
-## [10,] 0.44592137 0.6417900 1.0000000 0.9169596
+##               a         b         c         d
+##  [1,] 0.4713287 0.6588712 0.3491595 0.7370632
+##  [2,] 0.5040688 0.7185196 0.7794122 0.5000601
+##  [3,] 0.1408389 0.4533294 0.3798457 0.2038632
+##  [4,] 0.5171138 0.6986128 0.4089463 0.4877732
+##  [5,] 0.1212082 0.0000000 0.7816144 0.7836980
+##  [6,] 1.0000000 1.0000000 0.3789288 0.0000000
+##  [7,] 0.0909917 0.7550721 0.1911456 0.5322319
+##  [8,] 0.5331146 0.2124813 0.0000000 1.0000000
+##  [9,] 0.0000000 0.6592885 1.0000000 0.7414587
+## [10,] 0.5784569 0.2539041 0.1774061 0.6159495
 ```
 
 ```r
-sapply(df, rescale_0_1) %&gt;% 
+sapply(df, rescale) %&gt;% 
   is.matrix(.)
 ```
 
@@ -588,23 +652,23 @@ sapply(df, rescale_0_1) %&gt;%
 
 ```r
 map_df(.x = df, 
-       .f = rescale_0_1) #map over the columns in df
+       .f = rescale) #map over the columns in df
 ```
 
 ```
 ## # A tibble: 10 x 4
 ##         a     b     c     d
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 0.625  1     0     0.544
-##  2 0.688  0.127 0.927 0    
-##  3 0.143  0.751 0.377 0.248
-##  4 0.735  0.594 0.910 0.355
-##  5 0      0.261 0.982 1    
-##  6 0.0312 0     0.406 0.146
-##  7 1      0.130 0.564 0.386
-##  8 0.0991 0.512 0.996 0.570
-##  9 0.370  0.546 0.534 0.117
-## 10 0.446  0.642 1     0.917
+##  1 0.471  0.659 0.349 0.737
+##  2 0.504  0.719 0.779 0.500
+##  3 0.141  0.453 0.380 0.204
+##  4 0.517  0.699 0.409 0.488
+##  5 0.121  0     0.782 0.784
+##  6 1      1     0.379 0    
+##  7 0.0910 0.755 0.191 0.532
+##  8 0.533  0.212 0     1    
+##  9 0      0.659 1     0.741
+## 10 0.578  0.254 0.177 0.616
 ```
 
 ---
@@ -660,39 +724,6 @@ Maps are "type-safe" they will fail if they cannot return the correct data type 
 ```
 
 ---
-
-## Source scripts &amp; functions
-
-You may find it useful to assemble your custom functions into a dedicated R script.
-
-This can then be sourced for use in any other R scripts when required
-
-
-```r
-source("path/to/some/file/functions.R")
-```
-
-Simply add this line to the top of your R script and you’ll be able to use any functions defined in file.R.
-
----
-
-## Packages
-
-Packages are the fundamental units of reproducible code. When functions become routinely useful to you, you might consider turning them into a package for your personal R `library()` to be called at a moments notice. 
-
-If your functions might be useful to others, it can be made public (via Github or CRAN), so that others can use it too. 
-
-A reason to remember to always `cite` R packages 
-
----
-
-## Keep learning
-
-* [R4DS](https://r4ds.had.co.nz/functions.html)
-
-* [Learn to purrr](https://www.rebeccabarter.com/blog/2019-08-19_purrr/#map-functions-beyond-apply)
-
-* [Writing a package](https://ourcodingclub.github.io/tutorials/writing-r-package/)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

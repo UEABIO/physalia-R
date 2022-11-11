@@ -43,13 +43,16 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
 
-<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+<span style='color:white;'>Slido.com #1221294</span>  
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
 ---
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y - Slido.com #1221294</span></div>
+
 
 ---
 class: center, middle
@@ -233,7 +236,7 @@ x <- (x - min(x, na.rm = TRUE)) /
 
 # rewrite as a function
 
-rescale_0_1 <- function(x) {#<<
+rescale <- function(x) {#<<
   (x - min(x, na.rm = TRUE)) /  
   diff(range(x, na.rm = TRUE))
 }
@@ -245,7 +248,7 @@ rescale_0_1 <- function(x) {#<<
 ## Test it
 
 ```{r}
-rescale_0_1 <- function(x) {
+rescale <- function(x) {
   (x - min(x, na.rm = TRUE)) /  
   diff(range(x, na.rm = TRUE))
 }
@@ -255,7 +258,7 @@ testvec
 ```
 
 ```{r}
-rescale_0_1(testvec)
+rescale(testvec)
 ```
 
 **Q. Does the result make sense?**
@@ -265,20 +268,39 @@ rescale_0_1(testvec)
 
 ```{r}
 df <- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))
-rescale_0_1 <- function(x) {
+rescale <- function(x) {
   (x - min(x, na.rm = TRUE)) /  
   diff(range(x, na.rm = TRUE))
 }
 out <- df #make a copy so we don't have to remake df again
-out$a <- rescale_0_1(df$a) # scale column a
-out$b <- rescale_0_1(df$b) # scale column b
-out$c <- rescale_0_1(df$c) # scale column c
-out$d <- rescale_0_1(df$d) # scale column d
+out$a <- rescale(df$a) # scale column a
+out$b <- rescale(df$b) # scale column b
+out$c <- rescale(df$c) # scale column c
+out$d <- rescale(df$d) # scale column d
 out # let's look
 
 ```
 
 ---
+
+# Sensible errors
+
+```{r, error = TRUE}
+rescale <- function(x) {
+  
+  if (!is.numeric(x)) stop("rescaling must be applied to a number")#<<
+  (x - min(x, na.rm = TRUE)) /  
+  diff(range(x, na.rm = TRUE))
+}
+
+
+vector <- c("a", "vector", "of", "characters")
+
+rescale(vector)
+```
+
+---
+
 ## Function writing best practices
 
 * Make sure it does what you want it to do
@@ -299,6 +321,42 @@ out # let's look
 The Tidyverse style guide is here: http://style.tidyverse.org/
 
 ---
+
+
+## Source scripts & functions
+
+You may find it useful to assemble your custom functions into a dedicated R script.
+
+This can then be sourced for use in any other R scripts when required
+
+```{r, eval = FALSE}
+source("path/to/some/file/functions.R")
+```
+
+Simply add this line to the top of your R script and you’ll be able to use any functions defined in file.R.
+
+---
+
+## Packages
+
+Packages are the fundamental units of reproducible code. When functions become routinely useful to you, you might consider turning them into a package for your personal R `library()` to be called at a moments notice. 
+
+If your functions might be useful to others, it can be made public (via Github or CRAN), so that others can use it too. 
+
+A reason to remember to always `cite` R packages 
+
+---
+
+## Keep learning
+
+* [R4DS](https://r4ds.had.co.nz/functions.html)
+
+* [Learn to purrr](https://www.rebeccabarter.com/blog/2019-08-19_purrr/#map-functions-beyond-apply)
+
+* [Writing a package](https://ourcodingclub.github.io/tutorials/writing-r-package/)
+
+---
+
 class: center, middle, inverse
 
 # Data structures
@@ -420,10 +478,10 @@ df2 %>%
 
 ```{r, eval = FALSE}
 out <- df
-out$a <- rescale_0_1(df$a)
-out$b <- rescale_0_1(df$b)
-out$c <- rescale_0_1(df$c)
-out$d <- rescale_0_1(df$d)
+out$a <- rescale(df$a)
+out$b <- rescale(df$b)
+out$c <- rescale(df$c)
+out$d <- rescale(df$d)
 out
 
 ```
@@ -439,7 +497,7 @@ The function simplified the call, but we're copying and pasting again.
 ```{r}
 
 for (i in 1:ncol(df)) { # loop through each element
-  out[i] <- rescale_0_1(df[[i]]) #apply function and store in out[]
+  out[i] <- rescale(df[[i]]) #apply function and store in out[]
 }
 
 out
@@ -452,9 +510,9 @@ out
 
 ```{r}
 
-sapply(df, rescale_0_1)
+sapply(df, rescale)
 
-sapply(df, rescale_0_1) %>% 
+sapply(df, rescale) %>% 
   is.matrix(.)
 ```
 
@@ -475,7 +533,7 @@ sapply(df, rescale_0_1) %>%
 ```{r}
 
 map_df(.x = df, 
-       .f = rescale_0_1) #map over the columns in df
+       .f = rescale) #map over the columns in df
 
 
 ```
@@ -523,35 +581,3 @@ Maps are "type-safe" they will fail if they cannot return the correct data type 
 ```
 
 ---
-
-## Source scripts & functions
-
-You may find it useful to assemble your custom functions into a dedicated R script.
-
-This can then be sourced for use in any other R scripts when required
-
-```{r, eval = FALSE}
-source("path/to/some/file/functions.R")
-```
-
-Simply add this line to the top of your R script and you’ll be able to use any functions defined in file.R.
-
----
-
-## Packages
-
-Packages are the fundamental units of reproducible code. When functions become routinely useful to you, you might consider turning them into a package for your personal R `library()` to be called at a moments notice. 
-
-If your functions might be useful to others, it can be made public (via Github or CRAN), so that others can use it too. 
-
-A reason to remember to always `cite` R packages 
-
----
-
-## Keep learning
-
-* [R4DS](https://r4ds.had.co.nz/functions.html)
-
-* [Learn to purrr](https://www.rebeccabarter.com/blog/2019-08-19_purrr/#map-functions-beyond-apply)
-
-* [Writing a package](https://ourcodingclub.github.io/tutorials/writing-r-package/)
