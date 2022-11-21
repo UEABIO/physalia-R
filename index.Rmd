@@ -35,6 +35,9 @@ All lecture materials will be available here.
 - 06: Functional programming
     - [Slides](slides/Functional-programming.html)
 
+- 07: Exploratory Analysis
+    - [Slides](slides/EDA.html)
+
 - 07: Descriptive statistics
     - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
 

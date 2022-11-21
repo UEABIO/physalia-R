@@ -1,0 +1,458 @@
+---
+title: "Exploratory Analysis"
+subtitle: ""
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.retina = 3, fig.asp = 0.8, fig.width = 7, out.width = "120%")
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(palmerpenguins)
+library(wesanderson)
+library(rstatix)
+
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+<span style='color:white;'>Slido.com #1018940</span>  
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - 5023Y - Slido.com #10189404</span></div>
+
+---
+
+## Understanding data
+
+We have to really understand our data to be able to decide on the appropriate analyses to answer our research questions. It can also lead to unexpected & interesting research questions. That requires first **looking** at your data, usually in a number of ways, to ask questions like: 
+
+- Are there interesting patterns, groups, trends or relationships?
+
+- How are observations distributed?
+
+- Are there outliers?
+
+- Is there notable bias in observations or missing observations? 
+
+---
+
+class: center, middle
+
+### Always start a data analysis by thinking about it really hard before analyzing
+
+--
+
+## EVERY TIME
+
+---
+
+class: center, middle,
+
+### Start exploring with visualizations that don’t hide or assume anything about the data.
+
+
+---
+
+## Jitter plots
+
+Show values of observations within a group, adding some amount of “jitter” so that they don’t all overlap 
+
+.left-code[
+```{r, eval = FALSE}
+ggplot(penguins, aes(x = species,
+                     y = body_mass_g))+
+  geom_jitter(alpha = 0.4,
+              width = 0.1,
+              aes(colour = species),
+              show.legend = FALSE)+
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "",
+       y = "Body mass (g)")+
+  theme_light()
+```
+]
+
+.right-plot[
+```{r, echo = FALSE, out.width = "80%"}
+ggplot(penguins, aes(x = species,
+                     y = body_mass_g))+
+  geom_jitter(alpha = 0.4,
+              width = 0.1,
+              aes(colour = species),
+              show.legend = FALSE)+
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "",
+       y = "Body mass (g)")+
+  theme_light()
+```
+]
+
+
+---
+
+## Swarm plots
+
+Show values of observations where amount of jitter is density dependent
+
+.left-code[
+```{r, eval = FALSE}
+library(ggbeeswarm)#<<
+ggplot(penguins, aes(x = species,
+                     y = body_mass_g))+
+  geom_beeswarm(alpha = 0.4,#<<
+              width = 0.1,
+              aes(colour = species),
+              show.legend = FALSE)+
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "",
+       y = "Body mass (g)")+
+  theme_light()
+```
+]
+
+.right-plot[
+```{r, echo = FALSE,  out.width = "80%"}
+library(ggbeeswarm)
+ggplot(penguins, aes(x = species,
+                     y = body_mass_g))+
+  geom_beeswarm(alpha = 0.4,
+              width = 0.1,
+              aes(colour = species),
+              show.legend = FALSE)+
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "",
+       y = "Body mass (g)")+
+  theme_light()
+```
+]
+
+---
+
+## Density plots
+
+Show values of observations where amount of jitter is density dependent
+
+.left-code[
+```{r, eval = FALSE}
+library(ggridges)#<<
+ggplot(penguins, aes(x = body_mass_g,
+                     y = species))+
+  geom_density_ridges(alpha = 0.4,#<<
+              width = 0.1,
+              aes(fill = species),
+              show.legend = FALSE)+
+  scale_fill_brewer(palette = "Dark2")+
+  labs(y = "",
+       x = "Body mass (g)")+
+  theme_light()
+```
+]
+
+.right-plot[
+```{r, echo = FALSE,  out.width = "80%"}
+
+library(ggridges)
+ggplot(penguins, aes(x = body_mass_g,
+                     y = species))+
+  geom_density_ridges(alpha = 0.4,
+              width = 0.1,
+              aes(fill = species),
+              show.legend = FALSE)+
+  scale_fill_brewer(palette = "Dark2")+
+  labs(y = "",
+       x = "Body mass (g)")+
+  theme_light()
+```
+
+]
+
+---
+
+## Density plots
+
+.left-code[
+```{r, eval = FALSE}
+
+penguins %>% 
+  drop_na(sex) %>% 
+ggplot(aes(x = body_mass_g,
+                     y = species))+
+  geom_density_ridges(alpha = 0.4,
+              width = 0.1,
+              aes(fill = sex))+#<<
+  scale_fill_brewer(palette = "Dark2")+
+  labs(y = "",
+       x = "Body mass (g)")+
+  theme_light()
+```
+]
+
+.right-plot[
+```{r, echo = FALSE,  out.width = "80%"}
+
+
+penguins %>% 
+  drop_na(sex) %>% 
+ggplot(aes(x = body_mass_g,
+                     y = species))+
+  geom_density_ridges(alpha = 0.4,
+              width = 0.1,
+              aes(fill = sex))+
+  scale_fill_brewer(palette = "Dark2")+
+  labs(y = "",
+       x = "Body mass (g)")+
+  theme_light()
+```
+]
+
+---
+
+## Scatter plots
+
+Show relationships between two measured variables
+
+.left-code[
+```{r, eval = FALSE, out.width="80%"}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm))+
+  geom_point(alpha = 0.4)+
+  geom_smooth(method = "lm")+#<<
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()
+```
+]
+
+.right-plot[
+
+```{r, echo = FALSE,  out.width="80%"}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm))+
+  geom_point(alpha = 0.4)+
+  geom_smooth(method = "lm")+#<<
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()
+```
+]
+
+---
+
+# Why can't we just calculate summary statistics (e.g. mean?)
+
+```{r, echo = FALSE, fig.align = "center", out.width="30%", fig.cap = "Originally created by Alberto Cairo in Download the Datasaurus: Never trust summary statistics alone; always visualize your data"}
+knitr::include_graphics("images/dino.png")
+```
+
+
+---
+
+# Why can't we just calculate summary statistics (e.g. mean?)
+
+.plot-right[
+
+```{r, echo = FALSE, fig.align = "center", out.width="40%", fig.cap = "Originally created by Alberto Cairo in Download the Datasaurus: Never trust summary statistics alone; always visualize your data"}
+knitr::include_graphics("images/datasaurus.png")
+```
+]
+
+.left-code[
+
+All of these datasets have the same x & y mean, the same x& y SD
+
+**Summary stats hide information**
+
+]
+
+---
+
+.pull-left[
+
+
+```{r, echo = FALSE, fig.show='hold',fig.align='center', out.width ="60%"}
+knitr::include_graphics("images/plot_bar.gif")
+```
+]
+
+.pull-right[
+```{r, echo = FALSE, fig.show='hold',fig.align='center', out.width ="60%"}
+knitr::include_graphics("images/plot_dotdist.gif")
+```
+
+
+]
+
+```{r, echo = FALSE, fig.show='hold',fig.align='center', out.width ="40%"}
+knitr::include_graphics("images/plot_boxplot.gif")
+```
+
+---
+
+## Association
+
+When we look at data, how do we describe the strength of the relationship between the dependent and independent variable?   Correlation
+
+
+```{r, echo = FALSE, out.width="70%", fig.alt = "Strength of correlation", fig.align = "center"}
+knitr::include_graphics("images/association_strength.png")
+```
+
+---
+
+Exploratory Data Analysis and Data visualisation MUST be the starting point before applying any formal tests. 
+
+Correlation analysis assumes a linear relationship, but while the figure on the right would produce a low *r* value, the strength of association is HIGH.
+
+
+```{r, echo = FALSE, out.width="70%", fig.alt = "Strength of correlation"}
+knitr::include_graphics("images/non_linear.png")
+```
+
+---
+
+## When there is TOO much overlapping data
+
+```{r, echo = FALSE, out.width = "70%"}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm))+
+  geom_hex()+
+  scale_fill_viridis_c()+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()
+```
+
+---
+
+## Simpson's Paradox
+
+
+.left-code[
+```{r, eval = F}
+library(ggpubr)#<<
+
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm))+
+  geom_point(alpha = 0.4)+
+  geom_smooth(method = "lm")+#<<
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()+
+  stat_cor(method = "pearson", #<<
+           label.x = 33, #<<
+           label.y = 15,
+           p.accuracy = 0.001)#<<
+```
+
+]
+
+.right-plot[
+
+```{r, echo = F}
+library(ggpubr)#<<
+
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm))+
+  geom_point(alpha = 0.4)+
+  geom_smooth(method = "lm")+#<<
+  scale_color_brewer(palette = "Dark2")+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()+
+  stat_cor(method = "pearson", #<<
+           label.x = 33, #<<
+           label.y = 15,
+           p.accuracy = 0.001)#<<
+
+```
+
+]
+
+---
+
+.left-code[
+
+
+```{r, eval = F}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species,
+                     fill = species))+
+  geom_point(alpha = 0.4)+
+  geom_smooth(method = "lm")+#<<
+  scale_color_brewer(palette = "Dark2")+
+  scale_fill_brewer(palette = "Dark2")+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()+
+  stat_cor(method = "pearson", #<<
+           label.x = 25,
+           p.accuracy = 0.001)#<<
+
+```
+
+]
+
+.right-plot[
+
+
+```{r, echo = F}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species,
+                     fill = species))+
+  geom_point(alpha = 0.4)+
+  geom_smooth(method = "lm",
+              show.legend=FALSE)+#<<
+  scale_color_brewer(palette = "Dark2")+
+  scale_fill_brewer(palette = "Dark2")+
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")+
+  theme_light()+
+  stat_cor(method = "pearson", #<<
+           label.x = 25,
+           p.accuracy = 0.001,
+           show.legend = FALSE)
+```
+
+
+]
+
+
+
