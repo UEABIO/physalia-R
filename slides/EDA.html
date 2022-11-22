@@ -4,7 +4,7 @@
     <title>Exploratory Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-11-21" />
+    <meta name="date" content="2022-11-22" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -156,6 +156,7 @@ ggplot(penguins, aes(x = body_mass_g,
 
 ---
 
+## Density plots
 
 .left-code[
 
@@ -251,6 +252,53 @@ All of these datasets have the same x &amp; y mean, the same x&amp; y SD
 
 ---
 
+## QQplots
+
+.left-code[
+
+What is a qq plot?
+
+- "Q" stands for quantile, and a qqplot is a probability plot for comparing two distributions by plotting their quantiles against each other
+
+- quantile equals cutting the range of a probability distribution into equal chunks. e.g. 4 quantiles = quartiles
+
+]
+
+.right-plot[
+
+&lt;img src="EDA_files/figure-html/unnamed-chunk-16-1.png" width="120%" /&gt;
+
+```
+## [1] 110 102
+```
+
+]
+
+---
+
+## QQplot
+
+.left-code[
+
+
+- A qqplot compares the quantiles of a distribution against a theoretical distribution (usually the normal distribution). 
+
+- Can be used to see whether a dataset deviates from the normal distribution and in what way? Commonly used to determine whether statistical models fit the data well. 
+
+]
+
+.right-plot[
+
+&lt;img src="EDA_files/figure-html/unnamed-chunk-17-1.png" width="120%" /&gt;
+
+```
+## [1] 110 102
+```
+
+]
+
+---
+
 ## Association
 
 When we look at data, how do we describe the strength of the relationship between the dependent and independent variable?   Correlation
@@ -271,7 +319,7 @@ Correlation analysis assumes a linear relationship, but while the figure on the 
 
 ## When there is TOO much overlapping data
 
-&lt;img src="EDA_files/figure-html/unnamed-chunk-18-1.png" width="70%" /&gt;
+&lt;img src="EDA_files/figure-html/unnamed-chunk-20-1.png" width="70%" /&gt;
 
 ---
 
@@ -301,7 +349,7 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 .right-plot[
 
-&lt;img src="EDA_files/figure-html/unnamed-chunk-20-1.png" width="120%" /&gt;
+&lt;img src="EDA_files/figure-html/unnamed-chunk-22-1.png" width="120%" /&gt;
 
 ]
 
@@ -333,12 +381,30 @@ ggplot(penguins, aes(x = bill_length_mm,
 .right-plot[
 
 
-&lt;img src="EDA_files/figure-html/unnamed-chunk-22-1.png" width="120%" /&gt;
+&lt;img src="EDA_files/figure-html/unnamed-chunk-24-1.png" width="120%" /&gt;
 
 
 ]
 
+---
 
+# Everything Everywhere All At Once
+
+.left-code[
+
+
+```r
+*library(GGally)
+penguins %&gt;% 
+  ggpairs()
+```
+]
+
+.right-plot[
+
+&lt;img src="EDA_files/figure-html/unnamed-chunk-26-1.png" width="120%" /&gt;
+
+]
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

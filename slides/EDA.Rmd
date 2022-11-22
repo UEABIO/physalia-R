@@ -323,6 +323,57 @@ knitr::include_graphics("images/plot_boxplot.gif")
 
 ---
 
+## QQplots
+
+.left-code[
+
+What is a qq plot?
+
+- "Q" stands for quantile, and a qqplot is a probability plot for comparing two distributions by plotting their quantiles against each other
+
+- quantile equals cutting the range of a probability distribution into equal chunks. e.g. 4 quantiles = quartiles
+
+]
+
+.right-plot[
+
+```{r, message = FALSE, echo = FALSE}
+penguins %>% 
+  filter(species == "Adelie") %>% 
+  pull(body_mass_g) %>% 
+  car::qqPlot()
+
+```
+
+]
+
+---
+
+## QQplot
+
+.left-code[
+
+
+- A qqplot compares the quantiles of a distribution against a theoretical distribution (usually the normal distribution). 
+
+- Can be used to see whether a dataset deviates from the normal distribution and in what way? Commonly used to determine whether statistical models fit the data well. 
+
+]
+
+.right-plot[
+
+```{r, message = FALSE, echo = FALSE}
+penguins %>% 
+  filter(species == "Adelie") %>% 
+  pull(body_mass_g) %>% 
+  car::qqPlot()
+
+```
+
+]
+
+---
+
 ## Association
 
 When we look at data, how do we describe the strength of the relationship between the dependent and independent variable?   Correlation
@@ -454,5 +505,27 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 ]
 
+---
 
+# Everything Everywhere All At Once
+
+.left-code[
+
+```{r, eval = FALSE}
+library(GGally)#<<
+penguins %>% 
+  ggpairs()
+```
+]
+
+.right-plot[
+
+```{r, echo = FALSE}
+library(GGally)
+penguins %>%
+  select(-c(island, year)) %>% 
+  ggpairs()
+```
+
+]
 
