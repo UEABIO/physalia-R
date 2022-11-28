@@ -37,8 +37,11 @@ All lecture materials will be available here.
 
 - 07: Exploratory Analysis
     - [Slides](slides/EDA.html)
-
-- 07: Descriptive statistics
+    
+- 08: Bad Data viz
+    - [Slides](slides/Bad-plots.html)
+    
+- 09: Descriptive statistics
     - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
 
     - [Slides: Association](slides/Association_05a.html)
@@ -46,28 +49,28 @@ All lecture materials will be available here.
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
 
-- 08: Confidence intervals
+- 10: Confidence intervals
     - [Slides](slides/Confidence_intervals.html)
 
-- 09: Hypothesis testing
+- 11: Hypothesis testing
     - [Slides: P-values](slides/Probability.html)
     - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
 
-- 10: T-tests
+- 12: T-tests
     - [Slides](slides/t-tests.html)
   
-- 11: Intro to linear models
+- 13: Intro to linear models
     - [Slides: Regression](slides/Linear-Regression.html) 
     
-- 12: ANOVA
+- 14: ANOVA
     - [Slides](slides/ANOVA.html)
   
-- 13: Multivariate models
+- 15: Multivariate models
     - [Slides: Complex models](slides/Complex_models.html)
     - [Slides: Checking and refining models](slides/Refining models.html)
      
       
-- 14: Generalised linear models
+- 16: Generalised linear models
 
   - [Slides: Introduction to Generalised Linear Models](slides/Generalized-Linear-Models.html)
 
