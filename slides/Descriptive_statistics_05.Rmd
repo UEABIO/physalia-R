@@ -1,6 +1,6 @@
 ---
-title: "Programming in R"
-subtitle: ""
+title: "Descriptive Statistics"
+subtitle: "Part one"
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
 output:
