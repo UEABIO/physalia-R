@@ -1,5 +1,5 @@
 ---
-title: "Central tendencies"
+title: "Programming in R"
 subtitle: ""
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
@@ -18,10 +18,13 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE,
         eval = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.retina = 3, fig.asp = 0.8, fig.width = 7, out.width = "120%")
+
 library(tidyverse)
 library(gt)
 library(gtExtras)
-
+library(rstatix)
+library(palmerpenguins)
 
 ```
 
@@ -40,13 +43,16 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
 
-<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+<span style='color:white;'>Slido.com #4257577</span>  
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
 ---
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - Physalia Courses</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y - Slido.com #4257577</span></div>
+
 
 ---
 class: center, middle
@@ -75,6 +81,23 @@ Understanding the shape of our data informs the summary statistics we can use
 knitr::include_graphics("images/three_tendencies.png")
 ```
 
+
+---
+
+
+## Standard Deviation
+
+- Square root of sample variance
+
+- A measure of dispersion of the sample
+
+- Smaller SD = more values closer to mean, larger SD = greater data spread from mean
+
+* *variance*:
+
+$$
+s = \sqrt{\sum(x - \overline x)^2\over n - 1}
+$$
 
 ---
 
@@ -142,7 +165,8 @@ $$
 
 ---
 
-Samples with different standard deviations $s$ can look very different
+Small $s$ = taller, narrower
+Large $s$ = squatter, wider
 
 ```{r, eval = FALSE}
 rnorm(n = 1000,mean = 0,sd = 1)
@@ -150,7 +174,7 @@ rnorm(n = 1000,mean = 0,sd = 2)
 rnorm(n = 1000,mean = 0,sd = 3)
 ```
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, out.width = "60%"}
 
 library(patchwork)
 
@@ -183,9 +207,23 @@ pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "
 
 * Any observations beyond whisker are plotted as individual points
 
-```{r, echo = FALSE, out.width="50%", fig.alt = "Boxplot"}
+.pull-left[
+
+
+```{r, echo = FALSE, out.width="80%", fig.alt = "Boxplot"}
 knitr::include_graphics("images/boxplot.png")
 ```
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, out.width="50%", fig.alt = "Box and whiskers"}
+knitr::include_graphics("images/cat.jpg")
+```
+
+]
+
 ---
 
 ## The Normal Distribution
@@ -206,7 +244,7 @@ pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "
 ]
 
 .pull-right[
-```{r, echo = FALSE, out.width="50%", fig.alt = "Normal distribution, paranormal distribution"}
+```{r, echo = FALSE, out.width="70%", fig.alt = "Normal distribution, paranormal distribution"}
 knitr::include_graphics("images/paranormal.png")
 ```
 ]
@@ -215,8 +253,9 @@ knitr::include_graphics("images/paranormal.png")
 ## There are infinite normal distributions
 ### Different means and sd change the shape
 
+.pull-left[
 
-```{r, echo = FALSE, out.width = "40%"}
+```{r, echo = FALSE, out.width = "100%"}
 
 `SD = 1` <- rnorm(n = 1000, mean = 2, sd = 1)
 `SD = 2` <- rnorm(n = 1000, mean = 6, sd = 4)
@@ -230,7 +269,18 @@ pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "
   labs(x = " ",
        y = "Frequency")
 ```
+
+]
+
+.pull-right[
+
+The normal distribution is common. But **NEVER** assume your data are normally distributed without looking at it and thinking really hard first
+
+]
+
+
 ---
+
 
 ## Visualising a Distribution
 
@@ -271,24 +321,63 @@ pivot_longer(cols = everything(), names_to = "Standard Deviation", values_to = "
 
 ## QQ plots
 
+.left-code[
 If data is normally distributed, then if we plot the [*quantiles*](https://www.youtube.com/watch?v=okjYjClSjOg) vs. theoretical normal quantiles (with same *n*), then we find a linear relationship
----
 
-class: center
+]
 
-```{r, echo = FALSE, out.width="50%", fig.alt = "QQ plot examples"}
+.right-plot[
+
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "QQ plot examples"}
 knitr::include_graphics("images/qq_example.png")
 ```
 
+]
 
+---
+
+# Normal distribution
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "QQ plot examples"}
+knitr::include_graphics("images/norm_qq.png")
+```
+---
+
+# Skewed distribution
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "QQ plot examples"}
+knitr::include_graphics("images/skew-qq.png")
+```
+
+---
+
+# Peaky distribution
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "QQ plot examples"}
+knitr::include_graphics("images/peaky-qq.png")
+```
 ---
 class: center
 
 ## Using the standard normal distribution
 
-```{r, echo = FALSE, out.width="50%", fig.alt = "Normal distribution"}
+.pull-left[
+
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "Normal distribution"}
 knitr::include_graphics("images/standard_normal.png")
 ```
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "Normal prob distribution"}
+knitr::include_graphics("images/norm prob dens.jpg")
+```
+
+]
 
 ---
 
@@ -325,7 +414,7 @@ How can we know how well our sample represents the population?
 ---
 class: center, middle
 
-```{r, echo = FALSE, warning = FALSE, out.width = "100%"}
+```{r, echo = FALSE, warning = FALSE, out.width = "110%"}
 
 library(DiagrammeR)
 
@@ -389,7 +478,7 @@ This is true *even if the population distribution does not follow a normal distr
 
 ### Here the width of turtle shells follow a "uniform distribution"
 
-```{r, echo = F}
+```{r, echo = F, out.width = "60%"}
 #make this example reproducible
 set.seed(0)
 
@@ -407,7 +496,7 @@ hist(data, col='steelblue', main='Histogram of Turtle Shell Widths')
 
 
 
-```{r, echo = F}
+```{r, echo = F, out.width = "60%"}
 set.seed(0)
 #create empty vector to hold sample means
 sample30 <- c()
@@ -428,7 +517,7 @@ hist(sample30, col ='steelblue', xlab='Turtle Shell Width', main='10 experiments
 
 
 
-```{r, echo = F}
+```{r, echo = F, out.width = "60%"}
 set.seed(0)
 #create empty vector to hold sample means
 sample30 <- c()
@@ -449,7 +538,7 @@ hist(sample30, col ='steelblue', xlab='Turtle Shell Width', main='200 experiment
 
 
 
-```{r, echo = F}
+```{r, echo = F, out.width = "60%"}
 set.seed(0)
 #create empty vector to hold sample means
 sample30 <- c()
