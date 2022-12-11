@@ -1,0 +1,644 @@
+---
+title: "ABC of data visuals"
+subtitle: "Make visuals that just slap"
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.retina = 3, fig.asp = 0.8, fig.width = 7, out.width = "120%")
+
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(rstatix)
+library(palmerpenguins)
+
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+<span style='color:white;'>Slido.com #2681001</span>  
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - 5023Y - Slido.com #2681001</span></div>
+
+
+---
+class: center, middle
+
+# Bar charts
+
+The most common chart type out there
+
+---
+
+```{r}
+mpg %>% 
+  filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n())
+```
+
+---
+
+```{r}
+mpg_sum <- mpg %>% 
+  filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n()) %>% 
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE))#<<
+
+levels(mpg_sum$manufacturer)
+
+```
+
+
+```{r}
+mpg_sum <- mpg %>% 
+  filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n()) %>% 
+  mutate(manufacturer = if_else(n < 5, "other", manufacturer)) %>% #<<
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE))
+
+levels(mpg_sum$manufacturer)
+```
+
+---
+
+```{r}
+mpg_sum <- mpg %>% 
+  filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n()) %>% 
+  mutate(manufacturer = if_else(n < 5, "other", manufacturer)) %>% 
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "other", after = Inf))#<<
+
+levels(mpg_sum$manufacturer)
+
+```
+
+---
+
+```{r}
+mpg_sum <- mpg %>% 
+  filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n()) %>% 
+  mutate(manufacturer = if_else(n < 5, "other", manufacturer)) %>% 
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "other", after = Inf)) %>% 
+  mutate(manufacturer = str_to_title(manufacturer)) #<<
+
+levels(mpg_sum$manufacturer)
+
+```
+
+---
+
+```{r}
+mpg_sum <- mpg %>% 
+  filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n()) %>% 
+  mutate(manufacturer = if_else(n < 5, "Other", manufacturer)) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = sum(n)) %>% 
+  mutate(manufacturer = str_to_title(manufacturer)) %>% #<<
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = Inf))
+  
+
+levels(mpg_sum$manufacturer)
+
+```
+
+---
+
+```{r}
+mpg_sum <- mpg %>% 
+ filter(year == 2008) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = n()) %>% 
+  mutate(manufacturer = if_else(n < 5, "Other", manufacturer)) %>% 
+  group_by(manufacturer) %>% 
+  summarise(n = sum(n)) %>% 
+  mutate(manufacturer = str_to_title(manufacturer)) %>%
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = 0)) %>% 
+  mutate(prob = n/sum(n)) #<<
+
+mpg_sum
+
+```
+
+---
+
+class: center, middle
+
+# Data visualisation
+
+
+---
+
+.left-code[
+
+
+```{r, eval = F}
+
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  theme_minimal()
+
+```
+
+]
+
+.right-plot[
+
+
+```{r, echo = F}
+
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  theme_minimal()
+
+```
+
+]
+---
+
+
+
+```{r, eval = FALSE}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(label = scales::percent(prob))+ #<<
+  theme_minimal()
+```
+
+```
+Error in number(x = x, accuracy = accuracy, scale = scale, prefix = prefix, : object 'prob' not found
+```
+
+---
+
+
+.left-code[
+
+
+```{r, eval = F}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)))+#<<
+  theme_minimal()
+```
+
+]
+
+.right-plot[
+
+```{r, echo =F}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)))+#<<
+  theme_minimal()
+```
+
+]
+---
+
+.left-code[
+
+```{r, eval = F}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
+  theme_minimal()
+
+```
+
+]
+
+.right-plot[
+
+```{r, echo = F}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
+  theme_minimal()
+
+```
+
+]
+
+---
+
+.left-code[
+
+```{r, eval = F}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
+  theme_minimal()
+
+```
+
+]
+
+.right-plot[
+
+```{r, echo = F}
+mpg_sum %>% 
+  ggplot(aes(x = n, y = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
+  theme_minimal()
+
+```
+
+]
+---
+
+.left-code[
+
+
+
+```{r, eval = F}
+
+pal <- c(
+  "gray85",
+  rep("gray70", length(mpg_sum$manufacturer) - 4), 
+  "coral2", "mediumpurple1", "goldenrod1"
+  )
+  
+mpg_sum %>% 
+  ggplot(aes(x = n, 
+             y = manufacturer,
+             fill = manufacturer))+#<<
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+
+  scale_fill_manual(values = pal)+
+  theme_minimal()+
+  theme(legend.position = "none")#<<
+
+```
+]
+
+.right-plot[
+
+```{r, echo = F}
+
+pal <- c(
+  "gray85",
+  rep("gray70", length(mpg_sum$manufacturer) - 4), 
+  "coral2", "mediumpurple1", "goldenrod1"
+  )
+  
+mpg_sum %>% 
+  ggplot(aes(x = n, 
+             y = manufacturer,
+             fill = manufacturer))+#<<
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+
+  scale_fill_manual(values = pal)+
+  theme_minimal()+
+  theme(legend.position = "none")#<<
+
+```
+
+]
+---
+
+.left-code[
+
+```{r, eval = F}
+  
+mpg_sum %>% 
+  mutate(palette = case_when(row_number() == 1 ~ "goldenrod1", #<<
+                             row_number() == 2 ~ "mediumpurple1", #<<
+                             row_number() == 3 ~ "coral2", #<<
+                             manufacturer == "Other" ~ "gray85", #<<
+                             TRUE ~ "gray70")) %>% #<<
+  ggplot(aes(x = n, 
+             y = manufacturer,
+             fill = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+
+  scale_fill_manual(values = pal)+
+  theme_minimal()+
+  theme(legend.position = "none")
+
+```
+]
+
+.right-plot[
+
+
+```{r, echo = F}
+  
+mpg_sum %>% 
+  mutate(palette = case_when(row_number() == 1 ~ "goldenrod1", #<<
+                             row_number() == 2 ~ "mediumpurple1", #<<
+                             row_number() == 3 ~ "coral2", #<<
+                             manufacturer == "Other" ~ "gray85", #<<
+                             TRUE ~ "gray70")) %>% #<<
+  ggplot(aes(x = n, 
+             y = manufacturer,
+             fill = manufacturer))+
+  geom_col()+
+  geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+
+  scale_fill_manual(values = pal)+
+  theme_minimal()+
+  theme(legend.position = "none")
+
+```
+
+]
+
+---
+
+```{r, eval = TRUE, echo =FALSE}
+mpg_sum <- mpg_sum %>% 
+  mutate(palette = case_when(row_number() == 1 ~ "goldenrod1", #<<
+                             row_number() == 2 ~ "mediumpurple1", #<<
+                             row_number() == 3 ~ "coral2", #<<
+                             manufacturer == "Other" ~ "gray85", #<<
+                             TRUE ~ "gray70")) 
+
+```
+
+.left-code[
+
+```{r, eval = F}
+  mpg_sum %>% 
+  ggplot(aes(x = n, 
+             y = manufacturer,
+             fill = manufacturer))+
+  geom_col()+
+  geom_label(aes(label = scales::percent(prob)), 
+             nudge_x = -2,
+             fill = "white",
+             fontface = "bold",
+             family = "Fira Sans")+
+  scale_fill_manual(values = pal)+
+  theme_void()+
+  theme(legend.position = "none",
+        axis.text.y = element_text(size = 14, hjust = 1, family = "Fira Sans"))+
+  ggtitle(label = "Production of new car models by manufacturer, 2008",
+          subtitle = "Three companies made 40% of the total number of new car models")
+
+
+```
+
+]
+
+.right-plot[
+
+```{r, echo = F}
+  mpg_sum %>% 
+  ggplot(aes(x = n, 
+             y = manufacturer,
+             fill = manufacturer))+
+  geom_col()+
+  geom_label(aes(label = scales::percent(prob)), 
+             nudge_x = -2,
+             fill = "white",
+             fontface = "bold",
+             family = "Fira Sans")+
+  scale_fill_manual(values = pal)+
+  theme_void()+
+  theme(legend.position = "none",
+        axis.text.y = element_text(size = 14, hjust = 1, family = "Fira Sans"))+
+  ggtitle(label = "Production of new car models by manufacturer, 2008",
+          subtitle = "Three companies made 40% of the total number of new car models")
+
+
+```
+
+]
+---
+class: center, middle
+
+# Line graphs
+
+
+---
+
+```{r, include = FALSE}
+economics <- economics %>% 
+  mutate(date = as.character(date))
+
+```
+
+```{r}
+economics
+```
+
+
+```{r}
+economics <- economics %>% 
+mutate(date = lubridate::ymd(date))
+economics
+
+```
+
+---
+
+.left-code[
+
+```{r, eval = F}
+economics %>% 
+  mutate(perc_unemp = unemploy/pop) %>% 
+  filter(date > "2000-01-01") %>% 
+  ggplot(aes(x = date,
+             y = perc_unemp))+
+  geom_line()+
+  scale_x_date(date_labels = "%b-%Y")
+  
+
+```
+]
+
+.right-plot[
+
+```{r, echo = F}
+economics %>% 
+  mutate(perc_unemp = unemploy/pop) %>% 
+  filter(date > "2000-01-01") %>% 
+  ggplot(aes(x = date,
+             y = perc_unemp))+
+  geom_line()+
+  scale_x_date(date_labels = "%b-%Y") #<<
+  
+
+```
+
+]
+
+---
+
+.left-code[
+
+
+```{r, eval = F}
+  ggplot(aes(x = date,
+             y = perc_unemp))+
+  scale_y_continuous(labels = scales::percent)+
+  geom_line(colour = "darkblue",
+            size = 1.5)+
+  geom_vline(aes(xintercept = as.Date("2007-12-01")),
+             linetype = "dashed")+
+  geom_label(aes(y = max(perc_unemp-0.002),
+                x = as.Date("2006-01-01"),
+                label = "2007 Global \nFinancial Crisis"),
+             colour = "darkblue",
+             fontface = "bold",
+             family = "Fira Sans",
+             fill = "white")+
+    scale_x_date(date_labels = "%b-%Y")+
+  ggthemes::theme_economist()+
+  theme(axis.text = element_text(size = 14, hjust = 1, family = "Fira Sans"),
+        axis.title.y = element_text(size = 16, vjust = 4, family = "Fira Sans"),
+        title = element_text(family = "Fira Sans"))+
+  labs(y = "Percentage Unemployment",
+         x = " ")+
+   ggtitle(label = "Ups and Downs of US Unemployment")
+  
+  
+
+```
+
+]
+
+.right-plot[
+
+```{r, echo = F}
+economics %>% 
+  mutate(perc_unemp = unemploy/pop) %>% 
+  filter(date > "2000-01-01") %>% 
+  ggplot(aes(x = date,
+             y = perc_unemp))+
+  scale_y_continuous(labels = scales::percent)+
+  geom_line(colour = "darkblue",
+            size = 1.5)+
+  geom_vline(aes(xintercept = as.Date("2007-12-01")),
+             linetype = "dashed")+
+  geom_label(aes(y = max(perc_unemp-0.002),
+                x = as.Date("2006-01-01"),
+                label = "2007 Global \nFinancial Crisis"),
+             colour = "darkblue",
+             fontface = "bold",
+             family = "Fira Sans",
+             fill = "white")+
+    scale_x_date(date_labels = "%b-%Y")+
+  ggthemes::theme_economist()+
+  theme(axis.text = element_text(size = 14, hjust = 1, family = "Fira Sans"),
+        axis.title.y = element_text(size = 16, vjust = 4, family = "Fira Sans"),
+        title = element_text(family = "Fira Sans"))+
+  labs(y = "Percentage Unemployment",
+         x = " ")+
+   ggtitle(label = "Ups and Downs of US Unemployment")
+  
+
+```
+
+]
+---
+
+class: center, middle, inverse
+
+# Final assignment advice
+
+
+---
+
+# Organising RMarkdown
+
+````r
+`r ''````{r include = F}
+source("scripts/data_scientist_1.R")
+
+```
+````
+
+````r
+`r ''````{r echo = F, fig.asp = 0.8, fig.width = 7}
+plot_01
+
+```
+````
+
+````r
+`r ''````{r include = F}
+source("scripts/data_scientist_2.R")
+
+```
+````
+
+````r
+`r ''````{r echo = F, fig.asp = 0.8, fig.width = 7}
+plot_02
+
+```
+````
+
+---
+
+# Tips
+
+- Do not work on the same file at the same time (e.g. RMarkdown)
+
+- Have you installed any new packages? Could cause knit failures if someone else doesn't have them! 
+
+- Communicate! Push and Pull frequently
+
+- Make sure your scripts and projects are tidy (not loads of unnecessary code/redundant files)
+
+- Indicate when submitting if you wish to be marked independently
+
+---
+
+# Mid-module review
+
+[https://forms.gle/SHBz4NL4mfUSQEsm6]

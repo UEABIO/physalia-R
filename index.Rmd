@@ -49,28 +49,31 @@ All lecture materials will be available here.
     - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
 
 
-- 10: Confidence intervals
+- 10: Great Data Viz
+    - [Slides: Great data visualisation](slides/Great_data_viz.html)
+
+- 11: Confidence intervals
     - [Slides](slides/Confidence_intervals.html)
 
-- 11: Hypothesis testing
+- 12: Hypothesis testing
     - [Slides: P-values](slides/Probability.html)
     - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
 
-- 12: T-tests
+- 14: T-tests
     - [Slides](slides/t-tests.html)
   
-- 13: Intro to linear models
+- 15: Intro to linear models
     - [Slides: Regression](slides/Linear-Regression.html) 
     
-- 14: ANOVA
+- 16: ANOVA
     - [Slides](slides/ANOVA.html)
   
-- 15: Multivariate models
+- 17: Multivariate models
     - [Slides: Complex models](slides/Complex_models.html)
     - [Slides: Checking and refining models](slides/Refining models.html)
      
       
-- 16: Generalised linear models
+- 18: Generalised linear models
 
   - [Slides: Introduction to Generalised Linear Models](slides/Generalized-Linear-Models.html)
 
