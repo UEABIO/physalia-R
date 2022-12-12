@@ -64,6 +64,12 @@ The most common chart type out there
 ---
 
 ```{r}
+head(mpg)
+```
+
+---
+
+```{r}
 mpg %>% 
   filter(year == 2008) %>% 
   group_by(manufacturer) %>% 
@@ -472,7 +478,7 @@ economics <- economics %>%
 ```
 
 ```{r}
-economics
+head(economics)
 ```
 
 

@@ -4,7 +4,7 @@
     <title>ABC of data visuals</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-12-11" />
+    <meta name="date" content="2022-12-12" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -48,6 +48,25 @@ class: center, middle
 # Bar charts
 
 The most common chart type out there
+
+---
+
+
+```r
+head(mpg)
+```
+
+```
+## # A tibble: 6 x 11
+##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
+##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa~
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa~
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa~
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa~
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa~
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa~
+```
 
 ---
 
@@ -245,7 +264,7 @@ mpg_sum %&gt;%
 .right-plot[
 
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-9-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-10-1.png" width="120%" /&gt;
 
 ]
 ---
@@ -284,7 +303,7 @@ mpg_sum %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-12-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-13-1.png" width="120%" /&gt;
 
 ]
 ---
@@ -304,7 +323,7 @@ mpg_sum %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-14-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-15-1.png" width="120%" /&gt;
 
 ]
 
@@ -325,7 +344,7 @@ mpg_sum %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-16-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-17-1.png" width="120%" /&gt;
 
 ]
 ---
@@ -356,7 +375,7 @@ mpg_sum %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-18-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-19-1.png" width="120%" /&gt;
 
 ]
 ---
@@ -385,7 +404,7 @@ mpg_sum %&gt;%
 .right-plot[
 
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-20-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-21-1.png" width="120%" /&gt;
 
 ]
 
@@ -419,7 +438,7 @@ mpg_sum %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-23-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-24-1.png" width="120%" /&gt;
 
 ]
 ---
@@ -434,24 +453,19 @@ class: center, middle
 
 
 ```r
-economics
+head(economics)
 ```
 
 ```
-## # A tibble: 574 x 6
-##    date         pce    pop psavert uempmed unemploy
-##    &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-##  1 1967-07-01  507. 198712    12.6     4.5     2944
-##  2 1967-08-01  510. 198911    12.6     4.7     2945
-##  3 1967-09-01  516. 199113    11.9     4.6     2958
-##  4 1967-10-01  512. 199311    12.9     4.9     3143
-##  5 1967-11-01  517. 199498    12.8     4.7     3066
-##  6 1967-12-01  525. 199657    11.8     4.8     3018
-##  7 1968-01-01  531. 199808    11.7     5.1     2878
-##  8 1968-02-01  534. 199920    12.3     4.5     3001
-##  9 1968-03-01  544. 200056    11.7     4.1     2877
-## 10 1968-04-01  544  200208    12.3     4.6     2709
-## # ... with 564 more rows
+## # A tibble: 6 x 6
+##   date         pce    pop psavert uempmed unemploy
+##   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+## 1 1967-07-01  507. 198712    12.6     4.5     2944
+## 2 1967-08-01  510. 198911    12.6     4.7     2945
+## 3 1967-09-01  516. 199113    11.9     4.6     2958
+## 4 1967-10-01  512. 199311    12.9     4.9     3143
+## 5 1967-11-01  517. 199498    12.8     4.7     3066
+## 6 1967-12-01  525. 199657    11.8     4.8     3018
 ```
 
 
@@ -497,7 +511,7 @@ economics %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-28-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-29-1.png" width="120%" /&gt;
 
 ]
 
@@ -536,7 +550,7 @@ economics %&gt;%
 
 .right-plot[
 
-&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-30-1.png" width="120%" /&gt;
+&lt;img src="Great_data_viz_files/figure-html/unnamed-chunk-31-1.png" width="120%" /&gt;
 
 ]
 ---
