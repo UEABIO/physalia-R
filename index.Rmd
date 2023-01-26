@@ -55,7 +55,12 @@ All lecture materials will be available here.
 - 11: Confidence intervals
     - [Slides](slides/Confidence_intervals.html)
 
-- 12: Hypothesis testing
+## Term 2
+
+- 12: Introduction to Statistics
+    - [Slides](slides/intro_stats.html)
+
+- 13: Hypothesis testing
     - [Slides: P-values](slides/Probability.html)
     - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
 
