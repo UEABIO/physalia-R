@@ -4,7 +4,7 @@
     <title>Intro to stats</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2023-01-26" />
+    <meta name="date" content="2023-01-30" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
@@ -42,7 +42,7 @@ class: title-slide, left, top
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y Courses Slido.com #3598190&lt;/span&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y Courses Slido.com #3163611&lt;/span&gt;&lt;/div&gt;
 
 
 
@@ -234,8 +234,8 @@ Each time we take a sample, they will vary slightly
 
 .right-plot[
 
-<div id="htmlwidget-4a785f086a095d8a3191" style="width:95%;height:403.2px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4a785f086a095d8a3191">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\na[label = \"Population mean = 3\"]\nb[label = \"Sample mean = 3\"]\nc[label = \"Sample mean = 4\"]\nd[label = \"Sample mean = 5\"]\ne[label = \"Sample mean = 1\"]\nf[label = \"Sample mean = 2\"]\ng[label = \"Sample mean = 4\"]\n\na -> b\na -> c\na -> d\na -> e\na -> f\na -> g\n\n\n\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8d976c12873680a35165" style="width:95%;height:403.2px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8d976c12873680a35165">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\na[label = \"Population mean = 3\"]\nb[label = \"Sample mean = 3\"]\nc[label = \"Sample mean = 4\"]\nd[label = \"Sample mean = 5\"]\ne[label = \"Sample mean = 1\"]\nf[label = \"Sample mean = 2\"]\ng[label = \"Sample mean = 4\"]\n\na -> b\na -> c\na -> d\na -> e\na -> f\na -> g\n\n\n\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -418,8 +418,8 @@ boot_1000
 ## 
 ## 
 ## Bootstrap Statistics :
-##     original      bias    std. error
-## t1*  204.506 -0.01335714     1.10781
+##     original     bias    std. error
+## t1*  204.506 0.01985119    1.156602
 ```
 
 ]
@@ -464,7 +464,7 @@ boot.ci(boot_1000,
 ## 
 ## Intervals : 
 ## Level     Percentile     
-## 95%   (202.3, 206.7 )  
+## 95%   (202.2, 206.8 )  
 ## Calculations and Intervals on Original Scale
 ```
 
