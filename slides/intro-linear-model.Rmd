@@ -167,7 +167,11 @@ $Mean~difference = \overline x_1 - \overline x_2$
 
 The uncertainty of the difference between two means
 
-where $s$ = standard deviation
+where:
+
+- $s$ = standard deviation
+
+- $s^2$ = variance
 
 --
 
