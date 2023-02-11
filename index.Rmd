@@ -62,13 +62,15 @@ All lecture materials will be available here.
     
 - 13: Intro to linear models
     - [Slides](slides/intro-linear-model.html)
+    
+- 14: T-tests
+    - [Slides](slides/testing.html)
 
-- 14: Hypothesis testing
+- 15: Hypothesis testing
     - [Slides: P-values](slides/Probability.html)
     - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
 
-- 15: T-tests
-    - [Slides](slides/t-tests.html)
+
   
  
     
