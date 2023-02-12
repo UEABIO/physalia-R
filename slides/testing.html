@@ -4,7 +4,7 @@
     <title>Testing</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2023-02-11" />
+    <meta name="date" content="2023-02-12" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -389,10 +389,15 @@ Calculate Confidence intervals based on *t-distribution*
 *Calculating t based on sample size WILL affect confidence intervals*
 
 ---
+class: center, middle, inverse
 
 ## Linear models and t-tests
 
-### observed t value
+---
+
+## observed t value
+
+
 
 
 
@@ -426,26 +431,31 @@ summary(lsmodel)
 ## F-statistic:  5.94 on 1 and 28 DF,  p-value: 0.02141
 ```
 
+
 ]
 
 
-.left-code [
+.left-code[
 
+Observed *t* is the product of the mean difference divided by the Standard error of the difference
 
 `\({t=}{difference\over~SE}\)` 
 
 `\({-2.437=}{-2.617\over1.074}\)`
+
 
 ]
 
 ---
 
 
-### Critical t-value
+## Critical t-value
 
+Critical *t* is the threshold value above which you exceed your chosen `\(\alpha\)` threshold 
 
 .pull-left[
 
+p = 0.05 when t &gt; than:
 
 | Df    | Critical t-value |
 | ----------- | ----------- |
@@ -468,9 +478,11 @@ summary(lsmodel)
 
 `\({95\%CI;[-4.81:-0.417]} = {-2.617 \pm 2.19}\)`
 
-]
+---
 
---
+## 95% Confidence intervals
+
+`\({95\%CI;[-4.81:-0.417]} = {-2.617 \pm 2.19}\)`
 
 
 ```r
@@ -486,7 +498,11 @@ lsmodel %&gt;%
 ## 2 typeSelf       -2.62     1.07      -2.44 2.14e- 2    -4.82    -0.417
 ```
 
+--
 
+*Selfed plants are shorter on average than crossed plants (mean -2.61 inches; 95% CI [-0.417:-4.82])*
+
+*The minimum height difference (at 95% confidence) is 0.417 inches*
 
 
 ---
@@ -512,7 +528,7 @@ lm(height~type, data = darwin)
 
 **Paired t-tests**
 
-Assumes each pair of data points is related
+Assumes each *pair* of data points is related (not independent)
 
 Fits the model to the *differences* betwee the pairs rather than the raw values
 
