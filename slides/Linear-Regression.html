@@ -4,7 +4,7 @@
     <title>Linear Models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-09-16" />
+    <meta name="date" content="2023-02-15" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -187,7 +187,7 @@ $$
 
 `\(x\)` is the value of the explanatory variable
 
-**$\epsilon$ is the value of the residual error**
+`\(\epsilon\)` is the value of the residual error
 
 ---
 
@@ -197,18 +197,18 @@ $$
 `\(\LARGE{R^2}\)` : The proportion of variation in the dependent variable that can be predicted from the independent variable
 
 $$
-R^2=1-{Sum~of~Squared~Distances~between~y_i~and~\hat{y_i}\over{Sum~of~Squared~Distances~between~y_i~and~\overline{y}}} 
+\LARGE{R^2=1-{Sum~of~Squared~Distances~between~y_i~and~\hat{y_i}\over{Sum~of~Squared~Distances~between~y_i~and~\overline{y}}} }
 $$
 
 
 
 $$
-R^2=1-{SSE\over{SST}}
+\LARGE{R^2=1-{SSE\over{SST}}}
 $$
 
 ---
 
-## Adjusted `\(\huge{R^2}\)`
+## Adjusted `\(\LARGE{R^2}\)`
 
 Adjusted `\(R^2\)` is a corrected goodness-of-fit measure for linear models.
 
@@ -237,6 +237,10 @@ summary(lsmodel0)
 
 &lt;img src="images/model_summary.png" title="R model summary provides, the formula of the regression, the estimate of the intercept and standard error, estimated differences and uncertainity for each slope, the degrees of freedom for the whole model, F value and R squared" alt="R model summary provides, the formula of the regression, the estimate of the intercept and standard error, estimated differences and uncertainity for each slope, the degrees of freedom for the whole model, F value and R squared" width="90%" /&gt;
 
+---
+class: center, middle, inverse
+
+## Assumptions of the Linear Model
 
 ---
 

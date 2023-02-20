@@ -238,7 +238,7 @@ $b$ is the slope of the regression line
 
 $x$ is the value of the explanatory variable
 
-**$\epsilon$ is the value of the residual error**
+$\epsilon$ is the value of the residual error
 
 ---
 
@@ -248,18 +248,18 @@ $x$ is the value of the explanatory variable
 $\LARGE{R^2}$ : The proportion of variation in the dependent variable that can be predicted from the independent variable
 
 $$
-R^2=1-{Sum~of~Squared~Distances~between~y_i~and~\hat{y_i}\over{Sum~of~Squared~Distances~between~y_i~and~\overline{y}}} 
+\LARGE{R^2=1-{Sum~of~Squared~Distances~between~y_i~and~\hat{y_i}\over{Sum~of~Squared~Distances~between~y_i~and~\overline{y}}} }
 $$
 
 
 
 $$
-R^2=1-{SSE\over{SST}}
+\LARGE{R^2=1-{SSE\over{SST}}}
 $$
 
 ---
 
-## Adjusted $\huge{R^2}$
+## Adjusted $\LARGE{R^2}$
 
 Adjusted $R^2$ is a corrected goodness-of-fit measure for linear models.
 
@@ -295,6 +295,10 @@ summary(lsmodel0)
 knitr::include_graphics("images/model_summary.png")
 ```
 
+---
+class: center, middle, inverse
+
+## Assumptions of the Linear Model
 
 ---
 

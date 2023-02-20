@@ -67,22 +67,21 @@ All lecture materials will be available here.
     - [Slides](slides/testing.html)
 
 - 15: Hypothesis testing
-    - [Slides: P-values](slides/Probability.html)
-    - [Slides: Type 1 and Type 2 errors](slides/Error_rates.html)
+    - [Slides: P-values, Hypothesis Errors](slides/Error_rates.html)
 
-
-  
+- 16: Regression models
+    - [Slides: Regression models](slides/Linear-Regression.html)
  
     
-- 16: ANOVA
+- 17: ANOVA
     - [Slides](slides/ANOVA.html)
   
-- 17: Multivariate models
+- 18: Multivariate models
     - [Slides: Complex models](slides/Complex_models.html)
     - [Slides: Checking and refining models](slides/Refining models.html)
      
       
-- 18: Generalised linear models
+- 19: Generalised linear models
 
   - [Slides: Introduction to Generalised Linear Models](slides/Generalized-Linear-Models.html)
 
