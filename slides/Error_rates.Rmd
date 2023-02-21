@@ -54,7 +54,7 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #4326367/span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #4326367</span></div>
 
 
 
@@ -74,11 +74,11 @@ class: center, middle
 
 --
 
-**Null hypothesis:** there is **no** difference in longevity between the two groups.
+**Null hypothesis:** there is **no** difference between groups. Or no relationship between dependent and independent variables
 
 --
 
-**Alternative hypothesis:** there *is* a difference in longevity between the two groups.
+**Alternative hypothesis:** there *is* a difference between groups. Or there *is* a relationship between dependent and independent variables
 
 
 
