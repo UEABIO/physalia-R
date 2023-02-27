@@ -41,6 +41,14 @@ a:hover, a:active, a:focus {
   color: #2c6793;
 }
 
+.huge .remark-code { /*Change made here*/
+  font-size: 150% !important;
+}
+.tiny .remark-code { /*Change made here*/
+  font-size: 75% !important;
+
+}
+
 .remark-inline-code {
   color: #2c6793;
   font-size: 1em;
@@ -337,4 +345,9 @@ h1#pop-quiz:before {
   width: 60%;
   float: right;
   padding-left: 1%;
+}
+
+.small-code{
+pre {
+  font-size: 75%;
 }

@@ -47,7 +47,7 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]
 
-<span style='color:white;'>Slido #4326367</span>
+<span style='color:white;'>Slido #2143827</span>
 
 <div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
@@ -55,7 +55,7 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #4326367</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #2143827</span></div>
 
 
 
@@ -235,11 +235,11 @@ knitr::include_graphics("images/Sum of squares.png")
 
 .left-code[
 
-**SST** The squared differences between the observed dependent variable and its mean
+**SST** The squared differences between the observed dependent variable ($y_i$) and its overall mean ($\overline{y}$).
 
-**SSR** The sum of the differences between the predicted value and the mean of the dependent variable
+**SSR** The sum of the differences between the predicted value ($\hat{y_i}$) of the dependent variable and its overall mean ($\overline{y}$).
 
-**SSE** The error is the difference between the observed value and the predicted value.
+**SSE** The error is the difference between the observed dependent value ($y_i$)  and the predicted value ($\hat{y_i}$).
 
 ]
 
@@ -381,19 +381,96 @@ $N-k$ = denominator degrees of freedom
 
 ---
 
-```{r, eval = T}
+## Summary
 
+```{r}
 summary(janka_ls1)
+```
+
+---
+
+.tiny[
+
+```{r, echo = F, eval = T}
+
+broom::tidy(janka_ls1)
 
 ```
 
+
+```{r}
+report::report(janka_ls1)
+```
+
+]
+
+---
+
+## Interpretation - automate with extreme caution
+
+
+.tiny[
+
+```{r}
+report::report(janka_ls1)
+```
+
+]
+
+ **I** fitted a linear model (estimated using OLS) to predict **timber hardness from wood density**. The model explains a statistically significant and substantial proportion of variance (R^2 = 0.95, F~1~34~) = 636.98, p < .001, adj. R2 = 0.95). The model shows that for each unit increase in wood density (kg/m^3) there is an **increase** of 57.51 (lbf) on the Janka wood hardness scale (Beta = 57.51, 95% CI [52.88, 62.14], t(34) = 25.24, p < .001). Model residuals were checked against the assumptions of a standard linear model.
+ 
+---
+
+class: center, middle, inverse
+
+## Assumptions of the Linear Model
 
 ---
 class: center, middle, inverse
 
 ## Assumptions of the Linear Model
 
+ *Errors* should be normally distributed
+
+ Homoscedasticity of the errors
+
+ Independent observations
+
+--
+
+ A Linear relationship
+
 ---
+
+```{r, out.width="70%"}
+performance::check_model(janka_ls1, check = "normality") 
+```
+
+---
+
+```{r, out.width="70%"}
+performance::check_model(janka_ls1, check = "outliers") 
+```
+---
+
+```{r, out.width="70%"}
+performance::check_model(janka_ls1, check = "homogeneity") 
+```
+
+---
+
+```{r, out.width="70%"}
+performance::check_model(janka_ls1, check = "outliers") 
+```
+
+---
+```{r, out.width="70%"}
+performance::check_model(janka_ls1, check = "linearity") 
+```
+
+---
+
+## Linearity
 
 ```{r, echo = FALSE, out.width="70%", fig.alt = "Here, R squared = 0.92. Does that mean this linear model is appropriate?"}
 knitr::include_graphics("images/banana.png")
@@ -414,6 +491,6 @@ class: middle, center, inverse
 
 ### Reading 
 
- Chapter 9: Discovering Statistics using R/SPSS - Andy Field
+ Chapters Correlation & Regression: Discovering Statistics using R/SPSS - Andy Field
 
- Chapter 7: The New Statistics - Andy Hector
+ Chapter Linear Regression: The New Statistics - Andy Hector
