@@ -47,7 +47,7 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]
 
-<span style='color:white;'>Slido #2143827</span>
+<span style='color:white;'>Slido #47032854</span>
 
 <div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
@@ -55,7 +55,7 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #2143827</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #47032854</span></div>
 
 
 
@@ -203,10 +203,12 @@ $SSE + SSR = SST$
 ## What does an ANOVA actually do?
 
 .pull-left[
+.huge[
 
-```{r, echo = FALSE, out.width="100%", fig.alt = ""}
-knitr::include_graphics("images/F_ratio.png")
-```
+$$
+F = {{SSR/(k-1)}\over{SSE/N-k}} = {MSR\over MSE}
+$$
+]
 
 
 $k$ = Total number of groups
@@ -215,7 +217,12 @@ $N$ = **numerator** degrees of freedom = Total number of observations across all
 
 $N-k$ = **denominator** degrees of freedom
 
+$MSR$ = Mean Squares Regression
+
+$MSE$ = Mean Squares Error
+
 This is a **ratio** of the between group variance and the the within group variance. 
+
 ]
 
 .pull-right[
@@ -321,13 +328,12 @@ anova(bulb_lsmodel0)
 
 class: center, middle, inverse
 
-# Post-hoc
+# Post-hoc vs. Planned contrasts
 
-## You decide that *at least* two means differ within your groups, what next?
 
 ---
 
-## Contrasts
+## Correcting for multiple comparisons
 
 The *F*-ratio tells us only whether the model fitted to the data (SSR) accounts for more variance than other factors (SSE). 
 
@@ -335,15 +341,33 @@ So if the *F*-ratio is large enough to be statistically significant, then we onl
 
 Further testing is needed! 
 
+--
+
+### Planned contrasts
+
+- You focused on a *few* scientifically sensible comparisons, rather than every possible comparison
+
+- You chose these *as part of the experimental design* before collecting data
+
+- Could structure linear model to reflect this?
+
 ---
 
-## Correcting for Type 1 error
+### Post hoc
+
+- Typically unplanned comparisons, conducted only after a significant ANOVA result
+
+- All combinations checked
+
+- Needs correcting for inflated Type 1 error
+
+--
 
 | Method     | Equation | Notes|
 | ----------- | ----------- |----------- |
-| Bonferroni     | $p_{crit} = {\alpha \over k}$      | Correct critical p for the number of independent tests
-| Holm's    | $p1<alpha/(k–1+1)=\alpha/k$      | we start with the smallest p-value (i = 1) and determine whether there is a significant result (i.e. p1 < α/(k–1+1) = α/k. If so we move on to the second test. We continue in this manner until we get a non-significant result
-| Tukey HSD  | $t_{crit} = q * \sqrt{SSE \over N-k}$  | Essential a t-test, correcting for multiple comparison, q-values can be looked up for test df and number of treatments
+| Bonferroni/Dunn-Sidak    | $p = {\alpha \over k}$      | Correct critical p for the number of independent tests
+| Holm's    | $p_{1} < \alpha/(k–1+1) = \alpha/k$      | we start with the smallest p-value (i = 1) and determine whether there is a significant result (i.e. p1 < α/(k–1+1) = α/k. If so we move on to the second test. We continue in this manner until we get a non-significant result
+| Tukey HSD  | $t_{crit} = q * \sqrt{MSE \over N}$  | Essential a t-test, correcting for multiple comparison, q-values can be looked up for test df and number of treatments
 
 ---
 
