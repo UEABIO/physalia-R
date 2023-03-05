@@ -203,10 +203,11 @@ $SSE + SSR = SST$
 ## What does an ANOVA actually do?
 
 .pull-left[
+
 .huge[
 
 $$
-F = {{SSR / (k-1)}\over{SSE / (N-k)}} = {MSR\over MSE}
+F = {SSR / (k-1)\over SSE / (N-k)} = {MSR\over MSE}
 $$
 ]
 
