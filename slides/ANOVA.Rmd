@@ -206,7 +206,7 @@ $SSE + SSR = SST$
 .huge[
 
 $$
-F = {{SSR/(k-1)}\over{SSE/N-k}} = {MSR\over MSE}
+F = {{SSR / (k-1)}\over{SSE / (N-k)}} = {MSR\over MSE}
 $$
 ]
 
