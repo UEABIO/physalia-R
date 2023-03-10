@@ -78,7 +78,7 @@ All lecture materials will be available here.
   
 - 18: Multivariate models
     - [Slides: Complex models](slides/Complex_models.html)
-    - [Slides: Checking and refining models](slides/Refining models.html)
+    - [Slides: Checking and refining models](slides/Refining_models.html)
      
       
 - 19: Generalised linear models
