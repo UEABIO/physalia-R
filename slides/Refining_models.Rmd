@@ -336,11 +336,9 @@ e.g. this predictor variable should have been included because you could reasona
 
 --
 
-* Estimates will be unbiased but perhaps inefficient (greater variances, SE)
+* Estimates will be unbiased but perhaps inefficient (greater variances, SE, CI)
 
-* Variances will be unbiased (but maybe not optimal)
-
-* Hypothesis testing, CI results are valid
+* Variances will be unbiased (**but maybe not optimal for hypothesis testing**)
 
 * Greater sample size can help reduce inconsistency and selection bias issues
 
@@ -348,7 +346,7 @@ e.g. this predictor variable should have been included because you could reasona
 
 --
 
-**So: it’s better to INCLUDE an irrelevant predictor variable that to OMIT a relevant one.**
+**So: it’s better to INCLUDE an irrelevant predictor variable that to OMIT a relevant one if you aren't sure.**
 
 
 ---
@@ -383,7 +381,7 @@ Think **HARD** about what terms should be included in a model to test a hypothes
 
 7) Test removal of interaction terms 
 
-8) Leave all main predictors in the model 
+8) Leave all main predictors in the model/refine model further.
 
 ]
 

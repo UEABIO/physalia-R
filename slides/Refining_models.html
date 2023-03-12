@@ -4,7 +4,7 @@
     <title>Refining models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2023-03-10" />
+    <meta name="date" content="2023-03-12" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -299,11 +299,9 @@ e.g. this predictor variable should have been included because you could reasona
 
 --
 
-* Estimates will be unbiased but perhaps inefficient (greater variances, SE)
+* Estimates will be unbiased but perhaps inefficient (greater variances, SE, CI)
 
-* Variances will be unbiased (but maybe not optimal)
-
-* Hypothesis testing, CI results are valid
+* Variances will be unbiased (**but maybe not optimal for hypothesis testing**)
 
 * Greater sample size can help reduce inconsistency and selection bias issues
 
@@ -311,7 +309,7 @@ e.g. this predictor variable should have been included because you could reasona
 
 --
 
-**So: it’s better to INCLUDE an irrelevant predictor variable that to OMIT a relevant one.**
+**So: it’s better to INCLUDE an irrelevant predictor variable that to OMIT a relevant one if you aren't sure.**
 
 
 ---
@@ -346,7 +344,7 @@ Think **HARD** about what terms should be included in a model to test a hypothes
 
 7) Test removal of interaction terms 
 
-8) Leave all main predictors in the model 
+8) Leave all main predictors in the model/refine model further.
 
 ]
 
@@ -449,12 +447,12 @@ If an interaction is dropped from a full model, then `drop1()` could be re-run. 
 gtsummary::tbl_regression(lsmodel1)
 ```
 
-<div id="vglqnfkyol" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="pmlbpukcbu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vglqnfkyol .gt_table {
+#pmlbpukcbu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -479,7 +477,7 @@ gtsummary::tbl_regression(lsmodel1)
   border-left-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_heading {
+#pmlbpukcbu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -491,7 +489,7 @@ gtsummary::tbl_regression(lsmodel1)
   border-right-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_title {
+#pmlbpukcbu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -501,7 +499,7 @@ gtsummary::tbl_regression(lsmodel1)
   border-bottom-width: 0;
 }
 
-#vglqnfkyol .gt_subtitle {
+#pmlbpukcbu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -511,13 +509,13 @@ gtsummary::tbl_regression(lsmodel1)
   border-top-width: 0;
 }
 
-#vglqnfkyol .gt_bottom_border {
+#pmlbpukcbu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_col_headings {
+#pmlbpukcbu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -532,7 +530,7 @@ gtsummary::tbl_regression(lsmodel1)
   border-right-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_col_heading {
+#pmlbpukcbu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -552,7 +550,7 @@ gtsummary::tbl_regression(lsmodel1)
   overflow-x: hidden;
 }
 
-#vglqnfkyol .gt_column_spanner_outer {
+#pmlbpukcbu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -564,15 +562,15 @@ gtsummary::tbl_regression(lsmodel1)
   padding-right: 4px;
 }
 
-#vglqnfkyol .gt_column_spanner_outer:first-child {
+#pmlbpukcbu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vglqnfkyol .gt_column_spanner_outer:last-child {
+#pmlbpukcbu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vglqnfkyol .gt_column_spanner {
+#pmlbpukcbu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -584,7 +582,7 @@ gtsummary::tbl_regression(lsmodel1)
   width: 100%;
 }
 
-#vglqnfkyol .gt_group_heading {
+#pmlbpukcbu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -606,7 +604,7 @@ gtsummary::tbl_regression(lsmodel1)
   vertical-align: middle;
 }
 
-#vglqnfkyol .gt_empty_group_heading {
+#pmlbpukcbu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -621,15 +619,15 @@ gtsummary::tbl_regression(lsmodel1)
   vertical-align: middle;
 }
 
-#vglqnfkyol .gt_from_md > :first-child {
+#pmlbpukcbu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vglqnfkyol .gt_from_md > :last-child {
+#pmlbpukcbu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vglqnfkyol .gt_row {
+#pmlbpukcbu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -648,7 +646,7 @@ gtsummary::tbl_regression(lsmodel1)
   overflow-x: hidden;
 }
 
-#vglqnfkyol .gt_stub {
+#pmlbpukcbu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -660,7 +658,7 @@ gtsummary::tbl_regression(lsmodel1)
   padding-left: 12px;
 }
 
-#vglqnfkyol .gt_summary_row {
+#pmlbpukcbu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -670,7 +668,7 @@ gtsummary::tbl_regression(lsmodel1)
   padding-right: 5px;
 }
 
-#vglqnfkyol .gt_first_summary_row {
+#pmlbpukcbu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -680,7 +678,7 @@ gtsummary::tbl_regression(lsmodel1)
   border-top-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_grand_summary_row {
+#pmlbpukcbu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -690,7 +688,7 @@ gtsummary::tbl_regression(lsmodel1)
   padding-right: 5px;
 }
 
-#vglqnfkyol .gt_first_grand_summary_row {
+#pmlbpukcbu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -700,11 +698,11 @@ gtsummary::tbl_regression(lsmodel1)
   border-top-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_striped {
+#pmlbpukcbu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vglqnfkyol .gt_table_body {
+#pmlbpukcbu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -713,7 +711,7 @@ gtsummary::tbl_regression(lsmodel1)
   border-bottom-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_footnotes {
+#pmlbpukcbu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -727,13 +725,13 @@ gtsummary::tbl_regression(lsmodel1)
   border-right-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_footnote {
+#pmlbpukcbu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vglqnfkyol .gt_sourcenotes {
+#pmlbpukcbu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -747,41 +745,41 @@ gtsummary::tbl_regression(lsmodel1)
   border-right-color: #D3D3D3;
 }
 
-#vglqnfkyol .gt_sourcenote {
+#pmlbpukcbu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vglqnfkyol .gt_left {
+#pmlbpukcbu .gt_left {
   text-align: left;
 }
 
-#vglqnfkyol .gt_center {
+#pmlbpukcbu .gt_center {
   text-align: center;
 }
 
-#vglqnfkyol .gt_right {
+#pmlbpukcbu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vglqnfkyol .gt_font_normal {
+#pmlbpukcbu .gt_font_normal {
   font-weight: normal;
 }
 
-#vglqnfkyol .gt_font_bold {
+#pmlbpukcbu .gt_font_bold {
   font-weight: bold;
 }
 
-#vglqnfkyol .gt_font_italic {
+#pmlbpukcbu .gt_font_italic {
   font-style: italic;
 }
 
-#vglqnfkyol .gt_super {
+#pmlbpukcbu .gt_super {
   font-size: 65%;
 }
 
-#vglqnfkyol .gt_footnote_marks {
+#pmlbpukcbu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
