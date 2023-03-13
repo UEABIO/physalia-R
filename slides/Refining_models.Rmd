@@ -47,7 +47,7 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]
 
-<span style='color:white;'>Slido #2143827</span>
+<span style='color:white;'>Slido #3130826</span>
 
 <div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
@@ -55,7 +55,7 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #2143827</span></div>
+<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #3130826</span></div>
 
 
 
