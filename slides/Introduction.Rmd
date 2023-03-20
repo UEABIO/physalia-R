@@ -4,7 +4,6 @@ subtitle: "Course outlines"
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
 output:
-  powerpoint_presentation:
   xaringan::moon_reader:
     css: ["default", "css/my-theme.css", "css/my-fonts.css"]
     seal: false
@@ -26,6 +25,8 @@ library(gt)
 library(gtExtras)
 library(rstatix)
 library(palmerpenguins)
+
+
 
 ```
 
@@ -374,4 +375,7 @@ class: center, middle, inverse
 
 # Lets' start!
 
+---
+class: center
 
+<iframe class="interactive" id="myIframe1" src="https://philip-leftwich.shinyapps.io/01-intro-ex1/" scrolling="no" frameborder="no"></iframe>
