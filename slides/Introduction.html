@@ -4,7 +4,7 @@
     <title>Introductions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2023-03-20" />
+    <meta name="date" content="2023-09-27" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -43,9 +43,8 @@ layout: true
 
 # Introductions
 
-.left-code[
 
-&lt;img src="images/Me.jpg" title="Philip Leftwich" alt="Philip Leftwich" width="60%" /&gt;
+&lt;img src="images/Me.jpg" alt="Philip Leftwich" width="30%" /&gt;
 
 * Associate Professor 
 
@@ -53,16 +52,12 @@ layout: true
 
 * University of East Anglia
 
-* twitter: [@PhilipLeftwich](https://twitter.com/PhilipLeftwich)
-
-
-]
 
 .right-plot[
 
-Go to Slido.com
+Go to Wooclap
 
-Participant code `#2920374`
+https://app.wooclap.com/TKBILR
 
 Ask questions and answer quizzes
 
@@ -74,7 +69,7 @@ class: center, inverse
 
 # Introductions
 
-&lt;img src="images/data-science-explore.png" title="Import, tidy, explore and communicate" alt="Import, tidy, explore and communicate" width="70%" /&gt;
+&lt;img src="images/data-science-explore.png" alt="Import, tidy, explore and communicate" width="70%" /&gt;
 
 ---
 
@@ -111,7 +106,7 @@ class: center, inverse
 
 .right-plot[
 
-&lt;img src="images/reproducible-data-analysis-02.png" title="Is data and stats reporting enough?" alt="Is data and stats reporting enough?" width="100%" /&gt;
+&lt;img src="images/reproducible-data-analysis-02.png" alt="Is data and stats reporting enough?" width="100%" /&gt;
 
 ]
 
@@ -137,18 +132,18 @@ class: center, inverse
 ---
 class: center
 
-## What is RStudio?
+## What is RStudio/Posit?
 
 &lt;img src="images/engine.png" width="70%" /&gt;
 
 ---
 class: center
 
-## What is RStudio Cloud?
+## What is Posit Cloud?
 
 &lt;img src="images/cloud.png" width="60%" /&gt;
 
-RStudio Cloud(https://rstudio.cloud/)
+Posit Cloud(https://posit.cloud/)
 
 ---
 class: center, middle
@@ -308,9 +303,11 @@ class: center, middle, inverse
 
 * 1 x weekly computer lab
 
-* Weekly quizzes/small tasks
+* Weekly quizzes/small tasks (10%)
 
-* 2 x coursework assignments
+* 2 x coursework assignments (30% and 50%)
+
+* 1 x second term stats theory test (10%)
 
 **Ask lots of questions.**
 
@@ -320,7 +317,7 @@ class: center, middle, inverse
 
 .pull-left[
 
-&lt;img src="images/geordi_help.png" title="Ask for help in a smart way" alt="Ask for help in a smart way" width="100%" /&gt;
+&lt;img src="images/geordi_help.png" alt="Ask for help in a smart way" width="100%" /&gt;
 
 ]
 
@@ -344,10 +341,7 @@ class: center, middle, inverse
 
 # Lets' start!
 
----
-class: center
 
-&lt;iframe class="interactive" id="myIframe1" src="https://philip-leftwich.shinyapps.io/01-intro-ex1/" scrolling="no" frameborder="no"&gt;&lt;/iframe&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -396,6 +390,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

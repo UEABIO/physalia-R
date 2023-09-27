@@ -57,9 +57,8 @@ layout: true
 
 # Introductions
 
-.left-code[
 
-```{r, echo = FALSE, out.width="60%", fig.alt = "Philip Leftwich"}
+```{r, echo = FALSE, out.width="30%", fig.alt = "Philip Leftwich"}
 knitr::include_graphics("images/Me.jpg")
 ```
 
@@ -69,16 +68,12 @@ knitr::include_graphics("images/Me.jpg")
 
 * University of East Anglia
 
-* twitter: [@PhilipLeftwich](https://twitter.com/PhilipLeftwich)
-
-
-]
 
 .right-plot[
 
-Go to Slido.com
+Go to Wooclap
 
-Participant code `#2920374`
+https://app.wooclap.com/TKBILR
 
 Ask questions and answer quizzes
 
@@ -157,7 +152,7 @@ knitr::include_graphics("images/reproducible-data-analysis-02.png")
 ---
 class: center
 
-## What is RStudio?
+## What is RStudio/Posit?
 
 ```{r, echo = FALSE, out.width="70%"}
 knitr::include_graphics("images/engine.png")
@@ -166,13 +161,13 @@ knitr::include_graphics("images/engine.png")
 ---
 class: center
 
-## What is RStudio Cloud?
+## What is Posit Cloud?
 
 ```{r, echo = FALSE, out.width="60%"}
 knitr::include_graphics("images/cloud.png")
 ```
 
-RStudio Cloud(https://rstudio.cloud/)
+Posit Cloud(https://posit.cloud/)
 
 ---
 class: center, middle
@@ -337,9 +332,11 @@ class: center, middle, inverse
 
 * 1 x weekly computer lab
 
-* Weekly quizzes/small tasks
+* Weekly quizzes/small tasks (10%)
 
-* 2 x coursework assignments
+* 2 x coursework assignments (30% and 50%)
+
+* 1 x second term stats theory test (10%)
 
 **Ask lots of questions.**
 
@@ -375,7 +372,4 @@ class: center, middle, inverse
 
 # Lets' start!
 
----
-class: center
 
-<iframe class="interactive" id="myIframe1" src="https://philip-leftwich.shinyapps.io/01-intro-ex1/" scrolling="no" frameborder="no"></iframe>

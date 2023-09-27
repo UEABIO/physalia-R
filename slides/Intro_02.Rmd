@@ -586,6 +586,18 @@ class: center, middle, inverse
 
 # dplyr
 
+---
 
+```{r,  echo = FALSE, results = 'asis'}
+library(webexercises)
+opts <- c("install.package", 
+            "install.packages", 
+            answer = "library", 
+            "libraries")
+
+q1 <- mcq(opts)
+
+cat("What function loads a package that is already on your computer?", q1)
+```
 
 

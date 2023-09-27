@@ -1,0 +1,133 @@
+---
+title: "A report on student benchmark reaction times according to self-reported physical activity"
+output: html_document
+date: "2023-09-27"
+---
+
+
+
+```{r sourcing, include = FALSE}
+
+source("google docs.R")
+
+library(palmerpenguins)
+library(tidyverse)
+library(ggtext)
+library(colorspace)
+```
+
+
+This document is a testament to the seamless synergy of Rmarkdown and Google Forms, working in perfect harmony to create a dynamic and easily updatable masterpiece. 
+
+Through the power of Rmarkdown's versatile formatting and Google Forms' user-friendly data collection, we've crafted a document that evolves effortlessly with the ever-changing landscape of information. 
+
+Whenever new information is collected by our form https://forms.gle/nLmLj37F6BCw8ygM8 this code behind this report can be run with a single button-push to update the document. This small analytical project also demonstrates an unbroken chain between raw data and published report.
+
+```{r figure, echo = FALSE, warning = FALSE, message = FALSE, fig.width = 9, out.width = "150%"}
+
+pal <- c("#FF8C00", "#A034F0", "#159090")
+
+add_sample <- function(x){
+  return(c(y = max(x) + .025,
+           label = length(x)))
+}
+
+table %>%
+  rename("Activity" = `Would you describe yourself as?`) %>%
+  mutate(`Activity` = factor(`Activity`,levels = c("Sedentary",
+                                                           "Moderately Active",
+                                                           "Very active"
+                                                           ))) %>%
+  group_by(`Activity`) %>%
+  pivot_longer(
+    cols = starts_with("Using your"),
+    names_to = "Attempt",
+    values_to = "Score",
+  ) %>%
+  filter(!is.na(`Attempt`)) %>%
+  ggplot(aes(x = fct_rev(`Activity`), y = `Score`)) +
+  ggdist::stat_halfeye(
+    aes(color = Activity,
+        fill = after_scale(lighten(color, .5))),
+    adjust = .5,
+    width = .75,
+    .width = 0,
+    justification = -.4,
+    point_color = NA) +
+  geom_boxplot(
+    aes(color = `Activity`,
+        color = after_scale(darken(color, .1, space = "HLS")),
+        fill = after_scale(desaturate(lighten(color, .8), .4))),
+    width = .42,
+    outlier.shape = NA
+  ) +
+  geom_point(
+    aes(color = `Activity`,
+        color = after_scale(darken(color, .1, space = "HLS"))),
+    fill = "white",
+    shape = 21,
+    stroke = .4,
+    size = 2,
+    position = position_jitter(seed = 1, width = .12)
+  ) +
+  geom_point(
+    aes(fill = `Activity`),
+    color = "transparent",
+    shape = 21,
+    stroke = .4,
+    size = 2,
+    alpha = .3,
+    position = position_jitter(seed = 1, width = .12)
+  ) +
+  stat_summary(
+    geom = "text",
+    fun = "median",
+    aes(label = round(..y.., 2),
+        color = `Activity`,
+        color = after_scale(darken(color, .1, space = "HLS"))),
+    family = "Roboto Mono",
+    fontface = "bold",
+    size = 4.5,
+    vjust = -3.5
+  ) +
+  stat_summary(
+    geom = "text",
+    fun.data = add_sample,
+    aes(label = paste("n =", ..label..),
+        color = `Activity`,
+        color = after_scale(darken(color, .1, space = "HLS"))),
+    family = "Roboto Condensed",
+    size = 4,
+    hjust = 0
+  ) +
+  coord_flip(xlim = c(1.2, NA), clip = "off") +
+
+  scale_color_manual(values = pal, guide = "none") +
+  scale_fill_manual(values = pal, guide = "none") +
+  labs(
+    x = NULL,
+    y = "Reaction Time in milliseconds (ms)",
+    title = "Reaction times of 5023Y students",
+    subtitle = "Self-scored activity levels compared to the human benchmark reaction time",
+    caption = "https://humanbenchmark.com/tests/reactiontime"
+  ) +
+  theme_minimal(base_family = "Zilla Slab", base_size = 15) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.x = element_text(family = "Roboto Mono"),
+    axis.text.y = element_text(
+      color = rev(darken(pal, .1, space = "HLS")),
+      size = 18
+    ),
+    axis.title.x = element_text(margin = margin(t = 10),
+                                size = 16),
+    plot.title = element_markdown(face = "bold", size = 21),
+    plot.subtitle = element_text(
+      color = "grey40", hjust = 0,
+      margin = margin(0, 0, 20, 0)
+    ),
+    plot.title.position = "plot")
+
+```
