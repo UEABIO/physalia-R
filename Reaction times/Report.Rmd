@@ -1,7 +1,6 @@
 ---
 title: "A report on student benchmark reaction times according to self-reported physical activity"
 output: html_document
-date: "2023-09-27"
 ---
 
 
@@ -17,37 +16,66 @@ library(colorspace)
 ```
 
 
-This document is a testament to the seamless synergy of Rmarkdown and Google Forms, working in perfect harmony to create a dynamic and easily updatable masterpiece. 
+This document was last run on `r Sys.Date()` and is a testament to the seamless synergy of Rmarkdown and Google Forms, working in perfect harmony to create a dynamic and easily updatable masterpiece. 
 
-Through the power of Rmarkdown's versatile formatting and Google Forms' user-friendly data collection, we've crafted a document that evolves effortlessly with the ever-changing landscape of information. 
+Here we've crafted a document that updates effortlessly as new information is provided. 
 
-Whenever new information is collected by our form https://forms.gle/nLmLj37F6BCw8ygM8 this code behind this report can be run with a single button-push to update the document. This small analytical project also demonstrates an unbroken chain between raw data and published report.
+Whenever new information is collected by our form https://forms.gle/nLmLj37F6BCw8ygM8 this code behind this report can be run with a single button-push to update the document. This small analytical project also demonstrates an unbroken chain between raw data and published report. 
 
-```{r figure, echo = FALSE, warning = FALSE, message = FALSE, fig.width = 9, out.width = "150%"}
+## The relationship between Physical Activity and Reaction times
 
-pal <- c("#FF8C00", "#A034F0", "#159090")
+In the figure we have asked students to complete the Human Benchmark reaction times test three times - and self-report this alongside their own estimate of average daily physical activity: 
+
+- Is there any apparent relationship between self-reported activity and reaction speed?
+
+- Are there any flaws or caveats to the trust we have in this data?
+
+- Any other observations?
+
+```{r figure, echo = FALSE, warning = FALSE, message = FALSE, fig.width = 10, out.width = "120%"}
+
 
 add_sample <- function(x){
   return(c(y = max(x) + .025,
            label = length(x)))
 }
 
+
+run_plot <- function(x = "Activity"){
+  
+  if (x == "Activity") {
+    table <- table %>%
+      rename("Activity" = `Would you describe yourself as? Sedentary: 30 minutes of physical activity a day. Moderately active: You average 30 to 60 minutes of physical activity a day. Very active: You average more than 60 minutes of physical activity`) %>%
+      mutate(Activity = factor(Activity, levels = c("Sedentary", "Moderately Active", "Very active")))
+    
+    
+    sub <- 'Reaction times for <span style ="color:#FF8C00">Sedentary</span>, <span style = "color:#A034F0">Moderately Active</span> and <span style = "color:#159090">Very active</span> students'
+    
+    pal <- c("#FF8C00", "#A034F0", "#159090")
+    
+  } else if (x == "Hand") {
+    table <- table %>%
+      rename("Hand" = `Are you right-handed, left-handed or ambidextrous`) %>%
+      mutate(Hand = factor(Hand, levels = c("right-handed", "left-handed", "ambidextrous")))
+    
+    pal <- c("#E69F00", "#0072B2", "#009E73")
+    
+     sub <- 'Reaction times for <span style ="color:#E69F00">right-handed</span>, <span style = "color:#0072B2">left-handed</span> and <span style = "color:#009E73">ambidextrous</span> students'
+  
+     }
+
+
 table %>%
-  rename("Activity" = `Would you describe yourself as?`) %>%
-  mutate(`Activity` = factor(`Activity`,levels = c("Sedentary",
-                                                           "Moderately Active",
-                                                           "Very active"
-                                                           ))) %>%
-  group_by(`Activity`) %>%
+  group_by(.data[[x]]) %>%
   pivot_longer(
     cols = starts_with("Using your"),
     names_to = "Attempt",
     values_to = "Score",
   ) %>%
-  filter(!is.na(`Attempt`)) %>%
-  ggplot(aes(x = fct_rev(`Activity`), y = `Score`)) +
+  filter(!is.na(.data[[x]])) %>%
+  ggplot(aes(x = fct_rev(.data[[x]]), y = `Score`)) +
   ggdist::stat_halfeye(
-    aes(color = Activity,
+    aes(color = .data[[x]],
         fill = after_scale(lighten(color, .5))),
     adjust = .5,
     width = .75,
@@ -55,14 +83,14 @@ table %>%
     justification = -.4,
     point_color = NA) +
   geom_boxplot(
-    aes(color = `Activity`,
+    aes(color = .data[[x]],
         color = after_scale(darken(color, .1, space = "HLS")),
         fill = after_scale(desaturate(lighten(color, .8), .4))),
     width = .42,
     outlier.shape = NA
   ) +
   geom_point(
-    aes(color = `Activity`,
+    aes(color = .data[[x]],
         color = after_scale(darken(color, .1, space = "HLS"))),
     fill = "white",
     shape = 21,
@@ -71,7 +99,7 @@ table %>%
     position = position_jitter(seed = 1, width = .12)
   ) +
   geom_point(
-    aes(fill = `Activity`),
+    aes(fill = .data[[x]]),
     color = "transparent",
     shape = 21,
     stroke = .4,
@@ -83,7 +111,7 @@ table %>%
     geom = "text",
     fun = "median",
     aes(label = round(..y.., 2),
-        color = `Activity`,
+        color = .data[[x]],
         color = after_scale(darken(color, .1, space = "HLS"))),
     family = "Roboto Mono",
     fontface = "bold",
@@ -94,11 +122,12 @@ table %>%
     geom = "text",
     fun.data = add_sample,
     aes(label = paste("n =", ..label..),
-        color = `Activity`,
+        color = .data[[x]],
         color = after_scale(darken(color, .1, space = "HLS"))),
     family = "Roboto Condensed",
     size = 4,
-    hjust = 0
+    hjust = 0.5,
+    vjust = 3
   ) +
   coord_flip(xlim = c(1.2, NA), clip = "off") +
 
@@ -107,8 +136,8 @@ table %>%
   labs(
     x = NULL,
     y = "Reaction Time in milliseconds (ms)",
-    title = "Reaction times of 5023Y students",
-    subtitle = "Self-scored activity levels compared to the human benchmark reaction time",
+    title = "",
+    subtitle = paste(sub),
     caption = "https://humanbenchmark.com/tests/reactiontime"
   ) +
   theme_minimal(base_family = "Zilla Slab", base_size = 15) +
@@ -124,10 +153,24 @@ table %>%
     axis.title.x = element_text(margin = margin(t = 10),
                                 size = 16),
     plot.title = element_markdown(face = "bold", size = 21),
-    plot.subtitle = element_text(
-      color = "grey40", hjust = 0,
-      margin = margin(0, 0, 20, 0)
-    ),
+    plot.subtitle = element_markdown(),
     plot.title.position = "plot")
+}
+
+run_plot()
+
+```
+
+<br>
+<br>
+
+## The relationship between "Handedness" and Reaction times
+
+In the figure we have asked students to complete the Human Benchmark reaction times test three times - and self-report this alongside which hand they consider dominant: 
+
+
+```{r figure two, echo = FALSE, warning = FALSE, message = FALSE, fig.width = 10, out.width = "120%"}
+
+run_plot("Hand")
 
 ```
