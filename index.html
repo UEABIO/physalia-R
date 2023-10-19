@@ -13,7 +13,7 @@
 
 <title>5023Y</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -141,11 +141,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -174,8 +178,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -183,16 +187,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -274,19 +271,29 @@ $(document).ready(function () {
 <li>01: Introductions and course outline
 <ul>
 <li><p><a href="slides/Introduction.html">Slides</a></p></li>
-<li><p><a href="https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html">Practical work</a></p></li>
+<li><p><a
+href="https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html">Practical
+work</a></p></li>
 </ul></li>
 <li>02: Using R
 <ul>
 <li><p><a href="slides/Intro_02.html">Slides</a></p></li>
-<li><p><a href="https://ueabio.github.io/data-sci-v1/basic-programming.html">Practical work</a></p></li>
+<li><p><a
+href="https://ueabio.github.io/data-sci-v1/basic-programming.html">Practical
+work</a></p></li>
 </ul></li>
 <li>03: Working with data
 <ul>
 <li><p><a href="slides/Data_wrangling_03.html">Slides</a></p></li>
-<li><p><a href="https://ueabio.github.io/data-sci-v1/loading-data.html">Practical work 1</a></p></li>
-<li><p><a href="https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html">Practical work 2</a></p></li>
-<li><p><a href="https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html">Practical work 3</a></p></li>
+<li><p><a
+href="https://ueabio.github.io/data-sci-v1/loading-data.html">Practical
+work 1</a></p></li>
+<li><p><a
+href="https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html">Practical
+work 2</a></p></li>
+<li><p><a
+href="https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html">Practical
+work 3</a></p></li>
 </ul></li>
 <li>04: Data Visualisation
 <ul>
@@ -314,13 +321,18 @@ $(document).ready(function () {
 </ul></li>
 <li>09: Descriptive statistics
 <ul>
-<li><p><a href="slides/Descriptive_statistics_05.html">Slides: Central tendency and spread</a></p></li>
-<li><p><a href="slides/Association_05a.html">Slides: Association</a></p></li>
-<li><p><a href="https://ueabio.github.io/data-sci-v1/data-insights-part-one.html">Practical work</a></p></li>
+<li><p><a href="slides/Descriptive_statistics_05.html">Slides: Central
+tendency and spread</a></p></li>
+<li><p><a href="slides/Association_05a.html">Slides:
+Association</a></p></li>
+<li><p><a
+href="https://ueabio.github.io/data-sci-v1/data-insights-part-one.html">Practical
+work</a></p></li>
 </ul></li>
 <li>10: Great Data Viz
 <ul>
-<li><a href="slides/Great_data_viz.html">Slides: Great data visualisation</a></li>
+<li><a href="slides/Great_data_viz.html">Slides: Great data
+visualisation</a></li>
 </ul></li>
 <li>11: Confidence intervals
 <ul>
@@ -344,11 +356,13 @@ $(document).ready(function () {
 </ul></li>
 <li><p>15: Hypothesis testing</p>
 <ul>
-<li><a href="slides/Error_rates.html">Slides: P-values, Hypothesis Errors</a></li>
+<li><a href="slides/Error_rates.html">Slides: P-values, Hypothesis
+Errors</a></li>
 </ul></li>
 <li><p>16: Regression models</p>
 <ul>
-<li><a href="slides/Linear-Regression.html">Slides: Regression models</a></li>
+<li><a href="slides/Linear-Regression.html">Slides: Regression
+models</a></li>
 </ul></li>
 <li><p>17: ANOVA</p>
 <ul>
@@ -357,12 +371,15 @@ $(document).ready(function () {
 <li><p>18: Multivariate models</p>
 <ul>
 <li><a href="slides/Complex_models.html">Slides: Complex models</a></li>
-<li><a href="slides/Refining_models.html">Slides: Checking and refining models</a></li>
+<li><a href="slides/Refining_models.html">Slides: Checking and refining
+models</a></li>
 </ul></li>
 <li><p>19: Generalised linear models</p>
 <ul>
-<li><p><a href="slides/Generalized-Linear-Models.html">Slides: Introduction to Generalised Linear Models</a></p></li>
-<li><p><a href="slides/Generalized-Linear-Models-Part-2.html">Slides: Binomial and Poisson distributions</a></p></li>
+<li><p><a href="slides/Generalized-Linear-Models.html">Slides:
+Introduction to Generalised Linear Models</a></p></li>
+<li><p><a href="slides/Generalized-Linear-Models-Part-2.html">Slides:
+Binomial and Poisson distributions</a></p></li>
 </ul></li>
 </ul>
 </div>

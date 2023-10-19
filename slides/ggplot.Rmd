@@ -48,32 +48,66 @@ layout: true
 
 <div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #4042823</span></div>
 
----
-class: center, middle
-
-# Motivation
-
-See [the tidyverse style guide](https://style.tidyverse.org/syntax.html) by Hadley Wickham
 
 ---
 
-class: center, middle
+class: middle
 
 ### Why can't we just use summaries (e.g. the mean)?
 
-```{r, echo = FALSE, out.width="40%", fig.alt = "data points make the shape of a dinosaur", fig.cap = "When we visualise the data we can see trends or patterns we might otherwise miss"}
-knitr::include_graphics("images/dino.png")
+```{r, echo = FALSE, out.width = "60%"}
+library(datasauRus)
+  datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      mean_x    = mean(x),
+      std_dev_x = sd(x),
+    ) %>% 
+    gt()
 ```
+---
 
-Originally created by Alberto Cairo in [Download the Datasaurus: Never trust summary statistics alone; always visualize your data](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html)
+class: middle
+
+```{r, echo = FALSE, out.width = "70%"}
+
+datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      mean_x  = mean(x),
+      std_dev_x = sd(x),
+    ) %>% 
+  ggplot(aes(x = dataset,
+         y = mean_x,
+         colour = dataset,
+         fill = dataset)) +
+geom_errorbar(aes(ymin = mean_x-std_dev_x, 
+              ymax = mean_x+std_dev_x),
+              width = .8)+
+  geom_col(width = .8, size = .8, colour = "black") +
+  scale_y_continuous(limits = c(0,75), expand = expansion(mult = c(0, .1)))+
+   theme_classic()+
+   theme(legend.position = "none")
+
+
+```
 
 ---
 
-class: center, middle
+class: middle
 
-```{r, echo = FALSE, out.width="50%", fig.alt = "A multitude of different patterns appear when visualising the data", fig.cap = "These datasets all have the same mean and standard deviation"}
-knitr::include_graphics("images/datasaurus.png")
+```{r, echo = FALSE, out.width="60%", fig.alt = "data points make the shape of a dinosaur", fig.cap = "When we visualise the data we can see trends or patterns we might otherwise miss"}
+  ggplot(datasaurus_dozen, aes(x = x, y = y, colour = dataset))+
+    geom_point()+
+    theme_void()+
+    theme(legend.position = "none")+
+    facet_wrap(~dataset, ncol = 3)
+
 ```
+
+
+Originally created by Alberto Cairo in [Download the Datasaurus: Never trust summary statistics alone; always visualize your data](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html)
+
 
 ---
 
@@ -86,6 +120,67 @@ knitr::include_graphics("images/dynamite-plots.png")
 ```
 
 Weissgerber TL, Milic NM, Winham SJ, Garovic VD (2015) [Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm. PLoS Biol 13(4): e1002128.](https://doi.org/10.1371/journal.pbio.1002128) 
+
+---
+
+class: middle
+
+## Exploring data
+
+
+
+```{r, echo = FALSE, out.width="70%"}
+
+penguins %>% ggplot(aes(y = species, x = flipper_length_mm))+
+  geom_boxplot()+
+  theme_classic()
+
+```
+
+---
+
+class: middle
+
+```{r, include = FALSE}
+library(patchwork)
+```
+
+```{r, include = FALSE}
+plot_a <- penguins %>% ggplot(aes(y = species, x = flipper_length_mm))+
+  geom_boxplot(outlier.shape  =NA)+
+  geom_jitter(height = 0.2,
+              alpha = 0.6)+
+  theme_classic()
+
+```
+
+```{r, include = FALSE}
+plot_b <- penguins %>% ggplot(aes(y = species, x = flipper_length_mm))+
+  ggridges::geom_density_ridges(aes())+ 
+  geom_point(
+    shape = "|",
+    size = 3,
+    position = position_nudge( y = -0.1)
+    )+
+    theme_classic()
+
+```
+
+```{r, echo = FALSE, out.width="70%"}
+plot_a/
+  plot_b
+
+```
+
+---
+
+### Visualisation according to statisticians
+
+
+```{r, echo = FALSE, out.width="85%", fig.alt = "Visualization According to Statisticians: An Interview Study on the Role of Visualization for Inferential Statistics: https://arxiv.org/pdf/2309.12684.pdf"}
+
+knitr::include_graphics("images/things_statisticians_say.png")
+```
 
 ---
 
@@ -375,6 +470,7 @@ ggplot(data = penguins,
 ```
 ]
 ---
+
 
 class: center, middle, inverse 
 
@@ -675,14 +771,87 @@ plot +
 ```
 ]
 
+---
+
+## Facets
+
+
+.right-plot[
+```{r, echo = FALSE}
+
+ggplot(penguins,
+       aes(x = body_mass_g,
+           fill = species))+
+        geom_density(
+       alpha = 0.4)+
+  labs(y = "Density")+
+  scale_fill_manual(
+    values = c("darkolivegreen4", 
+               "darkorchid3", 
+               "goldenrod1"))+
+  theme_classic()+
+  theme(legend.position = "none")+
+  facet_wrap(~species)
+
+  facet_wrap(~species)#<<
+  
+
+```
+
+
+]
+
+.left-code[
+```{r, eval = FALSE}
+
+ggplot(penguins,
+       aes(x = body_mass_g,
+           fill = species))+
+        geom_density(
+       alpha = 0.4)+
+  labs(y = "Density")+
+  scale_fill_manual(
+    values = c("darkolivegreen4", 
+               "darkorchid3", 
+               "goldenrod1"))+
+  theme_classic()+
+  theme(legend.position = "none")+
+  facet_wrap(~species)#<<
+
+
+```
+]
+
 
 ---
 
 ## Facets
 
 
-.left-code[
-```{r, eval = FALSE}
+.right-plot[
+```{r, echo = FALSE}
+
+peng_summary <- penguins %>% 
+  group_by(species) %>% 
+  summarise(mean = mean(body_mass_g, na.rm = T),
+            sd = sd(body_mass_g, na.rm = T))
+
+range_body_mass <- range(penguins$body_mass_g, na.rm = T)
+
+computed <- peng_summary %>% 
+  mutate(x = list(
+    seq(range_body_mass[1], range_body_mass[2], 1)
+  ),
+  y = pmap(
+    list(x = x, mean = mean,
+         sd = sd),
+    ~{
+      l <- list(...)
+      dnorm(l$x, mean = l$mean, sd =l$sd)
+    }
+  )) %>% 
+  select(species, x, y) %>% 
+  unnest(cols = c(x,y))
 
 ggplot(penguins,
        aes(x = body_mass_g,
@@ -694,6 +863,11 @@ ggplot(penguins,
     values = c("darkolivegreen4", 
                "darkorchid3", 
                "goldenrod1"))+
+  geom_line(
+    data = computed,
+    aes(x = x,
+        y = y),
+        linetype = 2)+
   theme_classic()+
   theme(legend.position = "none")+
   facet_wrap(~species)#<<
@@ -704,8 +878,8 @@ ggplot(penguins,
 
 ]
 
-.right-plot[
-```{r, echo = FALSE}
+.left-code[
+```{r, eval = FALSE}
 
 ggplot(penguins,
        aes(x = body_mass_g,

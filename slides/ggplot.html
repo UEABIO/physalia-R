@@ -4,7 +4,7 @@
     <title>Data visualisation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-10-14" />
+    <meta name="date" content="2023-10-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -39,34 +39,525 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y Courses Slido.com #4042823&lt;/span&gt;&lt;/div&gt;
 
----
-class: center, middle
-
-# Motivation
-
-See [the tidyverse style guide](https://style.tidyverse.org/syntax.html) by Hadley Wickham
 
 ---
 
-class: center, middle
+class: middle
 
 ### Why can't we just use summaries (e.g. the mean)?
 
-&lt;div class="figure"&gt;
-&lt;img src="images/dino.png" alt="data points make the shape of a dinosaur" width="40%" /&gt;
-&lt;p class="caption"&gt;When we visualise the data we can see trends or patterns we might otherwise miss&lt;/p&gt;
-&lt;/div&gt;
+<div id="ujeiojsfeu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ujeiojsfeu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-Originally created by Alberto Cairo in [Download the Datasaurus: Never trust summary statistics alone; always visualize your data](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html)
+#ujeiojsfeu thead, #ujeiojsfeu tbody, #ujeiojsfeu tfoot, #ujeiojsfeu tr, #ujeiojsfeu td, #ujeiojsfeu th {
+  border-style: none;
+}
+
+#ujeiojsfeu p {
+  margin: 0;
+  padding: 0;
+}
+
+#ujeiojsfeu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ujeiojsfeu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ujeiojsfeu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ujeiojsfeu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ujeiojsfeu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ujeiojsfeu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ujeiojsfeu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ujeiojsfeu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ujeiojsfeu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ujeiojsfeu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ujeiojsfeu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ujeiojsfeu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ujeiojsfeu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ujeiojsfeu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ujeiojsfeu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ujeiojsfeu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ujeiojsfeu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ujeiojsfeu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ujeiojsfeu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ujeiojsfeu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ujeiojsfeu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ujeiojsfeu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ujeiojsfeu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ujeiojsfeu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ujeiojsfeu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ujeiojsfeu .gt_left {
+  text-align: left;
+}
+
+#ujeiojsfeu .gt_center {
+  text-align: center;
+}
+
+#ujeiojsfeu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ujeiojsfeu .gt_font_normal {
+  font-weight: normal;
+}
+
+#ujeiojsfeu .gt_font_bold {
+  font-weight: bold;
+}
+
+#ujeiojsfeu .gt_font_italic {
+  font-style: italic;
+}
+
+#ujeiojsfeu .gt_super {
+  font-size: 65%;
+}
+
+#ujeiojsfeu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ujeiojsfeu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ujeiojsfeu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ujeiojsfeu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ujeiojsfeu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ujeiojsfeu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ujeiojsfeu .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="dataset">dataset</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_x">mean_x</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std_dev_x">std_dev_x</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="dataset" class="gt_row gt_left">away</td>
+<td headers="mean_x" class="gt_row gt_right">54.26610</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76982</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">bullseye</td>
+<td headers="mean_x" class="gt_row gt_right">54.26873</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76924</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">circle</td>
+<td headers="mean_x" class="gt_row gt_right">54.26732</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76001</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">dino</td>
+<td headers="mean_x" class="gt_row gt_right">54.26327</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76514</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">dots</td>
+<td headers="mean_x" class="gt_row gt_right">54.26030</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76774</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">h_lines</td>
+<td headers="mean_x" class="gt_row gt_right">54.26144</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76590</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">high_lines</td>
+<td headers="mean_x" class="gt_row gt_right">54.26881</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76670</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">slant_down</td>
+<td headers="mean_x" class="gt_row gt_right">54.26785</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76676</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">slant_up</td>
+<td headers="mean_x" class="gt_row gt_right">54.26588</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76885</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">star</td>
+<td headers="mean_x" class="gt_row gt_right">54.26734</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76896</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">v_lines</td>
+<td headers="mean_x" class="gt_row gt_right">54.26993</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76996</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">wide_lines</td>
+<td headers="mean_x" class="gt_row gt_right">54.26692</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.77000</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">x_shape</td>
+<td headers="mean_x" class="gt_row gt_right">54.26015</td>
+<td headers="std_dev_x" class="gt_row gt_right">16.76996</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+---
+
+class: middle
+
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-2-1.png" width="70%" /&gt;
 
 ---
 
-class: center, middle
+class: middle
 
 &lt;div class="figure"&gt;
-&lt;img src="images/datasaurus.png" alt="A multitude of different patterns appear when visualising the data" width="50%" /&gt;
-&lt;p class="caption"&gt;These datasets all have the same mean and standard deviation&lt;/p&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-3-1.png" alt="data points make the shape of a dinosaur" width="60%" /&gt;
+&lt;p class="caption"&gt;When we visualise the data we can see trends or patterns we might otherwise miss&lt;/p&gt;
 &lt;/div&gt;
+
+
+Originally created by Alberto Cairo in [Download the Datasaurus: Never trust summary statistics alone; always visualize your data](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html)
+
 
 ---
 
@@ -80,6 +571,35 @@ class: center, middle
 &lt;/div&gt;
 
 Weissgerber TL, Milic NM, Winham SJ, Garovic VD (2015) [Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm. PLoS Biol 13(4): e1002128.](https://doi.org/10.1371/journal.pbio.1002128) 
+
+---
+
+class: middle
+
+## Exploring data
+
+
+
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-5-1.png" width="70%" /&gt;
+
+---
+
+class: middle
+
+
+
+
+
+
+
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-9-1.png" width="70%" /&gt;
+
+---
+
+### Visualisation according to statisticians
+
+
+&lt;img src="images/things_statisticians_say.png" alt="Visualization According to Statisticians: An Interview Study on the Role of Visualization for Inferential Statistics: https://arxiv.org/pdf/2309.12684.pdf" width="85%" /&gt;
 
 ---
 
@@ -101,7 +621,7 @@ Weissgerber TL, Milic NM, Winham SJ, Garovic VD (2015) [Beyond Bar and Line Grap
 
 .pull-left[
 Easy enough to [*rapidly prototype*](https://johnburnmurdoch.github.io/slides/r-ggplot/#/14) graphics at the "speed of thought"  
-&lt;img src="https://johnburnmurdoch.github.io/slides/r-ggplot/football-tide-2.png" title="A screenshot of a scatterplot with team rank on the x-axis and team rating on the y-axis. The teams are all trending down from rank 1 to rank 20." alt="A screenshot of a scatterplot with team rank on the x-axis and team rating on the y-axis. The teams are all trending down from rank 1 to rank 20." width="85%" /&gt;
+&lt;img src="https://johnburnmurdoch.github.io/slides/r-ggplot/football-tide-2.png" alt="A screenshot of a scatterplot with team rank on the x-axis and team rating on the y-axis. The teams are all trending down from rank 1 to rank 20." width="85%" /&gt;
 
 ]
 
@@ -109,7 +629,7 @@ Easy enough to [*rapidly prototype*](https://johnburnmurdoch.github.io/slides/r-
 
 .pull-right[
 Powerful enough for [*final "publication"*](https://johnburnmurdoch.github.io/slides/r-ggplot/#/34)  
-&lt;img src="http://blogs.ft.com/ftdata/files/2016/03/eng.png" title="A facetted scattergraph by year for the premier league. Team rating is on the Y-axis and rank is on the x-axis. The teams overall are declining." alt="A facetted scattergraph by year for the premier league. Team rating is on the Y-axis and rank is on the x-axis. The teams overall are declining." width="70%" /&gt;
+&lt;img src="http://blogs.ft.com/ftdata/files/2016/03/eng.png" alt="A facetted scattergraph by year for the premier league. Team rating is on the Y-axis and rank is on the x-axis. The teams overall are declining." width="70%" /&gt;
 
 
 ]
@@ -127,7 +647,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-7-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-14-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -143,7 +663,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-9-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-16-1.png" width="120%" /&gt;
 ]
 ---
 
@@ -158,7 +678,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-11-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-18-1.png" width="120%" /&gt;
 ]
 ---
 
@@ -175,7 +695,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-13-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-20-1.png" width="120%" /&gt;
 ]
 
 
@@ -195,7 +715,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-15-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-22-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -216,7 +736,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-17-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-24-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -241,7 +761,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-19-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-26-1.png" width="120%" /&gt;
 ]
 ---
 
@@ -267,9 +787,10 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-21-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-28-1.png" width="120%" /&gt;
 ]
 ---
+
 
 class: center, middle, inverse 
 
@@ -317,7 +838,7 @@ ggplot(data = penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-23-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-30-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -347,7 +868,7 @@ Also see [`ggbeeswarm`](https://github.com/eclarke/ggbeeswarm)
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-25-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-32-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -378,7 +899,7 @@ ggplot(aes(x = " ",
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-27-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-34-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -409,7 +930,7 @@ penguins %&gt;%
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-29-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-36-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -432,7 +953,7 @@ plot +
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-32-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-39-1.png" width="120%" /&gt;
 ]
 
 
@@ -455,14 +976,38 @@ plot +
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-34-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-41-1.png" width="120%" /&gt;
 ]
-
 
 ---
 
 ## Facets
 
+
+.right-plot[
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-42-1.png" width="120%" /&gt;
+
+```
+## &lt;ggproto object: Class FacetWrap, Facet, gg&gt;
+##     compute_layout: function
+##     draw_back: function
+##     draw_front: function
+##     draw_labels: function
+##     draw_panels: function
+##     finish_data: function
+##     init_scales: function
+##     map_data: function
+##     params: list
+##     setup_data: function
+##     setup_params: function
+##     shrink: TRUE
+##     train_scales: function
+##     vars: function
+##     super:  &lt;ggproto object: Class FacetWrap, Facet, gg&gt;
+```
+
+
+]
 
 .left-code[
 
@@ -470,8 +1015,8 @@ plot +
 ggplot(penguins,
        aes(x = body_mass_g,
            fill = species))+
-*       geom_density(
-*      alpha = 0.4)+
+        geom_density(
+       alpha = 0.4)+
   labs(y = "Density")+
   scale_fill_manual(
     values = c("darkolivegreen4", 
@@ -481,12 +1026,37 @@ ggplot(penguins,
   theme(legend.position = "none")+
 * facet_wrap(~species)
 ```
+]
+
+
+---
+
+## Facets
+
+
+.right-plot[
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-44-1.png" width="120%" /&gt;
 
 
 ]
 
-.right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-36-1.png" width="120%" /&gt;
+.left-code[
+
+```r
+ggplot(penguins,
+       aes(x = body_mass_g,
+           fill = species))+
+        geom_density(
+       alpha = 0.4)+
+  labs(y = "Density")+
+  scale_fill_manual(
+    values = c("darkolivegreen4", 
+               "darkorchid3", 
+               "goldenrod1"))+
+  theme_classic()+
+  theme(legend.position = "none")+
+  facet_wrap(~species)
+```
 ]
 
 
@@ -519,7 +1089,7 @@ ggplot(penguins,
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-38-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-47-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -539,7 +1109,7 @@ plot +
 ]
 
 .right-plot[
-&lt;img src="ggplot_files/figure-html/unnamed-chunk-41-1.png" width="120%" /&gt;
+&lt;img src="ggplot_files/figure-html/unnamed-chunk-50-1.png" width="120%" /&gt;
 ]
 
 ---
@@ -603,6 +1173,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
