@@ -7,7 +7,7 @@ title: "Advancing in R"
 All lecture materials will be available here.
 
 - 01: Introductions and course outline
-    - [Slides](Intro_02.html.html)
+    - [Slides](Intro_02.html)
 
     - [Practical work](https://ueabio.github.io/physalia-R-course-2023/introduction-to-r-and-rstudio.html)
 
