@@ -1,6 +1,6 @@
 ---
-title: "Programming"
-subtitle: "& Working with data"
+title: "Advancing in R"
+subtitle: "A Physalia Course"
 author: "Philip Leftwich"
 date: "`r Sys.Date()`"
 output:
@@ -46,13 +46,273 @@ class: title-slide, left, top
 
 layout: true
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y - Slido.com #3715469</span></div>
+<div class="my-footer"><span>Philip Leftwich - Advancing in R</span></div>
+
 
 ---
 
+class: center, inverse, middle
+
+# Welcome
+
+---
+
+# Introductions
+
+.pull-left[
+
+```{r, echo = FALSE, out.width="50%", fig.alt = "Philip Leftwich"}
+knitr::include_graphics("images/Me.jpg")
+```
+
+* Associate Professor 
+
+* Genetics & Data Science 
+
+* University of East Anglia
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, out.width="50%", fig.alt = "University of East Anglia and Norwich"}
+knitr::include_graphics("images/UEA1.png")
+knitr::include_graphics("images/800px-Norwichcollage2019.png")
+```
+
+]
+
+---
+
+# Course Outline
+
+Over the next four days we are going to cover: 
+
+.pull-left[
+
+- Intro to R and R basics
+  
+- Organizing workflows
+  
+- Learning tidyverse
+  
+- Writing functions
+
+]
+
+.pull-right[
+
+- Learning iterations
+  
+- Getting the most out of tidyverse and functional programming
+  
+- Data presentation with ggplot and gt tables
+  
+- Shiny dashboards
+  
+- RMarkdown and GitHub
+
+]
+
+
+---
+
+class: center, inverse, middle
+
+# Tell me about you 🫵
+
+
+---
+
+class: center, inverse, middle
+
+# Day One
+
+---
+
+# Day One
+
+- R basics - what did they forget to teach you?
+
+- Project Oriented Workflows
+
+- Basic Import/Export
+
+- Scripts and Naming Things
+
+- Data wrangling with dplyr & exploratory data analysis
+
+---
+
+# What you will need
+
+.right-plot[
+
+```{r, echo = FALSE, out.width="130%", fig.alt = "coursebook"}
+knitr::include_graphics("images/coursebook.png")
+```
+
+]
+
+.left-code[
+
+- Practical materials available through the [coursebook](https://ueabio.github.io/physalia-R-course-2023/index.html)
+
+- Each sessions will last around 2-2.5 hours
+
+- (Lunch)break in the middle
+
+- Questions via Zoom chat/Slack/Wooclap
+
+- Posit cloud workspace is available for everyone to use
+
+- Are you set up with everything you need?
+
+- One-to-one chats available throughout
+]
+
+---
+
+
+## R is for Open Reproducible Research
+
+.left-code[
+
+
+* Reproducible
+
+* Robust
+
+* Transparent
+
+* Reusable
+
+* Shareable research materials
+
+]
+
+.right-plot[
+
+```{r, echo = FALSE, out.width="100%", fig.alt = "Is data and stats reporting enough?"}
+knitr::include_graphics("images/reproducible-data-analysis-02.png")
+```
+
+]
+
+---
+
+class: center, middle
+
+## Ideal Workflow
+
+We will do everything in **well-annotated, organized scripts** that contain streamlined and easy-to-follow records of our entire analyses from **raw data** through **final reports**, with **unbreakable** file paths and with a **complete history** of changes made.
+
+
+---
+class: center
+
+## What is RStudio/Posit?
+
+```{r, echo = FALSE, out.width="70%"}
+knitr::include_graphics("images/engine.png")
+```
+
+---
+class: center
+
+## What is Posit Cloud?
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics("images/cloud.png")
+```
+
+Posit Cloud(https://posit.cloud/)
+
+---
+class: center, middle
+
+## Workflow
+
+```{r, echo = FALSE, out.width="65%"}
+knitr::include_graphics("images/annotated.png")
+```
+
+---
+class: center, middle
+
+## Motivations
+
+ [File not Found](https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z)
+
+ [Data is not available upon request](https://osf.io/preprints/psyarxiv/jbu9r/)
+
+ [Code review in the scientific workflow](https://onlinelibrary.wiley.com/doi/10.1111/jeb.14230)
+
+ [SORTEE](https://www.sortee.org/)
+
+---
+
+## Directories and projects
+
+.pull-left[
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics("images/Project.png")
+```
+
+]
+
+.pull-right[
+
+
+Save files in specific locations, with intentional and useful names: 
+
+- Short and informative names
+
+- Easy to sort and cooperate with partial searches
+
+- Be careful with special characters and spaces
+
+- Use relative filepaths
+
+]
+
+
+---
+## Data wrangling
+
+* Naming things
+
+* Coding basics & tidyverse wrangling/viz
+
+* Good coding habits
+
+* Code annotation & organization
+
+* Data visualization
+
+* Troubleshooting 
+
+* Relative file paths
+
+* Literate programming
+
+
+---
+
+
 ## First some terms
 
-```{r, echo = FALSE, out.width="85%", fig.alt = "An R object saved by using the assignment operator <- a dataframe called sloth_df is piped into the function select with arguments id, age and speed"}
+```{r, echo = FALSE, out.width="85%"}
+knitr::include_graphics("images/terms_blank.png")
+```
+
+---
+
+
+## First some terms
+
+```{r, echo = FALSE, out.width="85%"}
 knitr::include_graphics("images/terms.png")
 ```
 
@@ -106,7 +366,7 @@ class: center, middle, inverse
 
 * **Bad examples:** File-1.xlsx, file-2.csv, indicator1, indicator2, ExperimentA.R, ExperimentB.R
 
-* **Better examples:** taco_nutrients.csv, ca-demographics, mice_1a_mass, sb_channel_spatial.shp
+* **Better examples:** 01_import_mice_assay_data.R, 20231109_dros_behav.csv, 20231004_ms_culex_biting.docx
 
 ]
 
@@ -135,7 +395,7 @@ class: center, middle, inverse
 
 * Be consistent **across data frames** - your life will be easier if you have year called ‘year’ in both sets.
 
-* Use logical suffixes (if necessary), consistently formatted. Like: temp_water_surface, temp_water_sub, temp_water_bottom
+* Use logical suffixes (if necessary), consistently formatted. Like: temp_water_surface.csv, temp_water_sub.csv, temp_water_bottom.csv
 
 
 ]
@@ -168,7 +428,6 @@ class: center, middle, inverse
 * Longer names = tedious coding, but less effort to look through metadata for column/identifier names
 
 
-
 ]
 
 ---
@@ -197,7 +456,6 @@ class: center, middle, inverse
 * Avoid spaces (makes coding much more difficult)
 
 * Avoid starting object names with numbers (but could be useful for file names in sequence)
-
 ]
 ---
 
@@ -235,369 +493,201 @@ class: center, middle, inverse
 
 ---
 
-## Entering data
-
-* The outcomes for a variable (whether values or descriptions) should exist alone in a column
-
-* Be very consistent when entering descriptions (e.g. “Purple” v. “purple” v. “purple_”)
-
-* Avoid formatting and symbols (if it’s hard to type, then it’s hard to type...and might cause issues beyond that)
-
-* Put any additional information (units, notes, etc.) in columns separate from the value/description
-
-* If there are missings, enter the **same exact thing** for each missing value (common: NA, -- or -)
+## Project organisation
 
 
----
+### Project
 
-## Data entry
+Have one directory than contains all of the relevant files for a project or analysis
 
-.pull-left[
-### Bad:
-```{r, echo = FALSE, out.width="95%", fig.alt = "Inconsistent data entry, units in the column of berry mass, observations mixed in with units"}
-knitr::include_graphics("images/bad_df.png")
-```
+- [Project Oriented Workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/)
 
-]
+### Contains
 
---
+📁 Data
 
-.pull-right[
-### Better:
-```{r, echo = FALSE, out.width="95%", fig.alt = "Units included in title, consistent use of snake case, each column is a unique variable, each row is an observation. Notes in separate column"}
-knitr::include_graphics("images/good_df.png")
-```
+📁 Scripts
 
-]
+📁 Outputs
 
 ---
 
-
-
-
-class: center, middle, inverse
-
-
-
-# Tidy data
-
-
----
-
-```{r, echo = FALSE, out.width="90%", fig.alt = "In tidy data:Every column is a variable, every row is an observation, every cell is a single value."}
-knitr::include_graphics("images/tidy_data.png")
-```
-
-
----
-class: middle
-
-* A variable is a characteristic that is being measured, counted or described with data. Like: car type, salinity, year, population, or whale mass.
-
-* An observation is a single “data point” for which the measure, count or description of one or more variables is recorded. For example, if you are recording variables height, mass, and flipper length of penguins, then each penguin is an observation.
-
-* A value is the recorded measure, count or description of a variable.
-
----
-
-## Example of Tidy data
-
-```{r, echo = FALSE}
-id <- c(1,2,3,4,5,6)
-
-species <- c("wookie", "wookie", "ewok", "wookie", "ewok", "ewok")
-
-size_kg <- c(110, 121, 36, 107, 38, 30)
-
-height_m <- c(2.1, 2.2, 1, 2.2, 1.1, 0.9)
-
-starwars <- tibble(id, species, size_kg, height_m)
-
-starwars %>% 
-  gt()
-
-```
-
----
-
-## Why isn't this tidy?
-
-```{r, echo = FALSE}
-
-country <- rep(c("Afghanistan", "Brazil", "China"), each = 4)
-
-year <- rep(c(1999,1999,2000,2000), 3)
-
-key <- rep(c("cases", "population"), 6)
-
-value <- c(745, 19987071, 2666, 20595360, 37737, 172006362, 80488, 174504898, 212258, 127915272, 213766, 1280428583)
-
-
-data <- tibble(country, year, key, value)
-
-data %>% 
-  gt()
-```
-
-
----
-
-## Make it tidy
-
-```{r}
-
-data %>% 
-  tidyr::pivot_wider( names_from = key,
-                      values_from = value) %>% 
-  gt()
-```
-
----
-
-## Why isn't this tidy?
-
-```{r, echo = FALSE}
-
-country <- rep(c("Afghanistan", "Brazil", "China"), each = 2)
-
-year <- rep(c(1999,2000), 3)
-
-`cases/population` <- c("745/19987071", "2666/20595360", "37737/172006362", "80488/174504898", "212258/ 127915272", "213766/1280428583")
-
-
-data <- tibble(country, year, `cases/population`)
-
-data %>% 
-  gt()
-```
-
-
----
-
-## Make it tidy
-
-```{r}
-
-data %>% 
-  separate(`cases/population`,
-           c("cases", "population")) %>% 
-  gt()
-```
----
-
-## Pivot
-
-```{r, echo = FALSE, out.width="60%", fig.alt = "Pivot to reshape dataframes"}
-knitr::include_graphics("images/pivot.gif")
-```
-
----
-
-## Data file formats
-
-Understanding file formats is important! 
-
-* Human readable filename (use naming conventions)
-
-* One period only 
-
-* the extension is important!
-
-```{r, echo = FALSE, out.width="60%", fig.alt = "Filenames consists of a human readable filename, period, and file extension "}
-knitr::include_graphics("images/images.png")
-```
-
-
----
-
-| File types| Meaning|
-|-----|-----|
-|.csv| comma-separated values|
-|.tsv| tab-separated values|
-|.xls| Excel spreadsheet|
-|.xlsx| Excel 2007|
-|.json| String data storage|
-
-```{r, eval = FALSE}
-
-read_csv("data/penguins_raw.csv")
-
-```
-
-
----
-class: center, middle, inverse
-
-# **2. Help yourself in R:**
-
-## Finding resources and tips for troubleshooting
-
-
----
-
-## What package or function should I use?
-
-### **Google it:**
-
-  * Search with the keywords and package/function name if known, and include .R in the search keywords (e.g. “dplyr::mutate add column in .R” instead of “mutate variable”).
-    
-  * “R” is generic - so consider using “R software” or “.R”
-    
-  * Start learning and using language common in R communities & publications (e.g. [R4DS](https://r4ds.had.co.nz/)), like data frame instead of spreadsheet
-    
-  * For now, anything reading, wrangling, ggplot2 related: considering navigating to documentation from [tidyverse.org](https://www.tidyverse.org/), [rdocumentation](https://www.rdocumentation.org/), or [RStudio community](https://community.rstudio.com/). 
-
----
-
-## How do I know there’s an error, and where to look for it? 
-
-* When you save a script, lines of code with some errors (e.g. unmatched parentheses) will have a red circle with an x in it next to the line number
-
-```{r, echo = FALSE, out.width="50%", fig.alt = "Syntax error"}
-knitr::include_graphics("images/console_error.png")
-```
-
-* You might also see a red squiggly line under part of your code, indicating a syntax issue. You can hover over the squiggly to see a pop-up hint about what’s going on. 
-
----
-
-## Error messages will show up* in the Console when you try to run the broken code: 
-
-
-```{r, echo = FALSE, out.width="50%", fig.alt = "Console error"}
-knitr::include_graphics("images/error_output.png")
-```
-
----
-class: center
-
-## Fact
-### Sometimes walking away is the most productive
-
-```{r, echo = FALSE, out.width="50%", fig.alt = "Things will look better in the morning"}
-knitr::include_graphics("images/Error.jpg")
-```
-
----
-
-## There are multiple types of messages that R will print. Read the message to figure out what it’s trying to tell you. 
-
-* **Error:** There’s a fatal error in your code that prevented it from being run through successfully. You need to fix it for the code to run. 
-
-* **Warning:** Non-fatal errors (don’t stop the code from running, but this is a potential problem that you should know about).
-
-* **Message:** Here’s some helpful information about the code you just ran (you can hide these if you want to)
-
----
-class: center
-
-### Read the error message
---
-
-## Read the error message
---
-
-# Read the error message
-
-Sometimes it will be infuriatingly vague, but often it will tell you exactly how to fix it (e.g. “do you need ==?”). 
-
-```{r, echo = FALSE, out.width="60%", fig.alt = "Always read the error message"}
-knitr::include_graphics("images/misspelling.png")
-```
-
----
-
-## Troubleshooting
-
-* Symptom: `Error in _________: could not find function “_________”`
-
-
-* Diagnosis: 
-    * The `library()` containing the function hasn't been called
-    * The function has been misspelled
-
----
-
-## Troubleshooting
-
-* Symptom: `Error in ____ : object ‘_____’ not found’`
-
-* Diagnosis: 
-    * The object hasn’t been created or stored
-    * You’ve mistyped the object name
-
----
-
-## Troubleshooting
-  
-### If R…tells you it’s ignoring an argument within a function
-
-* Symptom: `Warning: Ignoring unknown parameters: ____`
-
-* Diagnosis: 
-    * You’ve included an argument that doesn’t exist for that function
-    * You’ve mistyped an argument that does exist for that function
----
-
-## Troubleshooting
-
-* Look over code very carefully - character-by-character and space-by-space. Run line-by-line to see where it breaks. 
-
---
-
-* Google the copied & pasted error message. **Someone else has encountered and solved it before**.
-
---
-
-* Take a break and come back to it later. ☕ 
-
----
-
-### Get Help
+## R projects
 
 .pull-left[
 
-```{r, echo = FALSE, out.width="100%", fig.alt = "Ask for help in a smart way"}
-knitr::include_graphics("images/geordi_help.png")
-```
+Basically, they create the environment where
+
+- all code and outputs are stored in one set location (no more `setwd()`!)
+
+- relative file paths are created - this guarantees better reproducibility
+
+- clean R environment is created every time you open it (no more `rm(list = ls()`)!)
 
 ]
 
 .pull-right[
 
-There will be a discussion board on Blackboard to ask all of your coding questions. 
-
-Make your questions as clear as possible
-
-* What are you trying to do?
-
-* What is the exact error message or output
-
-* What code did you run to produce this
+```{r, echo = FALSE, out.width="100%"}
+knitr::include_graphics("images/jb_tweet.png")
+```
 
 ]
 
+---
+
+## Save the source
+
+.pull-left[
+
+- Keep scripts as the analysis pathway
+
+- Export figures and results to files
+
+- Keep your session as a "Blank Slate" - restart R
+
+- **Do not** save or load workspace between sessions
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, out.width="85%"}
+knitr::include_graphics("images/session.jpg")
+```
+
+]
+
+---
+
+
+## Resources for good coding practice
+
+
+* [How to organise your spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)
+
+* [R coding basics](https://rstudio.cloud/learn/primers/1.2)
+
+* [tidyverse style guide](https://style.tidyverse.org/)
+
+---
+
+## Why?
+
+* Consistency and project organisation will help you: work with collaborators, get feedback on code, publish your analyses.
+
+* Consistency also helps with troubleshooting
+
+## Collaborators
+### Who is a collaborator?
+
+* Your current and future coworkers
+
+* Your future self
+
+---
+
+## Important things: 
+
+
+
+* Organisation
+
+--
+
+* Clear annotation
+
+--
+
+* Consistent formatting
+
+
+--
+
+👎 BAD READABILITY
+
+```
+object_name <- df %>% filter(col_a == “yes”, col_b == “burritos”, col_c != “eggplant”) %>% select(col_b:col_e) %>% mutate(new_col = col_f + col_g) %>% group_by(col_b, col_d) %>% summarize(new_col_2 = mean(new_col))
+
+```
+
+👍 GOOD READABILITY
+
+```
+object_name <- df %>% 
+filter(col_a == “yes”, 
+ col_b == “burritos”, 
+ col_c != “eggplant”) %>% 
+select(col_b:col_e) %>% 
+mutate(new_col = col_f + col_g) %>% 
+group_by(col_b, col_d) %>% 
+summarize(new_col_2 = mean(new_col))
+```
+
+---
+
+class: center, middle
+
+# Coding considerations
+
+*Good coding style is like correct punctuation: you can get by without it* 
+
+*butitsuremakesthingseasiertoread*
+
+<br>
+
+[the tidyverse style guide](https://style.tidyverse.org/syntax.html) by Hadley Wickham
+
+---
+
+## Writing your code well from day one
+
+.pull-left[
+- Generous and clear commments
+
+- logical and efficient code
+
+- code that is tested (and timed!)
+]
+
+.pull-right[
+
+```{r, echo = FALSE, out.width="200%"}
+knitr::include_graphics("images/code_sections.png")
+```
+]
+
+---
+
+## Break up your analysis
+
+.pull-left[
+
+```{r, echo = FALSE, out.width="85%"}
+knitr::include_graphics("images/Project.png")
+```
+]
+
+.pull-right[
+
+-  Sometimes running a full project from one script even with clearest and informatively named code sections is simply difficult
+
+- Write specific scripts for particular jobs
+
+- Use .RDS files to save the outputs between sections (and time)
+
+]
 
 ---
 
 class: center, middle, inverse
 
+# Questions?
 
 
-# dplyr
 
----
 
-```{r,  echo = FALSE, results = 'asis'}
-library(webexercises)
-opts <- c("install.package", 
-            "install.packages", 
-            answer = "library", 
-            "libraries")
 
-q1 <- mcq(opts)
 
-cat("What function loads a package that is already on your computer?", q1)
-```
 
 

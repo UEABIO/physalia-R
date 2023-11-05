@@ -73,11 +73,7 @@ knitr::include_graphics("images/Me.jpg")
 
 .pull-right[
 
-Go to Wooclap
-
-https://app.wooclap.com/TKBILR
-
-Ask questions and answer quizzes
+We will use Wooclap 
 
 ]
 

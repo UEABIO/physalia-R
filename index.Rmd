@@ -1,5 +1,5 @@
 ---
-title: "5023Y"
+title: "Advancing in R"
 ---
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -7,85 +7,11 @@ title: "5023Y"
 All lecture materials will be available here.
 
 - 01: Introductions and course outline
-    - [Slides](slides/Introduction.html)
+    - [Slides](Intro_02.html.html)
 
-    - [Practical work](https://ueabio.github.io/data-sci-v1/introduction-to-r-and-rstudio.html)
-
-- 02: Using R
-    - [Slides](slides/Intro_02.html)
-    
-    - [Practical work](https://ueabio.github.io/data-sci-v1/basic-programming.html)
-
-- 03: Working with data
-    - [Slides](slides/Data_wrangling_03.html)
-
-    - [Practical work 1](https://ueabio.github.io/data-sci-v1/loading-data.html)
-    - [Practical work 2](https://ueabio.github.io/data-sci-v1/data-wrangling-part-one.html)
-    - [Practical work 3](https://ueabio.github.io/data-sci-v1/data-wrangling-part-two.html)
-    
-- 04: Data Visualisation
-    - [Slides](slides/ggplot.html)
-    
-- 05: Reproducible Reports
-    - [Slides](slides/Reproducible_reports_06.html)
-    
-- 06: Github
-    - [Slides](slides/Github.html)
-    
-- 06: Functional programming
-    - [Slides](slides/Functional-programming.html)
-
-- 07: Exploratory Analysis
-    - [Slides](slides/EDA.html)
-    
-- 08: Bad Data viz
-    - [Slides](slides/Bad-plots.html)
-    
-- 09: Descriptive statistics
-    - [Slides: Central tendency and spread](slides/Descriptive_statistics_05.html)
-
-    - [Slides: Association](slides/Association_05a.html)
-
-    - [Practical work](https://ueabio.github.io/data-sci-v1/data-insights-part-one.html)
+    - [Practical work](https://ueabio.github.io/physalia-R-course-2023/introduction-to-r-and-rstudio.html)
 
 
-- 10: Great Data Viz
-    - [Slides: Great data visualisation](slides/Great_data_viz.html)
-
-- 11: Confidence intervals
-    - [Slides](slides/Confidence_intervals.html)
-
-## Term 2
-
-- 12: Introduction to Statistics
-    - [Slides](slides/intro_stats.html)
-    
-- 13: Intro to linear models
-    - [Slides](slides/intro-linear-model.html)
-    
-- 14: T-tests
-    - [Slides](slides/testing.html)
-
-- 15: Hypothesis testing
-    - [Slides: P-values, Hypothesis Errors](slides/Error_rates.html)
-
-- 16: Regression models
-    - [Slides: Regression models](slides/Linear-Regression.html)
- 
-    
-- 17: ANOVA
-    - [Slides](slides/ANOVA.html)
-  
-- 18: Multivariate models
-    - [Slides: Complex models](slides/Complex_models.html)
-    - [Slides: Checking and refining models](slides/Refining_models.html)
-     
-      
-- 19: Generalised linear models
-
-  - [Slides: Introduction to Generalised Linear Models](slides/Generalized-Linear-Models.html)
-
-  - [Slides: Binomial and Poisson distributions](slides/Generalized-Linear-Models-Part-2.html)
 
 
 
