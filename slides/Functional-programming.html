@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Programming in R</title>
+    <title>Functional</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-11-11" />
+    <meta name="date" content="2023-11-06" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -19,9 +19,9 @@
 
 class: title-slide, left, top
 
-# Programming in R
+# Functional
 
-## 
+##  Programming
 
 ### Philip Leftwich
 
@@ -31,7 +31,6 @@ class: title-slide, left, top
 
 &lt;span style='color:white;'&gt;Slides released under&lt;/span&gt; [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&amp;nbsp;&amp;nbsp;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"/></svg><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M314.9 194.4v101.4h-28.3v120.5h-77.1V295.9h-28.3V194.4c0-4.4 1.6-8.2 4.6-11.3 3.1-3.1 6.9-4.7 11.3-4.7H299c4.1 0 7.8 1.6 11.1 4.7 3.1 3.2 4.8 6.9 4.8 11.3zm-101.5-63.7c0-23.3 11.5-35 34.5-35s34.5 11.7 34.5 35c0 23-11.5 34.5-34.5 34.5s-34.5-11.5-34.5-34.5zM247.6 8C389.4 8 496 118.1 496 256c0 147.1-118.5 248-248.4 248C113.6 504 0 394.5 0 256 0 123.1 104.7 8 247.6 8zm.8 44.7C130.2 52.7 44.7 150.6 44.7 256c0 109.8 91.2 202.8 203.7 202.8 103.2 0 202.8-81.1 202.8-202.8.1-113.8-90.2-203.3-202.8-203.3z"/></svg> ]   
 
-&lt;span style='color:white;'&gt;Slido.com #1221294&lt;/span&gt;  
 
 &lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
 
@@ -43,18 +42,256 @@ layout: true
 
 
 ---
-class: center, middle
 
-###DRY: Don't Repeat Yourself
-###vs.
-###WET: Write Everything Twice
+# Session Outline
+
+What are functions?
+
+Why do we want to write functions?
+
+What is functional programming?
+
+A run through of the {purrr} package
+
+---
+class: center, middle, inverse
+
+## What are functions?
+
+---
+
+## Features
+
+&lt;img src="images/r-function-syntax.png" width="60%" /&gt;
+
+---
+class: center
+
+The body of the function (the statements that are executed when the function is run) is grouped with curly braces ({})
+
+When executing functions it is optional to specify argument names, but in functions with &gt;1 arguments, the order matters
+
+
+```r
+myfunction &lt;- function(x){
+  x + 4
+}
+```
+
+
+```r
+myfunction(3)
+```
+
+```
+## [1] 7
+```
+
+
+
+```r
+myfunction(x = 3)
+```
+
+```
+## [1] 7
+```
+---
+
+## Braces
+
+Braces are not needed for functions with a single declaration
+
+.huge[
+
+```r
+myfunction &lt;- function(x) x + 4
+myfunction(2)
+```
+
+```
+## [1] 6
+```
+]
+
+
+## Braces
+
+Braces surround the body in functions with two or more statements
+
+
+```r
+f &lt;- function(x)  y &lt;- (x * 2) x + y   # ERROR  
+```
+
+
+
+
+```r
+f &lt;- function(x)  {
+  y &lt;- (x * 2) 
+  x + y
+}
+```
 
 
 ---
 
-Writing functions
+## Short function notation
 
-&lt;img src="images/function.png" title="Write reusable code with functions" alt="Write reusable code with functions" width="60%" /&gt;
+Replace "function(x) {}" with "\(x){}"
+
+
+```r
+add_one &lt;- function(x) {
+  return(x + 1)
+}
+```
+
+
+
+```r
+add_one &lt;- \(x) x + 1
+```
+
+
+---
+
+## Function types
+
+.pull-left[
+
+A function is a process which takes some input, called **arguments**, and produces some output called a **return
+value**. Functions may serve the following purposes:
+
+* **Mapping**: Produce some output based on given inputs. A function **maps** input values to output values.
+
+* **Procedures**: A function may be called to perform a sequence of steps. The sequence is known as a procedure, and
+programming in this style is known as **procedural programming**.
+
+* **I/O**: Some functions exist to communicate with other parts of the system, such as the screen, storage, system logs
+or network.
+
+source: ["What is a pure function?"][mji_what_pure_fn]
+
+]
+
+.pull-right[
+
+``` r
+# mapping
+fn &lt;- function(x) {
+  x * x + 1
+}
+```
+
+``` r
+calculate_rectangle_area &lt;- function(length, width) {
+  # Step 1: Calculate the area
+  area &lt;- length * width
+  
+  # Step 2: Print the calculated area
+  cat("The area of the rectangle with length", length, "and width", width, "is", area, "\n")
+  
+  # Step 3: Return the area
+  return(area)
+}
+```
+
+``` r
+# i/o:
+read_csv(filename)
+```
+]
+
+
+---
+
+## Environments
+
+.pull-left[
+In R, we have the global environment. This is where all variables are created when you assign (`&lt;-`) something in the
+console.
+
+When a function is evaluated, it creates it's own environment. All of the arguments that are passed to the function,
+along with any variables created in the function are stored in this new environment.
+
+The function's environment's parent will be the global environment, so we can see all of the variables created in the
+global environment. Variables that are created in the function's environment aren't visible from the global environment
+though.
+
+If we reassign a variable in a function it will take a copy of that variable rather than mutating the value in the
+global environment. If we want to update `x` in the global environment we need to use the `&lt;&lt;-` operator.
+]
+.pull-right[
+
+```r
+x &lt;- 1
+fn &lt;- function(y) {
+  x &lt;- x * 2
+  z &lt;- x + y
+  z
+}
+result &lt;- fn(2)
+```
+
+
+```r
+exists("z")
+```
+
+```
+## [1] FALSE
+```
+
+
+```r
+x
+```
+
+```
+## [1] 1
+```
+]
+
+
+---
+
+# Why do we want to write functions?
+
+Consider the following code (from the book [R4DS][r4ds]). Can you spot the mistake?
+
+``` r
+df &lt;- tibble::tibble(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+df$a &lt;- (df$a - min(df$a, na.rm = T)) / 
+  (max(df$a, na.rm = T) - min(df$a, na.rm = T))
+df$b &lt;- (df$b - min(df$b, na.rm = T)) / 
+  (max(df$b, na.rm = T) - min(df$a, na.rm = T))
+df$c &lt;- (df$c - min(df$c, na.rm = TRUE)) / 
+  (max(df$c, na.rm = T) - min(df$c, na.rm = T))
+df$d &lt;- (df$d - min(df$d, na.rm = TRUE)) / 
+  (max(df$d, na.rm = T) - min(df$d, na.rm = T))
+```
+
+---
+
+## The mistake
+
+``` r
+df$b &lt;- (df$b - min(df$b, na.rm = T)) / 
+  (max(df$b, na.rm = T) - min(df$a, na.rm = T))
+```
+
+Often, when we copy and paste code we introduce subtle bugs, in the previous example we forgot to update the one
+argument: me call `min(df$a)` rather than `min(df$b)`.
+
+Writing functions can reduce these types of errors by abstracting away the underlying logic.
 
 ---
 class: center
@@ -67,235 +304,53 @@ class: center
 
 ---
 
-## Functions in R
+## Creating a function to solve the last problem
 
-.left-code[
-
-```r
-function01 &lt;- 
-  function(argument1,
-           argument2,
-           ...){
-    # body where you put in the functions
-    # output
-           }
-```
-]
-
-.right-plot[
-
-* `function01` name of function
-
-* `function()` make a function, function!
-
-* `argument1` placeholders for values that will be supplied to a finished argument
-
-* body 
-  * the code that solves your problem
-  
-* output
-  * by default the last object made is returned
-  * `return()` can be use to return other selected objects
-]
-
----
-
-## Why would I write a function?
-
-.left-code[
-
-
-```r
-# simple dataframe
-
-df &lt;- tibble(
-  a = rnorm(10),
-  b = rnorm(10),
-  c = rnorm(10),
-  d = rnorm(10)
-)
-
-df
-```
-
-]
-
-.right-plot[
-
-
-```
-## # A tibble: 10 x 4
-##         a         b       c      d
-##     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 -2.78   1.27      0.683  -1.47 
-##  2 -0.605  0.0225    0.190   0.424
-##  3 -1.86   0.508     0.170   1.50 
-##  4  1.02   0.00734  -0.543  -1.72 
-##  5 -0.303  1.15      0.421  -1.64 
-##  6 -0.597 -0.000930 -0.0787  0.488
-##  7  0.241 -0.765     1.21    1.19 
-##  8  0.151  0.241    -0.959  -0.251
-##  9  1.46  -1.12      0.385  -0.615
-## 10  0.804  0.970    -1.76    0.301
-```
-
-]
-
----
-
-
-$$
-z_i = {x_i-min(x)\over{max(x)-min(x)}}
-$$
 .pull-left[
+To the right is one way to turn the previous example into a function.
 
+We pass in a numerical vector (`x` to the function), calculate the minimum and maximum values, then rescale the vector.
 
-```r
-# What are we doing here?
-df$a &lt;- (df$a - min(df$a, na.rm = TRUE)) /  
-  (max(df$a, na.rm = TRUE) - min(df$a, na.rm = TRUE))
-df$b &lt;- (df$b - min(df$b, na.rm = TRUE)) /  
-  (max(df$b, na.rm = TRUE) - min(df$b, na.rm = TRUE))
-df$c &lt;- (df$c - min(df$a, na.rm = TRUE)) /  
-  (max(df$c, na.rm = TRUE) - min(df$c, na.rm = TRUE))
-df$d &lt;- (df$d - min(df$d, na.rm = TRUE)) /  
-  (max(df$d, na.rm = TRUE) - min(df$d, na.rm = TRUE))
+Finally we update each column, one by one, using this new function.
 
-df
-```
+We still have an issue here with the potential for copy-paste bugs in that we are doing the same thing 4 times, just
+changing the column in the data frame that we are using.
 
+We could use a loop, but we will see how functional programming can help us solve this problem more elegantly later.
+
+One important principle functions help us achieve is **DRY** (don't repeat yourself).
 ]
 
 .pull-right[
-
-
-```
-## # A tibble: 10 x 4
-##        a     b       c      d
-##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 0     1      0.230  0.0750
-##  2 0.513 0.477  0.0640 0.666 
-##  3 0.217 0.679  0.0575 1     
-##  4 0.897 0.470 -0.183  0     
-##  5 0.585 0.948  0.142  0.0244
-##  6 0.515 0.467 -0.0265 0.686 
-##  7 0.713 0.147  0.407  0.904 
-##  8 0.692 0.568 -0.323  0.456 
-##  9 1     0      0.130  0.343 
-## 10 0.846 0.873 -0.593  0.628
+``` r
+rescale_01 &lt;- function(x) {
+  min_x &lt;- min(x, na.rm = TRUE)
+  max_x &lt;- max(x, na.rm = TRUE)
+  
+  (x - min_x) / (max_x - min_x)
+}
 ```
 
+``` r
+# update the columns
+df$a &lt;- rescale_01(df$a)
+df$b &lt;- rescale_01(df$b)
+df$c &lt;- rescale_01(df$c)
+df$d &lt;- rescale_01(df$d)
+```
+
+``` r
+# using a loop
+for (i in colnames(df)) {
+  df[[i]] &lt;- rescale_01(df[[i]])
+}
+```
 ]
 
 
-There is nothing wrong with this code, it works. 
-
-BUT: My script will be longer, I might make mistakes, if I carryover mistakes I have to go looking for them
-
 ---
 
-## Functionalise
-
-
-```r
-df$d &lt;- (df$d - min(df$d, na.rm = TRUE)) /  
-  (max(df$d, na.rm = TRUE) - min(df$d, na.rm = TRUE))
-```
-
---
-
-
-```r
-# pull out what's common, these are your arguments
-x &lt;- (x - min(x, na.rm = TRUE)) /  
-  (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))
-```
-
---
-
-
-```r
-# can this be simplified more?
-x &lt;- (x - min(x, na.rm = TRUE)) /  
-  diff(range(x, na.rm = TRUE))
-```
-
---
-
-
-```r
-# rewrite as a function
-
-*rescale &lt;- function(x) {
-  (x - min(x, na.rm = TRUE)) /  
-  diff(range(x, na.rm = TRUE))
-}
-```
-
----
-
-## Test it
-
-
-```r
-rescale &lt;- function(x) {
-  (x - min(x, na.rm = TRUE)) /  
-  diff(range(x, na.rm = TRUE))
-}
-testvec &lt;- 1:11
-testvec
-```
-
-```
-##  [1]  1  2  3  4  5  6  7  8  9 10 11
-```
-
-
-```r
-rescale(testvec)
-```
-
-```
-##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
-```
-
-**Q. Does the result make sense?**
-
----
-## Put it to work
-
-
-```r
-df &lt;- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))
-rescale &lt;- function(x) {
-  (x - min(x, na.rm = TRUE)) /  
-  diff(range(x, na.rm = TRUE))
-}
-out &lt;- df #make a copy so we don't have to remake df again
-out$a &lt;- rescale(df$a) # scale column a
-out$b &lt;- rescale(df$b) # scale column b
-out$c &lt;- rescale(df$c) # scale column c
-out$d &lt;- rescale(df$d) # scale column d
-out # let's look
-```
-
-```
-##            a         b         c         d
-## 1  0.4713287 0.6588712 0.3491595 0.7370632
-## 2  0.5040688 0.7185196 0.7794122 0.5000601
-## 3  0.1408389 0.4533294 0.3798457 0.2038632
-## 4  0.5171138 0.6986128 0.4089463 0.4877732
-## 5  0.1212082 0.0000000 0.7816144 0.7836980
-## 6  1.0000000 1.0000000 0.3789288 0.0000000
-## 7  0.0909917 0.7550721 0.1911456 0.5322319
-## 8  0.5331146 0.2124813 0.0000000 1.0000000
-## 9  0.0000000 0.6592885 1.0000000 0.7414587
-## 10 0.5784569 0.2539041 0.1774061 0.6159495
-```
-
----
-
-# Sensible errors
+## Sensible errors
 
 
 ```r
@@ -337,8 +392,427 @@ rescale(vector)
 
 The Tidyverse style guide is here: http://style.tidyverse.org/
 
+
 ---
 
+## Pure functions
+
+.pull-left[
+Pure functions are functions which:
+
+* always produce the same result given the same input
+
+* have no side effects (e.g. reading from a database, writing a file to disk)
+
+* do not use global state (e.g. using variables declared outside of the function)
+
+From before, mappings are pure functions, but the other two types are not.
+
+Pure functions are analogous to mathematical functions.
+
+]
+
+.pull-right[
+
+## Pure functions
+
+``` r
+function(x, y) {
+  x + y
+}
+
+function(y) {
+  function(x) {
+    x + y
+  }
+}
+```
+]
+
+---
+
+.pull-right[
+
+## Non-pure functions
+
+``` r
+rnorm(10)
+read_csv("file.csv")
+
+function(x) {
+  Sys.Date() + x
+}
+
+function(x) {
+  x + y
+}
+
+```
+]
+
+
+
+---
+
+class: center, middle, inverse
+
+
+## Why do we care about pure functions?
+
+---
+
+## Referential Transparency
+
+.pull-left[
+Pure functions are useful as they can make code significantly easier to debug and test. Pure functions have the property
+of [referential transparency][ref_transp], which put simply means we can replace an expression with it's corresponding
+value.
+
+For example, consider the function `fn` (shown to the right). Because the function `fn` is pure, we know that it will
+always return the same result given the same input, so replacing it's call with the return value is going to yield the
+same result.
+
+This can make debugging/testing `another_fn` simpler. The behaviour of `another_fn` is not dependent on `fn`.
+]
+
+.pull-right[
+``` r
+fn &lt;- function(x) {
+  x + 3
+}
+```
+
+``` r
+another_fn(fn(3), 2)
+```
+
+``` r
+# we can replace the call to fn() with
+# it's return value
+another_fn(6, 2)
+```
+]
+
+
+---
+
+## Testing
+
+.pull-left[
+Knowing that a function will always return the same value given the same inputs makes writing unit tests for the
+function significantly easier because:
+
+* We don't need to set up the global environment correctly before running the function - functions that rely on global
+state would need to test the function multiple times with the global environment set up with all the possible values.
+
+* We don't need to check the side effects of the function, we just need to check the return value is as expected.
+Functions that rely on a side effect can suffer transient errors, e.g. you try to read data from a database, but the
+server is temporarily down/busy.
+
+* All we need to do is check that the outputs are correct for given inputs.
+]
+
+.pull-right[
+``` r
+library(testthat)
+
+triangle_number &lt;- function(x) {
+  0.5 * x * (x + 1)
+}
+
+test_that("it works as expected", {
+  expected_that(triangle_number(1),  1)  
+  expected_that(triangle_number(2),  3)  
+  expected_that(triangle_number(3),  6)  
+  expected_that(triangle_number(4), 10)  
+  expected_that(triangle_number(5), 15)  
+})
+```
+]
+
+
+---
+
+# Iteration with loops
+
+.pull-left[
+Previously we looked at an example where we used a for loop to run the same function on every column in a dataframe.
+
+We had to iterate in this way because the function that we had (`rescale_01`) worked on individual numeric vectors.
+
+We needed to set up the for loop by first extracting the list of columns, then iterating over each column running the
+function.
+
+This is a very common pattern: take a list we want to iterate over, then evaluate some function using that list.
+
+``` r
+for(i in colnames(df)) {
+  df[[i]] &lt;- rescale_01(df[[i]])
+}
+```
+]
+
+.pull-right[
+
+However, it's very easy to make a mistake creating a loop this way: what if we occidentally update the wrong item in the
+dataframe?
+
+``` r
+for(i in colnames(df)) {
+  df[[1]] &lt;- rescale_01(df[[i]])
+}
+```
+
+Or we don't correctly initialise the iteration?
+
+``` r
+for(i in 1:4) {
+  # does our data always have 4 columns?
+  df[[i]] &lt;- rescale_01(df[[i]])
+}
+```
+]
+
+---
+
+# `purrr::map()`
+
+.pull-left[
+The `map` function from `{purrr}` takes a vector/list, and a function. It the evaluates the function once for each
+input, returning the results as a list.
+
+We could replace our loop example quite simply with a map function:
+
+``` r
+df &lt;- map_dfc(df, rescale_01)
+```
+
+The map function's arguments are
+
+``` r
+map(x, fn, ...)
+```
+
+where
+
+* `x` is the vector you wish to iterate over
+* `fn` if the function
+* ... are any extra arguments the function requires (these are the same for all calls of the function)
+]
+
+.pull-right[
+The image, courtesy of [adv-r] shows graphically how the map function works.
+
+![](https://d33wubrfki0l68.cloudfront.net/f0494d020aa517ae7b1011cea4c4a9f21702df8b/2577b/diagrams/functionals/map.png)
+]
+
+---
+
+# `map` in action
+
+.pull-left[
+A toy example, let's take a vector of numbers and double them
+``` r
+values &lt;- 1:5
+
+# we can use a "named function"
+double_num &lt;- function(x) 2 * x
+map(values, double_num)
+
+# or, we can use an anonymous function
+map(values, function(x) 2 * x)
+# with R &gt; 4.1, we can use \(x) 2 * x
+map(values, \(x) 2 * x)
+
+# we can also use a formula
+map(values, ~ .x * 2)
+```
+]
+
+.pull-right[
+Any one of these would return the same thing: a list containing the results
+
+
+```
+## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 6
+## 
+## [[4]]
+## [1] 8
+## 
+## [[5]]
+## [1] 10
+```
+]
+
+---
+## More maps
+
+Other types of map that return specific things
+
+* `map` - list
+* `map_lgl` logical
+* `map_int` integer
+* `map_dbl` double
+* `map_chr` character
+* `map_df` dataframe
+
+Maps are "type-safe" they will fail if they cannot return the correct data type
+
+---
+
+# `map_*` variants
+
+.pull-left[
+In the previous example we can see the output of `map` is a list. It would be more useful for that function to return a
+numeric vector instead. Fortunately, there is a simple way to achieve this in purrr:
+
+
+```r
+map_dbl(values, \(x) 2 * x)
+```
+
+```
+## [1]  2  4  6  8 10
+```
+
+The variants provided are:
+
+* `map_chr` for a function which returns a character
+* `map_int`/`map_dbl` for a function which returns an integer/double
+* `map_lgl` for a function which returns a logical (`TRUE`/`FALSE`)
+* `map_df`/`map_dfr`/`map_dfc` for a function which returns a dataframe
+
+]
+
+.pull-right[
+
+
+Now, the example given so far isn't particularly useful: many operations in R are vectorised, so we could just do
+`2 * values` and we would get exactly the same results as `map_dbl(values, \(x) 2 * x)`.
+
+`map` functions are useful for cases where we have functions which aren't vectorised and we need to run the function
+once for each item in the input vector.
+
+]
+
+---
+
+# `map_df` variants
+
+The data frame variants all do the same sort of thing: if a function returns a dataframe, rather than returning a list
+of dataframes, it will bind the results together into a single dataframe:
+
+* `map_df` and `map_dfr` use `bind_rows` to "union" the results together
+* `map_dfc` uses `bind_cols` instead
+
+One of the best use cases for `map_df` is to read in a folder full of csv's and combine the results together.
+
+First, let's get a list of all the files in a folder.
+
+
+```r
+csv_files_list_files &lt;- list.files(path = "data/many_files",
+                                    pattern = "csv", full.names = TRUE)
+```
+
+```
+ [1] "data/many_files/1.csv"  "data/many_files/10.csv" "data/many_files/11.csv" "data/many_files/12.csv"
+ [5] "data/many_files/13.csv" "data/many_files/14.csv" "data/many_files/15.csv" "data/many_files/16.csv"
+ [9] "data/many_files/17.csv" "data/many_files/18.csv" "data/many_files/19.csv" "data/many_files/2.csv" 
+[13] "data/many_files/20.csv" "data/many_files/21.csv" "data/many_files/22.csv" "data/many_files/23.csv"
+[17] "data/many_files/24.csv" "data/many_files/25.csv" "data/many_files/3.csv"  "data/many_files/4.csv" 
+[21] "data/many_files/5.csv"  "data/many_files/6.csv"  "data/many_files/7.csv"  "data/many_files/8.csv" 
+[25] "data/many_files/9.csv"
+
+```
+
+---
+
+## `map_df` continued
+
+
+Now that we have our list of files to load, we can use the `read_csv` function to load each csv file. Here, we pass to
+the `read_csv` function the column types used in the files, and we also set the `.id` argument of `map_dfr`. This will
+create a column in the final dataframe containing the "name" of each item in the list, e.g. the date from the filename.
+
+
+```r
+df &lt;- map_dfr(csv_files_list_files,
+              ~ read_csv(.x))
+```
+
+---
+# `map2`
+
+So far we have looked at cases where we have a single vector to iterate over, but what if we have two vectors, both of
+the same length? We can use the `map2` family of functions! 
+
+.pull-left[
+
+```
+map2(.x, .y, .f)
+```
+
+
+```r
+letters &lt;- c("a", "b", "c")
+times &lt;- 1:3
+
+map2_chr(letters, times, \(x, y) paste(rep(x, y), collapse = ""))
+```
+
+```
+## [1] "a"   "bb"  "ccc"
+```
+]
+
+.pull-right[
+
+&lt;img src="images/map2.png" width="60%" /&gt;
+
+]
+
+---
+## Functional programming with dplyr
+
+
+```r
+penguins_clean_split |&gt; 
+  group_by(species) |&gt; 
+  summarise(
+    across(
+      .cols = where(is.numeric),
+      .fns = ~mean(.x, na.rm = T),
+      .names = "mean_{.col}")
+    )
+```
+
+```
+species	mean_sample_number	mean_culmen_length_mm	mean_culmen_depth_mm	mean_flipper_length_mm	mean_body_mass_g	mean_delta_15_n_o_oo	mean_delta_13_c_o_oo
+Adelie	76.5	38.79139	18.34636	189.9536	3700.662	8.859733	-25.80419
+Chinstrap	34.5	48.83382	18.42059	195.8235	3733.088	9.356155	-24.54654
+Gentoo	62.5	47.50488	14.98211	217.1870	5076.016	8.245338	-26.18530
+
+```
+
+---
+
+## walk/walk2
+
+Along with map, map2 and pmap, we have the walk family of functions: these are useful for if you want to run a function for it's side-effect. 
+
+The walk functions work similarly to the map functions, but you use them when you’re interested in applying a function that performs an action instead of producing data. 
+
+The walk functions are useful for performing actions like writing files and printing plots.
+
+---
 
 ## Source scripts &amp; functions
 
@@ -373,357 +847,8 @@ A reason to remember to always `cite` R packages
 
 * [Writing a package](https://ourcodingclub.github.io/tutorials/writing-r-package/)
 
----
+* [Advanced R](https://adv-r.hadley.nz/)
 
-class: center, middle, inverse
-
-# Data structures
-
----
-## Data structures
-
-1. Vector
-
-2. Matrix
-
-3. List
-
-4. Dataframe/tibble
-
----
-
-## Vector
-
-All elements are of the same type. 
-
-
-
-
-```r
-name &lt;- c("MICHAEL", "LUCY", "JOHN")
-
-age &lt;- c(20,25,30)
-```
-
---
-
-R will routinely apply functions to all elements of a vector automatically
-
-
-```r
-str_remove(name, "L")
-```
-
-```
-## [1] "MICHAE" "UCY"    "JOHN"
-```
-
-```r
-sum(age)
-```
-
-```
-## [1] 75
-```
-
-
----
-
-## Matrix
-
-Matrix is a special kind of vector. 
-
-A matrix is a vector with two additional attributes: the number of rows and the number of columns.
-
-
-```r
-x &lt;- matrix(c(1,2,3,4), nrow=2, ncol=2)
-
-x
-```
-
-```
-##      [,1] [,2]
-## [1,]    1    3
-## [2,]    2    4
-```
-
-
-```r
-x[1,2]
-```
-
-```
-## [1] 3
-```
----
-
-##List
-
-List can contain elements of different types.
-
-
-```r
-y &lt;- list(name = name, age = age, work = c("Oxford", "Cambridge", "London"))
-y
-```
-
-```
-## $name
-## [1] "MICHAEL" "LUCY"    "JOHN"   
-## 
-## $age
-## [1] 20 25 30
-## 
-## $work
-## [1] "Oxford"    "Cambridge" "London"
-```
-
----
-
-##List 
-
-
-```r
-y[1]
-```
-
-```
-## $name
-## [1] "MICHAEL" "LUCY"    "JOHN"
-```
-
-```r
-y$work[2]
-```
-
-```
-## [1] "Cambridge"
-```
----
-##tibble
-
-A tibble is used for storing data tables. It is a list of vectors of equal length.
-
-Each vector can contain elements of different types
-
-
-
-
-```r
-df2 &lt;- tibble(name, age, work = c("Oxford", "Cambridge", "London"))
-
-df2
-```
-
-```
-## # A tibble: 3 x 3
-##   name      age work     
-##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    
-## 1 MICHAEL    20 Oxford   
-## 2 LUCY       25 Cambridge
-## 3 JOHN       30 London
-```
----
-
-##tibble
-
-With a tibble we can use all of the power of `dplyr` for data wrangling
-
-
-```r
-df2 %&gt;% 
-  select(name)
-```
-
-```
-## # A tibble: 3 x 1
-##   name   
-##   &lt;chr&gt;  
-## 1 MICHAEL
-## 2 LUCY   
-## 3 JOHN
-```
-
-```r
-df2 %&gt;% 
-  filter(age &lt; 26)
-```
-
-```
-## # A tibble: 2 x 3
-##   name      age work     
-##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    
-## 1 MICHAEL    20 Oxford   
-## 2 LUCY       25 Cambridge
-```
-
----
-
-## So... what about those repeats? 
-
-
-```r
-out &lt;- df
-out$a &lt;- rescale(df$a)
-out$b &lt;- rescale(df$b)
-out$c &lt;- rescale(df$c)
-out$d &lt;- rescale(df$d)
-out
-```
-
-The function simplified the call, but we're copying and pasting again.
-
-🤔
-
-
----
-## Loops
-
-
-```r
-for (i in 1:ncol(df)) { # loop through each element
-  out[i] &lt;- rescale(df[[i]]) #apply function and store in out[]
-}
-
-out
-```
-
-```
-##            a         b         c         d
-## 1  0.4713287 0.6588712 0.3491595 0.7370632
-## 2  0.5040688 0.7185196 0.7794122 0.5000601
-## 3  0.1408389 0.4533294 0.3798457 0.2038632
-## 4  0.5171138 0.6986128 0.4089463 0.4877732
-## 5  0.1212082 0.0000000 0.7816144 0.7836980
-## 6  1.0000000 1.0000000 0.3789288 0.0000000
-## 7  0.0909917 0.7550721 0.1911456 0.5322319
-## 8  0.5331146 0.2124813 0.0000000 1.0000000
-## 9  0.0000000 0.6592885 1.0000000 0.7414587
-## 10 0.5784569 0.2539041 0.1774061 0.6159495
-```
-
----
-
-##Apply
-
-
-```r
-sapply(df, rescale)
-```
-
-```
-##               a         b         c         d
-##  [1,] 0.4713287 0.6588712 0.3491595 0.7370632
-##  [2,] 0.5040688 0.7185196 0.7794122 0.5000601
-##  [3,] 0.1408389 0.4533294 0.3798457 0.2038632
-##  [4,] 0.5171138 0.6986128 0.4089463 0.4877732
-##  [5,] 0.1212082 0.0000000 0.7816144 0.7836980
-##  [6,] 1.0000000 1.0000000 0.3789288 0.0000000
-##  [7,] 0.0909917 0.7550721 0.1911456 0.5322319
-##  [8,] 0.5331146 0.2124813 0.0000000 1.0000000
-##  [9,] 0.0000000 0.6592885 1.0000000 0.7414587
-## [10,] 0.5784569 0.2539041 0.1774061 0.6159495
-```
-
-```r
-sapply(df, rescale) %&gt;% 
-  is.matrix(.)
-```
-
-```
-## [1] TRUE
-```
-
----
-
-##Apply
-
-|Function|Arguments|Objective|Input|Output|
-|---|---|---|---|---|
-|apply|apply(X, MARGIN, FUN)|Apply a function to the rows, columns or both| Dataframe or matrix| vector, list or array|
-|lapply| lapply(X,FUN)|Apply a function to all the elements of the input| List, vector or dataframe| list|
-|sapply| sapply(X,FUN)| Apply a function to all the elements of the input| List, vector or dataframe| vector or matrix|
-
----
-
-##Map
-
-
-```r
-map_df(.x = df, 
-       .f = rescale) #map over the columns in df
-```
-
-```
-## # A tibble: 10 x 4
-##         a     b     c     d
-##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 0.471  0.659 0.349 0.737
-##  2 0.504  0.719 0.779 0.500
-##  3 0.141  0.453 0.380 0.204
-##  4 0.517  0.699 0.409 0.488
-##  5 0.121  0     0.782 0.784
-##  6 1      1     0.379 0    
-##  7 0.0910 0.755 0.191 0.532
-##  8 0.533  0.212 0     1    
-##  9 0      0.659 1     0.741
-## 10 0.578  0.254 0.177 0.616
-```
-
----
-
-map iterates over a list and returns a list
-
-* .x list (or vector) to iterate over
-
-* .f function to apply over that list
-
-* ... things that get passed from map() to .f
-
-
-
-```r
-l &lt;-  list(a=1:10, b = 10:100)
-
-map(.x = l, 
-    .f = function(x) {
-      mean(x, na.rm = TRUE)})
-```
-
-```
-## $a
-## [1] 5.5
-## 
-## $b
-## [1] 55
-```
-
-```r
-# here I have used an anonymous function
-```
-
-The names .x and .f are intentionally weird because they are unlikely to collide with other names passed through ... to .f.
-
----
-## More maps
-
-Other types of map that return specific things
-
-* `map` - list
-* `map_lgl` logical
-* `map_int` integer
-* `map_dbl` double
-* `map_chr` character
-* `map_df` dataframe
-
-Maps are "type-safe" they will fail if they cannot return the correct data type (unlike apply)
-
-```
-## Error: Can't coerce element 1 from a double to a logical
-```
-
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -772,6 +897,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
