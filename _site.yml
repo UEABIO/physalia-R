@@ -1,8 +1,8 @@
-name: 5023Y slides
+name: Physalia R course
 output_dir: '.'
 navbar:
-  title: 5023Y slides
-  right: 
+  title: Home
+  right:
   - text: Reading
     href: reading.html
   - text: About
