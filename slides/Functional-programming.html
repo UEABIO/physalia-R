@@ -4,7 +4,7 @@
     <title>Functional</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2023-11-06" />
+    <meta name="date" content="2023-11-08" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -34,11 +34,6 @@ class: title-slide, left, top
 
 &lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
 
----
-
-layout: true
-
-&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y - Slido.com #1221294&lt;/span&gt;&lt;/div&gt;
 
 
 ---
@@ -114,6 +109,7 @@ myfunction(2)
 ```
 ]
 
+---
 
 ## Braces
 
@@ -161,6 +157,7 @@ add_one &lt;- \(x) x + 1
 
 .pull-left[
 
+
 A function is a process which takes some input, called **arguments**, and produces some output called a **return
 value**. Functions may serve the following purposes:
 
@@ -172,7 +169,7 @@ programming in this style is known as **procedural programming**.
 * **I/O**: Some functions exist to communicate with other parts of the system, such as the screen, storage, system logs
 or network.
 
-source: ["What is a pure function?"][mji_what_pure_fn]
+source: ["What is a pure function?"](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
 
 ]
 
@@ -215,6 +212,50 @@ console.
 
 When a function is evaluated, it creates it's own environment. All of the arguments that are passed to the function,
 along with any variables created in the function are stored in this new environment.
+
+The function's environment's parent will be the global environment, so we can see all of the variables created in the
+global environment. Variables that are created in the function's environment aren't visible from the global environment
+though.
+
+If we reassign a variable in a function it will take a copy of that variable rather than mutating the value in the
+global environment. If we want to update `x` in the global environment we need to use the `&lt;&lt;-` operator.
+]
+.pull-right[
+
+```r
+x &lt;- 1
+fn &lt;- function(y) {
+  x &lt;- x * 2
+  z &lt;- x + y
+  z
+}
+result &lt;- fn(2)
+```
+
+
+```r
+exists("z")
+```
+
+```
+## [1] FALSE
+```
+
+
+```r
+x
+```
+
+```
+## [1] 1
+```
+]
+
+---
+
+## Environments
+
+.pull-left[
 
 The function's environment's parent will be the global environment, so we can see all of the variables created in the
 global environment. Variables that are created in the function's environment aren't visible from the global environment
@@ -316,9 +357,6 @@ Finally we update each column, one by one, using this new function.
 We still have an issue here with the potential for copy-paste bugs in that we are doing the same thing 4 times, just
 changing the column in the data frame that we are using.
 
-We could use a loop, but we will see how functional programming can help us solve this problem more elegantly later.
-
-One important principle functions help us achieve is **DRY** (don't repeat yourself).
 ]
 
 .pull-right[
@@ -337,6 +375,30 @@ df$a &lt;- rescale_01(df$a)
 df$b &lt;- rescale_01(df$b)
 df$c &lt;- rescale_01(df$c)
 df$d &lt;- rescale_01(df$d)
+```
+
+]
+
+
+---
+
+## Creating a function to solve the last problem
+
+.pull-left[
+
+We could use a loop, but we will see how functional programming can help us solve this problem more elegantly later.
+
+One important principle functions help us achieve is **DRY** (don't repeat yourself).
+]
+
+.pull-right[
+``` r
+rescale_01 &lt;- function(x) {
+  min_x &lt;- min(x, na.rm = TRUE)
+  max_x &lt;- max(x, na.rm = TRUE)
+  
+  (x - min_x) / (max_x - min_x)
+}
 ```
 
 ``` r
@@ -414,7 +476,6 @@ Pure functions are analogous to mathematical functions.
 
 .pull-right[
 
-## Pure functions
 
 ``` r
 function(x, y) {
@@ -431,9 +492,26 @@ function(y) {
 
 ---
 
+.pull-left[
+Pure functions are functions which:
+
+* always produce the same result given the same input
+
+* have no side effects (e.g. reading from a database, writing a file to disk)
+
+* do not use global state (e.g. using variables declared outside of the function)
+
+From before, mappings are pure functions, but the other two types are not.
+
+Pure functions are analogous to mathematical functions.
+
+]
+
 .pull-right[
 
 ## Non-pure functions
+
+
 
 ``` r
 rnorm(10)
@@ -499,11 +577,9 @@ another_fn(6, 2)
 ## Testing
 
 .pull-left[
-Knowing that a function will always return the same value given the same inputs makes writing unit tests for the
-function significantly easier because:
+Knowing that a function will always return the same value given the same inputs makes writing unit tests easier:
 
-* We don't need to set up the global environment correctly before running the function - functions that rely on global
-state would need to test the function multiple times with the global environment set up with all the possible values.
+* We don't need to set up the global environment correctly before running the function - functions that rely on global state would need to test the function multiple times with the global environment set up with all the possible values.
 
 * We don't need to check the side effects of the function, we just need to check the return value is as expected.
 Functions that rely on a side effect can suffer transient errors, e.g. you try to read data from a database, but the
@@ -593,15 +669,13 @@ The map function's arguments are
 map(x, fn, ...)
 ```
 
-where
-
 * `x` is the vector you wish to iterate over
 * `fn` if the function
 * ... are any extra arguments the function requires (these are the same for all calls of the function)
 ]
 
 .pull-right[
-The image, courtesy of [adv-r] shows graphically how the map function works.
+The image, courtesy of Advanced R shows graphically how the map function works.
 
 ![](https://d33wubrfki0l68.cloudfront.net/f0494d020aa517ae7b1011cea4c4a9f21702df8b/2577b/diagrams/functionals/map.png)
 ]
@@ -738,8 +812,12 @@ csv_files_list_files &lt;- list.files(path = "data/many_files",
 ## `map_df` continued
 
 
-Now that we have our list of files to load, we can use the `read_csv` function to load each csv file. Here, we pass to
-the `read_csv` function the column types used in the files, and we also set the `.id` argument of `map_dfr`. This will
+Now that we have our list of files to load, we can use the `read_csv` function to load each csv file. 
+
+Here, we pass to
+the `read_csv` function the column types used in the files, and we also set the `.id` argument of `map_dfr`. 
+
+This will
 create a column in the final dataframe containing the "name" of each item in the list, e.g. the date from the filename.
 
 
@@ -775,11 +853,12 @@ map2_chr(letters, times, \(x, y) paste(rep(x, y), collapse = ""))
 
 .pull-right[
 
-&lt;img src="images/map2.png" width="60%" /&gt;
+&lt;img src="images/map2.png" width="100%" /&gt;
 
 ]
 
 ---
+
 ## Functional programming with dplyr
 
 
@@ -832,6 +911,8 @@ Simply add this line to the top of your R script and you’ll be able to use any
 ## Packages
 
 Packages are the fundamental units of reproducible code. When functions become routinely useful to you, you might consider turning them into a package for your personal R `library()` to be called at a moments notice. 
+
+[Writing packages](https://r-pkgs.org/)
 
 If your functions might be useful to others, it can be made public (via Github or CRAN), so that others can use it too. 
 

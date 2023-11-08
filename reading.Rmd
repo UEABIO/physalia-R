@@ -13,6 +13,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 * [R for Data Science](https://r4ds.had.co.nz/index.html) - the original book on tidyverse for data science
 
+* [Advanced R](https://adv-r.hadley.nz/)
+
 
 ## Webpages
 
@@ -20,6 +22,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 * [Beautiful Plotting in R](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
 
+* [Shiny Gallery](https://shiny.posit.co/r/gallery/)
 
 
 
