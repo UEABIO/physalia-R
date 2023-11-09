@@ -43,16 +43,15 @@ class: title-slide, left, top
 
 <span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
 
-<span style='color:white;'>Slido.com #2681001</span>  
 
 <div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
+
 ---
 
-layout: true
+class: center, middle, inverse
 
-<div class="my-footer"><span>Philip Leftwich - 5023Y - Slido.com #2681001</span></div>
-
+## Accurate, Beautiful,  Clear
 
 ---
 class: center, middle
@@ -70,19 +69,19 @@ head(mpg)
 ---
 
 ```{r}
-mpg %>% 
-  filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
+mpg |>  
+  filter(year == 2008) |>  
+  group_by(manufacturer) |>  
   summarise(n = n())
 ```
 
 ---
 
 ```{r}
-mpg_sum <- mpg %>% 
-  filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = n()) %>% 
+mpg_sum <- mpg |>  
+  filter(year == 2008) |>  
+  group_by(manufacturer) |>  
+  summarise(n = n()) |>  
   mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE))#<<
 
 levels(mpg_sum$manufacturer)
@@ -91,11 +90,12 @@ levels(mpg_sum$manufacturer)
 
 
 ```{r}
-mpg_sum <- mpg %>% 
-  filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = n()) %>% 
-  mutate(manufacturer = if_else(n < 5, "other", manufacturer)) %>% #<<
+mpg_sum <- mpg |> 
+  filter(year == 2008) |> 
+  mutate(manufacturer = fct_lump_min(as_factor(manufacturer),
+                                     5))|> #<<
+  group_by(manufacturer) |>  
+  summarise(n = n()) |>  
   mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE))
 
 levels(mpg_sum$manufacturer)
@@ -104,28 +104,28 @@ levels(mpg_sum$manufacturer)
 ---
 
 ```{r}
-mpg_sum <- mpg %>% 
-  filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = n()) %>% 
-  mutate(manufacturer = if_else(n < 5, "other", manufacturer)) %>% 
-  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
-  mutate(manufacturer = forcats::fct_relevel(manufacturer, "other", after = Inf))#<<
-
-levels(mpg_sum$manufacturer)
+mpg_sum <- mpg |> 
+  filter(year == 2008) |> 
+  mutate(manufacturer = fct_lump_min(as_factor(manufacturer),
+                                     5))|> 
+  group_by(manufacturer) |>  
+  summarise(n = n()) |>  
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) |> 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = Inf))#<<
 
 ```
 
 ---
 
 ```{r}
-mpg_sum <- mpg %>% 
-  filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = n()) %>% 
-  mutate(manufacturer = if_else(n < 5, "other", manufacturer)) %>% 
-  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
-  mutate(manufacturer = forcats::fct_relevel(manufacturer, "other", after = Inf)) %>% 
+mpg_sum <- mpg |> 
+  filter(year == 2008) |> 
+  mutate(manufacturer = fct_lump_min(as_factor(manufacturer),
+                                     5))|> 
+  group_by(manufacturer) |>  
+  summarise(n = n()) |>  
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) |> 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = Inf)) |> 
   mutate(manufacturer = str_to_title(manufacturer)) #<<
 
 levels(mpg_sum$manufacturer)
@@ -135,17 +135,17 @@ levels(mpg_sum$manufacturer)
 ---
 
 ```{r}
-mpg_sum <- mpg %>% 
-  filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = n()) %>% 
-  mutate(manufacturer = if_else(n < 5, "Other", manufacturer)) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = sum(n)) %>% 
-  mutate(manufacturer = str_to_title(manufacturer)) %>% #<<
-  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
-  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = Inf))
-  
+
+mpg_sum <- mpg |> 
+  filter(year == 2008) |> 
+  mutate(manufacturer = fct_lump_min(as_factor(manufacturer),
+                                     5))|> 
+  group_by(manufacturer) |>  
+  summarise(n = n()) |>  
+  mutate(manufacturer = str_to_title(manufacturer)) |>    #<<
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) |> 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = Inf)) 
+
 
 levels(mpg_sum$manufacturer)
 
@@ -154,16 +154,15 @@ levels(mpg_sum$manufacturer)
 ---
 
 ```{r}
-mpg_sum <- mpg %>% 
- filter(year == 2008) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = n()) %>% 
-  mutate(manufacturer = if_else(n < 5, "Other", manufacturer)) %>% 
-  group_by(manufacturer) %>% 
-  summarise(n = sum(n)) %>% 
-  mutate(manufacturer = str_to_title(manufacturer)) %>%
-  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) %>% 
-  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = 0)) %>% 
+mpg_sum <- mpg |> 
+  filter(year == 2008) |> 
+  mutate(manufacturer = fct_lump_min(as_factor(manufacturer),
+                                     5))|> 
+  group_by(manufacturer) |>  
+  summarise(n = n()) |>  
+  mutate(manufacturer = str_to_title(manufacturer)) |>    #<<
+  mutate(manufacturer = forcats::fct_reorder(manufacturer, n, .desc= FALSE)) |> 
+  mutate(manufacturer = forcats::fct_relevel(manufacturer, "Other", after = Inf)) |>  
   mutate(prob = n/sum(n)) #<<
 
 mpg_sum
@@ -184,7 +183,7 @@ class: center, middle
 
 ```{r, eval = F}
 
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   theme_minimal()
@@ -198,7 +197,7 @@ mpg_sum %>%
 
 ```{r, echo = F}
 
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   theme_minimal()
@@ -211,7 +210,7 @@ mpg_sum %>%
 
 
 ```{r, eval = FALSE}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(label = scales::percent(prob))+ #<<
@@ -229,7 +228,7 @@ Error in number(x = x, accuracy = accuracy, scale = scale, prefix = prefix, : ob
 
 
 ```{r, eval = F}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(aes(label = scales::percent(prob)))+#<<
@@ -241,7 +240,7 @@ mpg_sum %>%
 .right-plot[
 
 ```{r, echo =F}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(aes(label = scales::percent(prob)))+#<<
@@ -254,7 +253,7 @@ mpg_sum %>%
 .left-code[
 
 ```{r, eval = F}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
@@ -267,7 +266,7 @@ mpg_sum %>%
 .right-plot[
 
 ```{r, echo = F}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
@@ -282,7 +281,7 @@ mpg_sum %>%
 .left-code[
 
 ```{r, eval = F}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
@@ -295,7 +294,7 @@ mpg_sum %>%
 .right-plot[
 
 ```{r, echo = F}
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, y = manufacturer))+
   geom_col()+
   geom_text(aes(label = scales::percent(prob)), nudge_x = -2)+#<<
@@ -318,7 +317,7 @@ pal <- c(
   "coral2", "mediumpurple1", "goldenrod1"
   )
   
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, 
              y = manufacturer,
              fill = manufacturer))+#<<
@@ -341,7 +340,7 @@ pal <- c(
   "coral2", "mediumpurple1", "goldenrod1"
   )
   
-mpg_sum %>% 
+mpg_sum |>  
   ggplot(aes(x = n, 
              y = manufacturer,
              fill = manufacturer))+#<<
@@ -360,12 +359,12 @@ mpg_sum %>%
 
 ```{r, eval = F}
   
-mpg_sum %>% 
+mpg_sum |>  
   mutate(palette = case_when(row_number() == 1 ~ "goldenrod1", #<<
                              row_number() == 2 ~ "mediumpurple1", #<<
                              row_number() == 3 ~ "coral2", #<<
                              manufacturer == "Other" ~ "gray85", #<<
-                             TRUE ~ "gray70")) %>% #<<
+                             TRUE ~ "gray70")) |>  #<<
   ggplot(aes(x = n, 
              y = manufacturer,
              fill = manufacturer))+
@@ -383,12 +382,12 @@ mpg_sum %>%
 
 ```{r, echo = F}
   
-mpg_sum %>% 
+mpg_sum |>  
   mutate(palette = case_when(row_number() == 1 ~ "goldenrod1", #<<
                              row_number() == 2 ~ "mediumpurple1", #<<
                              row_number() == 3 ~ "coral2", #<<
                              manufacturer == "Other" ~ "gray85", #<<
-                             TRUE ~ "gray70")) %>% #<<
+                             TRUE ~ "gray70")) |>  #<<
   ggplot(aes(x = n, 
              y = manufacturer,
              fill = manufacturer))+
@@ -405,7 +404,7 @@ mpg_sum %>%
 ---
 
 ```{r, eval = TRUE, echo =FALSE}
-mpg_sum <- mpg_sum %>% 
+mpg_sum <- mpg_sum |>  
   mutate(palette = case_when(row_number() == 1 ~ "goldenrod1", #<<
                              row_number() == 2 ~ "mediumpurple1", #<<
                              row_number() == 3 ~ "coral2", #<<
@@ -417,7 +416,7 @@ mpg_sum <- mpg_sum %>%
 .left-code[
 
 ```{r, eval = F}
-  mpg_sum %>% 
+  mpg_sum |>  
   ggplot(aes(x = n, 
              y = manufacturer,
              fill = manufacturer))+
@@ -442,7 +441,7 @@ mpg_sum <- mpg_sum %>%
 .right-plot[
 
 ```{r, echo = F}
-  mpg_sum %>% 
+  mpg_sum |>  
   ggplot(aes(x = n, 
              y = manufacturer,
              fill = manufacturer))+
@@ -472,7 +471,7 @@ class: center, middle
 ---
 
 ```{r, include = FALSE}
-economics <- economics %>% 
+economics <- economics |>  
   mutate(date = as.character(date))
 
 ```
@@ -483,7 +482,7 @@ head(economics)
 
 
 ```{r}
-economics <- economics %>% 
+economics <- economics |>  
 mutate(date = lubridate::ymd(date))
 economics
 
@@ -494,9 +493,9 @@ economics
 .left-code[
 
 ```{r, eval = F}
-economics %>% 
-  mutate(perc_unemp = unemploy/pop) %>% 
-  filter(date > "2000-01-01") %>% 
+economics |>  
+  mutate(perc_unemp = unemploy/pop) |>  
+  filter(date > "2000-01-01") |>  
   ggplot(aes(x = date,
              y = perc_unemp))+
   geom_line()+
@@ -509,9 +508,9 @@ economics %>%
 .right-plot[
 
 ```{r, echo = F}
-economics %>% 
-  mutate(perc_unemp = unemploy/pop) %>% 
-  filter(date > "2000-01-01") %>% 
+economics |>  
+  mutate(perc_unemp = unemploy/pop) |>  
+  filter(date > "2000-01-01") |>  
   ggplot(aes(x = date,
              y = perc_unemp))+
   geom_line()+
@@ -560,9 +559,9 @@ economics %>%
 .right-plot[
 
 ```{r, echo = F}
-economics %>% 
-  mutate(perc_unemp = unemploy/pop) %>% 
-  filter(date > "2000-01-01") %>% 
+economics |>  
+  mutate(perc_unemp = unemploy/pop) |>  
+  filter(date > "2000-01-01") |>  
   ggplot(aes(x = date,
              y = perc_unemp))+
   scale_y_continuous(labels = scales::percent)+
@@ -588,63 +587,237 @@ economics %>%
   
 
 ```
-
 ]
----
 
+
+---
 class: center, middle, inverse
 
-# Final assignment advice
+# Differences
 
 
 ---
 
-# Organising RMarkdown
 
-````r
-`r ''````{r include = F}
-source("scripts/data_scientist_1.R")
+```{r, include = FALSE}
+
+library(palmerpenguins)
+
+my_pal <- c("darkolivegreen4", "darkorchid3", "goldenrod1")
+```
+
+
+
+
+```{r}
+
+theme_custom <- function(base_size=10, base_family="serif"){
+  
+  theme_void() %+replace%#
+    theme(
+  axis.text.x = element_text(color = "black", face = "bold", size=rel(1.2), 
+                             margin = margin(t = 6)),
+  axis.text.y = element_text(color = "black", size=rel(1.2), hjust = 1, 
+                             margin = margin(r = 6), family = "Roboto Mono"),
+  axis.title.y =  element_text(color = "black", size=rel(1.4), 
+                               angle = 90, family = "Roboto Mono",
+                               margin = margin(r = 15)),
+  axis.line.x = element_line(color = "black", size = 1),
+  panel.grid.major.y = element_line(color = "grey90", size = .6),
+  plot.background = element_rect(fill = "white", color = "white"),
+  plot.margin = margin(rep(20, 4))
+)
+}
 
 ```
-````
-
-````r
-`r ''````{r echo = F, fig.asp = 0.8, fig.width = 7}
-plot_01
-
-```
-````
-
-````r
-`r ''````{r include = F}
-source("scripts/data_scientist_2.R")
-
-```
-````
-
-````r
-`r ''````{r echo = F, fig.asp = 0.8, fig.width = 7}
-plot_02
-
-```
-````
 
 ---
 
-# Tips
+## Boxplot
 
-- Do not work on the same file at the same time (e.g. RMarkdown)
+.left-code[
+```{r, eval = F}
 
-- Have you installed any new packages? Could cause knit failures if someone else doesn't have them! 
+plot <- penguins |> 
+  ggplot(aes(x = species, y = body_mass_g, color = species, fill = species)) +
+  scale_color_manual(values = my_pal, guide = "none") +
+  scale_fill_manual(values = my_pal, guide = "none")+
+  labs(y = "Body mass g")+
+    theme_custom()
 
-- Communicate! Push and Pull frequently
+plot + 
+  geom_boxplot(alpha = 0.4)
 
-- Make sure your scripts and projects are tidy (not loads of unnecessary code/redundant files)
+```
+]
 
-- Indicate when submitting if you wish to be marked independently
+.right-plot[
+
+```{r, echo = F}
+
+plot <- penguins |> 
+  ggplot(aes(x = species, y = body_mass_g, color = species, fill = species)) +
+  scale_color_manual(values = my_pal, guide = "none") +
+  scale_fill_manual(values = my_pal, guide = "none")+
+  labs(y = "Body mass g")+
+    theme_custom()
+
+plot + 
+  geom_boxplot(alpha = 0.4)
+
+```
+]
 
 ---
 
-# Mid-module review
+## Violin plot
 
-[https://forms.gle/SHBz4NL4mfUSQEsm6]
+.left-code[
+
+```{r, eval = FALSE}
+plot + 
+    geom_violin(
+    aes(fill = species), alpha = .8,
+     size = 1.2, bw = 50
+  )
+
+```
+
+]
+
+.right-plot[
+
+```{r, echo = FALSE}
+plot + 
+    geom_violin(
+    aes(fill = species), alpha = .8,
+     size = 1.2, bw = 50
+  )
+
+```
+]
+
+
+---
+
+## Violin plot
+
+.left-code[
+
+```{r, eval = FALSE}
+plot + 
+    geom_violin(
+    aes(fill = species), alpha = .8,
+     size = 1.2, bw = 400
+  )
+
+```
+
+]
+
+.right-plot[
+
+```{r, echo = FALSE}
+plot + 
+    geom_violin(
+    aes(fill = species), alpha = .8,
+     size = 1.2, bw = 400
+  )
+
+```
+
+]
+
+
+---
+
+## Mean, CI and density
+
+.left-code[
+
+```{r, eval = F}
+plot +
+  ggdist::stat_halfeye(
+    aes(fill = species, 
+        fill = after_scale(colorspace::lighten(fill, .8))), 
+    position = position_nudge(x = -.4))
+
+
+```
+]
+
+.right-plot[
+```{r, echo = F}
+plot +
+  ggdist::stat_halfeye(
+    aes(fill = species, 
+        fill = after_scale(colorspace::lighten(fill, .8))), 
+    position = position_nudge(x = -.4))
+
+
+```
+]
+
+
+---
+
+## Box and jitter
+
+.left-code[
+```{r, eval = F}
+plot +
+    geom_boxplot(aes(fill = species, 
+        fill = after_scale(colorspace::lighten(fill, .9))),
+        width = .5,
+        outlier.shape = NA)+
+  geom_jitter(width =.2,
+              shape = 21,
+              colour = "black")
+```
+]
+
+.right-plot[
+```{r, echo = F}
+plot +
+    geom_boxplot(aes(fill = species, 
+        fill = after_scale(colorspace::lighten(fill, .9))),
+        width = .5,
+        outlier.shape = NA)+
+  geom_jitter(width =.2,
+              shape = 21,
+              colour = "black")
+```
+]
+
+---
+
+## Violin and beeswarm
+
+.left-code[
+```{r, eval = F}
+plot +
+    geom_violin(
+    aes(fill = species), alpha = .2,
+     size = 1.2, bw = 50
+  )+
+  ggbeeswarm::geom_beeswarm(shape = 21,
+                            colour = "white")
+
+```
+]
+
+.right-plot[
+```{r, echo = F}
+plot +
+    geom_violin(
+    aes(fill = species), alpha = .2,
+     size = 1.2, bw = 50
+  )+
+  ggbeeswarm::geom_beeswarm(shape = 21,
+                            colour = "white")
+
+```
+
+]
+
+

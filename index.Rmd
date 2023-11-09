@@ -24,3 +24,11 @@ All lecture materials will be available here.
     - [Slides](slides/tidy-functions.html)
 
     - [Practical work](https://ueabio.github.io/physalia-R-course-2023/reading-files-with-readr.html)  
+
+- 04: Plotting in R
+
+    - [Slides01](slides/ggplot.html)
+    
+    - [Slides02](slides/Great_data_viz.html)
+
+    - [Practical work](https://ueabio.github.io/physalia-R-course-2023/customisation-with-ggplot2.html)  

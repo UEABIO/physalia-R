@@ -42,11 +42,7 @@ class: title-slide, left, top
 
 <div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
----
 
-layout: true
-
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #4042823</span></div>
 
 
 ---
@@ -817,83 +813,6 @@ ggplot(penguins,
   theme_classic()+
   theme(legend.position = "none")+
   facet_wrap(~species)#<<
-
-
-```
-]
-
-
----
-
-## Facets
-
-
-.right-plot[
-```{r, echo = FALSE}
-
-peng_summary <- penguins %>% 
-  group_by(species) %>% 
-  summarise(mean = mean(body_mass_g, na.rm = T),
-            sd = sd(body_mass_g, na.rm = T))
-
-range_body_mass <- range(penguins$body_mass_g, na.rm = T)
-
-computed <- peng_summary %>% 
-  mutate(x = list(
-    seq(range_body_mass[1], range_body_mass[2], 1)
-  ),
-  y = pmap(
-    list(x = x, mean = mean,
-         sd = sd),
-    ~{
-      l <- list(...)
-      dnorm(l$x, mean = l$mean, sd =l$sd)
-    }
-  )) %>% 
-  select(species, x, y) %>% 
-  unnest(cols = c(x,y))
-
-ggplot(penguins,
-       aes(x = body_mass_g,
-           fill = species))+
-        geom_density(#<<
-       alpha = 0.4)+#<<
-  labs(y = "Density")+
-  scale_fill_manual(
-    values = c("darkolivegreen4", 
-               "darkorchid3", 
-               "goldenrod1"))+
-  geom_line(
-    data = computed,
-    aes(x = x,
-        y = y),
-        linetype = 2)+
-  theme_classic()+
-  theme(legend.position = "none")+
-  facet_wrap(~species)#<<
-  
-
-```
-
-
-]
-
-.left-code[
-```{r, eval = FALSE}
-
-ggplot(penguins,
-       aes(x = body_mass_g,
-           fill = species))+
-        geom_density(
-       alpha = 0.4)+
-  labs(y = "Density")+
-  scale_fill_manual(
-    values = c("darkolivegreen4", 
-               "darkorchid3", 
-               "goldenrod1"))+
-  theme_classic()+
-  theme(legend.position = "none")+
-  facet_wrap(~species)
 
 
 ```
