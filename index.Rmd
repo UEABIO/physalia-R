@@ -32,3 +32,13 @@ All lecture materials will be available here.
     - [Slides02](slides/Great_data_viz.html)
 
     - [Practical work](https://ueabio.github.io/physalia-R-course-2023/customisation-with-ggplot2.html)  
+
+
+- 05: Shiny
+  - [Slides](slides/Shiny.html)
+
+- 06: Reproducible Reports
+  - [Slides](slides/Reproducible_reports_06.html)
+
+- 07: Git and Github
+  - [Slides](slides/Github.html)

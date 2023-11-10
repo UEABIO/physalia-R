@@ -40,13 +40,6 @@ class: title-slide, left, top
 
 <div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
 
----
-
-layout: true
-
-<div class="my-footer"><span>Philip Leftwich - 5023Y Courses Slido.com #3565088</span></div>
-
-
 
 ---
 class: center, middle
@@ -60,13 +53,27 @@ class: center, middle
 
 # Open Science
 
+.pull-left[
 * A survey in 2015 estimated the % of published papers in STEM subjects that included accompanying raw data
-
---
 
 * Only 13% of research articles included raw data
 
-.footnote[[Refs] 10.1371/journal.pone.0143460]
+
+.footnote[[Womack 2015](10.1371/journal.pone.0143460)]
+
+]
+--
+
+.pull-right[
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("images/data-share.png")
+```
+.footnote[[Puljak et al 2022](https://www.nature.com/articles/d41586-022-01692-1)]
+
+]
+
+
 
 
 ---
@@ -133,23 +140,29 @@ knitr::include_graphics("images/remotes.png")
 
 ---
 
-# Worked example
+class: center, middle
 
-I will:
-
-1) fork a copy of an existing repository
-
-2) Clone this to RStudio Cloud
-
-3) Make a change to a file
-
-4) **Stage, commit and push** changes back to Github
-
-5) Check my repo is updated
-
-
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/git_pane-1.png")
+```
 
 ---
+
+class: center, middle
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/changes-git.png")
+```
+
+---
+class: center, middle
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/git.png")
+```
+
+---
+
 
 # Tips when working with Github
 
@@ -159,7 +172,9 @@ I will:
 
 **Stage/commit:** Stage changes, then Commit (with a useful, descriptive message to remind you what is changed in that version) to store that version
 
-**Push:** Send the committed changes back to GitHub
+**Push:** Send committed changes to GitHub
+
+**Pull** Retrieve changes made in Github to your local machine
 
 
 ---
@@ -170,11 +185,23 @@ I will:
 
 - Fill out your profile page
 
-- When assignments are completed, fork them to your page.
-
-- Make sure projects are well organised with clear descriptions
+- Make sure projects are well organised with clear descriptions in a README
 
 - Follow other data scientists, star useful/favourite projects, fork projects to work on them (even if not planning to actively submit pull requests)
+
+---
+class: center, middle
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/git-profile.png")
+```
+
+---
+class: center, middle
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/git-repository.png")
+```
 
 ---
 

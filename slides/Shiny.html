@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>GitHub</title>
+    <title>Shiny</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
     <meta name="date" content="2023-11-10" />
@@ -19,9 +19,9 @@
 
 class: title-slide, left, top
 
-# GitHub
+# Shiny
 
-## Project sharing and version control
+## 
 
 ### Philip Leftwich
 
@@ -31,162 +31,110 @@ class: title-slide, left, top
 
 &lt;span style='color:white;'&gt;Slides released under&lt;/span&gt; [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&amp;nbsp;&amp;nbsp;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"/></svg><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M314.9 194.4v101.4h-28.3v120.5h-77.1V295.9h-28.3V194.4c0-4.4 1.6-8.2 4.6-11.3 3.1-3.1 6.9-4.7 11.3-4.7H299c4.1 0 7.8 1.6 11.1 4.7 3.1 3.2 4.8 6.9 4.8 11.3zm-101.5-63.7c0-23.3 11.5-35 34.5-35s34.5 11.7 34.5 35c0 23-11.5 34.5-34.5 34.5s-34.5-11.5-34.5-34.5zM247.6 8C389.4 8 496 118.1 496 256c0 147.1-118.5 248-248.4 248C113.6 504 0 394.5 0 256 0 123.1 104.7 8 247.6 8zm.8 44.7C130.2 52.7 44.7 150.6 44.7 256c0 109.8 91.2 202.8 203.7 202.8 103.2 0 202.8-81.1 202.8-202.8.1-113.8-90.2-203.3-202.8-203.3z"/></svg> ]   
 
-&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/physalia.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
 
 
 ---
-class: center, middle
+class: center, middle inverse
 
-# Git and Github
-
-## Tools for sharing analyses and version control
+# Introduction to Shiny
 
 
 ---
 
-# Open Science
+## What is Shiny?
 
-.pull-left[
-* A survey in 2015 estimated the % of published papers in STEM subjects that included accompanying raw data
+- An R package that allows you to create interactive GUIs in R
 
-* Only 13% of research articles included raw data
-
-
-.footnote[[Womack 2015](10.1371/journal.pone.0143460)]
-
-]
 --
 
-.pull-right[
+- Highly customisable
 
-&lt;img src="images/data-share.png" width="100%" /&gt;
-.footnote[[Puljak et al 2022](https://www.nature.com/articles/d41586-022-01692-1)]
+--
 
-]
+- Uses: 
+    - Scientific tools
+    - Presenting results
+    - Collecting data
+    - Teaching
+--
+
+https://shiny.posit.co/r/gallery/
+    
+---
 
 
-
+&lt;img src="images/shiny k-means.png" width="100%" /&gt;
 
 ---
 
-# Version control
+
+&lt;img src="images/shiny-g-chart.png" width="100%" /&gt;
+---
+
+
+&lt;img src="images/shiny-ld.png" width="100%" /&gt;
+
+---
+
+## How does shiny work
 
 .pull-left[
 
-If you use Office 365 or Google Docs, you may already be using version control
+**UI**
 
-It is a more efficient, cleaner and safer way of keeping track of file development
+- Runs once
 
-]
+- Specifies user interface
 
-.pull-right[
+- Defined as an object
 
-&lt;img src="images/final_final.png" width="80%" /&gt;
-]
-
-
----
-
-## It is always a good idea to safely save and share your analysis changes in incremental steps
-
-- If you (or a collaborator) make updates that break your code, you can always revert back to the last working version
-
-- It is stored safely as a back-up off your computer
-
-- A great collaboration tool, what changes made and when
-
-
----
-
-# GitHub
-
-* Git a free and open-source version control system
-
-* GitHub a hosting system for Git that we can easily interact with using R and RStudio
-
-* Set up a connection and your RStudio project can be Pushed to a repository on GitHub
-
-* Fully collaborative, open, reproducible analyses
-
-* Can be *archived* when ready to publish with a doi
-
----
-
-.pull-left[
-
-Need to set up a connection between RStudio and Github account so that they talk to each other. 
-
-As part of the next workshop you will connect Github and RStudio
+- Stable
 
 ]
 
 .pull-right[
 
-&lt;img src="images/remotes.png" width="100%" /&gt;
+**server**
+
+- Runs continually
+
+- Specifies logic
+
+- Defined as functions
+
+- Changes in response to input
+
 ]
 
----
-
-class: center, middle
-
-&lt;img src="images/git_pane-1.png" width="80%" /&gt;
-
----
-
-class: center, middle
-
-&lt;img src="images/changes-git.png" width="80%" /&gt;
-
----
-class: center, middle
-
-&lt;img src="images/git.png" width="80%" /&gt;
 
 ---
 
 
-# Tips when working with Github
-
-**Fork:** Make your own copy of someone else’s repo in GitHub. If you fork someone’s repo, that means you can’t mess with their code (which would require them adding you as a collaborator to do directly, so don’t worry...you won’t destroy the tidyverse no matter how hard you try)
-
-**Clone:** Download an existing repo to your local machine so you can work with it in RStudio
-
-**Stage/commit:** Stage changes, then Commit (with a useful, descriptive message to remind you what is changed in that version) to store that version
-
-**Push:** Send committed changes to GitHub
-
-**Pull** Retrieve changes made in Github to your local machine
-
+&lt;img src="images/of-ui.png" width="80%" /&gt;
 
 ---
 
-# Tips for getting the most out of Github
-
-- Github is public, and an opportunity to build a portfolio of data science projects
-
-- Fill out your profile page
-
-- Make sure projects are well organised with clear descriptions in a README
-
-- Follow other data scientists, star useful/favourite projects, fork projects to work on them (even if not planning to actively submit pull requests)
-
+&lt;img src="images/server-code.png" width="80%" /&gt;
 ---
-class: center, middle
 
-&lt;img src="images/git-profile.png" width="80%" /&gt;
 
----
-class: center, middle
 
-&lt;img src="images/git-repository.png" width="80%" /&gt;
+&lt;img src="images/server-run.png" width="80%" /&gt;
 
 ---
 
-class: center, middle, inverse 
+## Sharing
 
-## Keep learning
+**Run locally**
 
-[Happy Git and GitHub for the useR](https://happygitwithr.com/)
+- Your app can be run locally - the code to produce it can be shared to other R users
+
+**Deploy**
+
+- Your app can be hosted on a web server. 
+
+- Shinyapps.io provides an integrated platform to deploy apps - with limited free runtime
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

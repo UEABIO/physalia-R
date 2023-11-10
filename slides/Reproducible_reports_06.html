@@ -4,7 +4,7 @@
     <title>Reproducible Reports</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2022-10-29" />
+    <meta name="date" content="2023-11-10" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -33,11 +33,7 @@ class: title-slide, left, top
 
 &lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
 
----
 
-layout: true
-
-&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - 5023Y Courses Slido.com #3598190&lt;/span&gt;&lt;/div&gt;
 
 
 
@@ -55,7 +51,7 @@ class: center, middle
 
 ## Workflow so far
 
-&lt;img src="images/organisation_R.png" title="Workflow so far" alt="Workflow so far" width="90%" /&gt;
+&lt;img src="images/organisation_R.png" alt="Workflow so far" width="90%" /&gt;
 
 ---
 
@@ -77,7 +73,7 @@ class: center, middle
 
 **Reproducibility** has the potential to serve as a minimum standard for judging scientific claims when full independent replication of a study is not possible.
 
-&lt;img src="images/repro-spectrum.jpg" title="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" alt="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" width="90%" /&gt;
+&lt;img src="images/repro-spectrum.jpg" alt="Reproducible Research in Computational Science ROGER D. PENG, SCIENCE 02 DEC 2011 : 1226-1227" width="90%" /&gt;
 
 ---
 
@@ -201,7 +197,7 @@ class: center
 
 ## [Visual editor in RStudio](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/)
 
-&lt;img src="images/visual-editor.png" title="RStudio visual editor view" alt="RStudio visual editor view" width="70%" /&gt;
+&lt;img src="images/visual-editor.png" alt="RStudio visual editor view" width="70%" /&gt;
 
 ✅ Easy insertion and compilation of citations
 
@@ -348,13 +344,13 @@ Enables a two-way R Markdown-Microsoft Word workflow. It generates Word document
 
 * Produces an html "snapshot" of the file everytime it is saved
 
-&lt;img src="images/notebook.png" title="R notebooks snapshot" alt="R notebooks snapshot" width="50%" /&gt;
+&lt;img src="images/notebook.png" alt="R notebooks snapshot" width="50%" /&gt;
 
 ---
 
 ## Presentations
 
-&lt;img src="images/xaringan.png" title="xaringan logo" alt="xaringan logo" width="20%" /&gt;
+&lt;img src="images/xaringan.png" alt="xaringan logo" width="20%" /&gt;
 
 A number of existing frameworks:
 
@@ -421,6 +417,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
