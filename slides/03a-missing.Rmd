@@ -1,0 +1,164 @@
+---
+title: "Missing values"
+subtitle: "A Physalia Course"
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(palmerpenguins)
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - Advancing in R</span></div>
+
+
+---
+
+class: center, inverse, middle
+
+# Understanding Missing Data
+
+---
+
+# Types of Missingness in Data
+
+## 1. Missing Completely at Random (MCAR)
+
+- **Definition:** Missing values occur independently of both observed and unobserved data. 
+- **Example:** A survey participant accidentally skips a question.
+- **Bias Impact:** If data are MCAR, analysis remains unbiased, but the loss of data reduces statistical power.
+
+---
+
+## 2. Missing at Random (MAR)
+
+- **Definition:** Missing values are related to observed data but not to the missing data itself.
+- **Example:** Younger participants in a health study are less likely to report their income.
+- **Bias Impact:** Leads to biased results if not handled properly, as missingness is related to other observed variables.
+
+---
+
+## 3. Missing Not at Random (MNAR)
+
+- **Definition:** Missing values depend on unobserved data; the reason for missingness is related to the missing data itself.
+- **Example:** Participants with higher incomes choose not to disclose their income.
+- **Bias Impact:** Causes significant bias in analysis because missingness is related to the missing values themselves.
+
+---
+
+# How Missing Data Can Bias Analysis
+
+### Key Points
+
+- **MCAR**: Least problematic, reduces data size but not bias.
+- **MAR**: Can cause bias if ignored; must be adjusted using observed data.
+- **MNAR**: Most challenging, requires modeling the missingness mechanism.
+
+### Discussion Questions
+
+- Have you encountered missing data in your work?
+- How did you handle it? Were you aware of the missingness mechanism?
+
+---
+
+# Introducing `naniar`
+
+## What is `naniar`?
+
+- An R package that provides tools to explore, visualize, and handle missing data.
+- Helps to identify missingness patterns, making it easier to understand and address missing data.
+
+### Key Functions:
+
+- **`vis_miss()`**: Visualize missing data in a dataset.
+- **`gg_miss_var()`**: Plot the amount of missing data in each variable.
+
+---
+
+```{r}
+library(naniar)
+# Visualizing missing data in a dataset
+vis_miss(airquality)
+```
+
+### Discussion
+
+- How do these visualizations help in understanding missing data in your dataset?
+
+---
+
+# Introducing `mice`
+
+## What is `mice`?
+
+- An R package for Multiple Imputation by Chained Equations (MICE), which fills in missing data through iterative modeling.
+- Allows for robust handling of missing data, particularly useful for MAR.
+
+### Key Functions:
+
+- **`mice()`**: Impute missing data using multiple iterations.
+- **`complete()`**: Extract the completed dataset after imputation.
+
+---
+
+```{r}
+library(mice)
+# Imputing missing data in airquality dataset
+imp <- mice(airquality, m=5, maxit=50, meth='pmm', seed=500)
+completed_data <- complete(imp, 1)
+head(completed_data)
+```
+
+### Discussion
+
+- What challenges might arise when imputing missing data?
+- How confident are you in the imputed values? What would you consider to assess their validity?
+
+---
+
+class: center, middle, inverse
+
+# Discussion: Handling Missing Data in Your Research
+
+### Points to Consider
+
+- What type of missing data have you encountered in your datasets?
+- Which methods do you currently use to handle missing data?
+- How can using tools like `naniar` and `mice` improve your approach to missing data?

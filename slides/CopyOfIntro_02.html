@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to R Workshop</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Philip Leftwich" />
+    <meta name="date" content="2024-09-15" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: center, middle, inverse
+
+# Welcome! 
+
+---
+
+# Introductions
+
+.pull-left[
+
+&lt;img src="images/Me.jpg" alt="Philip Leftwich" width="50%" /&gt;
+
+* Associate Professor 
+
+* Genetics &amp; Data Science 
+
+* University of East Anglia
+
+]
+
+.pull-right[
+
+&lt;img src="images/UEA1.png" alt="University of East Anglia and Norwich" width="50%" /&gt;&lt;img src="images/800px-Norwichcollage2019.png" alt="University of East Anglia and Norwich" width="50%" /&gt;
+
+]
+---
+
+class: center, middle, inverse
+
+# Introduce Yourselves
+
+---
+
+class: left, middle
+
+## Outline of the course
+
+
+
+Over the next four days we are going to cover: 
+
+.pull-left[
+
+- Intro to R and R basics
+  
+- Organizing workflows
+  
+- Learning tidyverse
+  
+- Writing functions
+
+]
+
+.pull-right[
+
+- Learning iterations
+  
+- Getting the most out of tidyverse and functional programming
+  
+- Data presentation with ggplot and gt tables
+  
+- Shiny dashboards
+  
+- RMarkdown and GitHub
+
+]
+
+
+---
+
+class: left, middle
+
+## What to expect during this workshop
+
+- These workshops will run for *6 hours* each.
+- We will have a 40 min break halfway through and some shorter breaks.
+- Take breaks when you need to!
+
+- Combines slides, live coding examples, and exercises for you to participate in.
+- Ask questions in the chat throughout!
+
+---
+
+class: left, middle
+
+.pull-left[
+
+I hope you end up with more questions than answers after this workshop!
+
+]
+
+.pull-right[
+
+![](images/great-question.gif)
+
+&lt;small&gt;Source: &lt;a href="https://giphy.com/gifs/schittscreek-64afibPa7ySzhFAf00"&gt;giphy.com&lt;/a&gt;&lt;/small&gt;
+
+]
+
+---
+
+class: left, middle
+
+## Workshop Resources
+
+
+- Coursebook available [here](https://ueabio.github.io/physalia-R-course-2023/)
+
+
+---
+
+class: center, middle, inverse
+
+# An Introduction to R
+
+---
+
+class: left, middle
+
+## What is R?
+
+- R is a full programming language
+- R is a calculator
+- R simulates &amp; generates data
+- R reads, processes, and manipulates data
+- R analyses data
+- R makes plots, graphics, reports, and presentations
+
+---
+
+class: left, middle
+
+## Why use R?
+
+- Specialized in data analysis and statistical computing
+- Large repository of packages (CRAN)
+- Active community and extensive documentation
+- Excellent for reproducible research 
+
+---
+
+class: left, middle
+
+## Basic R Syntax
+
+
+```r
+5 + 10
+```
+
+```
+## [1] 15
+```
+
+
+```r
+x &lt;- 5 + 10
+x
+```
+
+```
+## [1] 15
+```
+
+```r
+y &lt;- 20
+```
+
+---
+
+class: left, middle
+
+## Basic operations
+
+
+```r
+sum &lt;- x + y
+diff &lt;- x - y
+prod &lt;- x * y
+quot &lt;- x / y
+```
+
+---
+
+class: left, middle
+
+## Data types
+
+
+```r
+x
+```
+
+```
+## [1] 15
+```
+
+```r
+y &lt;- "apple"
+z &lt;- TRUE
+str(x)
+```
+
+```
+##  num 15
+```
+
+```r
+str(y)
+```
+
+```
+##  chr "apple"
+```
+
+```r
+str(z)
+```
+
+```
+##  logi TRUE
+```
+
+---
+
+class: left, middle
+
+## Data Structures
+
+### Vectors
+
+
+```r
+vec &lt;- c(1, 2, 3, 4, 5)
+vec
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+### Data Frames
+
+
+```r
+df &lt;- data.frame(name=c("Alice", "Bob"), age=c(25, 30))
+df
+```
+
+```
+##    name age
+## 1 Alice  25
+## 2   Bob  30
+```
+
+### Lists
+
+
+```r
+lst &lt;- list(name="Alice", age=25, scores=c(90, 85, 88))
+lst
+```
+
+```
+## $name
+## [1] "Alice"
+## 
+## $age
+## [1] 25
+## 
+## $scores
+## [1] 90 85 88
+```
+
+---
+
+class: left, middle
+
+## Accessing data structures
+
+
+```r
+df
+```
+
+```
+##    name age
+## 1 Alice  25
+## 2   Bob  30
+```
+
+
+```r
+df$name
+```
+
+```
+## [1] "Alice" "Bob"
+```
+
+
+```r
+df[1,]
+```
+
+```
+##    name age
+## 1 Alice  25
+```
+
+```r
+df[,1]
+```
+
+```
+## [1] "Alice" "Bob"
+```
+
+---
+
+class: left, middle
+
+## R terms
+
+&lt;img src="images/terms.png" width="70%" /&gt;
+
+
+---
+
+class: left, middle
+
+## Functions
+
+Functions are bits of code that complete specific tasks
+
+```
+select(.data, columns)
+```
+
+
+```r
+dplyr::select(.data = df, name)
+```
+
+```
+##    name
+## 1 Alice
+## 2   Bob
+```
+
+
+```r
+dplyr::select(df, name)
+```
+
+```
+##    name
+## 1 Alice
+## 2   Bob
+```
+
+---
+
+class: left, middle
+
+## Pipes
+
+Pipes let us string multiple functions together by passing the output from one line of code into the next line
+
+
+```r
+df %&gt;% 
+dplyr::select(name) %&gt;% 
+  dplyr::arrange(dplyr::desc(name))
+```
+
+```
+##    name
+## 1   Bob
+## 2 Alice
+```
+
+---
+
+class: center, middle, inverse
+
+# What is RStudio/Posit?
+
+---
+
+class: center, middle
+
+&lt;img src="images/engine.png" width="70%" /&gt;
+
+---
+
+class: center, middle
+
+## What is RStudio/Posit
+
+&lt;img src="images/environment.jpg" width="70%" /&gt;
+
+---
+
+class: left, middle
+
+## Navigating RStudio
+
+### Layout:
+- Source Pane: Writing and editing scripts
+- Console Pane: Executing R commands
+- Environment/History Pane: Viewing and managing variables and command history
+- Files/Plots/Packages/Help Pane: Managing files, viewing plots, accessing packages, and getting help
+
+---
+
+class: left, middle
+
+## Scripts
+
+- Scripts: Write reusable code in .R files
+
+
+```r
+# This is a comment
+print("Hello, R!")
+```
+
+```
+## [1] "Hello, R!"
+```
+
+- Run code by executing lines or selections
+- Automate running scripts
+
+---
+
+class: left, middle
+
+## Using Packages
+
+R packages are collections of code and data that extend or improve functionality
+
+
+```r
+install.packages("ggplot2")
+```
+
+Once installed, packages must be loaded into the working environment to function
+
+
+```r
+library(ggplot2)
+```
+
+
+```r
+ggplot(data, aes(x=variable1, y=variable2)) + geom_point()
+```
+
+---
+
+## Installing Packages
+
+Installing Packages in R
+
+- From CRAN
+The most common way to install packages in R is from CRAN (Comprehensive R Archive Network):
+
+
+```r
+install.packages("ggplot2")
+```
+
+- From GitHub using devtools
+For packages hosted on GitHub, you can use the devtools package:
+
+
+```r
+devtools::install_github("hadley/ggplot2")
+```
+
+
+- From Bioconductor
+For specialized packages in bioinformatics, use Bioconductor:
+
+
+```r
+# Use BiocManager to install packages
+BiocManager::install("GenomicFeatures")
+```
+
+
+---
+
+class: left, middle
+
+## R is for Open Reproducible Research
+
+.pull-left[
+* Reproducible
+* Robust
+* Transparent
+* Reusable
+* Shareable research materials
+]
+
+.pull-right[
+
+&lt;img src="images/reproducible-data-analysis-02.png" alt="Is data and stats reporting enough?" width="100%" /&gt;
+
+]
+
+---
+
+class: left, middle
+
+## Main features of R
+
+- Comprehensive Packages: Thousands of packages available through CRAN, Bioconductor, and GitHub to extend R’s capabilities.
+- Data Manipulation: Powerful libraries like `dplyr` and `tidyr` for data wrangling.
+- Statistical Analysis: Built-in functions for a wide range of statistical tests and models.
+- Visualization: Excellent plotting libraries such as `ggplot2` for creating stunning visualizations.
+
+---
+
+class: left, middle
+
+## Main Features of RStudio
+
+- User-Friendly Interface: Four-pane layout (script, console, environment, files) for easy navigation.
+- Integrated Package Management: Simplifies the installation and management of R packages.
+- Version Control: Built-in support for Git to manage code versions and collaboration.
+- Projects: Organize workspaces efficiently using RStudio Projects.
+
+---
+
+class: left, middle
+
+## RStudio Projects?
+
+.pull-left[
+- Organization: Keeps related files (scripts, data, outputs) in one place.
+- Reproducibility: Facilitates reproducible research by maintaining a consistent environment.
+- Isolation: Projects can have their own libraries and settings, reducing conflicts between different projects.
+]
+
+.pull-right[
+
+&lt;img src="images/Project.png" alt="R project organisation" width="80%" /&gt;
+
+]
+
+---
+
+class: left, middle
+
+## Creating a Project in RStudio
+
+- Start a New Project: Go to File &gt; New Project.
+- Choose a Type: Select whether to create a new directory, use an existing one, or version control.
+- Maintain Structure: Follow a structured directory format (e.g., /data, /scripts, /results).
+- Within Project options - turn off options to save history and generate/import .RData files
+
+---
+
+class: center, middle
+
+## Workflow
+
+&lt;img src="images/annotated.png" alt="Allison Horst" width="60%" /&gt;
+
+---
+
+class: center, middle, inverse
+
+# Questions? 
+
+---
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "dracula",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+---
+title: "Mastering Reproducibility"
+subtitle: "A Physalia Course"
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(palmerpenguins)
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - Advancing in R</span></div>
+
+
+---
+---
+
+class: center, inverse, middle
+
+# Introduction to `renv`
+
+---
+
+# Discussion Questions:
+
+- What does reproducibility mean to you in the context of your research?
+
+- How do you ensure that your work is reproducible?
+
+- Have you ever encountered issues with reproducibility in your projects?
+
+---
+
+# What is `renv`?
+
+`renv` is an R package that helps manage project-specific R libraries and environments. It allows you to capture and restore the state of your R project, ensuring reproducibility across different systems and over time.
+
+### Key Features:
+
+- **Environment Isolation:** Keeps your project dependencies isolated from other projects.
+- **Reproducibility:** Allows you to share your project with others while ensuring they use the same package versions.
+- **Version Control for Packages:** Makes it easy to revert to earlier versions of packages if needed.
+
+---
+
+# Why is `renv` Important?
+
+Managing package versions is crucial for reproducible research. Without `renv`, the R environment on your system may change as packages update, potentially breaking your code or changing your results.
+
+### Benefits:
+
+- **Reproducible Results:** Ensures that others can reproduce your analysis with the exact same package versions.
+- **Simplifies Collaboration:** Team members can easily set up the same environment with a single command.
+- **Version Stability:** Avoids conflicts that arise from package updates.
+
+---
+
+# Setting Up `renv` in Your Project
+
+### Step 1: Initialize `renv`
+
+Initialize `renv` in your project directory. This creates a project-specific library for package dependencies.
+
+```r
+# Initialize renv in your project
+renv::init()
+```
+
+- This will create a new `renv` environment, initializing it with the packages currently installed in your default R environment.
+
+### Step 2: Install Packages
+
+Install any necessary packages using `renv` to ensure they are tracked within your project.
+
+```r
+# Install a package within the renv environment
+renv::install("dplyr")
+```
+
+---
+
+# Snapshotting the Project State
+
+Once you have installed your packages, you can snapshot the project state. This records the current versions of your packages in a `renv.lock` file.
+
+### Snapshot the Environment
+
+```r
+# Snapshot the current state of the project's library
+renv::snapshot()
+```
+
+- This captures the versions of all installed packages, making it easy to restore later.
+
+---
+
+# Restoring Project Dependencies
+
+To recreate the exact environment on another system or at a later time, you can restore the project from the `renv.lock` file.
+
+### Restore the Environment
+
+```r
+# Restore the environment from the renv.lock file
+renv::restore()
+```
+
+- This installs the exact package versions recorded in the `renv.lock` file.
+
+---
+
+# Using `renv` with Git
+
+### Committing `renv` Files
+
+- **Include:** The `renv.lock` file and the `renv/` folder in your version control (e.g., Git).
+- **Exclude:** The `renv/library/` folder, which contains the actual package binaries (use `.gitignore`).
+
+### Why?
+
+- Including the lock file ensures that anyone cloning your project can restore the same environment.
+- Excluding the library folder keeps your repository clean and avoids unnecessary large files.
+
+---
+
+# Practical Tips for Using `renv`
+
+1. **Regularly Snapshot:** After installing or updating packages, snapshot the environment to keep the `renv.lock` file up to date.
+2. **Use `renv` with RMarkdown and Shiny:** Ensures that reports and apps run with the exact package versions used during development.
+3. **Check Dependencies:** Use `renv::dependencies()` to find all package dependencies in your code, ensuring nothing is missed.
+
+---
+
+class: center, middle, inverse
+
+# Questions?

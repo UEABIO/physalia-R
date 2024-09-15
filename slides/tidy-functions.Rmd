@@ -26,6 +26,7 @@ library(gtExtras)
 library(rstatix)
 library(palmerpenguins)
 library(gt)
+library(countdown)
 
 ```
 
@@ -858,7 +859,9 @@ class:center, middle, inverse
 ## Solving our issue
 
 ---
-
+```{r, echo = FALSE}
+countdown(minutes = 0, seconds = 13, top = 0)
+```
 .left-code[
 .tiny[
 

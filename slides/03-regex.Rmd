@@ -1,0 +1,317 @@
+---
+title: "Mastering Strings"
+subtitle: "A Physalia Course"
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(palmerpenguins)
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - Advancing in R</span></div>
+
+
+---
+
+class: center, inverse, middle
+
+# Introduction to Regular Expressions
+
+---
+
+# What are Regular Expressions?
+
+Regular Expressions (regex) are sequences of characters that define search patterns, primarily for use in pattern matching with strings.
+
+**Key Uses of Regex:**
+
+- **Search and Replace:** Find specific patterns and replace them, such as fixing data entry errors.
+- **Validation:** Check if data conforms to expected formats, like email addresses or genetic sequences.
+- **Text Manipulation:** Extract, replace, or clean data from large datasets efficiently.
+
+**Why are Regex Important?**
+
+- Regex provides powerful tools to handle textual data, which is crucial in data cleaning, preprocessing, and analysis.
+- They are essential for biologists who work with DNA sequences, species names, or other large datasets that require systematic text manipulation.
+
+---
+
+# Basic Components of Regular Expressions
+
+## Literal Characters
+
+- Characters that match themselves.
+  
+  **Example:** The regex `adelie` matches the exact string "adelie".
+
+## Special Characters
+
+Special characters have specific functions in regex patterns:
+
+- **`.`**: Matches any character except a newline.
+- **`^`**: Matches the start of a string.
+- **`$`**: Matches the end of a string.
+- **`\`**: Escapes special characters to match them literally.
+
+### Example:
+
+To find penguin species that start with "A":
+
+```{r}
+species <- c("Adelie", "Chinstrap", "Gentoo")
+pattern <- "^A"
+
+str_detect(species, pattern)
+# Returns TRUE for "Adelie" because it starts with 'A'
+```
+
+---
+
+# Stringr functions
+
+1. `str_detect()`
+Description: Checks if a pattern exists in a string. Returns a logical vector (TRUE or FALSE).
+Usage: str_detect(string, pattern)
+
+2. `str_subset()`
+Description: Returns the elements of a character vector that match a pattern.
+Usage: str_subset(string, pattern)
+
+3. `str_extract()`
+Description: Extracts the first occurrence of a pattern from each string.
+Usage: str_extract(string, pattern)
+
+4. `str_replace()`
+Description: Replaces the first occurrence of a pattern in each string with a replacement.
+Usage: str_replace(string, pattern, replacement)
+
+
+---
+
+# Quantifiers
+
+Quantifiers specify how many instances of a character, group, or character class must be present in the input for a match:
+
+- **`*`**: Matches 0 or more times.
+- **`+`**: Matches 1 or more times.
+- **`?`**: Matches 0 or 1 time.
+- **`{n}`**: Matches exactly n times.
+- **`{n,}`**: Matches n or more times.
+- **`{n,m}`**: Matches between n and m times.
+
+### Example:
+
+Identify rows in the penguins dataset where the species name has multiple "e"s:
+
+```{r}
+penguins <- penguins %>% drop_na(species)
+str_subset(penguins$species, "e+") |> unique()
+# Returns TRUE for species names with one or more 'e's
+```
+
+---
+
+# Character Sets and Ranges
+
+Character sets and ranges allow for flexible pattern matching:
+
+- **`[abc]`**: Matches any one of the characters a, b, or c.
+- **`[a-z]`**: Matches any lowercase letter.
+- **`[A-Z]`**: Matches any uppercase letter.
+- **`[0-9]`**: Matches any digit.
+
+### Example:
+
+Find species names containing the letters "A", "C", or "G":
+
+```{r}
+pattern <- "[ACG]"
+str_subset(penguins$species, pattern) |> 
+  unique()
+# Matches species names containing 'A', 'C', or 'G'
+```
+
+---
+
+# Anchors and Boundaries
+
+Anchors specify positions in the text where a match must occur:
+
+- **`^`**: Start of the string.
+- **`$`**: End of the string.
+- **`\\b`**: Word boundary, useful for finding whole words.
+
+### Example:
+
+Match species that end with "o":
+
+```{r}
+str_subset(penguins$species, "o$") |> 
+  unique()
+# Matches species names that end with 'o'
+```
+
+---
+
+# Grouping and Alternation
+
+Grouping allows parts of a regex to be treated as a single unit, while alternation (`|`) provides multiple matching options:
+
+- **`(pattern)`**: Groups part of a regex.
+- **`(A|B)`**: Matches either A or B.
+
+### Example:
+
+Identify if a species name is "Adelie" or "Chinstrap":
+
+```{r}
+pattern <- "(Adelie|Chinstrap)"
+str_subset(penguins$species, pattern) |> 
+  unique()
+# Matches "Adelie" or "Chinstrap"
+```
+
+---
+
+# Practical Application in R with `stringr`
+
+The `stringr` package provides easy-to-use functions for working with strings and regex in R:
+
+- **`str_detect`**: Check if a pattern exists in strings.
+- **`str_replace`**: Replace patterns in strings.
+
+### Example:
+
+Replace "Adelie" with "Adelie Penguin":
+
+```{r}
+str_replace(penguins$species, "Adelie", "Adelie Penguin") |>
+head()
+```
+
+---
+
+# Glue
+
+`str_glue` from the `stringr` package is used for creating strings by embedding R expressions directly within them. It's particularly useful for generating dynamic text outputs, such as personalized messages or labels.
+
+## Key Features of str_glue:
+
+- Interpolation: Embeds R code directly into strings, evaluating expressions within `{}` braces.
+
+- Ease of Use: Simplifies the creation of complex strings without the need for multiple concatenations.
+
+---
+
+# Example
+
+```{r}
+
+# Basic use of str_glue
+name <- "Adelie"
+glue_message <- str_glue("The species is {name}.")
+print(glue_message)
+
+
+```
+---
+
+# Example
+
+```{r}
+
+label <-  str_glue("The dataset includes ",
+          {nrow(penguins)},
+          " observations of penguins, with species listed as ",
+          {paste(unique(penguins$species), collapse = ', ')},
+          ". Data current as of ",
+          {format(Sys.Date(), '%d %b %Y')},
+          ".")
+str_wrap(label, width = 30)
+
+```
+
+---
+
+# Exercises
+
+```{r, echo = FALSE}
+library(countdown)
+countdown(minutes = 5, seconds = 0, top = 0)
+```
+
+Try these expressions with the Palmer Penguins dataset using `str_detect`:
+
+1. Match species that end with "o".
+2. Find species names with exactly four characters.
+3. Detect species that contain a sequence of digits (useful for data validation).
+
+
+---
+
+# Solutions
+
+```{r}
+# Exercise examples:
+# 1. Species ending with "o"
+str_detect(penguins$species, "o$")
+```
+
+---
+
+```{r}
+# 2. Species names with exactly four characters
+str_detect(penguins$species, "^.{4}$")
+```
+
+---
+
+```{r}
+# 3. Detect species with numeric patterns (though uncommon, useful as an example)
+str_detect(penguins$species, "[0-9]")
+```
+
+---
+
+class: center, middle, inverse
+
+# Questions?
+
