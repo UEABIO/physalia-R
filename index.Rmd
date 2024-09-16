@@ -8,37 +8,18 @@ All lecture materials will be available here.
 
 - 01: Introductions and course outline
 
-    - [Slides](slides/Intro_02.html)
-
-    - [Practical work](https://ueabio.github.io/physalia-R-course-2023/introduction-to-r-and-rstudio.html)
-
-
-- 02: Functional Programming
-
-    - [Slides](slides/Functional-programming.html)
-
-    - [Practical work](https://ueabio.github.io/physalia-R-course-2023/writing-functions.html)
+    - [Slides](slides/CopyOfIntro_02.html)
     
-- 03: Tidy functions and issues
+- 02: Reproducibility
 
-    - [Slides](slides/tidy-functions.html)
+    - [Slides](slides/03b-renv.html)
 
-    - [Practical work](https://ueabio.github.io/physalia-R-course-2023/reading-files-with-readr.html)  
 
-- 04: Plotting in R
+- 03: Tidy data
 
-    - [Slides01](slides/ggplot.html)
+    - [Slides](slides/2a-tidyverse-functions.html)
     
-    - [Slides02](slides/Great_data_viz.html)
+- 04: Tidy data
 
-    - [Practical work](https://ueabio.github.io/physalia-R-course-2023/customisation-with-ggplot2.html)  
+    - [Slides](slides/UsingAI.html) 
 
-
-- 05: Shiny
-  - [Slides](slides/Shiny.html)
-
-- 06: Reproducible Reports
-  - [Slides](slides/Reproducible_reports_06.html)
-
-- 07: Git and Github
-  - [Slides](slides/Github.html)

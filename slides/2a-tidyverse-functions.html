@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Intro to Tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Philip Leftwich" />
+    <meta name="date" content="2024-09-16" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide, left, top
+
+# Intro to Tidyverse
+
+## 
+
+### Philip Leftwich
+
+&lt;br&gt;
+
+
+
+&lt;span style='color:white;'&gt;Slides released under&lt;/span&gt; [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&amp;nbsp;&amp;nbsp;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"/></svg><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M314.9 194.4v101.4h-28.3v120.5h-77.1V295.9h-28.3V194.4c0-4.4 1.6-8.2 4.6-11.3 3.1-3.1 6.9-4.7 11.3-4.7H299c4.1 0 7.8 1.6 11.1 4.7 3.1 3.2 4.8 6.9 4.8 11.3zm-101.5-63.7c0-23.3 11.5-35 34.5-35s34.5 11.7 34.5 35c0 23-11.5 34.5-34.5 34.5s-34.5-11.5-34.5-34.5zM247.6 8C389.4 8 496 118.1 496 256c0 147.1-118.5 248-248.4 248C113.6 504 0 394.5 0 256 0 123.1 104.7 8 247.6 8zm.8 44.7C130.2 52.7 44.7 150.6 44.7 256c0 109.8 91.2 202.8 203.7 202.8 103.2 0 202.8-81.1 202.8-202.8.1-113.8-90.2-203.3-202.8-203.3z"/></svg> ]   
+
+
+&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
+
+---
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;Philip Leftwich - Advancing in R&lt;/span&gt;&lt;/div&gt;
+
+
+---
+---
+
+class: center, inverse, middle
+
+# Introduction to tidyverse
+
+---
+
+
+
+## Tidy data
+
+- Tidy data is a standardized way of organizing data values within a dataset.
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+
+---
+
+## Why is Tidy Data Important?
+- Makes data easier to manipulate, analyze, and visualize.
+- Simplifies data cleaning and preparation tasks.
+- Enhances reproducibility and collaboration.
+
+---
+
+## Example of Tidy Data
+
+
+| Name   | Age | Height |
+|--------|-----|--------|
+| John   | 23  | 180    |
+| Alice  | 25  | 165    |
+| Bob    | 22  | 175    |
+
+---
+
+## Example of Non-Tidy Data
+
+| Name   | John | Alice | Bob   |
+|--------|------|-------|-------|
+| Age    | 23   | 25    | 22    |
+| Height | 180  | 165   | 175   |
+
+---
+
+## Converting Non-Tidy Data to Tidy Data
+
+Identify variables and observations.
+
+Restructure data so that each variable forms a column and each observation forms a row.
+
+---
+
+## Example
+
+
+.pull-left[
+
+| Variable | John | Alice | Bob |
+|----------|------|-------|-----|
+| Age      | 23   | 25    | 22  |
+| Height   | 180  | 165   | 175 |
+
+]
+
+.pull-right[
+
+| Name   | Age | Height |
+|--------|-----|--------|
+| John   | 23  | 180    |
+| Alice  | 25  | 165    |
+| Bob    | 22  | 175    |
+
+]
+
+---
+
+## Another example
+
+Another example
+
+| Subject | Treatment_A | Treatment_B |
+|---------|-------------|-------------|
+| John    | 80          | 85          |
+| Alice   | 90          | 95          |
+| Bob     | 85          | 80          |
+
+---
+
+## Tidy data for treatments
+
+| Subject | Treatment | Score |
+|---------|-----------|-------|
+| John    | A         | 80    |
+| John    | B         | 85    |
+| Alice   | A         | 90    |
+| Alice   | B         | 95    |
+| Bob     | A         | 85    |
+| Bob     | B         | 80    |
+
+---
+
+## Tidy data is long
+
+.pull-left[
+
+
+
+
+
+
+```r
+data 
+```
+
+```
+## # A tibble: 3 × 3
+##   Subject Treatment_A Treatment_B
+##   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1 John             80          85
+## 2 Alice            90          95
+## 3 Bob              85          80
+```
+
+]
+
+.pull-right[
+
+
+
+
+```r
+data |&gt; 
+  pivot_longer(cols = starts_with("Treatment"),
+               names_to = "Treatment",
+               values_to = "Score")
+```
+
+```
+## # A tibble: 6 × 3
+##   Subject Treatment   Score
+##   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+## 1 John    Treatment_A    80
+## 2 John    Treatment_B    85
+## 3 Alice   Treatment_A    90
+## 4 Alice   Treatment_B    95
+## 5 Bob     Treatment_A    85
+## 6 Bob     Treatment_B    80
+```
+
+]
+
+---
+
+## Benefits of tidy data
+
+- Messy data can be messy in lots of different ways
+
+- Tidy data is always consistent
+
+- Our work as an analyst is easier if we can use consistent tools to work with our data
+
+---
+
+## What is the Tidyverse?
+
+.pull-left[
+
+- The **tidyverse** is a collection of R packages designed for data science.
+
+- Developed by **Hadley Wickham**, it provides powerful tools for data wrangling and visualization.
+
+- they help make data *tidy* and work with manipulating and cleaning *tidy* data to generate insights
+
+]
+
+.pull-right[
+
+- Core packages include:
+
+  - **dplyr**: Data manipulation
+  - **tidyr**: Data tidying
+  - **readr**: Data import
+  - **purrr**: Functional programming
+  - **ggplot2**: Data visualization
+  - **tibble**: Modern data frames
+
+]
+
+---
+
+## Loading the Tidyverse
+- Load the tidyverse with:
+  
+
+```r
+  library(tidyverse)
+```
+
+---
+
+## What is Data Wrangling?
+
+Data wrangling involves: 
+
+- Cleaning 
+
+- Checking
+
+- Transforming
+
+Raw data into a usable format.
+
+This process is essential for effective analysis and visualization.
+
+---
+
+## Keeping Raw Data Raw
+
+By keeping raw data intact:
+
+- **Integrity**: You preserve the original dataset for reference.
+
+- **Reproducibility**: Enables others to verify your work and replicate analyses.
+
+- **Transparency**: Allows tracking of changes made during the wrangling process.
+
+[Data Organization in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)
+
+---
+
+## Documenting Data Manipulations
+
+When we have a script we are maintaining a history of data checks and manipulations:
+
+- Helps in understanding decisions made during analysis.
+
+- Supports data integrity by enabling audits and reviews.
+
+
+---
+
+## What is dplyr?
+
+**dplyr** is a key package in the tidyverse focused on data manipulation.
+
+It provides six essential functions, known as the **"Wickham Six"**, for intuitive data wrangling.
+
+---
+
+## The Wickham Six Functions
+
+| Function   | Description                                      |
+|------------|--------------------------------------------------|
+| `select()` | Include or exclude specific columns.            |
+| `filter()` | Include or exclude specific rows.               |
+| `mutate()` | Create new columns or modify existing ones.     |
+| `arrange()`| Change the order of rows.                       |
+| `group_by()`| Organize data into groups for analysis.       |
+| `summarise()`| Create summary statistics for groups.        |
+
+---
+
+## Introducing the Palmer Penguins Dataset
+
+The **palmerpenguins** dataset includes data on penguin species, bill length, flipper length, and more.
+
+It’s a great resource for practicing data wrangling in R.
+
+To get started, load the dataset:
+
+
+```r
+# IMPORT DATA ----
+penguins &lt;- read_csv ("data/penguins_raw.csv")
+
+head(penguins) # check the data has loaded, prints first 10 rows of dataframe
+#__________________________----
+```
+
+
+```
+## # A tibble: 344 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
+---
+
+## Using select()
+
+Purpose: Choose specific columns from a data frame.
+
+Example:
+
+
+```r
+penguins |&gt; 
+  select(species, bill_length_mm, flipper_length_mm)
+```
+
+```
+## # A tibble: 344 × 3
+##    species bill_length_mm flipper_length_mm
+##    &lt;fct&gt;            &lt;dbl&gt;             &lt;int&gt;
+##  1 Adelie            39.1               181
+##  2 Adelie            39.5               186
+##  3 Adelie            40.3               195
+##  4 Adelie            NA                  NA
+##  5 Adelie            36.7               193
+##  6 Adelie            39.3               190
+##  7 Adelie            38.9               181
+##  8 Adelie            39.2               195
+##  9 Adelie            34.1               193
+## 10 Adelie            42                 190
+## # ℹ 334 more rows
+```
+
+---
+
+## Using filter()
+
+Purpose: Filter rows based on conditions.
+
+Example:
+
+
+
+```r
+penguins |&gt; filter(bill_length_mm &gt; 40)
+```
+
+```
+## # A tibble: 242 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           40.3          18                 195        3250
+##  2 Adelie  Torgersen           42            20.2               190        4250
+##  3 Adelie  Torgersen           41.1          17.6               182        3200
+##  4 Adelie  Torgersen           42.5          20.7               197        4500
+##  5 Adelie  Torgersen           46            21.5               194        4200
+##  6 Adelie  Biscoe              40.6          18.6               183        3550
+##  7 Adelie  Biscoe              40.5          17.9               187        3200
+##  8 Adelie  Biscoe              40.5          18.9               180        3950
+##  9 Adelie  Dream               40.9          18.9               184        3900
+## 10 Adelie  Dream               42.2          18.5               180        3550
+## # ℹ 232 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
+---
+
+## Using mutate()
+
+
+Purpose: Add or modify columns.
+
+Example:
+
+
+
+```r
+ penguins |&gt; mutate(bill_length_cm = bill_length_mm / 10)
+```
+
+```
+## # A tibble: 344 × 9
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_length_cm &lt;dbl&gt;
+```
+
+---
+
+## Using arrange()
+
+Purpose: Sort rows by specific columns.
+
+Example:
+
+
+
+```r
+penguins |&gt; arrange(desc(flipper_length_mm))
+```
+
+```
+## # A tibble: 344 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo  Biscoe           54.3          15.7               231        5650
+##  2 Gentoo  Biscoe           50            16.3               230        5700
+##  3 Gentoo  Biscoe           59.6          17                 230        6050
+##  4 Gentoo  Biscoe           49.8          16.8               230        5700
+##  5 Gentoo  Biscoe           48.6          16                 230        5800
+##  6 Gentoo  Biscoe           52.1          17                 230        5550
+##  7 Gentoo  Biscoe           51.5          16.3               230        5500
+##  8 Gentoo  Biscoe           55.1          16                 230        5850
+##  9 Gentoo  Biscoe           49.5          16.2               229        5800
+## 10 Gentoo  Biscoe           49.8          15.9               229        5950
+## # ℹ 334 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
+---
+
+## Using group_by()
+
+Purpose: Group data for summary operations.
+
+Example:
+
+
+
+```r
+penguins |&gt; group_by(species)
+```
+
+```
+## # A tibble: 344 × 8
+## # Groups:   species [3]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
+---
+
+## Using summarise()
+
+Purpose: Create summary statistics for grouped data.
+
+Example:
+
+
+
+```r
+penguins |&gt; 
+  group_by(species)|&gt; 
+  summarise(avg_bill_length = mean(bill_length_mm, na.rm = TRUE))
+```
+
+```
+## # A tibble: 3 × 2
+##   species   avg_bill_length
+##   &lt;fct&gt;               &lt;dbl&gt;
+## 1 Adelie               38.8
+## 2 Chinstrap            48.8
+## 3 Gentoo               47.5
+```
+
+---
+
+## Example Workflow with Palmer Penguins
+
+
+Wrangle data while preserving the raw dataset:
+
+
+
+```r
+penguins_cleaned &lt;- penguins |&gt;
+  filter(!is.na(bill_length_mm)) |&gt;
+  mutate(bill_length_cm = bill_length_mm / 10) |&gt;
+  arrange(species)
+
+penguins_cleaned
+```
+
+```
+## # A tibble: 342 × 9
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           34.1          18.1               193        3475
+##  9 Adelie  Torgersen           42            20.2               190        4250
+## 10 Adelie  Torgersen           37.8          17.1               186        3300
+## # ℹ 332 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_length_cm &lt;dbl&gt;
+```
+
+---
+
+## Documenting Your Work
+
+Always comment your code:
+
+
+
+```r
+# Filtering out missing values and converting bill length to cm
+penguins_cleaned &lt;- penguins |&gt;
+  filter(!is.na(bill_length_mm)) |&gt;
+  mutate(bill_length_cm = bill_length_mm / 10) |&gt;
+  arrange(species)
+```
+
+
+---
+
+class: center, middle, inverse
+
+# Questions?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "dracula",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

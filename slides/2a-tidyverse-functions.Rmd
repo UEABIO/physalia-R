@@ -1,0 +1,453 @@
+---
+title: "Intro to Tidyverse"
+subtitle: ""
+author: "Philip Leftwich"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    seal: false
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE,
+        eval = TRUE)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(palmerpenguins)
+```
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+---
+
+layout: true
+
+<div class="my-footer"><span>Philip Leftwich - Advancing in R</span></div>
+
+
+---
+---
+
+class: center, inverse, middle
+
+# Introduction to tidyverse
+
+---
+
+
+
+## Tidy data
+
+- Tidy data is a standardized way of organizing data values within a dataset.
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+
+---
+
+## Why is Tidy Data Important?
+- Makes data easier to manipulate, analyze, and visualize.
+- Simplifies data cleaning and preparation tasks.
+- Enhances reproducibility and collaboration.
+
+---
+
+## Example of Tidy Data
+
+
+| Name   | Age | Height |
+|--------|-----|--------|
+| John   | 23  | 180    |
+| Alice  | 25  | 165    |
+| Bob    | 22  | 175    |
+
+---
+
+## Example of Non-Tidy Data
+
+| Name   | John | Alice | Bob   |
+|--------|------|-------|-------|
+| Age    | 23   | 25    | 22    |
+| Height | 180  | 165   | 175   |
+
+---
+
+## Converting Non-Tidy Data to Tidy Data
+
+Identify variables and observations.
+
+Restructure data so that each variable forms a column and each observation forms a row.
+
+---
+
+## Example
+
+
+.pull-left[
+
+| Variable | John | Alice | Bob |
+|----------|------|-------|-----|
+| Age      | 23   | 25    | 22  |
+| Height   | 180  | 165   | 175 |
+
+]
+
+.pull-right[
+
+| Name   | Age | Height |
+|--------|-----|--------|
+| John   | 23  | 180    |
+| Alice  | 25  | 165    |
+| Bob    | 22  | 175    |
+
+]
+
+---
+
+## Another example
+
+Another example
+
+| Subject | Treatment_A | Treatment_B |
+|---------|-------------|-------------|
+| John    | 80          | 85          |
+| Alice   | 90          | 95          |
+| Bob     | 85          | 80          |
+
+---
+
+## Tidy data for treatments
+
+| Subject | Treatment | Score |
+|---------|-----------|-------|
+| John    | A         | 80    |
+| John    | B         | 85    |
+| Alice   | A         | 90    |
+| Alice   | B         | 95    |
+| Bob     | A         | 85    |
+| Bob     | B         | 80    |
+
+---
+
+## Tidy data is long
+
+.pull-left[
+
+```{r, eval = T, echo = F}
+library(tibble)
+library(tidyr)
+data <- tibble(
+  Subject = c("John", "Alice", "Bob"),
+  Treatment_A = c(80, 90, 85),
+  Treatment_B = c(85, 95, 80)
+)
+
+```
+
+
+
+```{r}
+
+data 
+
+
+```
+
+]
+
+.pull-right[
+
+
+
+```{r}
+data |> 
+  pivot_longer(cols = starts_with("Treatment"),
+               names_to = "Treatment",
+               values_to = "Score")
+```
+
+]
+
+---
+
+## Benefits of tidy data
+
+- Messy data can be messy in lots of different ways
+
+- Tidy data is always consistent
+
+- Our work as an analyst is easier if we can use consistent tools to work with our data
+
+---
+
+## What is the Tidyverse?
+
+.pull-left[
+
+- The **tidyverse** is a collection of R packages designed for data science.
+
+- Developed by **Hadley Wickham**, it provides powerful tools for data wrangling and visualization.
+
+- they help make data *tidy* and work with manipulating and cleaning *tidy* data to generate insights
+
+]
+
+.pull-right[
+
+- Core packages include:
+
+  - **dplyr**: Data manipulation
+  - **tidyr**: Data tidying
+  - **readr**: Data import
+  - **purrr**: Functional programming
+  - **ggplot2**: Data visualization
+  - **tibble**: Modern data frames
+
+]
+
+---
+
+## Loading the Tidyverse
+- Load the tidyverse with:
+  
+```{r, echo = T, eval = T, message = T, warning = T}
+  library(tidyverse)
+```
+
+---
+
+## What is Data Wrangling?
+
+Data wrangling involves: 
+
+- Cleaning 
+
+- Checking
+
+- Transforming
+
+Raw data into a usable format.
+
+This process is essential for effective analysis and visualization.
+
+---
+
+## Keeping Raw Data Raw
+
+By keeping raw data intact:
+
+- **Integrity**: You preserve the original dataset for reference.
+
+- **Reproducibility**: Enables others to verify your work and replicate analyses.
+
+- **Transparency**: Allows tracking of changes made during the wrangling process.
+
+[Data Organization in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)
+
+---
+
+## Documenting Data Manipulations
+
+When we have a script we are maintaining a history of data checks and manipulations:
+
+- Helps in understanding decisions made during analysis.
+
+- Supports data integrity by enabling audits and reviews.
+
+
+---
+
+## What is dplyr?
+
+**dplyr** is a key package in the tidyverse focused on data manipulation.
+
+It provides six essential functions, known as the **"Wickham Six"**, for intuitive data wrangling.
+
+---
+
+## The Wickham Six Functions
+
+| Function   | Description                                      |
+|------------|--------------------------------------------------|
+| `select()` | Include or exclude specific columns.            |
+| `filter()` | Include or exclude specific rows.               |
+| `mutate()` | Create new columns or modify existing ones.     |
+| `arrange()`| Change the order of rows.                       |
+| `group_by()`| Organize data into groups for analysis.       |
+| `summarise()`| Create summary statistics for groups.        |
+
+---
+
+## Introducing the Palmer Penguins Dataset
+
+The **palmerpenguins** dataset includes data on penguin species, bill length, flipper length, and more.
+
+It’s a great resource for practicing data wrangling in R.
+
+To get started, load the dataset:
+
+```{r, eval = F, echo = T}
+# IMPORT DATA ----
+penguins <- read_csv ("data/penguins_raw.csv")
+
+head(penguins) # check the data has loaded, prints first 10 rows of dataframe
+#__________________________----
+```
+
+```{r, echo = F}
+
+library(palmerpenguins)
+
+penguins
+
+```
+
+---
+
+## Using select()
+
+Purpose: Choose specific columns from a data frame.
+
+Example:
+
+```{r, echo = T}
+penguins |> 
+  select(species, bill_length_mm, flipper_length_mm)
+
+```
+
+---
+
+## Using filter()
+
+Purpose: Filter rows based on conditions.
+
+Example:
+
+
+```{r, echo = T}
+penguins |> filter(bill_length_mm > 40)
+
+```
+
+---
+
+## Using mutate()
+
+
+Purpose: Add or modify columns.
+
+Example:
+
+
+```{r, echo = T}
+ penguins |> mutate(bill_length_cm = bill_length_mm / 10)
+```
+
+---
+
+## Using arrange()
+
+Purpose: Sort rows by specific columns.
+
+Example:
+
+
+```{r, echo = T}
+
+penguins |> arrange(desc(flipper_length_mm))
+
+```
+
+---
+
+## Using group_by()
+
+Purpose: Group data for summary operations.
+
+Example:
+
+
+```{r, echo = T}
+penguins |> group_by(species)
+```
+
+---
+
+## Using summarise()
+
+Purpose: Create summary statistics for grouped data.
+
+Example:
+
+
+```{r, echo = T}
+penguins |> 
+  group_by(species)|> 
+  summarise(avg_bill_length = mean(bill_length_mm, na.rm = TRUE))
+```
+
+---
+
+## Example Workflow with Palmer Penguins
+
+
+Wrangle data while preserving the raw dataset:
+
+
+```{r, echo = T}
+
+penguins_cleaned <- penguins |>
+  filter(!is.na(bill_length_mm)) |>
+  mutate(bill_length_cm = bill_length_mm / 10) |>
+  arrange(species)
+
+penguins_cleaned
+
+```
+
+---
+
+## Documenting Your Work
+
+Always comment your code:
+
+
+```{r, echo = T}
+# Filtering out missing values and converting bill length to cm
+penguins_cleaned <- penguins |>
+  filter(!is.na(bill_length_mm)) |>
+  mutate(bill_length_cm = bill_length_mm / 10) |>
+  arrange(species)
+```
+
+
+---
+
+class: center, middle, inverse
+
+# Questions?

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Advancing in R</title>
+    <title>AI coding</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
     <meta name="date" content="2024-09-15" />
@@ -19,7 +19,7 @@
 
 class: title-slide, left, top
 
-# Advancing in R
+# AI coding
 
 ## 
 
@@ -108,7 +108,10 @@ biscoe_penguins %&gt;%
 ```
 ---
 
-![ChatGPT giving its best guess](images/gpt-2.png)
+&lt;div class="figure"&gt;
+&lt;img src="images/gpt-2.png" alt="ChatGPT giving its best guess" width="80%" /&gt;
+&lt;p class="caption"&gt;ChatGPT giving its best guess&lt;/p&gt;
+&lt;/div&gt;
 
 
 ---
@@ -157,6 +160,8 @@ Issue: The presence of missing values (NAs) in body_mass_g causes mean() to retu
 Solution: Use na.rm = TRUE in the mean() function to exclude missing values from the calculation.
 Alternative: Remove rows with missing body_mass_g before calculation if appropriate for your analysis.
 ```
+
+** What is the actual problem?**
 
 ---
 
@@ -320,7 +325,7 @@ We'll also set up an initial prompt for the AI:
 
 When working with AI, it's helpful to provide as much information as possible about your dataset:
 
-`summary()` provides descriptive statistics:
+`summary()` provides descriptive statistics this is useful because it provides a list of all variables with some descriptive statistics so that the AI has a sense of the type and range of data:
 
 
 ```r
@@ -346,110 +351,136 @@ summary(penguins)
 ##  NA's   :2         NA's   :2
 ```
 
-`str()` lists variables, their data type, and initial values:
+
+![Adding comments](images/gpt-8.png)
+
+---
+
+
+.pull-left[
 
 
 ```r
-str(penguins)
-```
-
-```
-## tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
-##  $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
-##  $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
-##  $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
-##  $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
-##  $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
-##  $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
-##  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
-```
-
-`ls()` provides a list of variables in an object without data types or samples, making it more secure:
-
-
-```r
-ls(penguins)
-```
-
-```
-## [1] "bill_depth_mm"     "bill_length_mm"    "body_mass_g"      
-## [4] "flipper_length_mm" "island"            "sex"              
-## [7] "species"           "year"
-```
-
-In your AI of choice, input:
-
-&gt; here are the variables in my data set
-
-&gt; ls(penguins)
-[1] "bill_depth_mm" "bill_length_mm" "body_mass_g" "flipper_length_mm" "island" "sex" "species" "year"
-
-Copilot may provide analysis suggestions using R:
-
-
-```r
-# Load the tidyverse package
-library(tidyverse)
-
-# Assuming your data is in a dataframe called 'penguins'
-# Get a summary of each numerical variable
+# Plot histograms for numeric variables
 penguins %&gt;%
-  summarise(
-    Average_Bill_Depth = mean(bill_depth_mm, na.rm = TRUE),
-    Average_Bill_Length = mean(bill_length_mm, na.rm = TRUE),
-    Average_Body_Mass = mean(body_mass_g, na.rm = TRUE),
-    Average_Flipper_Length = mean(flipper_length_mm, na.rm = TRUE)
-  )
+    select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %&gt;%
+    gather(key = "variable", value = "value") %&gt;%
+    ggplot(aes(x = value)) +
+    geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+    facet_wrap(~ variable, scales = "free") +
+    theme_minimal() +
+    labs(title = "Distribution of Numeric Variables")
 ```
 
-```
-## # A tibble: 1 × 4
-##   Average_Bill_Depth Average_Bill_Length Average_Body_Mass
-##                &lt;dbl&gt;               &lt;dbl&gt;             &lt;dbl&gt;
-## 1               17.2                43.9             4202.
-## # ℹ 1 more variable: Average_Flipper_Length &lt;dbl&gt;
-```
+]
 
-```r
-# Distribution of species across islands
-penguins %&gt;%
-  count(island, species) %&gt;%
-  ggplot(aes(x = island, y = n, fill = species)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Distribution of Penguin Species Across Islands",
-       x = "Island",
-       y = "Count")
+.pull-right[
+
+
+```
+## Warning: Removed 8 rows containing non-finite outside the scale range
+## (`stat_bin()`).
 ```
 
 ![](UsingAI_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
+]
+
+---
+
+# EDA
+
+.pull-left[
+
+
 ```r
-# Explore the relationship between flipper length and body mass
+# Plot bar charts for categorical variables
 penguins %&gt;%
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(method = "lm") +
-  labs(title = "Relationship Between Flipper Length and Body Mass",
-       x = "Flipper Length (mm)",
-       y = "Body Mass (g)")
+    select(species, island, sex) %&gt;%
+    pivot_longer(cols = everything(), names_to = "variable", values_to = "value") %&gt;%
+    ggplot(aes(x = value, fill = value)) +
+    geom_bar() +
+    facet_wrap(~ variable, scales = "free") +
+    theme_minimal() +
+    labs(title = "Distribution of Categorical Variables")
 ```
 
-```
-## `geom_smooth()` using formula = 'y ~ x'
+]
+
+.pull-right[
+
+![](UsingAI_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+]
+
+
+---
+
+# EDA
+
+.pull-left[
+
+
+```r
+# Scatter plot of bill length vs body mass, colored by species
+penguins %&gt;%
+    ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+    geom_point(alpha = 0.6) +
+    theme_minimal() +
+    labs(title = "Bill Length vs Body Mass", x = "Bill Length (mm)", y = "Body Mass (g)"))
 ```
 
-```
-## Warning: Removed 2 rows containing non-finite outside the scale range
-## (`stat_smooth()`).
-```
+]
+
+.pull-right[
+
 
 ```
 ## Warning: Removed 2 rows containing missing values or values outside the scale range
 ## (`geom_point()`).
 ```
 
-![](UsingAI_files/figure-html/unnamed-chunk-15-2.png)&lt;!-- --&gt;
+![](UsingAI_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# EDA
+
+
+.pull-left[
+
+
+```r
+penguins %&gt;%
+    ggplot(aes(x = species, y = body_mass_g, fill = species)) +
+    geom_boxplot() +
+    theme_minimal() +
+    labs(title = "Body Mass by Species", x = "Species", y = "Body Mass (g)")
+```
+
+]
+
+.pull-right[
+
+
+```
+## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).
+```
+
+![](UsingAI_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Potential issues
+
+
+![Adding comments](images/gpt-10.png)
+
 
 ---
 
@@ -460,6 +491,8 @@ Let's create a table of descriptive statistics for `body_mass_g` and a histogram
 &gt; Create a table of descriptive statistics for body mass and a histogram of that variable
 
 ChatGPT output:
+
+.pull-left[
 
 
 ```r
@@ -483,12 +516,10 @@ body_mass_summary &lt;- penguins %&gt;%
 print(body_mass_summary)
 ```
 
-```
-## # A tibble: 1 × 5
-##    Mean Median    SD   Min   Max
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
-## 1 4202.   4050  802.  2700  6300
-```
+]
+
+.pull-right[
+
 
 ```r
 # Create a histogram of body mass
@@ -502,12 +533,145 @@ ggplot(penguins, aes(x = body_mass_g)) +
   theme_minimal()
 ```
 
+]
+
+---
+
+.pull-left[
+
+
+```
+## # A tibble: 1 × 5
+##    Mean Median    SD   Min   Max
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+## 1 4202.   4050  802.  2700  6300
+```
+
+]
+
+.pull-right[
+
+
 ```
 ## Warning: Removed 2 rows containing non-finite outside the scale range
 ## (`stat_bin()`).
 ```
 
-![](UsingAI_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](UsingAI_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+
+```r
+# Load the tidyverse package
+library(tidyverse)
+
+# Load the penguins dataset
+data("penguins")
+
+# Summary statistics for body mass
+body_mass_summary &lt;- penguins %&gt;%
+  summarise(
+    Mean = mean(body_mass_g, na.rm = TRUE),
+    Median = median(body_mass_g, na.rm = TRUE),
+    SD = sd(body_mass_g, na.rm = TRUE),
+    Min = min(body_mass_g, na.rm = TRUE),
+    Max = max(body_mass_g, na.rm = TRUE)
+  )
+
+# Print the summary statistics
+print(body_mass_summary)
+
+# Create a histogram of body mass
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(fill = "skyblue", color = "black", bins = 20) +
+  labs(
+    title = "Distribution of Body Mass",
+    x = "Body Mass (g)",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+]
+
+.pull-right[
+
+- I didn’t have to use the exact variable name body_mass_g, it has figured out from my request that’s the one I want to use.
+
+- It’s also figured out that we’re using the palmerpenguins dataset, although it hasn’t given us the code to load that package so if we just copied and pasted this into a fresh script without having loaded the data already, it wouldn’t work.
+
+- It’s used na.rm = TRUE to ignore missing values. This is a very common choice but remember it is a choice. You might not want this.
+
+- Similarly, it’s specified binwidth = 20 for the histogram. Looking at the data this seems like a reasonable binwidth to use, but again, it is a decision the AI has imposed and you must be aware of what you’re accepting.
+
+]
+
+
+
+
+---
+
+## Activity 4: Let AI loose
+
+&gt; Create a new variable that codes each penguin as chonky_boi if they’re a large male, chonky_gurl if they’re a large female, smol_boi if they’re a small male, and smol_boi if they’re a small female.
+
+
+```r
+# Calculate the median body mass
+median_body_mass &lt;- median(penguins$body_mass_g, na.rm = TRUE)
+
+# Create the new variable
+penguins &lt;- penguins %&gt;%
+  mutate(size = if_else(body_mass_g &gt; median_body_mass, "large", "small"),
+         chonk_category = case_when(
+           size == "large" &amp; sex == "male" ~ "chonky_boi",
+           size == "large" &amp; sex == "female" ~ "chonky_gurl",
+           size == "small" &amp; sex == "male" ~ "smol_boi",
+           size == "small" &amp; sex == "female" ~ "smol_gurl",
+           TRUE ~ NA_character_
+         ))
+
+# View the updated dataset
+head(penguins)
+```
+
+---
+
+## Activity 4: Let AI loose
+
+
+- Works out of the bag
+
+- Used old training data: TRUE superseded by .default
+
+- No need to set NA "type"
+
+
+---
+
+## AI analysis
+
+&gt; write me code to run a linear regression predicting body mass from sex. also include the code to perform necessary assumption tests using the easystats performance package.
+
+
+![Adding comments](images/gpt-11.png)
+
+---
+
+
+![Adding comments](images/gpt-12.png)
+
+- Pretty good
+
+- Suggests formal tests of model fit rather than diagnostic plots
+
+- Some functions don't work
 
 ---
 
@@ -536,6 +700,8 @@ class: center, middle, inverse
 # Code Review
 
 ![Adding comments](images/m_jeb14230-fig-0001.jpeg)
+
+---
 
 
 # Code Review
