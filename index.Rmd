@@ -19,7 +19,7 @@ All lecture materials will be available here.
 
     - [Slides](slides/2a-tidyverse-functions.html)
     
-- 04: Tidy data
+- 04: Using AI
 
     - [Slides](slides/UsingAI.html) 
 

@@ -725,6 +725,6 @@ Making coding errors is normal and regular review could help correct many of the
 
 In [this paper](https://academic.oup.com/jeb/article/36/10/1347/7577476?login=false) the process of code review is laid out
 
-```{r, echo=FALSE, fig.cap="Adding comments"}
+```{r, echo=FALSE, fig.cap="", out.width = "40%"}
 knitr::include_graphics("images/m_jeb14230-fig-0002.jpeg")
 ```
