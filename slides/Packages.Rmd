@@ -103,7 +103,7 @@ An R package needs 3 components
 3. R code folder
 ]]
 .pull-right[
-<img src="images/basic package structure.PNG">
+<img src="images/basic package structure.png">
 ]
 
 ---
