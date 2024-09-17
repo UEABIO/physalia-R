@@ -26,6 +26,10 @@ All lecture materials will be available here.
 - 05: Writing Functions
 
     - [Slides](slides/Functional-programming.html) 
+
+- 05a: Writing Tidy Functions
+
+    - [Slides](slides/tidy-functions.html) 
     
 - 06: Writing Packages
 
