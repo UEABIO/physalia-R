@@ -16,44 +16,39 @@
 
 
 
-class: split-two bg-main1
 
-.column.bg-main1[.content.vmiddle.center[
+
+
+
+class: title-slide, left, top
+
+# GGplot
+
+## Advanced
+
+### Philip Leftwich
+
+&lt;br&gt;
+
+
+
+&lt;span style='color:white;'&gt;Slides released under&lt;/span&gt; [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&amp;nbsp;&amp;nbsp;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86zm143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86zM247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248zm.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82z"/></svg><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M314.9 194.4v101.4h-28.3v120.5h-77.1V295.9h-28.3V194.4c0-4.4 1.6-8.2 4.6-11.3 3.1-3.1 6.9-4.7 11.3-4.7H299c4.1 0 7.8 1.6 11.1 4.7 3.1 3.2 4.8 6.9 4.8 11.3zm-101.5-63.7c0-23.3 11.5-35 34.5-35s34.5 11.7 34.5 35c0 23-11.5 34.5-34.5 34.5s-34.5-11.5-34.5-34.5zM247.6 8C389.4 8 496 118.1 496 256c0 147.1-118.5 248-248.4 248C113.6 504 0 394.5 0 256 0 123.1 104.7 8 247.6 8zm.8 44.7C130.2 52.7 44.7 150.6 44.7 256c0 109.8 91.2 202.8 203.7 202.8 103.2 0 202.8-81.1 202.8-202.8.1-113.8-90.2-203.3-202.8-203.3z"/></svg> ]   
+
+&lt;div style = "position: absolute;top: 0px;right: 0px;"&gt;&lt;img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"&gt;&lt;/img&gt;&lt;/div&gt;
+
+
+
+---
 
 # Data visualisation
 
 
-]]
-
-.column.bg-main3[.content.vmiddle.center[
-
-&lt;img src="images/horst_ggplot.png", width="70%"&gt;
-
-[@allison_horst](https://twitter.com/allison_horst)
-
-]]
-
-
+- Dataset from Danielle Navarro
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[A plot of the Sydney Beaches data]
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 middle center
-
-.pull.left[.pad1[.font2[
 
 ```r
 # load data
@@ -80,19 +75,13 @@ beaches
 ## # ℹ 334 more rows
 ## # ℹ 3 more variables: month_num &lt;dbl&gt;, month_name &lt;chr&gt;, season_name &lt;chr&gt;
 ```
-]]]
-
-
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
+.left-code[
 
 A simple plot
 
@@ -109,27 +98,14 @@ geom_point()
 - Not the prettiest plot?
 - Why is it like this?
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/introplot-1.png)&lt;!-- --&gt;
-
-]]
-]]
+.right-plot[
 
 
+&lt;img src="ggplot-advance_files/figure-html/introplot-1.png" width="120%" /&gt;
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Painting a Picture]
-]]
-
+]
 
 
 
@@ -163,9 +139,7 @@ class: split-50 bg-main1
 
 .column.bg-main3[.content.vmiddle.center[
 
-&lt;img src="images/trinity-treft-696428-unsplash.jpg", width="70%"&gt;
 
-[Image credit: Trinity Treft](https://unsplash.com/photos/waYWz3vAYJQ)
 
 ]]
 
@@ -181,7 +155,7 @@ class: split-50 bg-main1
 
 .column.bg-main1[.content.vtop.center[
 
-.pull.left[.pad1[.font2[
+.left-code[
 
 A blank canvas
 
@@ -190,16 +164,13 @@ A blank canvas
 ggplot()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/blankcanvas-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/blankcanvas-1.png" width="120%" /&gt;
 
+]
 
 
 
@@ -209,9 +180,10 @@ ggplot()
 ---
 class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Specify the .orange[data]
+.left-code[
+
+Specify the data
+
 
 ```r
 ggplot(
@@ -219,27 +191,20 @@ ggplot(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/stillblankcanvas-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/stillblankcanvas-1.png" width="120%" /&gt;
+
+]
 
 
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
 
-.pull.left[.pad1[.font2[
-A .orange[mapping] from data onto plot .orange[aesthetics]
+.left-code[
+
 
 ```r
 ggplot(
@@ -252,20 +217,21 @@ ggplot(
 ```
 
 
+
 - .orange[x]-axis location
 - .orange[y]-axis location
 - .orange[colour] of marker
 - .orange[fill] of a marker
 - .orange[shape] of a marker, etc.
-]]]
-]]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/aesthetics-1.png)&lt;!-- --&gt;
+]
 
-]]
-]]
+.right-plot[
+
+
+&lt;img src="ggplot-advance_files/figure-html/aesthetics-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -273,12 +239,11 @@ ggplot(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Add a plot .orange[layer]
+
 
 ```r
 ggplot(
@@ -296,25 +261,22 @@ ggplot(
 - the .orange[histograms]
 - etc
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_layer-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/add_layer-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
 
-.pull.left[.pad1[.font2[
+.left-code[
+
 Add layer-specific parameters
 
 ```r
@@ -328,15 +290,14 @@ ggplot(
 *geom_point(size = 3)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_fixedaesthetic-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+
+&lt;img src="ggplot-advance_files/figure-html/add_fixedaesthetic-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -345,11 +306,9 @@ ggplot(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Add layer-specific mappings
 
 ```r
@@ -366,15 +325,14 @@ geom_point(
 )   
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_layeraesthetic-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+
+&lt;img src="ggplot-advance_files/figure-html/add_layeraesthetic-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -383,12 +341,10 @@ geom_point(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
-Add more layers to the plotcake
+Add more layers to the plot
 
 ```r
 ggplot(
@@ -405,25 +361,22 @@ geom_point(
 *geom_rug()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/two_layers-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+
+&lt;img src="ggplot-advance_files/figure-html/two_layers-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Split into .orange[facets]
 
 ```r
@@ -442,15 +395,13 @@ geom_rug() +
 *facet_wrap(vars(season_name))
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_facets-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/add_facets-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -458,11 +409,9 @@ geom_rug() +
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Remove an unwanted legend?
 
 ```r
@@ -482,25 +431,20 @@ geom_rug() +
 facet_wrap(vars(season_name)) 
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/remove_legend-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/remove_legend-1.png" width="120%" /&gt;
 
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Modify the .orange[theme]
 
 ```r
@@ -521,53 +465,15 @@ facet_wrap(vars(season_name)) +
 *theme_bw()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_theme-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/add_theme-1.png" width="120%" /&gt;
+
+]
 
 
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
-(Nothing to see here...)
-
-```r
-ggplot(
-  data = beaches,
-  mapping = aes(
-    x = temperature, 
-    y = rainfall)) + 
-geom_point(
-  mapping = aes(colour = season_name), 
-  size = 2,
-  show.legend = FALSE) + 
-geom_rug() + 
-facet_wrap(vars(season_name)) + 
-theme_bw()
-```
-
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_theme2-1.png)&lt;!-- --&gt;
-
-]]
-]]
 
 
 
@@ -575,12 +481,9 @@ theme_bw()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
-Make nicer titles
 
 ```r
 ggplot(
@@ -603,57 +506,13 @@ theme_bw() +
 *) 
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_titles-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/add_titles-1.png" width="120%" /&gt;
 
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Done! Our plotcake is baked.
-
-```r
-ggplot(
-  data = beaches,
-  mapping = aes(
-    x = temperature, 
-    y = rainfall)) + 
-geom_point(
-  mapping = aes(colour = season_name), 
-  size = 2,
-  show.legend = FALSE) +  
-geom_rug() + 
-facet_wrap(vars(season_name)) + 
-theme_bw() +
-labs( 
-  title = "Sydney weather by season", 
-  subtitle = "Data from 2013 to 2018", 
-  x = "Temperature (Celsius)", 
-  y = "Rainfall (mm)" 
-) 
-```
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/done-1.png)&lt;!-- --&gt;
-
-]]
-]]
-
+]
 
 
 
@@ -747,23 +606,8 @@ scale_y_continuous()
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 01&lt;br&gt;
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Aesthetics]
-]]
+# Aesthetics
 
 
 
@@ -771,12 +615,9 @@ class: bg-main1 center middle hide-slide-number
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
-Locations (.orange[x] and .orange[y]) are aesthetics
 
 ```r
 ggplot(
@@ -789,15 +630,13 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-14-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -805,11 +644,9 @@ geom_line()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The .orange[colour] can be an aesthetic
 
 ```r
@@ -824,15 +661,13 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-16-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -840,12 +675,11 @@ geom_line()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The .orange[group] aesthetic matters!
+
 
 ```r
 ggplot(
@@ -860,15 +694,14 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-18-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -877,11 +710,10 @@ geom_line()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
+
 The .orange[group] aesthetic matters!
 
 ```r
@@ -897,24 +729,19 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-20-1.png" width="120%" /&gt;
 
+]
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The .orange[fill] can be an aesthetic
 
 ```r
@@ -928,47 +755,30 @@ ggplot(
 *geom_histogram()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-22-1.png" width="120%" /&gt;
+
+]
+
+
+
+&lt;!-- *********** NEW SLIDE ************** --&gt;
+---
+
+
+# Geoms
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: white bg-black center middle hide-slide-number
+.left-code[
 
-.pad1[
-.font4[
-Exercise 02&lt;br&gt;
-]]
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Geoms]
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
 Points and lines are "simple" geoms
 
 ```r
@@ -982,24 +792,22 @@ ggplot(
 *geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-24-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Points and lines are "simple" geoms
 
 ```r
@@ -1013,25 +821,22 @@ ggplot(
 *geom_point()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-26-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms can be layered and take parameters
 
 ```r
@@ -1046,14 +851,13 @@ ggplot(
 *geom_line(colour = "red")
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-28-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1061,11 +865,9 @@ ggplot(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The order of geoms matters
 
 ```r
@@ -1080,24 +882,20 @@ ggplot(
 *geom_point(size = 5)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-30-1.png" width="120%" /&gt;
+
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms can have different mappings
 
 ```r
@@ -1117,24 +915,21 @@ geom_point(
 - Must be consistent
 - Cannot map .orange[x] to two variables
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-32-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1148,14 +943,13 @@ ggplot(
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-34-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1163,11 +957,9 @@ ggplot(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1181,25 +973,21 @@ ggplot(
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-36-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1213,14 +1001,13 @@ ggplot(
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-38-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1228,11 +1015,8 @@ ggplot(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
+.left-code[
 
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1246,24 +1030,21 @@ ggplot(
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-42-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-40-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1277,14 +1058,13 @@ ggplot(
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-42-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1292,11 +1072,9 @@ ggplot(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1311,25 +1089,22 @@ geom_point() +
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-44-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 
 ```r
@@ -1344,48 +1119,28 @@ geom_point() +
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-48-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-46-1.png" width="120%" /&gt;
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 03&lt;br&gt;
-]]
-
-
-
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[How are layers structured?]
-]]
+# How are layers structured?
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Let's create a plot with no layers!
 
 ```r
@@ -1404,15 +1159,13 @@ print(p)
 - Can add to it as needed
 - Useful for programming
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-50-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-48-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1420,11 +1173,9 @@ print(p)
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Layers can compute things!
 
 ```r
@@ -1435,26 +1186,22 @@ p + geom_histogram()
 - this is computed by the layer...
 - (...sort of)
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_histogram-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/add_histogram-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Layers can compute things!
 
 ```r
@@ -1464,16 +1211,14 @@ p2
 ```
 
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/add_density-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/add_density-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1482,10 +1227,9 @@ p2
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.pull-right[
+
 The layer information... density
 
 ```r
@@ -1504,12 +1248,12 @@ Each layer specifies:
 - A .orange[stat]: what "statistic" it is applied to
 - A .orange[position]: how it is placed
 
-]]]
-]]
+]
+
 --
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.pull-left[
+
 The layer information... histogram
 
 ```r
@@ -1528,18 +1272,16 @@ p1$layers
 - Let's dig into this...
 
 
-]]]
-]]
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Our histogram...
 
 ```r
@@ -1549,27 +1291,22 @@ p + geom_histogram(
 ) 
 ```
 
-]]]
-]]
+]
 
+.right-plot[
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-56-1.png)&lt;!-- --&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-54-1.png" width="120%" /&gt;
 
-]]
-]]
-
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Our histogram...
 
 ```r
@@ -1583,17 +1320,15 @@ p + stat_bin(
 - It is, but don't do this!
 - Use geom to make layers
 - Use stat to change computation
-]]]
-]]
+
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-58-1.png)&lt;!-- --&gt;
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-56-1.png" width="120%" /&gt;
 
-]]
-]]
+]
 
 
 
@@ -1601,25 +1336,22 @@ p + stat_bin(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Reverse engineering...
 
 ```r
 p + geom_histogram()
 ```
 
-]]]
-]]
+]
 
+.right-plot[
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-60-1.png)&lt;!-- --&gt;
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-58-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1627,10 +1359,9 @@ p + geom_histogram()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Reverse engineering...
 
 ```r
@@ -1640,15 +1371,14 @@ p + geom_bar(
 ) 
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-62-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-60-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1659,10 +1389,10 @@ p + geom_bar(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
+
 Making a "dot histogram"
 
 ```r
@@ -1672,15 +1402,14 @@ p + geom_point(
 ) 
 ```
 
-]]]
-]]
+]
+
+.right-plot[
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-64-1.png)&lt;!-- --&gt;
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-62-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1688,60 +1417,28 @@ p + geom_point(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 
-&lt;br&gt;
 ## [Why are you like this?](https:/cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html)
 
 "Unfortunately, due to an early design mistake I called these either stat\_() or geom\_(). A better decision would have been to call them layer\_() functions: that’s a more accurate description because every layer involves a stat and a geom."
 
 
-]]]
-]]
---
-.column.bg-main3[.content.vmiddle.center[
-
-&lt;img src="images/hadley.gif", width="70%"&gt;
-
-[Hadley Wickham](https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html)
-
-]]
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 04&lt;br&gt;
-]]
-
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Positioning]
-]]
-
+# Positioning
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 This is not so helpful!
 
 ```r
@@ -1755,15 +1452,15 @@ f &lt;- ggplot(
 f + geom_density()
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-66-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-64-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -1771,10 +1468,9 @@ f + geom_density()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 
 ```r
@@ -1788,24 +1484,23 @@ f + geom_density(
 - Stat: density
 - Position: .orange[identity]
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-68-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-66-1.png" width="120%" /&gt;
+
+]
+
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 
 ```r
@@ -1819,15 +1514,15 @@ f + geom_density(
 - Stat: density
 - Position: .orange[stack]
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-70-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-68-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -1836,10 +1531,9 @@ f + geom_density(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 
 ```r
@@ -1853,15 +1547,14 @@ f + geom_density(
 - Stat: density
 - Position: .orange[fill]
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-72-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-70-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1869,10 +1562,9 @@ f + geom_density(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 This is not so helpful!
 
 ```r
@@ -1886,15 +1578,13 @@ g &lt;- ggplot(
 g + geom_point()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-74-1.png)&lt;!-- --&gt;
+.right-plot[
 
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-72-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1902,10 +1592,9 @@ g + geom_point()
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 
 ```r
@@ -1920,14 +1609,15 @@ g + geom_point(
 - Stat: identity
 - Position: .orange[identity]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-76-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-74-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -1935,10 +1625,9 @@ g + geom_point(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 
 ```r
@@ -1953,24 +1642,23 @@ g + geom_point(
 - Stat: identity
 - Position: .orange[jitter]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-78-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-76-1.png" width="120%" /&gt;
+
+]
+
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 
 ```r
@@ -1986,14 +1674,14 @@ g + geom_point(
 - Stat: identity
 - Position: .orange[jitter]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-80-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-78-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -2001,10 +1689,9 @@ g + geom_point(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 In fact...
 
 ```r
@@ -2020,69 +1707,31 @@ In fact...
 - Stat: identity
 - Position: .orange[jitter]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-82-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-80-1.png" width="120%" /&gt;
+
+]
+
+
+
+
+
+&lt;!-- *********** NEW SLIDE ************** --&gt;
+---
+
+
+# Facetting
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: white bg-black center middle hide-slide-number
+.left-code[
 
-.pad1[
-.font4[
-Exercise 05&lt;br&gt;
-]]
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Stats]
-(missing!!)
-]]
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 06&lt;br&gt;
-(missing!!)
-]]
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Facetting]
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 A cluttered density plot...
 
 ```r
@@ -2097,14 +1746,14 @@ a &lt;- ggplot(
 print(a)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-84-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-82-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -2112,10 +1761,9 @@ print(a)
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting on a grid...
 
 ```r
@@ -2124,14 +1772,14 @@ a + facet_grid(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-86-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-84-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -2141,10 +1789,9 @@ a + facet_grid(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting on a grid...
 
 ```r
@@ -2153,24 +1800,22 @@ a + facet_grid(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-88-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-86-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting on a grid...
 
 ```r
@@ -2180,24 +1825,22 @@ a + facet_grid(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-90-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-88-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting by wrapping...
 
 ```r
@@ -2206,23 +1849,21 @@ a + facet_wrap(
   nrow = 2)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-92-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-90-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting by wrapping...
 
 ```r
@@ -2231,24 +1872,20 @@ a + facet_wrap(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-94-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-92-1.png" width="120%" /&gt;
+
+]
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 07&lt;br&gt;
-]]
+# Scales 
+
 
 
 
@@ -2256,22 +1893,8 @@ Exercise 07&lt;br&gt;
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: bg-main1 center middle hide-slide-number
+.left-code[
 
-.reveal-text.bg-main2[.pad1[
-.font4[Scales (location)]
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 A badly scaled plot...
 
 ```r
@@ -2287,22 +1910,21 @@ r &lt;- ggplot(
 print(r)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-96-1.png)&lt;!-- --&gt;
-]]
-]]
+
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-94-1.png" width="120%" /&gt;
+
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Better!
 
 ```r
@@ -2312,14 +1934,13 @@ r + scale_y_continuous(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-98-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-96-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -2327,10 +1948,9 @@ r + scale_y_continuous(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Better!
 
 ```r
@@ -2342,24 +1962,23 @@ r + scale_y_continuous(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-100-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-98-1.png" width="120%" /&gt;
+
+]
+
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Even better!
 
 ```r
@@ -2376,70 +1995,50 @@ r + scale_y_continuous(
   )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-102-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-100-1.png" width="120%" /&gt;
+
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: white bg-black center middle hide-slide-number
+# Scales (colour/fill)
 
-.pad1[
-.font4[
-Exercise 08&lt;br&gt;
-]]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: bg-main1 center middle hide-slide-number
+.left-code[
 
-.reveal-text.bg-main2[.pad1[
-.font4[Scales (colour/fill)]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 Now where were we...
 
 ```r
 b
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-104-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-102-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Colour/fill aesthetics have scales
 
 ```r
@@ -2448,23 +2047,21 @@ b + scale_colour_discrete(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-106-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-104-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Many packages provide scales/palettes
 
 ```r
@@ -2474,22 +2071,21 @@ b + scico::scale_colour_scico_d(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-108-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-106-1.png" width="120%" /&gt;
+
+]
+
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Many packages provide scales/palettes
 
 ```r
@@ -2499,25 +2095,14 @@ b + scico::scale_colour_scico_d(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-110-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-108-1.png" width="120%" /&gt;
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
+]
 
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 09&lt;br&gt;
-]]
 
 
 
@@ -2525,21 +2110,17 @@ Exercise 09&lt;br&gt;
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[Coordinates]
-]]
+# Coordinates
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 (Some preprocessing...)
 
 ```r
@@ -2551,18 +2132,17 @@ rain &lt;- beaches %&gt;%
     rain = mean(rainfall)
   ) %&gt;%
   ungroup() %&gt;%
-  spread(
-    key = year, 
-    value = rain
+  pivot_wider(
+    names_from = year, 
+    values_from = rain
   )
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 
 ```
 ## # A tibble: 12 × 8
@@ -2581,17 +2161,16 @@ rain &lt;- beaches %&gt;%
 ## 11    11 Spring       NA     1.5     3.32   2.28  0.12  NA     
 ## 12    12 Summer        0     5.05   17.6    6.72  0     NA
 ```
-]]
-]]
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 
 ```r
@@ -2606,25 +2185,24 @@ ggplot(
 geom_point(size = 5) 
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-114-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-112-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 
 ```r
@@ -2643,15 +2221,14 @@ geom_point(size = 5) +
 *) 
 ```
 
-]]]
-]]
+]
 
+.right-plot[
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-116-1.png)&lt;!-- --&gt;
-]]
-]]
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-114-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -2660,10 +2237,9 @@ geom_point(size = 5) +
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 
 ```r
@@ -2683,15 +2259,15 @@ geom_abline(
 *coord_equal()
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-118-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-116-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -2699,10 +2275,9 @@ geom_abline(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 
 ```r
@@ -2725,25 +2300,24 @@ coord_equal(
 )
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-120-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-118-1.png" width="120%" /&gt;
+
+]
+
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 
 ```r
@@ -2766,15 +2340,15 @@ geom_abline(
 )
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-122-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-120-1.png" width="120%" /&gt;
+
+]
+
 
 
 
@@ -2785,10 +2359,9 @@ geom_abline(
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple bar plot
 
 ```r
@@ -2804,129 +2377,34 @@ ggplot(
 geom_col()
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-124-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-122-1.png" width="120%" /&gt;
 
+]
 
 
 
 
 
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-A simple bar plot, ruined
-
-```r
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col() + 
-*coord_polar()
-```
-
-
-]]]
-]]
-
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-126-1.png)&lt;!-- --&gt;
-]]
-]]
 
 
 
 
 
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-A simple bar plot, ruined
-
-```r
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col() + 
-*coord_polar(theta = "y")
-```
-
-
-]]]
-]]
-
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-128-1.png)&lt;!-- --&gt;
-]]
-]]
-
-
-
-
+# Themes
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
 
-class: white bg-black center middle hide-slide-number
+.left-code[
 
-.pad1[
-.font4[
-Exercise 10&lt;br&gt;
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Themes]
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 Here's one from earlier...
 
 ```r
@@ -2938,14 +2416,13 @@ th &lt;- b +
 th
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-130-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-124-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -2953,105 +2430,77 @@ th
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 The default theme
 
 ```r
 th + theme_grey()
 ```
 
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-132-1.png)&lt;!-- --&gt;
-]]
-]]
+]
 
 
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-126-1.png" width="120%" /&gt;
+
+]
 
 
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Other global themes
-
-```r
-th + theme_dark()
-```
-
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-134-1.png)&lt;!-- --&gt;
-]]
-]]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Other global themes
 
 ```r
 th + theme_bw()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-136-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-128-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Other global themes
 
 ```r
 th + theme_void()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-138-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-130-1.png" width="120%" /&gt;
+
+]
+
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 
 ```r
@@ -3063,24 +2512,22 @@ th + theme(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-140-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-132-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 
 ```r
@@ -3095,22 +2542,20 @@ u &lt;- th + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-142-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-134-1.png" width="120%" /&gt;
+
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 
 ```r
@@ -3121,14 +2566,13 @@ u &lt;- u + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-144-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-136-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -3136,10 +2580,9 @@ u
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 
 ```r
@@ -3151,23 +2594,21 @@ u &lt;- u + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-146-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-138-1.png" width="120%" /&gt;
+
+]
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 
 ```r
@@ -3179,23 +2620,22 @@ u &lt;- u + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-148-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-140-1.png" width="120%" /&gt;
+
+]
 
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: bg-main1
 
-.pull.left[.pad1[.font2[
+
+
 Kunoichi theme (incomplete)
 
 ```r
@@ -3215,718 +2655,48 @@ theme_kunoichi &lt;- function(...) {
 } 
 ```
 
-]]]
+
 
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 And so...
 
 ```r
 th + theme_kunoichi()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-151-1.png)&lt;!-- --&gt;
-]]
-]]
+.right-plot[
 
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-143-1.png" width="120%" /&gt;
+
+]
 
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
+
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 11&lt;br&gt;
-]]
+# Extensions
 
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[Extensions (in brief!)]
-]]
 
 
 
 
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Overriding defaults
 
 
-```r
-geom_dothistogram &lt;- function(
-  geom = "point", ...){
-  
-  layer &lt;- stat_bin(geom = geom, ...)
-  return(layer)
-}
 
-*p + geom_dothistogram(size = 3)
-```
 
-]]]
-]]
-
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-![](ggplot-advance_files/figure-html/unnamed-chunk-153-1.png)&lt;!-- --&gt;
-]]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Entirely new geoms rely on .orange[grid] graphics...
-
-
-```r
-my_arrow &lt;- function(data, panel_params, coord) {
-  coords &lt;- coord$transform(data, panel_params)
-  trans &lt;- function(coords, fun) {
-    coords$length * coords$size * fun(2 * pi * coords$direction / 360)
-  }
-
-  grid::polylineGrob(
-    x = c(coords$x, coords$x + trans(coords, cos)),
-    y = c(coords$y, coords$y + trans(coords, sin)),
-    id = c(1:length(coords$x), 1:length(coords$x)),
-    arrow = arrow(
-      angle = 30,
-      length = unit(coords$size * coords$length/2, "native")),
-    default.units = "native",
-    gp = grid::gpar(col = coords$colour, lwd = coords$linewidth)
-  )
-}
-```
-
-]]]
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Then we create a new .orange[ggproto] object...
-
-
-```r
-GeomVector &lt;- ggproto(
-  "GeomVector", Geom,
-  required_aes = c("x", "y", 
-                   "direction", "length"),
-  default_aes = aes(
-    colour = "black", fill = NA, size = .025,
-    linetype = 1, alpha = 1, linewidth = 1
-  ),
-  draw_key = draw_key_point,
-  draw_panel = my_arrow
-)
-```
-
-]]]
-]]
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-What are you???
-
-]]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Now we define the layer function...
-
-
-```r
-geom_vector &lt;- function(
-  mapping = NULL, data = NULL,
-  stat = "identity", position = "identity",
-  na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, ...) {
-
-  ggplot2::layer(
-    geom = GeomVector, mapping = mapping,
-    data = data, stat = stat,
-    position = position,
-    show.legend = show.legend,
-    inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, ...)
-  )
-}
-```
-
-]]]
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Now we use it!
-
-
-```r
-vectors &lt;- read_csv(
-  here("data","vector_field.csv"))
-
-ggplot(
-  data = vectors,
-  mapping = aes(
-    x = xval,
-    y = yval,
-    direction = dir,
-    length = len,
-    colour = cosx)
-  ) +
-  geom_vector(linewidth = 2)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-![](ggplot-advance_files/figure-html/unnamed-chunk-158-1.png)&lt;!-- --&gt;
-]]
-]]
-
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 12&lt;br&gt;
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Animation]
-]]
-
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class:bg-main1
-
-.content.vtop.center[
-.pull.left[.pad1[.font2[
-
-
-```r
-bridges &lt;- read_csv( here("data","brownian_bridges.csv"))
-bridges
-```
-
-```
-## # A tibble: 160 × 4
-##     Time Horizontal Vertical Series
-##    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1     0         0          1
-##  2     2    -0.133    -0.137      1
-##  3     3    -0.253    -0.164      1
-##  4     4    -0.0901   -0.104      1
-##  5     5    -0.0588   -0.168      1
-##  6     6    -0.524    -0.431      1
-##  7     7    -0.503    -0.778      1
-##  8     8    -0.487    -0.599      1
-##  9     9    -0.167    -0.370      1
-## 10    10    -0.0453   -0.259      1
-## # ℹ 150 more rows
-```
-]]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Brownian bridge paths
-
-```r
-a &lt;- ggplot(
-  data = bridges,
-  mapping = aes(
-    x = Horizontal,
-    y = Vertical,
-    colour = factor(Series))
-) + geom_line(colour = "black") +
-  geom_point(
-    show.legend = FALSE,
-    size = 2) +
-  coord_equal() +
-  xlim(-1.5, 1) +
-  ylim(-1.25, 1.25)
-
-a + facet_wrap(vars(Series))
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-![](ggplot-advance_files/figure-html/unnamed-chunk-161-1.png)&lt;!-- --&gt;
-]]
-]]
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-An alternative representation
-
-```r
-b &lt;- ggplot(
-  data = bridges,
-  mapping = aes(
-    x = Horizontal,
-    y = Vertical,
-    colour = factor(Series))
-) +
-  geom_point(
-    show.legend = FALSE,
-    size = 4) +
-  coord_equal() +
-  xlim(-1.5, 1) +
-  ylim(-1.25, 1.25)
-
-b + facet_wrap(vars(Time))
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-![](ggplot-advance_files/figure-html/unnamed-chunk-163-1.png)&lt;!-- --&gt;
-]]
-]]
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Animation as faceting over time...
-
-```r
-# Instead of this:
-# b + facet_wrap(facets = vars(Time))
-
-# Do this:
-b + transition_time(time = Time)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-
-```
-## NULL
-```
-]]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can add shadows...
-
-```r
-b + 
-  transition_time(time = Time) + 
-  shadow_wake(wake_length = .2)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-
-```
-## NULL
-```
-]]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can add shadows...
-
-```r
-c &lt;- b + 
-  transition_time(time = Time) + 
-  shadow_wake(wake_length = .2)
-
-animate(c, detail = 5, type = "cairo")
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-
-]]
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can add shadows...
-
-```r
-c &lt;- b + 
-  theme_kunoichi() +
-  transition_time(time = Time) + 
-  shadow_wake(
-    wake_length = .3,
-    size = 15,
-    colour = "white",
-    falloff = "quintic-in",
-    wrap = FALSE
-  )  
-
-animate(c, detail = 5, type = "cairo")
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-
-]]
-]]
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can animate different things...
-
-```r
-c &lt;- a + 
-  theme_kunoichi() +
-  transition_states(states = Series) 
-
-animate(c, detail = 5, type = "cairo")
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-
-]]
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-A familiar plot!
-
-```r
-d &lt;- ggplot(
-  data = beaches,
-  mapping = aes(
-    x = date,
-    y = temperature,
-    colour = season_name,
-    group = 1
-  )
-) +
-geom_path() +
-geom_point()
-
-d
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-![](ggplot-advance_files/figure-html/unnamed-chunk-175-1.png)&lt;!-- --&gt;
-]]
-]]
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-This seems to make sense!
-
-```r
-d + transition_time(date)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-Although...
-
-```
-## NULL
-```
-]]
-]]
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Try a reveal transition?
-
-```r
-d + transition_reveal(date)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-What's up with the dot?
-
-```
-## NULL
-```
-]]
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-An alternative possibility
-
-```r
-d + 
-  transition_time(date) + 
-  shadow_mark(alpha = .5)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-Although...
-
-```
-## NULL
-```
-]]
-]]
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercises 13-14&lt;br&gt;
-]]
-
-
-&lt;!-- DONE --&gt;
----
-
-class: bg-main1 middle center
-
-## thank u
 
 
     </textarea>

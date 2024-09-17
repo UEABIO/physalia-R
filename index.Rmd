@@ -22,4 +22,12 @@ All lecture materials will be available here.
 - 04: Using AI
 
     - [Slides](slides/UsingAI.html) 
+    
+- 05: Writing Functions
+
+    - [Slides](slides/Functional-programming.html) 
+    
+- 06: Writing Packages
+
+    - [Slides](slides/Packages.html) 
 

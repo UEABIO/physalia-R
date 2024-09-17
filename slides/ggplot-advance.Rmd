@@ -16,7 +16,14 @@ output:
 ---
 
 ```{r setup, include=FALSE, message = FALSE, warning=FALSE}
-options(htmltools.dir.version = FALSE)
+
+options(htmltools.dir.version = FALSE,
+        eval = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.retina = 3, fig.asp = 0.8, fig.width = 7, out.width = "120%")
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(palmerpenguins)
 library(tidyverse)
 library(here)
 library(hexbin)
@@ -27,44 +34,39 @@ library(scales)
 beaches <- read_csv(here("data","sydneybeaches3.csv"))
 ```
 
-class: split-two bg-main1
 
-.column.bg-main1[.content.vmiddle.center[
+
+
+
+class: title-slide, left, top
+
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+<br>
+
+
+
+<span style='color:white;'>Slides released under</span> [CC-BY 2.0](https://creativecommons.org/licenses/by/2.0/)&nbsp;&nbsp;`r fontawesome::fa("creative-commons", "white")``r fontawesome::fa("creative-commons-by", "white")` ]   
+
+<div style = "position: absolute;top: 0px;right: 0px;"><img src="images/logo.png" alt="The hex logo for plumbertableau package" width="500"></img></div>
+
+
+
+---
 
 # Data visualisation
 
 
-]]
-
-.column.bg-main3[.content.vmiddle.center[
-
-<img src="images/horst_ggplot.png", width="70%">
-
-[@allison_horst](https://twitter.com/allison_horst)
-
-]]
-
-
+- Dataset from Danielle Navarro
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[A plot of the Sydney Beaches data]
-]]
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 middle center
-
-.pull.left[.pad1[.font2[
 ```{r beachesdata, eval=TRUE, message=FALSE}
 # load data
 beaches <- read_csv(here("data","sydneybeaches3.csv")) 
@@ -72,19 +74,13 @@ beaches <- read_csv(here("data","sydneybeaches3.csv"))
 # show data
 beaches
 ```
-]]]
-
-
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
+.left-code[
 
 A simple plot
 
@@ -100,29 +96,16 @@ geom_point()
 - Not the prettiest plot?
 - Why is it like this?
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r introplot, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(beaches, aes(temperature, rainfall)) + geom_point()
 ```
 
-]]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Painting a Picture]
-]]
-
+]
 
 
 
@@ -156,9 +139,7 @@ class: split-50 bg-main1
 
 .column.bg-main3[.content.vmiddle.center[
 
-<img src="images/trinity-treft-696428-unsplash.jpg", width="70%">
 
-[Image credit: Trinity Treft](https://unsplash.com/photos/waYWz3vAYJQ)
 
 ]]
 
@@ -174,7 +155,7 @@ class: split-50 bg-main1
 
 .column.bg-main1[.content.vtop.center[
 
-.pull.left[.pad1[.font2[
+.left-code[
 
 A blank canvas
 
@@ -182,18 +163,15 @@ A blank canvas
 ggplot()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r blankcanvas, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE}
 ggplot() 
 ```
 
-]]
-]]
-
+]
 
 
 
@@ -203,40 +181,34 @@ ggplot()
 ---
 class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Specify the .orange[data]
+.left-code[
+
+Specify the data
+
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches #<<
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r stillblankcanvas, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE}
 ggplot(
   data = beaches #<<
 ) 
 ```
 
-]]
-]]
+]
 
 
-
-
-<!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
 
-.pull.left[.pad1[.font2[
-A .orange[mapping] from data onto plot .orange[aesthetics]
+.left-code[
+
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches,
@@ -248,16 +220,18 @@ ggplot(
 ```
 
 
+
 - .orange[x]-axis location
 - .orange[y]-axis location
 - .orange[colour] of marker
 - .orange[fill] of a marker
 - .orange[shape] of a marker, etc.
-]]]
-]]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+]
+
+.right-plot[
+
+
 ```{r aesthetics, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE}
 ggplot(
   data = beaches,
@@ -268,8 +242,7 @@ ggplot(
 )
 ```
 
-]]
-]]
+]
 
 
 
@@ -277,12 +250,11 @@ ggplot(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Add a plot .orange[layer]
+
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches,
@@ -299,11 +271,10 @@ geom_point() #<<
 - the .orange[histograms]
 - etc
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r add_layer, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -315,18 +286,16 @@ ggplot(
 geom_point() #<<
 ```
 
-]]
-]]
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
 
-.pull.left[.pad1[.font2[
+.left-code[
+
 Add layer-specific parameters
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -339,11 +308,11 @@ ggplot(
 geom_point(size = 3) #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r add_fixedaesthetic, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -355,8 +324,7 @@ ggplot(
 geom_point(size = 3) #<<
 ```
 
-]]
-]]
+]
 
 
 
@@ -365,11 +333,9 @@ geom_point(size = 3) #<<
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Add layer-specific mappings
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -385,11 +351,11 @@ geom_point(
 )   
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r add_layeraesthetic, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -404,8 +370,7 @@ geom_point(
 ) 
 ```
 
-]]
-]]
+]
 
 
 
@@ -414,12 +379,10 @@ geom_point(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
-Add more layers to the plotcake
+Add more layers to the plot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches,
@@ -435,11 +398,11 @@ geom_point(
 geom_rug() #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r two_layers, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -455,18 +418,15 @@ geom_point(
 geom_rug()
 ```
 
-]]
-]]
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Split into .orange[facets]
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -484,11 +444,10 @@ geom_rug() +
 facet_wrap(vars(season_name)) #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r add_facets, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -505,8 +464,7 @@ geom_rug() +
 facet_wrap(vars(season_name)) #<<
 ```
 
-]]
-]]
+]
 
 
 
@@ -514,11 +472,9 @@ facet_wrap(vars(season_name)) #<<
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Remove an unwanted legend?
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -537,11 +493,10 @@ geom_rug() +
 facet_wrap(vars(season_name)) 
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r remove_legend, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -559,18 +514,14 @@ geom_rug() +
 facet_wrap(vars(season_name)) 
 ```
 
-]]
-]]
-
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Modify the .orange[theme]
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -590,11 +541,10 @@ facet_wrap(vars(season_name)) +
 theme_bw() #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r add_theme, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -613,61 +563,9 @@ facet_wrap(vars(season_name)) +
 theme_bw() 
 ```
 
-]]
-]]
+]
 
 
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
-(Nothing to see here...)
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = beaches,
-  mapping = aes(
-    x = temperature, 
-    y = rainfall)) + 
-geom_point(
-  mapping = aes(colour = season_name), 
-  size = 2,
-  show.legend = FALSE) + 
-geom_rug() + 
-facet_wrap(vars(season_name)) + 
-theme_bw()
-```
-
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-```{r add_theme2, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = beaches,
-  mapping = aes(
-    x = temperature, 
-    y = rainfall
-  ) 
-) + 
-geom_point(
-  mapping = aes(colour = season_name), 
-  size = 2,
-  show.legend = FALSE #<<
-) +
-geom_rug() + 
-facet_wrap(vars(season_name)) + 
-theme_bw() 
-```
-
-]]
-]]
 
 
 
@@ -675,12 +573,9 @@ theme_bw()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
-Make nicer titles
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches,
@@ -703,11 +598,10 @@ labs( #<<
 
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r add_titles, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -732,71 +626,7 @@ labs( #<<
 ) #<<
 ```
 
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Done! Our plotcake is baked.
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = beaches,
-  mapping = aes(
-    x = temperature, 
-    y = rainfall)) + 
-geom_point(
-  mapping = aes(colour = season_name), 
-  size = 2,
-  show.legend = FALSE) +  
-geom_rug() + 
-facet_wrap(vars(season_name)) + 
-theme_bw() +
-labs( 
-  title = "Sydney weather by season", 
-  subtitle = "Data from 2013 to 2018", 
-  x = "Temperature (Celsius)", 
-  y = "Rainfall (mm)" 
-) 
-```
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-```{r done, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = beaches,
-  mapping = aes(
-    x = temperature, 
-    y = rainfall
-  ) 
-) + 
-geom_point(
-  mapping = aes(colour = season_name), 
-  size = 2,
-  show.legend = FALSE
-) +
-geom_rug() + 
-facet_wrap(vars(season_name)) + 
-theme_bw() + 
-labs( #<<
-  title = "Sydney weather by season", #<<
-  subtitle = "Data from 2013 to 2018", #<<
-  x = "Temperature (Celsius)", #<<
-  y = "Rainfall (mm)"
-) #<<
-```
-
-]]
-]]
-
+]
 
 
 
@@ -888,23 +718,8 @@ scale_y_continuous()
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 01<br>
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Aesthetics]
-]]
+# Aesthetics
 
 
 
@@ -912,12 +727,9 @@ class: bg-main1 center middle hide-slide-number
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
-Locations (.orange[x] and .orange[y]) are aesthetics
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches,
@@ -929,11 +741,10 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -945,8 +756,7 @@ ggplot(
 geom_line()
 ```
 
-]]
-]]
+]
 
 
 
@@ -954,11 +764,9 @@ geom_line()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The .orange[colour] can be an aesthetic
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -972,11 +780,10 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -989,8 +796,7 @@ ggplot(
 geom_line()
 ```
 
-]]
-]]
+]
 
 
 
@@ -998,12 +804,11 @@ geom_line()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The .orange[group] aesthetic matters!
+
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
   data = beaches,
@@ -1017,11 +822,11 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1035,8 +840,7 @@ ggplot(
 geom_line()
 ```
 
-]]
-]]
+]
 
 
 
@@ -1045,11 +849,10 @@ geom_line()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
+
 The .orange[group] aesthetic matters!
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1064,11 +867,10 @@ ggplot(
 geom_line()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1082,17 +884,13 @@ ggplot(
 geom_line()
 ```
 
-]]
-]]
-
+]
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The .orange[fill] can be an aesthetic
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1105,11 +903,11 @@ ggplot(
 geom_histogram() #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1121,40 +919,23 @@ ggplot(
 geom_histogram() #<<
 ```
 
-]]
-]]
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 02<br>
-]]
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Geoms]
-]]
+# Geoms
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Points and lines are "simple" geoms
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1167,11 +948,11 @@ ggplot(
 geom_line() #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1182,18 +963,16 @@ ggplot(
 ) + 
 geom_line() #<<
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Points and lines are "simple" geoms
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1206,11 +985,10 @@ ggplot(
 geom_point() #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1221,19 +999,17 @@ ggplot(
 ) + 
 geom_point() #<<
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms can be layered and take parameters
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1247,11 +1023,10 @@ geom_point(size = 5) + #<<
 geom_line(colour = "red") #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1263,8 +1038,8 @@ ggplot(
 geom_point(size = 5) + #<<
 geom_line(colour = "red") #<<
 ```
-]]
-]]
+
+]
 
 
 
@@ -1272,11 +1047,9 @@ geom_line(colour = "red") #<<
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 The order of geoms matters
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1290,11 +1063,10 @@ geom_line(colour = "red") + #<<
 geom_point(size = 5) #<<
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1306,18 +1078,15 @@ ggplot(
 geom_line(colour = "red") + #<<
 geom_point(size = 5) #<<
 ```
-]]
-]]
 
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms can have different mappings
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1336,11 +1105,10 @@ geom_point(
 - Must be consistent
 - Cannot map .orange[x] to two variables
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1354,18 +1122,16 @@ geom_point(
   mapping = aes(colour = season_name), #<<
   size = 5) 
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1378,11 +1144,10 @@ geom_boxplot() #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1392,8 +1157,8 @@ ggplot(
   ) + 
 geom_boxplot() #<<
 ```
-]]
-]]
+
+]
 
 
 
@@ -1401,11 +1166,9 @@ geom_boxplot() #<<
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1418,11 +1181,10 @@ geom_violin() #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1432,19 +1194,16 @@ ggplot(
   ) + 
 geom_violin() #<<
 ```
-]]
-]]
 
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1457,11 +1216,10 @@ geom_bin2d() #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1471,8 +1229,8 @@ ggplot(
   ) + 
 geom_bin2d() #<<
 ```
-]]
-]]
+
+]
 
 
 
@@ -1480,11 +1238,8 @@ geom_bin2d() #<<
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
+.left-code[
 
-.column.bg-main1[.content.vtop.center[
-
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1497,11 +1252,10 @@ geom_hex() #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1511,18 +1265,16 @@ ggplot(
   ) + 
 geom_hex()
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1535,11 +1287,10 @@ geom_density_2d() #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1549,8 +1300,8 @@ ggplot(
   ) + 
 geom_density2d() #<<
 ```
-]]
-]]
+
+]
 
 
 
@@ -1558,11 +1309,9 @@ geom_density2d() #<<
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1576,11 +1325,10 @@ geom_smooth() #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1591,19 +1339,17 @@ ggplot(
 geom_point() + 
 geom_smooth() #<<
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Geoms come in many varieties...
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -1617,11 +1363,11 @@ geom_smooth(method = "lm") #<<
 ```
 
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = beaches,
@@ -1632,42 +1378,22 @@ ggplot(
 geom_point() + 
 geom_smooth(method = "lm") #<<
 ```
-]]
-]]
 
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 03<br>
-]]
-
-
-
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[How are layers structured?]
-]]
+# How are layers structured?
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Let's create a plot with no layers!
 ```{r, eval=FALSE, message = FALSE}
 p <- ggplot(
@@ -1685,11 +1411,10 @@ print(p)
 - Can add to it as needed
 - Useful for programming
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p <- ggplot(
   data = beaches,
@@ -1702,8 +1427,7 @@ labs(
 print(p)
 ```
 
-]]
-]]
+]
 
 
 
@@ -1711,11 +1435,9 @@ print(p)
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Layers can compute things!
 ```{r, eval=FALSE, message = FALSE}
 p + geom_histogram() 
@@ -1725,28 +1447,24 @@ p + geom_histogram()
 - this is computed by the layer...
 - (...sort of)
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r add_histogram, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p + geom_histogram() 
 ```
 
-]]
-]]
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
+.left-code[
 
-.pull.left[.pad1[.font2[
 Layers can compute things!
 ```{r, eval=FALSE, message = FALSE}
 p1 <- p + geom_histogram() 
@@ -1755,20 +1473,18 @@ p2
 ```
 
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r add_density, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p1 <- p + geom_histogram() 
 p2 <- p + geom_density() 
 p2
 ```
 
-]]
-]]
+]
 
 
 
@@ -1777,10 +1493,9 @@ p2
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.pull-right[
+
 The layer information... density
 ```{r, eval=TRUE, message = FALSE}
 p2$layers
@@ -1791,12 +1506,12 @@ Each layer specifies:
 - A .orange[stat]: what "statistic" it is applied to
 - A .orange[position]: how it is placed
 
-]]]
-]]
+]
+
 --
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.pull-left[
+
 The layer information... histogram
 ```{r, eval=TRUE, message = FALSE}
 p1$layers
@@ -1807,18 +1522,16 @@ p1$layers
 - Let's dig into this...
 
 
-]]]
-]]
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Our histogram...
 ```{r, eval=FALSE, message = FALSE}
 p + geom_histogram(
@@ -1827,12 +1540,10 @@ p + geom_histogram(
 ) 
 ```
 
-]]]
-]]
+]
 
+.right-plot[
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p + geom_histogram(
   stat = "bin",
@@ -1840,19 +1551,16 @@ p + geom_histogram(
 ) 
 ```
 
-]]
-]]
-
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Our histogram...
 ```{r, eval=FALSE, message = FALSE}
 p + stat_bin(
@@ -1865,12 +1573,12 @@ p + stat_bin(
 - It is, but don't do this!
 - Use geom to make layers
 - Use stat to change computation
-]]]
-]]
+
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p + stat_bin(
   geom = "bar",
@@ -1878,9 +1586,7 @@ p + stat_bin(
 ) 
 ```
 
-
-]]
-]]
+]
 
 
 
@@ -1888,26 +1594,23 @@ p + stat_bin(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Reverse engineering...
 ```{r, eval=FALSE, message = FALSE}
 p + geom_histogram()
 ```
 
-]]]
-]]
+]
 
+.right-plot[
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p + geom_histogram()
 ```
-]]
-]]
+
+]
 
 
 
@@ -1915,10 +1618,9 @@ p + geom_histogram()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Reverse engineering...
 ```{r, eval=FALSE, message = FALSE}
 p + geom_bar(
@@ -1927,20 +1629,19 @@ p + geom_bar(
 ) 
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p + geom_bar(
   stat = "bin",
   position = "stack" 
 ) 
 ```
-]]
-]]
+
+]
 
 
 
@@ -1951,10 +1652,10 @@ p + geom_bar(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
+
 Making a "dot histogram"
 ```{r, eval=FALSE, message = FALSE}
 p + geom_point(
@@ -1963,20 +1664,19 @@ p + geom_point(
 ) 
 ```
 
-]]]
-]]
+]
+
+.right-plot[
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 p + geom_point(
   stat = "bin",
   position = "stack"
 )
 ```
-]]
-]]
+
+]
 
 
 
@@ -1984,60 +1684,28 @@ p + geom_point(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 
-<br>
 ## [Why are you like this?](https:/cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html)
 
 "Unfortunately, due to an early design mistake I called these either stat\_() or geom\_(). A better decision would have been to call them layer\_() functions: that’s a more accurate description because every layer involves a stat and a geom."
 
 
-]]]
-]]
---
-.column.bg-main3[.content.vmiddle.center[
-
-<img src="images/hadley.gif", width="70%">
-
-[Hadley Wickham](https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html)
-
-]]
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 04<br>
-]]
-
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Positioning]
-]]
-
+# Positioning
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 This is not so helpful!
 ```{r, eval=FALSE, message = FALSE}
 f <- ggplot(
@@ -2050,12 +1718,11 @@ f <- ggplot(
 f + geom_density()
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 f <- ggplot(
   data = beaches,
@@ -2066,8 +1733,9 @@ f <- ggplot(
 
 f + geom_density()
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -2075,10 +1743,9 @@ f + geom_density()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 ```{r, eval=FALSE, message = FALSE}
 f + geom_density(
@@ -2091,29 +1758,28 @@ f + geom_density(
 - Stat: density
 - Position: .orange[identity]
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 f + geom_density(
   position = "identity",
   alpha = .5
 )
 ```
-]]
-]]
+
+]
+
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 ```{r, eval=FALSE, message = FALSE}
 f + geom_density(
@@ -2126,20 +1792,20 @@ f + geom_density(
 - Stat: density
 - Position: .orange[stack]
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 f + geom_density(
   position = "stack",
   alpha = .5
 )
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -2148,10 +1814,9 @@ f + geom_density(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 ```{r, eval=FALSE, message = FALSE}
 f + geom_density(
@@ -2164,20 +1829,19 @@ f + geom_density(
 - Stat: density
 - Position: .orange[fill]
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 f + geom_density(
   position = "fill",
   alpha = .5
 )
 ```
-]]
-]]
+
+]
 
 
 
@@ -2185,10 +1849,9 @@ f + geom_density(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 This is not so helpful!
 ```{r, eval=FALSE, message = FALSE}
 g <- ggplot(
@@ -2201,11 +1864,10 @@ g <- ggplot(
 g + geom_point()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 g <- ggplot(
   data = beaches,
@@ -2217,8 +1879,7 @@ g <- ggplot(
 g + geom_point()
 ```
 
-]]
-]]
+]
 
 
 
@@ -2226,10 +1887,9 @@ g + geom_point()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 ```{r, eval=FALSE, message = FALSE}
 g + geom_point(
@@ -2243,11 +1903,11 @@ g + geom_point(
 - Stat: identity
 - Position: .orange[identity]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 g + geom_point(
   position = "identity",
@@ -2255,8 +1915,9 @@ g + geom_point(
   alpha = .5
 )
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -2264,10 +1925,9 @@ g + geom_point(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 ```{r, eval=FALSE, message = FALSE}
 g + geom_point(
@@ -2281,11 +1941,10 @@ g + geom_point(
 - Stat: identity
 - Position: .orange[jitter]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 g + geom_point(
   position = "jitter",
@@ -2293,18 +1952,18 @@ g + geom_point(
   alpha = .5
 )
 ```
-]]
-]]
+
+]
+
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Let's be clearer...
 ```{r, eval=FALSE, message = FALSE}
 g + geom_point(
@@ -2319,11 +1978,10 @@ g + geom_point(
 - Stat: identity
 - Position: .orange[jitter]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 g + geom_point(
   position = position_jitter(
@@ -2333,8 +1991,9 @@ g + geom_point(
   alpha = .5
 )
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -2342,10 +2001,9 @@ g + geom_point(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 In fact...
 ```{r, eval=FALSE, message = FALSE}
 g + geom_jitter( #<<
@@ -2360,11 +2018,10 @@ g + geom_jitter( #<<
 - Stat: identity
 - Position: .orange[jitter]
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 g + geom_jitter(
   width = .1, 
@@ -2373,63 +2030,26 @@ g + geom_jitter(
   alpha = .5
 )
 ```
-]]
-]]
 
+]
+
+
+
+
+
+<!-- *********** NEW SLIDE ************** -->
+---
+
+
+# Facetting
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
+.left-code[
 
-.pad1[
-.font4[
-Exercise 05<br>
-]]
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Stats]
-(missing!!)
-]]
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 06<br>
-(missing!!)
-]]
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Facetting]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 A cluttered density plot...
 ```{r, eval=FALSE, message = FALSE}
 a <- ggplot(
@@ -2443,11 +2063,10 @@ a <- ggplot(
 print(a)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 a <- ggplot(
   data = beaches,
@@ -2458,8 +2077,9 @@ a <- ggplot(
 
 print(a)
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -2467,10 +2087,9 @@ print(a)
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting on a grid...
 ```{r, eval=FALSE, message = FALSE}
 a + facet_grid(
@@ -2478,18 +2097,18 @@ a + facet_grid(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 a + facet_grid(
   rows = vars(season_name)
 )
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -2499,10 +2118,9 @@ a + facet_grid(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting on a grid...
 ```{r, eval=FALSE, message = FALSE}
 a + facet_grid(
@@ -2510,28 +2128,26 @@ a + facet_grid(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 a + facet_grid(
   cols = vars(season_name)
 )
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting on a grid...
 ```{r, eval=FALSE, message = FALSE}
 a + facet_grid(
@@ -2540,29 +2156,27 @@ a + facet_grid(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 a + facet_grid(
   rows = vars(season_name),
   cols = vars(year)
 )
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting by wrapping...
 ```{r, eval=FALSE, message = FALSE}
 a + facet_wrap(
@@ -2570,27 +2184,25 @@ a + facet_wrap(
   nrow = 2)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 a + facet_wrap(
   facets = vars(season_name), 
   nrow = 2)
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Facetting by wrapping...
 ```{r, eval=FALSE, message = FALSE}
 a + facet_wrap(
@@ -2598,40 +2210,23 @@ a + facet_wrap(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 a + facet_wrap(
   facets = vars(year, season_name)
 )
 ```
-]]
-]]
+
+]
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 07<br>
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Scales (location)]
-]]
+# Scales 
 
 
 
@@ -2639,10 +2234,9 @@ class: bg-main1 center middle hide-slide-number
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A badly scaled plot...
 ```{r, eval=FALSE, message = FALSE}
 r <- ggplot(
@@ -2657,11 +2251,11 @@ r <- ggplot(
 print(r)
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 r <- ggplot(
   data = beaches,
@@ -2675,16 +2269,15 @@ r <- ggplot(
 
 print(r)
 ```
-]]
-]]
+
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Better!
 ```{r, eval=FALSE, message = FALSE}
 r + scale_y_continuous(
@@ -2693,19 +2286,18 @@ r + scale_y_continuous(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 r + scale_y_continuous(
   name = "Enterococci (cfu/100ml)",
   trans = "log10"
 )
 ```
-]]
-]]
+
+]
 
 
 
@@ -2713,10 +2305,9 @@ r + scale_y_continuous(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Better!
 ```{r, eval=FALSE, message = FALSE}
 r + scale_y_continuous(
@@ -2727,11 +2318,10 @@ r + scale_y_continuous(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 r + scale_y_continuous(
   name = "Enterococci (cfu/100ml)",
@@ -2740,18 +2330,18 @@ r + scale_y_continuous(
     digits = 3)
 )
 ```
-]]
-]]
+
+]
+
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Even better!
 ```{r, eval=FALSE, message = FALSE}
 r + scale_y_continuous(
@@ -2767,11 +2357,10 @@ r + scale_y_continuous(
   )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 b <- r + scale_y_continuous(
   name = "Enterococci (cfu/100ml)",
@@ -2786,65 +2375,46 @@ b <- r + scale_y_continuous(
   )
 b
 ```
-]]
-]]
+
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
+# Scales (colour/fill)
 
-.pad1[
-.font4[
-Exercise 08<br>
-]]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: bg-main1 center middle hide-slide-number
+.left-code[
 
-.reveal-text.bg-main2[.pad1[
-.font4[Scales (colour/fill)]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 Now where were we...
 ```{r, eval=FALSE, message = FALSE}
 b
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 b
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Colour/fill aesthetics have scales
 ```{r, eval=FALSE, message = FALSE}
 b + scale_colour_discrete(
@@ -2852,27 +2422,25 @@ b + scale_colour_discrete(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 b + scale_colour_discrete(
   name = "Season"
 )
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Many packages provide scales/palettes
 ```{r, eval=FALSE, message = FALSE}
 b + scico::scale_colour_scico_d(
@@ -2881,27 +2449,26 @@ b + scico::scale_colour_scico_d(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 b + scico::scale_colour_scico_d(
   name = "Season",
   palette = "lajolla"
 )
 ```
-]]
-]]
+
+]
+
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Many packages provide scales/palettes
 ```{r, eval=FALSE, message = FALSE}
 b + scico::scale_colour_scico_d(
@@ -2910,30 +2477,19 @@ b + scico::scale_colour_scico_d(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 b + scico::scale_colour_scico_d(
   name = "Season",
   palette = "bilbao"
 )
 ```
-]]
-]]
 
+]
 
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 09<br>
-]]
 
 
 
@@ -2941,21 +2497,17 @@ Exercise 09<br>
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[Coordinates]
-]]
+# Coordinates
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 (Some preprocessing...)
 ```{r, eval=TRUE, message = FALSE}
 rain <- beaches %>% 
@@ -2966,43 +2518,43 @@ rain <- beaches %>%
     rain = mean(rainfall)
   ) %>%
   ungroup() %>%
-  spread(
-    key = year, 
-    value = rain
+  pivot_wider(
+    names_from = year, 
+    values_from = rain
   )
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 rain <- beaches %>% 
-  group_by(month, year, season_name) %>%
+  group_by(
+    month, year, season_name
+    ) %>%
   summarise(
-    temp = mean(rainfall)
+    rain = mean(rainfall)
   ) %>%
   ungroup() %>%
-  spread(
-    key = year, 
-    value = temp
+  pivot_wider(
+    names_from = year, 
+    values_from = rain
   )
 
 rain
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -3016,12 +2568,12 @@ ggplot(
 geom_point(size = 5) 
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = rain,
@@ -3033,18 +2585,17 @@ ggplot(
 ) + 
 geom_point(size = 5)
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -3062,12 +2613,10 @@ geom_abline( #<<
 ) #<<
 ```
 
-]]]
-]]
+]
 
+.right-plot[
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = rain,
@@ -3083,8 +2632,9 @@ geom_abline(
   intercept = 0
 )
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -3093,10 +2643,9 @@ geom_abline(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -3115,12 +2664,11 @@ geom_abline(
 coord_equal() #<<
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = rain,
@@ -3137,8 +2685,9 @@ geom_abline(
 ) + 
 coord_equal()
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -3146,10 +2695,9 @@ coord_equal()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -3171,12 +2719,11 @@ coord_equal(
 )
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = rain,
@@ -3196,18 +2743,18 @@ coord_equal(
   ylim = c(0, 25) #<<
 )
 ```
-]]
-]]
+
+]
+
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple scatterplot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -3229,12 +2776,11 @@ coord_cartesian( #<<
 )
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = rain,
@@ -3254,8 +2800,9 @@ coord_cartesian(
   ylim = c(0, 25) #<<
 )
 ```
-]]
-]]
+
+]
+
 
 
 
@@ -3266,10 +2813,9 @@ coord_cartesian(
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 A simple bar plot
 ```{r, eval=FALSE, message = FALSE}
 ggplot(
@@ -3284,12 +2830,11 @@ ggplot(
 geom_col()
 ```
 
-]]]
-]]
+]
 
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 ggplot(
   data = rain,
@@ -3302,8 +2847,8 @@ ggplot(
 ) + 
 geom_col() 
 ```
-]]
-]]
+
+]
 
 
 
@@ -3312,134 +2857,18 @@ geom_col()
 
 
 
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-A simple bar plot, ruined
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col() + 
-coord_polar() #<<
-```
-
-
-]]]
-]]
-
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name    
-  )
-) + 
-geom_col() + 
-coord_polar() #<<
-```
-]]
-]]
 
 
 
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-A simple bar plot, ruined
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col() + 
-coord_polar(theta = "y") #<<
-```
-
-
-]]]
-]]
-
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name    
-  )
-) + 
-geom_col() + 
-coord_polar(theta = "y") #<<
-```
-]]
-]]
-
-
-
-
+# Themes
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
+.left-code[
 
-.pad1[
-.font4[
-Exercise 10<br>
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Themes]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 Here's one from earlier...
 ```{r, eval=FALSE, message = FALSE}
 th <- b + 
@@ -3450,11 +2879,10 @@ th <- b +
 th
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 th <- b + scico::scale_colour_scico_d(
   name = "Season",
@@ -3463,8 +2891,8 @@ th <- b + scico::scale_colour_scico_d(
 
 th
 ```
-]]
-]]
+
+]
 
 
 
@@ -3472,25 +2900,24 @@ th
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 The default theme
 ```{r, eval=FALSE, message = FALSE}
 th + theme_grey()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 th + theme_grey()
 ```
-]]
-]]
+
+]
 
 
 
@@ -3498,83 +2925,55 @@ th + theme_grey()
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Other global themes
-```{r, eval=FALSE, message = FALSE}
-th + theme_dark()
-```
+.left-code[
 
-]]]
-]]
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-th + theme_dark()
-```
-]]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-40 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
 Other global themes
 ```{r, eval=FALSE, message = FALSE}
 th + theme_bw()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 th + theme_bw()
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Other global themes
 ```{r, eval=FALSE, message = FALSE}
 th + theme_void()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 th + theme_void()
 ```
-]]
-]]
+
+]
+
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 ```{r, eval=FALSE, message = FALSE}
 th + theme(
@@ -3585,11 +2984,10 @@ th + theme(
 )
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 th + theme(
   plot.background = element_rect(
@@ -3598,18 +2996,17 @@ th + theme(
   ) 
 )
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 ```{r, eval=FALSE, message = FALSE}
 u <- th + theme(
@@ -3623,11 +3020,10 @@ u <- th + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 u <- th + theme(
   plot.background = element_rect(
@@ -3639,16 +3035,15 @@ u <- th + theme(
 )
 u
 ```
-]]
-]]
+
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 ```{r, eval=FALSE, message = FALSE}
 u <- u + theme(
@@ -3658,11 +3053,10 @@ u <- u + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 u <- u + theme(
   legend.background  = element_rect(
@@ -3670,8 +3064,8 @@ u <- u + theme(
     colour = "#BA68C8"))
 u
 ```
-]]
-]]
+
+]
 
 
 
@@ -3679,10 +3073,9 @@ u
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 ```{r, eval=FALSE, message = FALSE}
 u <- u + theme(
@@ -3693,11 +3086,10 @@ u <- u + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 u <- u + theme(
   text = element_text(
@@ -3706,17 +3098,16 @@ u <- u + theme(
   ))
 u
 ```
-]]
-]]
+
+]
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 Customising a theme
 ```{r, eval=FALSE, message = FALSE}
 u <- u + theme(
@@ -3727,11 +3118,10 @@ u <- u + theme(
 u
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 u <- u + theme(
   axis.text = element_text(
@@ -3740,17 +3130,17 @@ u <- u + theme(
   ))
 u
 ```
-]]
-]]
+
+]
 
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: bg-main1
 
-.pull.left[.pad1[.font2[
+
+
 Kunoichi theme (incomplete)
 ```{r, eval=TRUE, message = FALSE}
 theme_kunoichi <- function(...) {
@@ -3769,787 +3159,48 @@ theme_kunoichi <- function(...) {
 } 
 ```
 
-]]]
+
 
 
 
 <!-- *********** NEW SLIDE ************** -->
 ---
-class: split-40 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
+.left-code[
+
 And so...
 ```{r, eval=FALSE, message = FALSE}
 th + theme_kunoichi()
 ```
 
-]]]
-]]
+]
 
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
+.right-plot[
+
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
 th + theme_kunoichi()
 ```
-]]
-]]
+
+]
 
 
 
-<!-- *********** NEW SLIDE ************** -->
 ---
 
-class: white bg-black center middle hide-slide-number
 
-.pad1[
-.font4[
-Exercise 11<br>
-]]
+# Extensions
 
 
-<!-- *********** NEW SLIDE ************** -->
----
 
-class: bg-main1 center middle hide-slide-number
 
-.reveal-text.bg-main2[.pad1[
-.font4[Extensions (in brief!)]
-]]
 
 
 
 
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
 
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Overriding defaults
 
-```{r, eval=FALSE, message = FALSE}
-geom_dothistogram <- function(
-  geom = "point", ...){
-  
-  layer <- stat_bin(geom = geom, ...)
-  return(layer)
-}
 
-p + geom_dothistogram(size = 3) #<<
-```
 
-]]]
-]]
 
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-geom_dothistogram <- function(
-  geom = "point", ...
-  ) {
-  
-  layer <- stat_bin(geom = geom, ...)
-  return(layer)
-  
-}
-
-p + geom_dothistogram(size = 3) #<<
-```
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Entirely new geoms rely on .orange[grid] graphics...
-
-```{r, eval=TRUE, message = FALSE}
-my_arrow <- function(data, panel_params, coord) {
-  coords <- coord$transform(data, panel_params)
-  trans <- function(coords, fun) {
-    coords$length * coords$size * fun(2 * pi * coords$direction / 360)
-  }
-
-  grid::polylineGrob(
-    x = c(coords$x, coords$x + trans(coords, cos)),
-    y = c(coords$y, coords$y + trans(coords, sin)),
-    id = c(1:length(coords$x), 1:length(coords$x)),
-    arrow = arrow(
-      angle = 30,
-      length = unit(coords$size * coords$length/2, "native")),
-    default.units = "native",
-    gp = grid::gpar(col = coords$colour, lwd = coords$linewidth)
-  )
-}
-```
-
-]]]
-]]
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Then we create a new .orange[ggproto] object...
-
-```{r, eval=TRUE, message = FALSE}
-GeomVector <- ggproto(
-  "GeomVector", Geom,
-  required_aes = c("x", "y", 
-                   "direction", "length"),
-  default_aes = aes(
-    colour = "black", fill = NA, size = .025,
-    linetype = 1, alpha = 1, linewidth = 1
-  ),
-  draw_key = draw_key_point,
-  draw_panel = my_arrow
-)
-
-```
-
-]]]
-]]
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-What are you???
-
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Now we define the layer function...
-
-```{r, eval=TRUE, message = FALSE}
-geom_vector <- function(
-  mapping = NULL, data = NULL,
-  stat = "identity", position = "identity",
-  na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, ...) {
-
-  ggplot2::layer(
-    geom = GeomVector, mapping = mapping,
-    data = data, stat = stat,
-    position = position,
-    show.legend = show.legend,
-    inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, ...)
-  )
-}
-
-```
-
-]]]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Now we use it!
-
-```{r, eval=FALSE, message = FALSE}
-vectors <- read_csv(
-  here("data","vector_field.csv"))
-
-ggplot(
-  data = vectors,
-  mapping = aes(
-    x = xval,
-    y = yval,
-    direction = dir,
-    length = len,
-    colour = cosx)
-  ) +
-  geom_vector(linewidth = 2)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-vectors <- read_csv(
-  here("data","vector_field.csv"))
-
-ggplot(
-  data = vectors,
-  mapping = aes(
-    x = xval,
-    y = yval,
-    direction = dir,
-    length = len,
-    colour = cosx)
-  ) +
-  geom_vector(linewidth = 2)
-```
-]]
-]]
-
-
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercise 12<br>
-]]
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Animation]
-]]
-
-
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class:bg-main1
-
-.content.vtop.center[
-.pull.left[.pad1[.font2[
-
-```{r, eval=TRUE, cache=TRUE, warning=FALSE, message = FALSE}
-bridges <- read_csv( here("data","brownian_bridges.csv"))
-bridges
-```
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Brownian bridge paths
-```{r, eval=FALSE, message = FALSE}
-a <- ggplot(
-  data = bridges,
-  mapping = aes(
-    x = Horizontal,
-    y = Vertical,
-    colour = factor(Series))
-) + geom_line(colour = "black") +
-  geom_point(
-    show.legend = FALSE,
-    size = 2) +
-  coord_equal() +
-  xlim(-1.5, 1) +
-  ylim(-1.25, 1.25)
-
-a + facet_wrap(vars(Series))
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-a <- ggplot(
-  data = bridges,
-  mapping = aes(
-    x = Horizontal,
-    y = Vertical,
-    colour = Series) 
-) + 
-  geom_path(
-    show.legend = FALSE,
-    lwd = 2
-  ) +
-  coord_equal() +
-  xlim(-1.5, 1) +
-  ylim(-1.25, 1.25) + 
-  scale_color_scico(palette = "lajolla")
-
-a + facet_wrap(vars(Series))
-```
-]]
-]]
-
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-An alternative representation
-```{r, eval=FALSE, message = FALSE}
-b <- ggplot(
-  data = bridges,
-  mapping = aes(
-    x = Horizontal,
-    y = Vertical,
-    colour = factor(Series))
-) +
-  geom_point(
-    show.legend = FALSE,
-    size = 4) +
-  coord_equal() +
-  xlim(-1.5, 1) +
-  ylim(-1.25, 1.25)
-
-b + facet_wrap(vars(Time))
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-b <- ggplot(
-  data = bridges,
-  mapping = aes(
-    x = Horizontal,
-    y = Vertical,
-    colour = factor(Series))
-) +
-  geom_point(
-    show.legend = FALSE,
-    size = 4) +
-  coord_equal() +
-  xlim(-1.5, 1) +
-  ylim(-1.25, 1.25)
-
-b + facet_wrap(vars(Time))
-```
-]]
-]]
-
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Animation as faceting over time...
-```{r, eval=FALSE, message = FALSE}
-# Instead of this:
-# b + facet_wrap(facets = vars(Time))
-
-# Do this:
-b + transition_time(time = Time)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-# Instead of this:
-# b + facet_wrap(facets = vars(Time))
-
-# Do this:
-b + transition_time(time = Time)
-```
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can add shadows...
-```{r, eval=FALSE, message = FALSE}
-b + 
-  transition_time(time = Time) + 
-  shadow_wake(wake_length = .2)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-b + 
-  transition_time(time = Time) + 
-  shadow_wake(wake_length = .2)
-```
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can add shadows...
-```{r, eval=FALSE, message = FALSE}
-c <- b + 
-  transition_time(time = Time) + 
-  shadow_wake(wake_length = .2)
-
-animate(c, detail = 5, type = "cairo")
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-c <- b + 
-  transition_time(time = Time) + 
-  shadow_wake(wake_length = .2)
-
-animate(c, detail = 5, type = "cairo")
-```
-]]
-]]
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can add shadows...
-```{r, eval=FALSE, message = FALSE}
-c <- b + 
-  theme_kunoichi() +
-  transition_time(time = Time) + 
-  shadow_wake(
-    wake_length = .3,
-    size = 15,
-    colour = "white",
-    falloff = "quintic-in",
-    wrap = FALSE
-  )  
-
-animate(c, detail = 5, type = "cairo")
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-c <- b + 
-  theme_kunoichi() +
-  transition_time(time = Time) + 
-  shadow_wake(
-    wake_length = .3,
-    size = 15,
-    colour = "white",
-    falloff = "quintic-in",
-    wrap = FALSE
-  )  
-
-animate(c, detail = 5, type = "cairo")
-```
-]]
-]]
-
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-You can animate different things...
-```{r, eval=FALSE, message = FALSE}
-c <- a + 
-  theme_kunoichi() +
-  transition_states(states = Series) 
-
-animate(c, detail = 5, type = "cairo")
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-c <- a + 
-  theme_kunoichi() +
-  transition_states(states = Series) 
-
-animate(c, detail = 5, type = "cairo")
-```
-]]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-A familiar plot!
-```{r, eval=FALSE, message = FALSE}
-d <- ggplot(
-  data = beaches,
-  mapping = aes(
-    x = date,
-    y = temperature,
-    colour = season_name,
-    group = 1
-  )
-) +
-geom_path() +
-geom_point()
-
-d
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-d <- ggplot(
-  data = beaches,
-  mapping = aes(
-    x = date,
-    y = temperature,
-    colour = season_name,
-    group = 1
-  )
-) +
-geom_path() +
-geom_point()
-
-d
-```
-]]
-]]
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-This seems to make sense!
-```{r, eval=FALSE, message = FALSE}
-d + transition_time(date)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-Although...
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-d + transition_time(date)
-```
-]]
-]]
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-Try a reveal transition?
-```{r, eval=FALSE, message = FALSE}
-d + transition_reveal(date)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-What's up with the dot?
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-d + transition_reveal(date)
-```
-]]
-]]
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-class: split-50 bg-main1
-
-.column.bg-main1[.content.vtop.center[
-.pull.left[.pad1[.font2[
-An alternative possibility
-```{r, eval=FALSE, message = FALSE}
-d + 
-  transition_time(date) + 
-  shadow_mark(alpha = .5)
-```
-
-]]]
-]]
-
-
---
-
-.column.bg-main3[.content.vtop.center[
-.pad1[.font2[
-Although...
-```{r, eval=TRUE, echo=FALSE, cache=TRUE, warning=FALSE, message = FALSE}
-d + 
-  transition_time(date) + 
-  shadow_mark(alpha = .5)
-```
-]]
-]]
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-class: white bg-black center middle hide-slide-number
-
-.pad1[
-.font4[
-Exercises 13-14<br>
-]]
-
-
-<!-- DONE -->
----
-
-class: bg-main1 middle center
-
-## thank u
 
 

@@ -4,7 +4,7 @@
     <title>Functional</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2023-11-08" />
+    <meta name="date" content="2024-09-17" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -905,6 +905,46 @@ source("path/to/some/file/functions.R")
 ```
 
 Simply add this line to the top of your R script and you’ll be able to use any functions defined in file.R.
+
+---
+
+# Parallel Computation
+
+The `{furrr}` package makes it easy to convert `map`'s to run in parallel. Almost all of the `map` functions are
+available, prefixed with `future_`.
+
+The first thing we need to do after loading the `{furrr}` package is set up the parallel workers. We do this with the
+`plan` function.
+
+.pull-left[
+
+```r
+library(furrr)
+## Loading required package: future
+
+plan(multisession, workers = 10)
+
+
+fn &lt;- function(x) {
+  Sys.sleep(0.5)
+  x
+}
+```
+]
+
+.pull-right[
+
+```r
+tictoc::tic()
+x &lt;- map_dbl(1:10, fn)
+tictoc::toc()
+# ## 5.13 sec elapsed
+tictoc::tic()
+y &lt;- future_map_dbl(1:10, fn)
+tictoc::toc()
+## 3.61 sec elapsed
+```
+]
 
 ---
 
