@@ -37,7 +37,7 @@ All lecture materials will be available here.
     
 - 07: Working with big data files
 
-    - [Slides](slides/Big-data.html) 
+    - [Slides](slides/Big-Data.html) 
     
 - 07: Working with ggplot
 
