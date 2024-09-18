@@ -280,6 +280,9 @@ my_total(penguins, body_mass_g, flipper_length_mm)
 ```
 
 
+
+---
+
 ## Passing quoted arguments to filter()
 
 
@@ -410,6 +413,9 @@ ratio_function(bill_length_mm, bill_depth_mm)
 
 ---
 
+.tiny[
+
+
 ```{r}
 
 
@@ -428,6 +434,7 @@ my_ratio_function(bill_length_mm, bill_depth_mm)
 
 ```
 
+]
 
 ---
 ## Enquo or ensym
