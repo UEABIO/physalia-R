@@ -4,7 +4,7 @@
     <title>Functions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2024-09-17" />
+    <meta name="date" content="2024-09-18" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/countdown/countdown.css" rel="stylesheet" />
@@ -106,21 +106,30 @@ To determine which type of tidy evaluation a function uses, look at the help fil
 
 .pull-left[
 - Data-masking is a distinctive feature of R whereby programming is performed directly on a data set, with columns defined as normal objects.
+
+- Almost all base R functions use **unmasked programming**
+
+```
+mean(penguins$body_mass_g + penguins$flipper_length_mm)
+#[1] 4402.67
+```
+Referring to columns without `$` is an error - Where is the data?
+
+```
+mean(body_mass_g + flipper_length_mm)
+# Error: object 'body_mass_g' not found
+```
+
+
 ]
 
 .pull-right[
 - While data-masking makes it easy to program interactively with data frames, it makes it harder to create functions.
-]
+
+
+- Equivalent code with functions from dplyr that use data masking
 
 ```
-# Almost all base R functions use unmasked programming
-mean(penguins$body_mass_g + penguins$flipper_length_mm)
-#[1] 4402.67
-# Referring to columns without `$` is an error - Where is the data?
-mean(body_mass_g + flipper_length_mm)
-# Error: object 'body_mass_g' not foundd
-# R is looking in the global environment for an object named 'cyl'
-# Equivalent code with functions from dplyr that use data masking
 # Data masking allows you to reference columns without using $
 penguins |&gt; 
 summarise(mean = mean(body_mass_g + flipper_length_mm))
@@ -130,6 +139,10 @@ summarise(mean = mean(body_mass_g + flipper_length_mm))
 #1 4403.
 
 ```
+]
+
+
+
 
 ---
 
@@ -183,13 +196,6 @@ penguin_summary("body_mass_g")
 ```
 
 ```
-## # A tibble: 1 × 1
-##    mean
-##   &lt;dbl&gt;
-## 1 4202.
-```
-
-```
 # A tibble: 1 × 1
    mean
   &lt;dbl&gt;
@@ -197,6 +203,99 @@ penguin_summary("body_mass_g")
 ```
 
 ---
+
+
+## Quasiquotation
+
+
+Passing data-masked arguments to functions requires injection (also known as quasiquotation) with the embracing operator {{·}}
+
+This is needed because under the hood data-masking works by defusing R code to prevent its immediate evaluation.
+
+The defused code is resumed later on in a context where data frame columns are defined.
+
+
+
+```r
+penguin_summary &lt;- function(select_var){
+  penguins |&gt; 
+  summarise(mean = mean({{select_var}}, na.rm = T))
+}
+
+penguin_summary(body_mass_g)
+```
+
+```
+## # A tibble: 1 × 1
+##    mean
+##   &lt;dbl&gt;
+## 1 4202.
+```
+
+```r
+penguin_summary("body_mass_g") # Works either way
+```
+
+```
+## # A tibble: 1 × 1
+##    mean
+##   &lt;dbl&gt;
+## 1    NA
+```
+
+---
+
+## Quasiquotation
+
+The {{.}} is a shortcut for `!!enquo(.)` Where `rlang::enquo()` captures and quote an argument or an expression. The result of `enquo()` is a quosure, which is a combination of the quoted expression and its associated environment.
+
+`!!` This is the unquote operator. It's used to unquote or unsplice the contents of a quosure. In other words, it takes the quoted expression out of the quosure and evaluates it.
+
+
+```r
+penguin_summary &lt;- function(select_var){
+  
+  select_var &lt;- enquo(select_var)
+  
+ penguins |&gt; 
+  summarise(mean = mean(!!select_var, na.rm = T))
+  
+}
+
+penguin_summary(body_mass_g)
+```
+
+```
+## # A tibble: 1 × 1
+##    mean
+##   &lt;dbl&gt;
+## 1 4202.
+```
+
+- But {{}} is more flexible - `enquo` expects a data-masked variable
+
+---
+
+## Using {{.}}
+
+
+
+```r
+my_total &lt;- function(data, var_1, var_2){
+data |&gt; 
+  summarise(new_mean = mean({{var_1}} + {{var_2}}, na.rm = T))
+}
+
+my_total(penguins, body_mass_g, flipper_length_mm)
+```
+
+```
+## # A tibble: 1 × 1
+##   new_mean
+##      &lt;dbl&gt;
+## 1    4403.
+```
+
 
 ## Passing quoted arguments to filter()
 
@@ -250,7 +349,7 @@ Caused by error:
 
 Why did we get this note? The character condition needs to be **an expression**
 
-**expression** an object that represents an action that can be performed by R
+**expression** is an object that represents an action that can be performed by R
 
 ---
 
@@ -258,9 +357,9 @@ Why did we get this note? The character condition needs to be **an expression**
 
 Can use !! injector &amp; rlang::parse_expr()
 
-rlang::parse_expr: transforms text into an un-evaluated expression (i.e., it removes the quotation marks but doesn't evaluate the text)
+`rlang::parse_expr:` transforms text into an un-evaluated expression 
 
-!! to be covered in next section
+!! unquotes the character string
 
 
 ```r
@@ -283,6 +382,39 @@ filter_function("body_mass_g &lt; 3500")
 
 ```
 
+
+---
+
+## {{.}} to filter()
+
+
+
+```r
+filter_function &lt;- function(filter_condition){
+  penguins |&gt; 
+    filter({{filter_condition}})
+}
+
+filter_function(body_mass_g &lt; 3500)
+```
+
+```
+## # A tibble: 71 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           40.3          18                 195        3250
+##  2 Adelie  Torgersen           36.7          19.3               193        3450
+##  3 Adelie  Torgersen           34.1          18.1               193        3475
+##  4 Adelie  Torgersen           37.8          17.1               186        3300
+##  5 Adelie  Torgersen           41.1          17.6               182        3200
+##  6 Adelie  Torgersen           38.7          19                 195        3450
+##  7 Adelie  Torgersen           34.4          18.4               184        3325
+##  8 Adelie  Biscoe              37.8          18.3               174        3400
+##  9 Adelie  Biscoe              40.5          17.9               187        3200
+## 10 Adelie  Biscoe              37.9          18.6               172        3150
+## # ℹ 61 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
 
 ---
 
@@ -336,83 +468,111 @@ ratio_function("bill_length_mm", "bill_depth_mm")
 
 ---
 
-## Passing unquoted arguments
-
-
-Passing data-masked arguments to functions requires injection (also known as quasiquotation) with the embracing operator {{ · }}
-
-This is needed because under the hood data-masking works by defusing R code to prevent its immediate evaluation.
-
-The defused code is resumed later on in a context where data frame columns are defined.
-
+## Using {{}}
 
 
 ```r
-penguin_summary &lt;- function(select_var){
+ratio_function &lt;- function(mutate_var1, mutate_var2) {
   penguins |&gt; 
-  summarise(mean = mean({{select_var}}, na.rm = T))
+    mutate(ratio = {{mutate_var1}} / {{mutate_var2}})
 }
 
-penguin_summary(body_mass_g)
+ratio_function(bill_length_mm, bill_depth_mm)
 ```
 
 ```
-## # A tibble: 1 × 1
-##    mean
-##   &lt;dbl&gt;
-## 1 4202.
+## # A tibble: 344 × 9
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, ratio &lt;dbl&gt;
 ```
 
 ---
 
-## Quasiquotation
-
-The {{.}} is a shortcut for !!enquo(.) Where rlang::enquo() captures and quote an argument or an expression. The result of enquo() is a quosure, which is a combination of the quoted expression and its associated environment.
-
-!! This is the unquote operator. It's used to unquote or unsplice the contents of a quosure. In other words, it takes the quoted expression out of the quosure and evaluates it.
-
 
 ```r
-penguin_summary &lt;- function(select_var){
-  
-  select_var &lt;- enquo(select_var)
-  
- penguins |&gt; 
-  summarise(mean = mean(!!select_var, na.rm = T))
-  
+my_ratio_function &lt;- function(var1, var2) {
+  var1 &lt;- ensym(var1)  # Convert input to symbol
+  var2 &lt;- ensym(var2)
+  penguins |&gt; 
+    mutate(ratio = !!var1 / !!var2)  # Unquote and use the symbols
 }
 
-penguin_summary(body_mass_g)
+# Call with column names
+my_ratio_function("bill_length_mm", "bill_depth_mm")
 ```
 
 ```
-## # A tibble: 1 × 1
-##    mean
-##   &lt;dbl&gt;
-## 1 4202.
+## # A tibble: 344 × 9
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, ratio &lt;dbl&gt;
 ```
+
+```r
+# Call with column names
+my_ratio_function(bill_length_mm, bill_depth_mm)
+```
+
+```
+## # A tibble: 344 × 9
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, ratio &lt;dbl&gt;
+```
+
 
 ---
-
-## Using {{.}}
-
+## Enquo or ensym
 
 
-```r
-my_total &lt;- function(data, var_1, var_2){
-data |&gt; 
-  summarise(new_mean = mean({{var_1}} + {{var_2}}, na.rm = T))
-}
+| Feature            | `enquo()`                                  | `ensym()`                               |
+|--------------------|--------------------------------------------|-----------------------------------------|
+| **Captures**        | Expressions (quosures)                    | Symbols (column names, single symbols)  |
+| **Usage**           | For complex expressions (e.g., logical conditions) | For individual column names or symbols |
+| **Resulting Object**| Quosure (expression with environment)     | Symbol                                  |
+| **Complexity**      | Can handle more complex expressions       | Handles only simple column references   |
+| **Example Input**   | `bill_length_mm &gt; 40`                     | `"bill_length_mm"` or `bill_length_mm`  |
 
-my_total(penguins, body_mass_g, flipper_length_mm)
-```
 
-```
-## # A tibble: 1 × 1
-##   new_mean
-##      &lt;dbl&gt;
-## 1    4403.
-```
+When to Use:
+
+- `enquo()`: Use it when you want to capture a complex expression that includes operators, comparisons, or multiple parts.
+- `ensym()`: Use it when you're only dealing with simple column names or strings representing column names.
+
 
 ---
 
@@ -435,7 +595,7 @@ To write functions using {dplyr} verbs that use tidy-select: In selecting functi
 
 - `all_of()`: for strict selection. If any of the variables in the character vector is missing, an error is thrown
 
-- Can also use `!all_of()` to select all variables not found in the character vector supplied to all_of()
+- Can also use `!all_of()` to select all variables not found in the character vector supplied to `all_of()`
 
 
 
@@ -517,6 +677,8 @@ my_select_function(select_variable = c(species, sex)) |&gt;
 ## $ species &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie…
 ## $ sex     &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA, …
 ```
+
+- Function will now work with quoted or unquoted arguments
 
 ---
 
@@ -643,7 +805,7 @@ ggplot(aes(x = species, y = mean)) +
 
 .right-plot[
 
-&lt;img src="tidy-functions_files/figure-html/unnamed-chunk-19-1.png" width="120%" /&gt;
+&lt;img src="tidy-functions_files/figure-html/unnamed-chunk-22-1.png" width="120%" /&gt;
 
 ]
 
@@ -943,7 +1105,7 @@ class:center, middle, inverse
 ## Solving our issue
 
 ---
-<div class="countdown" id="timer_b59c52e3" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_4414dd58" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">00</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">13</span></code>
 </div>
@@ -982,7 +1144,7 @@ penguins_body_mass_summary |&gt;
 .right-plot[
 .tiny[
 
-&lt;img src="tidy-functions_files/figure-html/unnamed-chunk-35-1.png" width="120%" /&gt;
+&lt;img src="tidy-functions_files/figure-html/unnamed-chunk-38-1.png" width="120%" /&gt;
 
 ]
 ]

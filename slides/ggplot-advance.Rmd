@@ -1492,6 +1492,7 @@ p2
 
 
 <!-- *********** NEW SLIDE ************** -->
+
 ---
 
 .pull-right[
@@ -1843,8 +1844,43 @@ f + geom_density(
 
 ]
 
+---
+
+## ggridges
+
+.left-code[
+
+Let's be clearer...
+```{r, eval=FALSE, message = FALSE}
+ggplot(
+  data = beaches,
+  mapping = aes(
+    x = temperature,
+    y = season_name) #<<
+  )  +
+  ggridges::geom_density_ridges()
+```
+
+- Geom: density
+- Stat: density
+- Position: .orange[fill]
+
+]
 
 
+.right-plot[
+
+```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
+ggplot(
+  data = beaches,
+  mapping = aes(
+    x = temperature,
+    y = season_name) #<<
+  )  +
+  ggridges::geom_density_ridges()
+```
+
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
@@ -2035,6 +2071,39 @@ g + geom_jitter(
 
 
 
+---
+
+## Beeswarm
+
+.left-code[
+
+```{r, eval = FALSE}
+g +
+    geom_violin(
+    aes(group = year)
+  )+
+  ggbeeswarm::geom_beeswarm(size = .8)
+
+
+```
+
+]
+
+.right-plot[
+
+
+```{r, echo = FALSE}
+g +
+    geom_violin(
+    aes(group = year)
+  )+
+  ggbeeswarm::geom_beeswarm(size = .8)
+
+
+```
+
+]
+
 
 
 <!-- *********** NEW SLIDE ************** -->
@@ -2223,6 +2292,31 @@ a + facet_wrap(
 ]
 
 <!-- *********** NEW SLIDE ************** -->
+
+---
+
+## ggh4x
+
+
+.left-code[
+
+Facetting by wrapping...
+```{r, eval=FALSE, message = FALSE}
+a + 
+  ggh4x::facet_nested(~year + season_name)
+```
+
+]
+
+.right-plot[
+
+```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
+a + 
+  ggh4x::facet_nested(~year + season_name)
+
+```
+
+]
 ---
 
 
@@ -2488,10 +2582,39 @@ b + scico::scale_colour_scico_d(
 )
 ```
 
+
 ]
 
 
+<!-- *********** NEW SLIDE ************** -->
+--- 
 
+---
+
+
+.left-code[
+
+Many packages provide scales/palettes
+```{r, eval=FALSE, message = FALSE}
+b + scale_color_manual(values=c("#999999", 
+                                "#E69F00", 
+                                "#56B4E9",
+                                "purple"))
+```
+
+]
+
+.right-plot[
+
+```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
+b + scale_color_manual(values=c("#999999", 
+                                "#E69F00", 
+                                "#56B4E9",
+                                "purple"))
+
+```
+
+]
 
 
 <!-- *********** NEW SLIDE ************** -->
@@ -2637,119 +2760,6 @@ geom_abline(
 
 
 
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-.left-code[
-
-A simple scatterplot
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x = `2013`,
-    y = `2017`,
-    colour = season_name
-  )
-) + 
-geom_point(size = 5) + 
-geom_abline( 
-  slope = 1, 
-  intercept = 0 
-) + 
-coord_equal() #<<
-```
-
-]
-
-
-.right-plot[
-
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x = `2013`,
-    y = `2017`,
-    colour = season_name
-  )
-) + 
-geom_point(size = 5) + 
-geom_abline(
-  slope = 1, 
-  intercept = 0
-) + 
-coord_equal()
-```
-
-]
-
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
----
-
-.left-code[
-
-A simple scatterplot
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x = `2013`,
-    y = `2017`,
-    colour = season_name
-  )
-) + 
-geom_point(size = 5) + 
-geom_abline( 
-  slope = 1, 
-  intercept = 0 
-) + 
-coord_equal(
-  xlim = c(0, 25), #<<
-  ylim = c(0, 25) #<<
-)
-```
-
-]
-
-
-.right-plot[
-
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x = `2013`,
-    y = `2017`,
-    colour = season_name
-  )
-) + 
-geom_point(size = 5) + 
-geom_abline(
-  slope = 1, 
-  intercept = 0
-) + 
-coord_equal(
-  xlim = c(0, 25), #<<
-  ylim = c(0, 25) #<<
-)
-```
-
-]
-
-
-
-
-
 <!-- *********** NEW SLIDE ************** -->
 ---
 
@@ -2806,57 +2816,7 @@ coord_cartesian(
 
 
 
-
-
-
-
-
-<!-- *********** NEW SLIDE ************** -->
 ---
-
-.left-code[
-
-A simple bar plot
-```{r, eval=FALSE, message = FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col()
-```
-
-]
-
-
-.right-plot[
-
-```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col() 
-```
-
-]
-
-
-
-
-
-
-
-
 
 
 
@@ -3141,22 +3101,40 @@ u
 
 
 
-Kunoichi theme (incomplete)
+Custom theme
+
 ```{r, eval=TRUE, message = FALSE}
-theme_kunoichi <- function(...) {
-  theme_grey(...) %+replace%
-  theme( 
-    plot.background = element_rect(fill = "#BA68C8", colour = "#BA68C8"),
-    panel.background = element_rect(fill = "#562457", colour = "#562457"),
-    legend.background = element_rect(fill = "#BA68C8", colour = "#BA68C8"),
-    plot.title = element_text(colour = "white"),
-    plot.subtitle = element_text(colour = "white"),
-    axis.title = element_text(colour = "white"),
-    axis.text = element_text(colour = "white"),
-    legend.title = element_text(colour = "white"),
-    legend.text = element_text(colour = "white")
-  )
-} 
+# custom theme sets defaults for font and size, but these can be changed without changing the function
+theme_custom <- function(base_size=12, base_family="serif"){
+  theme_classic(base_size = base_size, 
+                base_family = base_family,
+                )  %+replace%
+# update theme minimal 
+theme(
+  # specify default settings for plot titles - use rel to set titles relative to base size
+  plot.title=element_text(size=rel(1.5),
+      face="bold",
+      family=base_family),
+  #specify defaults for axis titles
+  axis.title=element_text(
+    size=rel(1),
+    family=base_family),
+  # specify position for y axis title
+  axis.title.y=element_text(angle = 90,
+                            margin = margin(r = 10, l= 10)),
+  # specify position for x axis title
+  axis.title.x = element_text(margin = margin(t = 10, b = 10)),
+  # set major y grid lines
+  panel.grid.major.y = element_line(colour="gray", size=0.5),
+  # add axis lines
+  axis.line=element_line(),
+   # Adding a 0.5cm margin around the plot
+  plot.margin = unit(c(0.2, 0.5, 0.5, 0.5), units = , "cm"),    
+   # Setting the position for the legend
+  legend.position = "none"             
+)
+  
+}
 ```
 
 
@@ -3170,7 +3148,7 @@ theme_kunoichi <- function(...) {
 
 And so...
 ```{r, eval=FALSE, message = FALSE}
-th + theme_kunoichi()
+th + theme_custom()
 ```
 
 ]
@@ -3178,17 +3156,10 @@ th + theme_kunoichi()
 .right-plot[
 
 ```{r, eval=TRUE, message = FALSE, echo=FALSE, cache=TRUE, warning=FALSE}
-th + theme_kunoichi()
+th + theme_custom()
 ```
 
 ]
-
-
-
----
-
-
-# Extensions
 
 
 

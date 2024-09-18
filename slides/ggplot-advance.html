@@ -4,7 +4,7 @@
     <title>GGplot</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2024-09-16" />
+    <meta name="date" content="2024-09-18" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -1226,6 +1226,7 @@ p2
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
+
 ---
 
 .pull-right[
@@ -1556,8 +1557,36 @@ f + geom_density(
 
 ]
 
+---
+
+## ggridges
+
+.left-code[
+
+Let's be clearer...
+
+```r
+ggplot(
+  data = beaches,
+  mapping = aes(
+    x = temperature,
+*   y = season_name)
+  )  +
+  ggridges::geom_density_ridges()
+```
+
+- Geom: density
+- Stat: density
+- Position: .orange[fill]
+
+]
 
 
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-72-1.png" width="120%" /&gt;
+
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
@@ -1582,7 +1611,7 @@ g + geom_point()
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-72-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-74-1.png" width="120%" /&gt;
 
 ]
 
@@ -1614,7 +1643,7 @@ g + geom_point(
 .right-plot[
 
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-74-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-76-1.png" width="120%" /&gt;
 
 ]
 
@@ -1646,7 +1675,7 @@ g + geom_point(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-76-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-78-1.png" width="120%" /&gt;
 
 ]
 
@@ -1678,7 +1707,7 @@ g + geom_point(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-78-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-80-1.png" width="120%" /&gt;
 
 ]
 
@@ -1711,11 +1740,35 @@ In fact...
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-80-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-82-1.png" width="120%" /&gt;
 
 ]
 
 
+
+---
+
+## Beeswarm
+
+.left-code[
+
+
+```r
+g +
+    geom_violin(
+    aes(group = year)
+  )+
+  ggbeeswarm::geom_beeswarm(size = .8)
+```
+
+]
+
+.right-plot[
+
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-84-1.png" width="120%" /&gt;
+
+]
 
 
 
@@ -1750,7 +1803,7 @@ print(a)
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-82-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-86-1.png" width="120%" /&gt;
 
 ]
 
@@ -1776,7 +1829,7 @@ a + facet_grid(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-84-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-88-1.png" width="120%" /&gt;
 
 ]
 
@@ -1804,7 +1857,7 @@ a + facet_grid(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-86-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-90-1.png" width="120%" /&gt;
 
 ]
 
@@ -1829,7 +1882,7 @@ a + facet_grid(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-88-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-92-1.png" width="120%" /&gt;
 
 ]
 
@@ -1853,7 +1906,7 @@ a + facet_wrap(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-90-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-94-1.png" width="120%" /&gt;
 
 ]
 
@@ -1876,11 +1929,33 @@ a + facet_wrap(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-92-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-96-1.png" width="120%" /&gt;
 
 ]
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
+
+---
+
+## ggh4x
+
+
+.left-code[
+
+Facetting by wrapping...
+
+```r
+a + 
+  ggh4x::facet_nested(~year + season_name)
+```
+
+]
+
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-98-1.png" width="120%" /&gt;
+
+]
 ---
 
 
@@ -1915,7 +1990,7 @@ print(r)
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-94-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-100-1.png" width="120%" /&gt;
 
 ]
 
@@ -1938,7 +2013,7 @@ r + scale_y_continuous(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-96-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-102-1.png" width="120%" /&gt;
 
 ]
 
@@ -1966,7 +2041,7 @@ r + scale_y_continuous(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-98-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-104-1.png" width="120%" /&gt;
 
 ]
 
@@ -1999,7 +2074,7 @@ r + scale_y_continuous(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-100-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-106-1.png" width="120%" /&gt;
 
 ]
 
@@ -2027,7 +2102,7 @@ b
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-102-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-108-1.png" width="120%" /&gt;
 
 ]
 
@@ -2051,7 +2126,7 @@ b + scale_colour_discrete(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-104-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-110-1.png" width="120%" /&gt;
 
 ]
 
@@ -2075,7 +2150,7 @@ b + scico::scale_colour_scico_d(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-106-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-112-1.png" width="120%" /&gt;
 
 ]
 
@@ -2099,12 +2174,36 @@ b + scico::scale_colour_scico_d(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-108-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-114-1.png" width="120%" /&gt;
+
 
 ]
 
 
+&lt;!-- *********** NEW SLIDE ************** --&gt;
+--- 
 
+---
+
+
+.left-code[
+
+Many packages provide scales/palettes
+
+```r
+b + scale_color_manual(values=c("#999999", 
+                                "#E69F00", 
+                                "#56B4E9",
+                                "purple"))
+```
+
+]
+
+.right-plot[
+
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-116-1.png" width="120%" /&gt;
+
+]
 
 
 &lt;!-- *********** NEW SLIDE ************** --&gt;
@@ -2191,7 +2290,7 @@ geom_point(size = 5)
 .right-plot[
 
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-112-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-120-1.png" width="120%" /&gt;
 
 ]
 
@@ -2225,91 +2324,9 @@ geom_point(size = 5) +
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-114-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-122-1.png" width="120%" /&gt;
 
 ]
-
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-.left-code[
-
-A simple scatterplot
-
-```r
-ggplot(
-  data = rain,
-  mapping = aes(
-    x = `2013`,
-    y = `2017`,
-    colour = season_name
-  )
-) + 
-geom_point(size = 5) + 
-geom_abline( 
-  slope = 1, 
-  intercept = 0 
-) + 
-*coord_equal()
-```
-
-]
-
-
-.right-plot[
-
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-116-1.png" width="120%" /&gt;
-
-]
-
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
----
-
-.left-code[
-
-A simple scatterplot
-
-```r
-ggplot(
-  data = rain,
-  mapping = aes(
-    x = `2013`,
-    y = `2017`,
-    colour = season_name
-  )
-) + 
-geom_point(size = 5) + 
-geom_abline( 
-  slope = 1, 
-  intercept = 0 
-) + 
-coord_equal(
-* xlim = c(0, 25),
-* ylim = c(0, 25)
-)
-```
-
-]
-
-
-.right-plot[
-
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-118-1.png" width="120%" /&gt;
-
-]
-
-
 
 
 
@@ -2345,54 +2362,14 @@ geom_abline(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-120-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-124-1.png" width="120%" /&gt;
 
 ]
 
 
 
 
-
-
-
-
-
-&lt;!-- *********** NEW SLIDE ************** --&gt;
 ---
-
-.left-code[
-
-A simple bar plot
-
-```r
-ggplot(
-  data = rain,
-  mapping = aes(
-    x =  month,
-    y = `2017`,
-    colour = season_name,
-    fill = season_name
-  )
-) + 
-geom_col()
-```
-
-]
-
-
-.right-plot[
-
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-122-1.png" width="120%" /&gt;
-
-]
-
-
-
-
-
-
-
-
 
 
 
@@ -2420,7 +2397,7 @@ th
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-124-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-126-1.png" width="120%" /&gt;
 
 ]
 
@@ -2444,7 +2421,7 @@ th + theme_grey()
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-126-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-128-1.png" width="120%" /&gt;
 
 ]
 
@@ -2467,7 +2444,7 @@ th + theme_bw()
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-128-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-130-1.png" width="120%" /&gt;
 
 ]
 
@@ -2488,7 +2465,7 @@ th + theme_void()
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-130-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-132-1.png" width="120%" /&gt;
 
 ]
 
@@ -2516,7 +2493,7 @@ th + theme(
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-132-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-134-1.png" width="120%" /&gt;
 
 ]
 
@@ -2546,7 +2523,7 @@ u
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-134-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-136-1.png" width="120%" /&gt;
 
 ]
 
@@ -2570,7 +2547,7 @@ u
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-136-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-138-1.png" width="120%" /&gt;
 
 ]
 
@@ -2598,7 +2575,7 @@ u
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-138-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-140-1.png" width="120%" /&gt;
 
 ]
 
@@ -2624,7 +2601,7 @@ u
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-140-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-142-1.png" width="120%" /&gt;
 
 ]
 
@@ -2636,23 +2613,41 @@ u
 
 
 
-Kunoichi theme (incomplete)
+Custom theme
+
 
 ```r
-theme_kunoichi &lt;- function(...) {
-  theme_grey(...) %+replace%
-  theme( 
-    plot.background = element_rect(fill = "#BA68C8", colour = "#BA68C8"),
-    panel.background = element_rect(fill = "#562457", colour = "#562457"),
-    legend.background = element_rect(fill = "#BA68C8", colour = "#BA68C8"),
-    plot.title = element_text(colour = "white"),
-    plot.subtitle = element_text(colour = "white"),
-    axis.title = element_text(colour = "white"),
-    axis.text = element_text(colour = "white"),
-    legend.title = element_text(colour = "white"),
-    legend.text = element_text(colour = "white")
-  )
-} 
+# custom theme sets defaults for font and size, but these can be changed without changing the function
+theme_custom &lt;- function(base_size=12, base_family="serif"){
+  theme_classic(base_size = base_size, 
+                base_family = base_family,
+                )  %+replace%
+# update theme minimal 
+theme(
+  # specify default settings for plot titles - use rel to set titles relative to base size
+  plot.title=element_text(size=rel(1.5),
+      face="bold",
+      family=base_family),
+  #specify defaults for axis titles
+  axis.title=element_text(
+    size=rel(1),
+    family=base_family),
+  # specify position for y axis title
+  axis.title.y=element_text(angle = 90,
+                            margin = margin(r = 10, l= 10)),
+  # specify position for x axis title
+  axis.title.x = element_text(margin = margin(t = 10, b = 10)),
+  # set major y grid lines
+  panel.grid.major.y = element_line(colour="gray", size=0.5),
+  # add axis lines
+  axis.line=element_line(),
+   # Adding a 0.5cm margin around the plot
+  plot.margin = unit(c(0.2, 0.5, 0.5, 0.5), units = , "cm"),    
+   # Setting the position for the legend
+  legend.position = "none"             
+)
+  
+}
 ```
 
 
@@ -2667,23 +2662,16 @@ theme_kunoichi &lt;- function(...) {
 And so...
 
 ```r
-th + theme_kunoichi()
+th + theme_custom()
 ```
 
 ]
 
 .right-plot[
 
-&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-143-1.png" width="120%" /&gt;
+&lt;img src="ggplot-advance_files/figure-html/unnamed-chunk-145-1.png" width="120%" /&gt;
 
 ]
-
-
-
----
-
-
-# Extensions
 
 
 

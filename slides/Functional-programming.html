@@ -4,7 +4,7 @@
     <title>Functional</title>
     <meta charset="utf-8" />
     <meta name="author" content="Philip Leftwich" />
-    <meta name="date" content="2024-09-17" />
+    <meta name="date" content="2024-09-18" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
@@ -905,6 +905,46 @@ source("path/to/some/file/functions.R")
 ```
 
 Simply add this line to the top of your R script and you’ll be able to use any functions defined in file.R.
+
+---
+
+# Parallel for loops
+
+Purpose: Speed up computation by splitting tasks across multiple processor cores.
+
+Key Concept:
+
+- A regular for loop runs tasks sequentially (one after another).
+
+- A parallel for loop runs tasks concurrently across multiple cores, reducing total computation time.
+Main Package:
+
+`foreach` package with doParallel backend is commonly used to achieve parallel loops.
+
+---
+
+# Parallel for loops
+
+
+```r
+library(foreach)
+library(doParallel)
+```
+
+
+```r
+detectCores()  # Detect available cores
+
+cl &lt;- makeCluster(4) 
+registerDoParallel(cl)            # Register parallel backend with 4 cores
+
+
+results &lt;- foreach(i = 1:10, .combine = c) %dopar% {
+   i^2  # Task to run in parallel
+}
+stopCluster(cl)  # Stop cluster after the loop
+```
+
 
 ---
 

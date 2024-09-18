@@ -119,21 +119,30 @@ To determine which type of tidy evaluation a function uses, look at the help fil
 
 .pull-left[
 - Data-masking is a distinctive feature of R whereby programming is performed directly on a data set, with columns defined as normal objects.
+
+- Almost all base R functions use **unmasked programming**
+
+```
+mean(penguins$body_mass_g + penguins$flipper_length_mm)
+#[1] 4402.67
+```
+Referring to columns without `$` is an error - Where is the data?
+
+```
+mean(body_mass_g + flipper_length_mm)
+# Error: object 'body_mass_g' not found
+```
+
+
 ]
 
 .pull-right[
 - While data-masking makes it easy to program interactively with data frames, it makes it harder to create functions.
-]
+
+
+- Equivalent code with functions from dplyr that use data masking
 
 ```
-# Almost all base R functions use unmasked programming
-mean(penguins$body_mass_g + penguins$flipper_length_mm)
-#[1] 4402.67
-# Referring to columns without `$` is an error - Where is the data?
-mean(body_mass_g + flipper_length_mm)
-# Error: object 'body_mass_g' not foundd
-# R is looking in the global environment for an object named 'cyl'
-# Equivalent code with functions from dplyr that use data masking
 # Data masking allows you to reference columns without using $
 penguins |> 
 summarise(mean = mean(body_mass_g + flipper_length_mm))
@@ -143,6 +152,10 @@ summarise(mean = mean(body_mass_g + flipper_length_mm))
 #1 4403.
 
 ```
+]
+
+
+
 
 ---
 
@@ -185,7 +198,7 @@ penguins$body_mass_g
 # Passing "quoted" arguments to summarise
 
 
-```{r}
+```{r, eval = FALSE}
 
 penguin_summary <- function(select_var){
   penguins |> 
@@ -204,6 +217,68 @@ penguin_summary("body_mass_g")
 ```
 
 ---
+
+
+## Quasiquotation
+
+
+Passing data-masked arguments to functions requires injection (also known as quasiquotation) with the embracing operator {{·}}
+
+This is needed because under the hood data-masking works by defusing R code to prevent its immediate evaluation.
+
+The defused code is resumed later on in a context where data frame columns are defined.
+
+
+```{r}
+penguin_summary <- function(select_var){
+  penguins |> 
+  summarise(mean = mean({{select_var}}, na.rm = T))
+}
+
+penguin_summary(body_mass_g)
+penguin_summary("body_mass_g") # Works either way
+
+```
+
+---
+
+## Quasiquotation
+
+The {{.}} is a shortcut for `!!enquo(.)` Where `rlang::enquo()` captures and quote an argument or an expression. The result of `enquo()` is a quosure, which is a combination of the quoted expression and its associated environment.
+
+`!!` This is the unquote operator. It's used to unquote or unsplice the contents of a quosure. In other words, it takes the quoted expression out of the quosure and evaluates it.
+
+```{r}
+penguin_summary <- function(select_var){
+  
+  select_var <- enquo(select_var)
+  
+ penguins |> 
+  summarise(mean = mean(!!select_var, na.rm = T))
+  
+}
+
+penguin_summary(body_mass_g)
+
+```
+
+- But {{}} is more flexible - `enquo` expects a data-masked variable
+
+---
+
+## Using {{.}}
+
+
+```{r}
+my_total <- function(data, var_1, var_2){
+data |> 
+  summarise(new_mean = mean({{var_1}} + {{var_2}}, na.rm = T))
+}
+
+my_total(penguins, body_mass_g, flipper_length_mm)
+
+```
+
 
 ## Passing quoted arguments to filter()
 
@@ -238,7 +313,7 @@ Caused by error:
 
 Why did we get this note? The character condition needs to be **an expression**
 
-**expression** an object that represents an action that can be performed by R
+**expression** is an object that represents an action that can be performed by R
 
 ---
 
@@ -246,9 +321,9 @@ Why did we get this note? The character condition needs to be **an expression**
 
 Can use !! injector & rlang::parse_expr()
 
-rlang::parse_expr: transforms text into an un-evaluated expression (i.e., it removes the quotation marks but doesn't evaluate the text)
+`rlang::parse_expr:` transforms text into an un-evaluated expression 
 
-!! to be covered in next section
+!! unquotes the character string
 
 ```{r, eval = F}
 filter_function <- function(filter_condition){
@@ -271,6 +346,21 @@ filter_function("body_mass_g < 3500")
 
 ```
 
+
+---
+
+## {{.}} to filter()
+
+
+```{r}
+filter_function <- function(filter_condition){
+  penguins |> 
+    filter({{filter_condition}})
+}
+
+filter_function(body_mass_g < 3500)
+
+```
 
 ---
 
@@ -306,62 +396,57 @@ ratio_function("bill_length_mm", "bill_depth_mm")
 
 ---
 
-## Passing unquoted arguments
-
-
-Passing data-masked arguments to functions requires injection (also known as quasiquotation) with the embracing operator {{ · }}
-
-This is needed because under the hood data-masking works by defusing R code to prevent its immediate evaluation.
-
-The defused code is resumed later on in a context where data frame columns are defined.
-
+## Using {{}}
 
 ```{r}
-penguin_summary <- function(select_var){
+ratio_function <- function(mutate_var1, mutate_var2) {
   penguins |> 
-  summarise(mean = mean({{select_var}}, na.rm = T))
+    mutate(ratio = {{mutate_var1}} / {{mutate_var2}})
 }
 
-penguin_summary(body_mass_g)
+ratio_function(bill_length_mm, bill_depth_mm)
 
 ```
 
 ---
 
-## Quasiquotation
-
-The {{.}} is a shortcut for !!enquo(.) Where rlang::enquo() captures and quote an argument or an expression. The result of enquo() is a quosure, which is a combination of the quoted expression and its associated environment.
-
-!! This is the unquote operator. It's used to unquote or unsplice the contents of a quosure. In other words, it takes the quoted expression out of the quosure and evaluates it.
-
 ```{r}
-penguin_summary <- function(select_var){
-  
-  select_var <- enquo(select_var)
-  
- penguins |> 
-  summarise(mean = mean(!!select_var, na.rm = T))
-  
+
+
+my_ratio_function <- function(var1, var2) {
+  var1 <- ensym(var1)  # Convert input to symbol
+  var2 <- ensym(var2)
+  penguins |> 
+    mutate(ratio = !!var1 / !!var2)  # Unquote and use the symbols
 }
 
-penguin_summary(body_mass_g)
+# Call with column names
+my_ratio_function("bill_length_mm", "bill_depth_mm")
+# Call with column names
+my_ratio_function(bill_length_mm, bill_depth_mm)
+
 
 ```
+
 
 ---
+## Enquo or ensym
 
-## Using {{.}}
+
+| Feature            | `enquo()`                                  | `ensym()`                               |
+|--------------------|--------------------------------------------|-----------------------------------------|
+| **Captures**        | Expressions (quosures)                    | Symbols (column names, single symbols)  |
+| **Usage**           | For complex expressions (e.g., logical conditions) | For individual column names or symbols |
+| **Resulting Object**| Quosure (expression with environment)     | Symbol                                  |
+| **Complexity**      | Can handle more complex expressions       | Handles only simple column references   |
+| **Example Input**   | `bill_length_mm > 40`                     | `"bill_length_mm"` or `bill_length_mm`  |
 
 
-```{r}
-my_total <- function(data, var_1, var_2){
-data |> 
-  summarise(new_mean = mean({{var_1}} + {{var_2}}, na.rm = T))
-}
+When to Use:
 
-my_total(penguins, body_mass_g, flipper_length_mm)
+- `enquo()`: Use it when you want to capture a complex expression that includes operators, comparisons, or multiple parts.
+- `ensym()`: Use it when you're only dealing with simple column names or strings representing column names.
 
-```
 
 ---
 
@@ -384,7 +469,7 @@ To write functions using {dplyr} verbs that use tidy-select: In selecting functi
 
 - `all_of()`: for strict selection. If any of the variables in the character vector is missing, an error is thrown
 
-- Can also use `!all_of()` to select all variables not found in the character vector supplied to all_of()
+- Can also use `!all_of()` to select all variables not found in the character vector supplied to `all_of()`
 
 
 ```{r}
@@ -453,6 +538,8 @@ my_select_function(select_variable = c(species, sex)) |>
     glimpse()
 
 ```
+
+- Function will now work with quoted or unquoted arguments
 
 ---
 

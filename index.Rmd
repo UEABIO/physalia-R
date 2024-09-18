@@ -34,4 +34,11 @@ All lecture materials will be available here.
 - 06: Writing Packages
 
     - [Slides](slides/Packages.html) 
+    
+- 07: Working with big data files
 
+    - [Slides](slides/Big-data.html) 
+    
+- 07: Working with ggplot
+
+    - [Slides](slides/ggplot-advance.html) 
