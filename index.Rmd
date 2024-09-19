@@ -39,6 +39,18 @@ All lecture materials will be available here.
 
     - [Slides](slides/Big-Data.html) 
     
-- 07: Working with ggplot
+- 08: Working with ggplot
 
     - [Slides](slides/ggplot-advance.html) 
+    
+- 09: Working with Shiny
+
+    - [Slides](slides/Shiny.html) 
+    
+- 10: Working with reproducible reports
+
+    - [Slides](slides/Reproducible_report_06.html) 
+    
+- 11: Working with Git
+
+    - [Slides](slides/Git.html) 
