@@ -49,8 +49,8 @@ All lecture materials will be available here.
     
 - 10: Working with reproducible reports
 
-    - [Slides](slides/Reproducible_report_06.html) 
+    - [Slides](slides/Reproducible_reports_06.html) 
     
 - 11: Working with Git
 
-    - [Slides](slides/Git.html) 
+    - [Slides](slides/Github.html) 
